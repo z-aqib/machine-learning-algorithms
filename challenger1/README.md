@@ -144,7 +144,7 @@ accuracy: 0.88454
 - MaxAbsScaler()
 - no grid
 
-roc score =  0.523861491669948 
+roc score =  0.523861491669948   
 accuracy: 0.88389
 
 ## Case 17
@@ -153,7 +153,7 @@ accuracy: 0.88389
 - RobustScaler
 - no grid
 
-roc score =  0.5181612733948899
+roc score =  0.5181612733948899   
 accuracy: 0.88517
 
 ## Case 18
@@ -162,4 +162,13 @@ accuracy: 0.88517
 - RobustScaler
 - no grid
 
-roc score =  0.5173654042244641
+roc score =  0.5173654042244641   
+accuracy: 0.87303
+
+## Case 19
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- SimpleImputer(strategy='mean')
+- Normalizer
+- no grid
+
+roc score =  0.512349538904424   
