@@ -95,9 +95,18 @@ accuracy: 0.88788
 
 ## Case 11
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
-- simple imputation
+- SimpleImputer(strategy='mean')
 - minmax scaling
 - no grid
 
 roc score =  0.5184642260176702   
 accuracy: 0.89330
+
+## Case 12
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- KNNImputer(n_neighbors=5)
+- minmax scaling
+- no grid
+
+roc score =  0.5138345831202585   
+accuracy: 0.87791
