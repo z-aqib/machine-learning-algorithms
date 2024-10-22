@@ -90,7 +90,7 @@ accuracy: 0.86817
 - minmax scaling
 - no grid
 
-roc score =  0.5205418492631988
+roc score =  0.5205418492631988    
 accuracy: 0.88788
 
 ## Case 11
@@ -108,5 +108,14 @@ accuracy: 0.89330
 - minmax scaling
 - no grid
 
-roc score =  0.5138345831202585   
+roc score =  0.5138345831202585      
 accuracy: 0.87791
+
+## Case 13
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- SimpleImputer(strategy='mean')
+- StandardScaler()
+- no grid
+
+roc score =  0.5086297947750887    
+accuracy: 0.77620   
