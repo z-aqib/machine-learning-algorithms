@@ -129,3 +129,11 @@ accuracy: 0.77620
 roc score =  0.5151673183025117     
 accuracy: 0.80450
 
+## Case 15
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- SimpleImputer(strategy='mean')
+- MaxAbsScaler()
+- no grid
+
+roc score =  0.5071707936463162    
+accuracy: 0.88454
