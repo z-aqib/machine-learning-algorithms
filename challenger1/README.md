@@ -6,8 +6,8 @@
 - minmax scaling, 
 - no grid
 
-roc score =  0.5230564082198742
-Accuracy: 0.72913
+roc score = 0.5230564082198742   
+Accuracy: 0.72913   
 
 ## Case2
 - DecisionTreeClassifier(criterion='entropy', max_depth=7, min_samples_split=20)
@@ -15,7 +15,7 @@ Accuracy: 0.72913
 - minmax scaling,
 - no grid
 
-roc score = roc score =  0.5229797007820421
-Accuracy: 0.83323
+roc score = 0.5229797007820421   
+Accuracy: 0.83323  
 
 ## Case3
