@@ -172,3 +172,13 @@ accuracy: 0.87303
 - no grid
 
 roc score =  0.512349538904424   
+accuracy: 0.64969
+
+## Case 20
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- KNNImputer(n_neighbors=7)
+- Normalizer
+- no grid
+
+roc score =  0.5204856620977856
+accuracy: 0.65308
