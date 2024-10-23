@@ -1,4 +1,4 @@
-# Results
+# DecisionTrees
 
 ## Case 1
 - DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=20), 
@@ -218,7 +218,7 @@ NormalizerScaler average: 0.651385
 | ------------------ | ------------- | ------- | ------- | ------- | -------- |
 | Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  |
 | ------------------ | ------------- | ------- | ------- | ------- | -------- |
-| MinMaxScaler       | 0.89330       |  -      | 0.87791 | -       | 0.885605 |
+| MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | -       | 0.885605 |
 | StandardScaler     | 0.77620       | 0.80450 | -       | -       | 0.79035  |
 | MaxAbsScaler       | 0.88454       | -       | -       | 0.88389 | 0.884215 |
 | RobustScaler       | 0.88517       | -       | 0.87303 | -       | 0.87910  |
@@ -227,3 +227,12 @@ NormalizerScaler average: 0.651385
 the best among all 5 scalers is MinMaxScaler and MaxAbsScaler. the third best is RobustScaler, after that StandardScaler is lower significantly and NormalizerScaler is very very low. Hence we shall be alternating between MinMaxScaler and MaxAbsScaler as they are only differnet in the third decimal point.    
 
 out of KNN and SimpleImputers, we can see that both are good however simple imputer performs better on average. thus we will work with both. in the next 4 cases, lets test knn=3, 5, 7 for MinMaxScaler and MaxAbsScaler to find the best KNN going forward.
+
+## Case 21
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- KNNImputer(n_neighbors=3)
+- minmax scaling
+- no grid
+
+roc score =  0.510941492151186
+accuracy: 0.89142
