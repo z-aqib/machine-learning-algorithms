@@ -274,3 +274,12 @@ so according to updated table, knn=7 is best on average and we can alternate bet
 
 roc score =  0.5150632467068051   
 accuracy: 0.85877
+
+## Case 26
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- KNNImputer(n_neighbors=7)
+- MaxAbsScaler
+- no grid
+
+roc score = 0.5
+accuracy: 0.89522
