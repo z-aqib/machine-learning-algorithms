@@ -2,6 +2,7 @@
 
 ## Case 1
 - DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=20), 
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal, 
 - minmax scaling, 
 - no grid
@@ -14,6 +15,7 @@ one error approached was that we had first splitted the data into features and t
 
 ## Case 2
 - DecisionTreeClassifier(criterion='entropy', max_depth=7, min_samples_split=20)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal,
 - minmax scaling,
 - no grid
@@ -26,6 +28,7 @@ entropy performed better then gini
 
 ## Case 3
 - DecisionTreeClassifier(criterion='entropy', max_depth=7, min_samples_split=15)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -38,6 +41,7 @@ splitting on smaller samples is better
 
 ## Case 4
 - DecisionTreeClassifier(criterion='entropy', max_depth=8, min_samples_split=15)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -50,6 +54,7 @@ higher depth trees arent good
 
 ## Case 5
 - DecisionTreeClassifier(criterion='entropy', max_depth=6, min_samples_split=15)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -59,6 +64,7 @@ accuracy: 0.85532
 
 ## Case 6
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -68,6 +74,7 @@ accuracy: 0.87815
 
 ## Case 7
 - DecisionTreeClassifier(criterion='entropy', max_depth=4, min_samples_split=15)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -80,6 +87,7 @@ smaller depth trees are good, but too small arent. keep till 5 depth
 
 ## Case 8
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=10)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -89,6 +97,7 @@ accuracy: 0.83207
 
 ## Case 9
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=50)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -98,6 +107,7 @@ accuracy: 0.86817
 
 ## Case 10
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
 - minmax scaling
 - no grid
@@ -110,6 +120,7 @@ using less features isnt good. around 60 features improves accuracy
 
 ## Case 11
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
 - minmax scaling
 - no grid
@@ -119,6 +130,7 @@ accuracy: 0.89330
 
 ## Case 12
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=5)
 - minmax scaling
 - no grid
@@ -131,6 +143,7 @@ MinMaxScaler average: 0.885605
 
 ## Case 13
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
 - StandardScaler()
 - no grid
@@ -140,6 +153,7 @@ accuracy: 0.77620
 
 ## Case 14
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=3)
 - StandardScaler()
 - no grid
@@ -152,6 +166,7 @@ StandardScaler average: 0.79035
 
 ## Case 15
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
 - MaxAbsScaler()
 - no grid
@@ -161,6 +176,7 @@ accuracy: 0.88454
 
 ## Case 16
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=7)
 - MaxAbsScaler()
 - no grid
@@ -173,6 +189,7 @@ MaxAbsScaler average: 0.884215
 
 ## Case 17
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
 - RobustScaler
 - no grid
@@ -182,6 +199,7 @@ accuracy: 0.88517
 
 ## Case 18
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=5)
 - RobustScaler
 - no grid
@@ -194,6 +212,7 @@ RobustScaler average: 0.87910
 
 ## Case 19
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
 - Normalizer
 - no grid
@@ -203,6 +222,7 @@ accuracy: 0.64969
 
 ## Case 20
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=7)
 - Normalizer
 - no grid
@@ -229,6 +249,7 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 
 ## Case 21
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=3)
 - minmax scaling
 - no grid
@@ -238,6 +259,7 @@ accuracy: 0.89142
 
 ## Case 22
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=7)
 - minmax scaling
 - no grid
@@ -247,6 +269,7 @@ accuracy: 0.88134
 
 ## Case 23
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=3)
 - MaxAbsScaler
 - no grid
@@ -256,6 +279,7 @@ accuracy: 0.88155
 
 ## Case 24
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=5)
 - MaxAbsScaler
 - no grid
@@ -268,6 +292,7 @@ so according to updated table, knn=7 is best on average and we can alternate bet
 
 ## Case 25
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=50)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=7)
 - MaxAbsScaler
 - no grid
@@ -277,6 +302,7 @@ accuracy: 0.85877
 
 ## Case 26
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=7)
 - MaxAbsScaler
 - no grid
@@ -286,6 +312,7 @@ accuracy: 0.89522
 
 ## Case 27
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=100)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=7)
 - MaxAbsScaler
 - no grid
@@ -295,3 +322,13 @@ accuracy: 0.85276
 
 ### analyzing
 min_samples_leaf is fine at 80
+
+## Case 28
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=100)
+- crossfold = RepeatedKFold(n_splits=10, n_repeats=1)#, random_state=1)
+- KNNImputer(n_neighbors=7)
+- MaxAbsScaler
+- no grid
+
+'0.8964'   
+accuracy: 0.89174
