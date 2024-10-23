@@ -207,7 +207,7 @@ accuracy: 0.64969
 - Normalizer
 - no grid
 
-roc score =  0.5204856620977856
+roc score =  0.5204856620977856   
 accuracy: 0.65308
 
 ### Analyzing
@@ -215,7 +215,6 @@ NormalizerScaler average: 0.651385
 
 ### Analyzing
 
-| ------------------ | ------------- | ------- | ------- | ------- | -------- |
 | Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  |
 | ------------------ | ------------- | ------- | ------- | ------- | -------- |
 | MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | -       | 0.885605 |
@@ -234,5 +233,14 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 - minmax scaling
 - no grid
 
-roc score =  0.510941492151186
+roc score =  0.510941492151186    
 accuracy: 0.89142
+
+## Case 22
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- KNNImputer(n_neighbors=7)
+- minmax scaling
+- no grid
+
+roc score =  0.5100979659586905
+accuracy: 0.88134
