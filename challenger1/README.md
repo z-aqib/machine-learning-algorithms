@@ -233,7 +233,7 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 - minmax scaling
 - no grid
 
-roc score =  0.510941492151186    
+roc score =  0.510941492151186      
 accuracy: 0.89142
 
 ## Case 22
@@ -242,7 +242,7 @@ accuracy: 0.89142
 - minmax scaling
 - no grid
 
-roc score =  0.5100979659586905
+roc score =  0.5100979659586905   
 accuracy: 0.88134
 
 ## Case 23
@@ -251,7 +251,7 @@ accuracy: 0.88134
 - MaxAbsScaler
 - no grid
 
-roc score =  0.5200733426222888
+roc score =  0.5200733426222888    
 accuracy: 0.88155
 
 ## Case 24
@@ -260,9 +260,17 @@ accuracy: 0.88155
 - MaxAbsScaler
 - no grid
 
-roc score =  0.5133797612483052
+roc score =  0.5133797612483052   
 accuracy: 0.84670
 
 ### analyzing
 so according to updated table, knn=7 is best on average and we can alternate between MaxAbs and MinMax however MinMax will be prioritised.
 
+## Case 25
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=50)
+- KNNImputer(n_neighbors=7)
+- MaxAbsScaler
+- no grid
+
+roc score =  0.5150632467068051   
+accuracy: 0.85877
