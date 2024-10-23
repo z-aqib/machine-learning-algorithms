@@ -352,3 +352,6 @@ accuracy: 0.88935
 
 '0.8994'
 accuracy: 0.87891
+
+### analyzing
+k-fold is best at k = 10. it does give good accuracy like holdout, we can use both of them alternatively.
