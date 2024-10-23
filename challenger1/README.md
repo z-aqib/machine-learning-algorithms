@@ -332,3 +332,13 @@ min_samples_leaf is fine at 80
 
 '0.8964'   
 accuracy: 0.89174
+
+## Case 29
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=100)
+- crossfold = RepeatedKFold(n_splits=5, n_repeats=1)#, random_state=1)
+- KNNImputer(n_neighbors=7)
+- MaxAbsScaler
+- no grid
+
+'0.8812'
+accuracy: 0.88935
