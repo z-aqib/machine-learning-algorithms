@@ -292,3 +292,6 @@ accuracy: 0.89522
 
 roc score = 0.5
 accuracy: 0.85276
+
+### analyzing
+min_samples_leaf is fine at 80
