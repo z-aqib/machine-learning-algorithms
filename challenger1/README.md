@@ -342,3 +342,13 @@ accuracy: 0.89174
 
 '0.8812'
 accuracy: 0.88935
+
+## Case 30
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=100)
+- crossfold = RepeatedKFold(n_splits=15, n_repeats=1)#, random_state=1)
+- KNNImputer(n_neighbors=7)
+- MaxAbsScaler
+- no grid
+
+'0.8994'
+accuracy: 0.87891
