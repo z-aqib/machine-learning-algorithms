@@ -215,13 +215,13 @@ NormalizerScaler average: 0.651385
 
 ### Analyzing
 
-| Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  |
-| ------------------ | ------------- | ------- | ------- | ------- | -------- |
-| MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | 0.88134 | 0.885605 |
-| StandardScaler     | 0.77620       | 0.80450 | -       | -       | 0.79035  |
-| MaxAbsScaler       | 0.88454       | 0.88155 | -       | 0.88389 | 0.884215 |
-| RobustScaler       | 0.88517       | -       | 0.87303 | -       | 0.87910  |
-| Normalizer         | 0.64969       | -       | -       | 0.65308 | 0.651385 |
+| Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  | New Average |
+| ------------------ | ------------- | ------- | ------- | ------- | -------- | ----------- |
+| MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | 0.88134 | 0.885605 | 0.883556667 |
+| StandardScaler     | 0.77620       | 0.80450 | -       | -       | 0.79035  | -           |
+| MaxAbsScaler       | 0.88454       | 0.88155 | 0.84670 | 0.88389 | 0.884215 | 0.870713333 |
+| RobustScaler       | 0.88517       | -       | 0.87303 | -       | 0.87910  | -           |
+| Normalizer         | 0.64969       | -       | -       | 0.65308 | 0.651385 | -           |
 
 the best among all 5 scalers is MinMaxScaler and MaxAbsScaler. the third best is RobustScaler, after that StandardScaler is lower significantly and NormalizerScaler is very very low. Hence we shall be alternating between MinMaxScaler and MaxAbsScaler as they are only differnet in the third decimal point.    
 
@@ -264,4 +264,5 @@ roc score =  0.5133797612483052
 accuracy: 0.84670
 
 ### analyzing
-so 
+so according to updated table, knn=7 is best on average and we can alternate between MaxAbs and MinMax however MinMax will be prioritised.
+
