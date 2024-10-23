@@ -217,9 +217,9 @@ NormalizerScaler average: 0.651385
 
 | Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  |
 | ------------------ | ------------- | ------- | ------- | ------- | -------- |
-| MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | -       | 0.885605 |
+| MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | 0.88134 | 0.885605 |
 | StandardScaler     | 0.77620       | 0.80450 | -       | -       | 0.79035  |
-| MaxAbsScaler       | 0.88454       | -       | -       | 0.88389 | 0.884215 |
+| MaxAbsScaler       | 0.88454       | 0.88155 | -       | 0.88389 | 0.884215 |
 | RobustScaler       | 0.88517       | -       | 0.87303 | -       | 0.87910  |
 | Normalizer         | 0.64969       | -       | -       | 0.65308 | 0.651385 |
 
@@ -244,3 +244,12 @@ accuracy: 0.89142
 
 roc score =  0.5100979659586905
 accuracy: 0.88134
+
+## Case 23
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
+- KNNImputer(n_neighbors=3)
+- MaxAbsScaler
+- no grid
+
+roc score =  0.5200733426222888
+accuracy: 0.88155
