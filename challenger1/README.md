@@ -13,16 +13,48 @@
 | 8 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 10 | - | 0.5154151037016982 | 0.83207 | need to use more features to improve |
 | 9 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 50 | - | 0.5128726511312657 | 0.86817 | more features improved tree but to the full extent |
 | 10 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5205418492631988 | 0.88788 | increasing features improved highly | 
-| 11 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 12 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 13 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 14 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 15 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 16 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 17 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 18 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 19 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
-| 20 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 11 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5184642260176702 | 0.89330 | - | 
+| 12 | minmax | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5138345831202585 | 0.87791 | simple performs better on minmax | 
+| 13 | standard | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5086297947750887 | 0.77620 | - | 
+| 14 | standard | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5151673183025117 | 0.80450 | knn performs better on standard | 
+| 15 | maxabs | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5071707936463162 | 0.88454 | - | 
+| 16 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.523861491669948 | 0.88389 | both simple and knn perform well with maxabs | 
+| 17 | robust | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5181612733948899 | 0.88517 | - | 
+| 18 | robust | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5173654042244641 | 0.87303 | simple performs better on robust | 
+| 19 | normalizer | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.512349538904424 | 0.64969 | - | 
+| 20 | normalizer | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5204856620977856 | 0.65308 | normalizer is not a good scaler | 
+| 21 | minmax | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.510941492151186 | 0.89142 | - | 
+| 22 | minmax | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5100979659586905 | 0.88134 | in minmax, simple performed best | 
+| 23 | maxabs | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5200733426222888 | 0.88155 | - | 
+| 24 | maxabs | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5133797612483052 | 0.84670 | in maxabs, simple performed just 3dp better then knn=7 | 
+| 25 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 50 | 0.5150632467068051 | 0.85877 | - | 
+| 26 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | 0.5 | 0.89522 | BEST CASE: highest accuracy | 
+| 27 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 100 | 0.5 | 0.85276 | worser performance when too many samples on leaf | 
+| 28 | maxabs | knn7 | crossfold k=10 | entropy | 5 | 15 | 60 | 80 | 0.8964 | 0.89174 | near to best accuracy | 
+| 29 | maxabs | knn7 | crossfold k=5 | entropy | 5 | 15 | 60 | 80 | 0.8812 | 0.88935 | decreasing k didnt change accuracy too much | 
+| 30 | maxabs | knn7 | crossfold k=15 | entropy | 5 | 15 | 60 | 80 | 0.8994 | 0.87891 | increasing k resulted in overfit | 
+
+highest accuracy achieved: 0.89522   
+started accuracy: 0.72913   
+best parameters: (case 26)    
+    - max absolute scaler
+    - knn=7 imputation
+    - entropy criteria 
+    - holdout method, at 70-30 ratio
+    - maximum 5 depth tree
+    - minimum 15 samples split
+    - maximum 60 features used
+    - minimum samples per leaf is 80
+analyzed best:    
+    - minmax and maxabs is the best scalers
+    - normalizer is the worst scaler
+    - simple and knn=7 perform best, knn=3 performs a bit lesser
+    - depth of tree is good at 5, 6, while 4, 8 leads to underfit/overfit
+    - too less features used like 10 and 50 is bad
+    - too many samples on a leaf like 100 result in underfit. 80 is the breakpoint. smaller then 80 result in overfit
+    - cross fold performs best at k=10
+    - entropy is better then gini
+
 
 ## Case 1 - started
 - DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=20), 
@@ -258,7 +290,6 @@ accuracy: 0.65308
 NormalizerScaler average: 0.651385
 
 ### Analyzing
-
 | Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  | New Average |
 | ------------------ | ------------- | ------- | ------- | ------- | -------- | ----------- |
 | MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | 0.88134 | 0.885605 | 0.883556667 |
@@ -348,7 +379,7 @@ accuracy: 0.85276
 min_samples_leaf is fine at 80
 
 ## Case 28 - crossfold at k=10
-- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=100)
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
 - crossfold = RepeatedKFold(n_splits=10, n_repeats=1)#, random_state=1)
 - KNNImputer(n_neighbors=7)
 - MaxAbsScaler
@@ -358,7 +389,7 @@ min_samples_leaf is fine at 80
 accuracy: 0.89174
 
 ## Case 29 - crossfold at k=5
-- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=100)
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
 - crossfold = RepeatedKFold(n_splits=5, n_repeats=1)#, random_state=1)
 - KNNImputer(n_neighbors=7)
 - MaxAbsScaler
@@ -368,7 +399,7 @@ accuracy: 0.89174
 accuracy: 0.88935
 
 ## Case 30 - crossfold at k=15
-- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=100)
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
 - crossfold = RepeatedKFold(n_splits=15, n_repeats=1)#, random_state=1)
 - KNNImputer(n_neighbors=7)
 - MaxAbsScaler
