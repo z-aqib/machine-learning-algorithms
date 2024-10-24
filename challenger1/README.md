@@ -424,6 +424,7 @@ k-fold is best at k = 10. it does give good accuracy like holdout, we can use bo
 | 31 | simple | maxabs | - | 78 | 0.8670720641412841 | 0.8015837569508879 | 0.83725 | need to test a bit more to see what was lacking and what to improve |
 | 32 | simple | minmax | - | 78 | 0.9109254167964571 | 0.7956827745161095 | 0.83350 | minmax and maxabs have negligible difference in 3 dp |
 | 33 | knn7 | minmax | - | 78 | 0.9121307745439279 | 0.7969697685450362 | 0.83350 | knn7 and simple is same! we must reduce the features to try and improve accuracy |
+| 34 | simple | minmax | forward | 5 | 0.9838834188821323 | 0.5964048120149146 | 0.82386 | will need to test it a bit more to deduce | 
 
 ## Case 31
 - naive bayes
@@ -457,3 +458,13 @@ accuracy: 0.83350
 
 ### analyzing
 NO DIFFERENCE! knn7 == simple. we will have to use feature selections now to try and improve the accuracy
+
+## Case 34 - simple, forward selection=5
+- naive bayes
+- simple imputer
+- minmax scaler
+- forward=5
+
+model accuracy =  0.9838834188821323    
+roc score =  0.5964048120149146 
+accuracy: 0.82386
