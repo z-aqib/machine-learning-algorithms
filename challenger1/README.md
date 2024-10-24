@@ -417,6 +417,8 @@ accuracy: 0.87891
 ### analyzing
 k-fold is best at k = 10. it does give good accuracy like holdout, we can use both of them alternatively.
 
+DAY 4: Thursday 24th October 2024
+
 # NaiveBayes
 
 ### Analyzing Naive Bayes
@@ -436,6 +438,8 @@ k-fold is best at k = 10. it does give good accuracy like holdout, we can use bo
 | 37e | simple | minmax | variance=0.03, correlation=0.8 filter | 19 | 0.9457318146728605 | 0.6916013795163546 | not submitted | too high accuracy, overfit chance |
 | 37f | simple | minmax | variance=0.03, correlation=0.9 filter | 20 | 0.9441201565610737 | 0.6819374512237548 | 0.75852 | accuracy improved from last time but we need more features |
 | 38 | simple | minmax | variance=0.01, correlation=0.9 filter | 49 | 0.9129975486544686 | 0.7505591957401304 | 0.81494 | accuracy improved due to number of features, will use more in next round |
+| 39a | simple | minmax | variance=0.005, correlation=0.9 filter | 57 | 0.9132142421821038 | 0.7612309576110358 | not submitted | model accuracy is too high, overfit chance | 
+| 39b | simple | minmax | variance=0.001, correlation=0.9 filter | 61 | 0.9134715657461706 | 0.758662810781139 | 0.82598 | accuracy improved, need to increase more rows |
 
 highest accuracy achieved:    
 started accuracy: 0.83725   
@@ -571,3 +575,22 @@ accuracy: 0.81494
 
 ### analyzer
 wow! accuracy shot up. lets use more features now (we used approx 50 right now)
+
+## Case 39a - variance=0.005
+69 by variance, 57 by correlation   
+model accuracy =  0.9132142421821038    
+roc score =  0.7612309576110358 
+
+## Case 39b - variance=0.001
+- naive bayes
+- simple imputer
+- minmax scaler
+- variance=0.001, correlation=0.9 
+- rows = 61 (73 by variance, 61 by correlation)
+
+model accuracy =  0.9134715657461706    
+roc score =  0.758662810781139  
+accuracy: 0.82598
+
+### analyzer
+wow! lets increase the rows even further
