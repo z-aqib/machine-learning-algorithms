@@ -440,6 +440,10 @@ DAY 4: Thursday 24th October 2024
 | 38 | simple | minmax | variance=0.01, correlation=0.9 filter | 49 | 0.9129975486544686 | 0.7505591957401304 | 0.81494 | accuracy improved due to number of features, will use more in next round |
 | 39a | simple | minmax | variance=0.005, correlation=0.9 filter | 57 | 0.9132142421821038 | 0.7612309576110358 | not submitted | model accuracy is too high, overfit chance | 
 | 39b | simple | minmax | variance=0.001, correlation=0.9 filter | 61 | 0.9134715657461706 | 0.758662810781139 | 0.82598 | accuracy improved, need to increase more rows |
+| 40a | simple | minmax | variance=0.0001, correlation=0.9 filter | 66 | 0.9162479515689965 | 0.7761983869690179 | not submitted | - | 
+| 40b | simple | minmax | variance=0.0001, correlation=0.8 filter | 57 | 0.9183200834270081 | 0.7965337080939787 | not submitted | - | 
+| 40c | simple | minmax | variance=0.0001, correlation=0.85 filter | 62 | 0.9187128404458469 | 0.7588877586887783 | not submitted | - | 
+| 40d | simple | minmax | variance=0.0001, correlation=0.87 filter | 65 | 0.9158958245865894 | 0.7754906950864966 | 0.83187 | good accuracy achieved when more features are used | 
 
 highest accuracy achieved:    
 started accuracy: 0.83725   
@@ -594,3 +598,32 @@ accuracy: 0.82598
 
 ### analyzer
 wow! lets increase the rows even further
+
+## Case 40a - variance=0.0001
+78 by variance, 66 by correlation  
+model accuracy =  0.9162479515689965     
+roc score =  0.7761983869690179 
+
+## Case 40b - variance=0.0001, correlation=0.8
+78 by variance, 57 by correlation
+model accuracy =  0.9183200834270081    
+roc score =  0.7965337080939787  
+
+## Case 40c - variance=0.0001, correlation=0.85
+78 by variance, 62 by correlation
+model accuracy =  0.9187128404458469    
+roc score =  0.7588877586887783  
+
+## Case 40d - variance=0.0001, correlation=0.87
+- naive bayes
+- simple imputer
+- minmax scaler
+- variance=0.0001, correlation=0.87
+- rows = 65 (78 by variance, 65 by correlation)
+
+model accuracy =  0.9158958245865894    
+roc score =  0.7754906950864966    
+accuracy: 0.83187
+
+### analyzer
+accuracy improved, but not even to the starting point.. submissions have ended otherwise we could have tested for 70s features. 
