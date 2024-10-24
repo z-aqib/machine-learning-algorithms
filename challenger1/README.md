@@ -8,7 +8,21 @@
 | 3 | minmax | row removal | holdout 70-30 | entropy | 7 | 15 | - | - | 0.5203814609840954 | 0.83327 | improved minutely of 5dp on lesser samples per split | 
 | 4 | minmax | row removal | holdout 70-30 | entropy | 8 | 15 | - | - | 0.5306000850899 | 0.78883 | deteriorated, longer trees resulted in overfit; test had bad performance |
 | 5 | minmax | row removal | holdout 70-30 | entropy | 6 | 15 | - | - | 0.5204372482116096  | 0.85532 | lowering depth shot the improvement up |
-| 6 | minmax | row removal | holdout 70-30 | entropy | 
+| 6 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | - | - | 0.5230843018336313 | 0.87815 | lesser depth improved tree | 
+| 7 | minmax | row removal | holdout 70-30 | entropy | 4 | 15 | - | - | 0.5025494259738718 | 0.87296 | depth is too low, accuracy deteriorated at 3dp | 
+| 8 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 10 | - | 0.5154151037016982 | 0.83207 | need to use more features to improve |
+| 9 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 50 | - | 0.5128726511312657 | 0.86817 | more features improved tree but to the full extent |
+| 10 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5205418492631988 | 0.88788 | increasing features improved highly | 
+| 11 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 12 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 13 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 14 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 15 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 16 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 17 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 18 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 19 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
+| 20 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | roc | acc | - | 
 
 ## Case 1 - started
 - DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=20), 
