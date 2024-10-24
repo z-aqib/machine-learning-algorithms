@@ -429,6 +429,12 @@ k-fold is best at k = 10. it does give good accuracy like holdout, we can use bo
 | 35a | simple | minmax | forward | 10 | 0.9630943835746306 | 0.6591343574667629 | not submitted | high model accuracy means overfit. not submitted |
 | 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | imrpoved with more features |
 | 36 | simple | minmax | variance=0.1, correlation=0.9 filter | 7 | 0.9972642442136056 | 0.5 | 0.70704 | even though ROC was good, model overfit | 
+| 37a | simple | minmax | variance=0.5, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
+| 37b | simple | minmax | variance=0.3, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
+| 37c | simple | minmax | variance=0.01, correlation=0.9 filter | 49 | 0.9121849479258366 | 0.7996191732926649 | not submitted | looking for lower ROC |
+| 37d | simple | minmax | variance=0.05, correlation=0.9 filter | 14 | 0.9577176754201823 | 0.6956493745514011 | not submitted | too high accuracy, overfit chance |
+| 37e | simple | minmax | variance=0.03, correlation=0.8 filter | 19 | 0.9457318146728605 | 0.6916013795163546 | not submitted | too high accuracy, overfit chance |
+| 37f | simple | minmax | variance=0.03, correlation=0.9 filter | 20 | 0.9441201565610737 | 0.6819374512237548 | 0.75852 | accuracy improved from last time but we need more features |
 
 highest accuracy achieved:    
 started accuracy: 0.83725   
@@ -510,3 +516,45 @@ accuracy: 0.70704
 
 ### analyzer
 too much features reduced.. accuracy shot down drastically even though ROC was good
+
+## Case 37a - variance=0.5
+- naive bayes
+- simple imputer
+- minmax scaler
+- variance=0.5, correlation=0.9 filter
+
+ERROR occured saying no columns in X exist with variance of 0.5 criteria (correlation has not run yet)
+
+## Case 37b - variance=0.3
+same error as variance=0.5
+
+## Case 37c - variance=0.01
+61 columns extracted through variance filter and then 49 columns left with correlation filter   
+model accuracy =  0.9121849479258366    
+roc score =  0.7996191732926649   
+
+## Case 37d - variance=0.05
+14 columns extracted through variance and correlation didnt do more   
+model accuracy =  0.9577176754201823    
+roc score =  0.6956493745514011   
+
+## Case 37e - variance=0.3, correlation=0.8
+20 columns extracted through variance and correlation made it 19
+model accuracy =  0.9457318146728605    
+roc score =  0.6916013795163546   
+
+## Case 37f - variance=0.3, correlation=0.9
+20 columns extracted through variance and correlation didnt do more   
+- naive bayes
+- simple imputer
+- minmax scaler
+- variance=0.3, correlation=0.9 filter
+
+model accuracy =  0.9441201565610737    
+roc score =  0.6819374512237548    
+accuracy: 0.75852
+
+### analyzer
+need to increase features, the variance=0.01 seems better now, will try that next
+
+## Case 38
