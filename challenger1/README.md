@@ -37,23 +37,24 @@
 highest accuracy achieved: 0.89522   
 started accuracy: 0.72913   
 best parameters: (case 26)    
-    - max absolute scaler
-    - knn=7 imputation
-    - entropy criteria 
-    - holdout method, at 70-30 ratio
-    - maximum 5 depth tree
-    - minimum 15 samples split
-    - maximum 60 features used
-    - minimum samples per leaf is 80
+- max absolute scaler
+- knn=7 imputation
+- entropy criteria 
+- holdout method, at 70-30 ratio
+- maximum 5 depth tree
+- minimum 15 samples split
+- maximum 60 features used
+- minimum samples per leaf is 80
+
 analyzed best:    
-    - minmax and maxabs is the best scalers
-    - normalizer is the worst scaler
-    - simple and knn=7 perform best, knn=3 performs a bit lesser
-    - depth of tree is good at 5, 6, while 4, 8 leads to underfit/overfit
-    - too less features used like 10 and 50 is bad
-    - too many samples on a leaf like 100 result in underfit. 80 is the breakpoint. smaller then 80 result in overfit
-    - cross fold performs best at k=10
-    - entropy is better then gini
+- minmax and maxabs is the best scalers
+- normalizer is the worst scaler
+- simple and knn=7 perform best, knn=3 performs a bit lesser
+- depth of tree is good at 5, 6, while 4, 8 leads to underfit/overfit
+- too less features used like 10 and 50 is bad
+- too many samples on a leaf like 100 result in underfit. 80 is the breakpoint. smaller then 80 result in overfit
+- cross fold performs best at k=10
+- entropy is better then gini
 
 DAY 1: Monday 21st October 2024
 
@@ -425,6 +426,11 @@ k-fold is best at k = 10. it does give good accuracy like holdout, we can use bo
 | 32 | simple | minmax | - | 78 | 0.9109254167964571 | 0.7956827745161095 | 0.83350 | minmax and maxabs have negligible difference in 3 dp |
 | 33 | knn7 | minmax | - | 78 | 0.9121307745439279 | 0.7969697685450362 | 0.83350 | knn7 and simple is same! we must reduce the features to try and improve accuracy |
 | 34 | simple | minmax | forward | 5 | 0.9838834188821323 | 0.5964048120149146 | 0.82386 | will need to test it a bit more to deduce | 
+| 35a | simple | minmax | forward | 10 | 0.9630943835746306 | 0.6591343574667629 | not submitted | high model accuracy means overfit. not submitted |
+| 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | imrpoved with more features |
+
+highest accuracy achieved:    
+started accuracy: 0.83725   
 
 ## Case 31
 - naive bayes
@@ -468,3 +474,25 @@ NO DIFFERENCE! knn7 == simple. we will have to use feature selections now to try
 model accuracy =  0.9838834188821323    
 roc score =  0.5964048120149146 
 accuracy: 0.82386
+
+## Case 35a - forward=10
+- naive bayes
+- simple imputer
+- minmax scaler
+- forward=10
+
+model accuracy =  0.9630943835746306    
+roc score =  0.6591343574667629 
+
+## Case 35b - forward=20
+- naive bayes
+- simple imputer
+- minmax scaler 
+- forward=20
+
+model accuracy =  0.9770711161071007    
+roc score =  0.6887415307743486 
+accuracy: 0.87148
+
+### analyzer 
+accuracy improved! meaning forward is doing good but at more features. lets try and implement filters now
