@@ -435,6 +435,7 @@ k-fold is best at k = 10. it does give good accuracy like holdout, we can use bo
 | 37d | simple | minmax | variance=0.05, correlation=0.9 filter | 14 | 0.9577176754201823 | 0.6956493745514011 | not submitted | too high accuracy, overfit chance |
 | 37e | simple | minmax | variance=0.03, correlation=0.8 filter | 19 | 0.9457318146728605 | 0.6916013795163546 | not submitted | too high accuracy, overfit chance |
 | 37f | simple | minmax | variance=0.03, correlation=0.9 filter | 20 | 0.9441201565610737 | 0.6819374512237548 | 0.75852 | accuracy improved from last time but we need more features |
+| 38 | simple | minmax | variance=0.01, correlation=0.9 filter | 49 | 0.9129975486544686 | 0.7505591957401304 | 0.81494 | accuracy improved due to number of features, will use more in next round |
 
 highest accuracy achieved:    
 started accuracy: 0.83725   
@@ -557,4 +558,16 @@ accuracy: 0.75852
 ### analyzer
 need to increase features, the variance=0.01 seems better now, will try that next
 
-## Case 38
+## Case 38 - variance=0.01
+- naive bayes
+- simple imputer
+- minmax scaler
+- variance=0.01, correlation=0.9 
+- rows = 49 (61 by variance, 49 by correlation)
+
+model accuracy =  0.9129975486544686    
+roc score =  0.7505591957401304  
+accuracy: 0.81494
+
+### analyzer
+wow! accuracy shot up. lets use more features now (we used approx 50 right now)
