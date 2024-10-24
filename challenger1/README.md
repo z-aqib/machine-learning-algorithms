@@ -1,7 +1,7 @@
 # DecisionTrees
 
 ### Analyzing decision trees
-| case number | scaler | imputer | splitting | criteria | max_depth | min_samples_split | max_features | min_samples_leaf | roc | accuracy | analysis |
+| case number | scaler | imputer | splitting | criteria | max depth | min samples split | max features | min samples leaf | roc | accuracy | analysis |
 | ----------- | ------ | ------- | --------- | -------- | --------- | ----------------- | ------------ | ---------------- | --- | -------- | -------- |
 | 1 | minmax | row removal | holdout 70-30 | gini | 7 | 20 | - | - | 0.5230564082198742 | 0.72913 | - |
 | 2 | minmax | row removal | holdout 70-30 | entropy | 7 | 20 | - | - | 0.5229797007820421 | 0.83323 | improved on this criteria |
