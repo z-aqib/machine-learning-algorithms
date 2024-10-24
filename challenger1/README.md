@@ -55,6 +55,7 @@ analyzed best:
     - cross fold performs best at k=10
     - entropy is better then gini
 
+DAY 1: Monday 21st October 2024
 
 ## Case 1 - started
 - DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=20), 
@@ -173,6 +174,8 @@ accuracy: 0.88788
 
 ### Analyzing
 using less features isnt good. around 60 features improves accuracy
+
+DAY 2: Tuesday 22nd October 2024
 
 ## Case 11 - simple, minmax
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
@@ -301,6 +304,8 @@ NormalizerScaler average: 0.651385
 the best among all 5 scalers is MinMaxScaler and MaxAbsScaler. the third best is RobustScaler, after that StandardScaler is lower significantly and NormalizerScaler is very very low. Hence we shall be alternating between MinMaxScaler and MaxAbsScaler as they are only differnet in the third decimal point.    
 
 out of KNN and SimpleImputers, we can see that both are good however simple imputer performs better on average. thus we will work with both. in the next 4 cases, lets test knn=3, 5, 7 for MinMaxScaler and MaxAbsScaler to find the best KNN going forward.
+
+DAY 3: Wednesday 23rd October 2024
 
 ## Case 21 - knn3, minmax
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
