@@ -428,6 +428,7 @@ k-fold is best at k = 10. it does give good accuracy like holdout, we can use bo
 | 34 | simple | minmax | forward | 5 | 0.9838834188821323 | 0.5964048120149146 | 0.82386 | will need to test it a bit more to deduce | 
 | 35a | simple | minmax | forward | 10 | 0.9630943835746306 | 0.6591343574667629 | not submitted | high model accuracy means overfit. not submitted |
 | 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | imrpoved with more features |
+| 36 | simple | minmax | variance=0.1, correlation=0.9 filter | 7 | 0.9972642442136056 | 0.5 | 0.70704 | even though ROC was good, model overfit | 
 
 highest accuracy achieved:    
 started accuracy: 0.83725   
@@ -496,3 +497,16 @@ accuracy: 0.87148
 
 ### analyzer 
 accuracy improved! meaning forward is doing good but at more features. lets try and implement filters now
+
+## Case 36 - variance and correlation filter
+- naive bayes
+- simple imputer
+- minmax scaler
+- variance=0.1, correlation=0.9 filter = 7
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5   
+accuracy: 0.70704
+
+### analyzer
+too much features reduced.. accuracy shot down drastically even though ROC was good
