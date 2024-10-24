@@ -415,3 +415,21 @@ accuracy: 0.87891
 
 ### analyzing
 k-fold is best at k = 10. it does give good accuracy like holdout, we can use both of them alternatively.
+
+# NaiveBayes
+
+### Analyzing Naive Bayes
+| case number | imputer | scaler | feature selection | no. of features selected | model accuracy | roc | kaggle accuracy | analysis |
+| ----------- | ------- | ------ | ----------------- | ------------------------ | -------------- | --- | --------------- | -------- |
+| 31 | simple | maxabs | - | 78 | 0.8670720641412841 | 0.8015837569508879 | 0.83725 | need to test a bit more to see what was lacking and what to improve |
+
+## Case 31
+- naive bayes
+- simple imputer
+- maxabs scaler
+- 78 features
+
+model accuracy =  0.8670720641412841    
+roc score =  0.8015837569508879   
+accuracy: 0.83725    
+
