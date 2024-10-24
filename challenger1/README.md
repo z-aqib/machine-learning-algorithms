@@ -433,3 +433,12 @@ model accuracy =  0.8670720641412841
 roc score =  0.8015837569508879   
 accuracy: 0.83725    
 
+## Case 32 - scaler changed to minmax
+- naive bayes
+- simple imputer
+- minmax scaler
+- 78 features
+
+model accuracy =  0.9109254167964571    
+roc score =  0.7956827745161095    
+accuracy: 0.83350
