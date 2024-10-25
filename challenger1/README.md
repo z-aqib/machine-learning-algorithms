@@ -1,3 +1,42 @@
+# All algos
+| Day | Date | Algorithm | No. of Entries | Highest Accuracy |
+| --- | ---- | --------- | -------------- | ---------------- |
+| 1 | Monday 21st October 2024 | Decision Tree | 10 | 0.88788 |
+| 2 | Tuesday 22nd October 2024 | Decision Tree | 10 | 0.89330 | 
+| 3 | Wednesday 23rd October 2024 | Decision Tree | 10 | 0.89522 |
+| 4 | Thursday 24th October 2024 | NaiveBayes | 10 | 0.87148 |
+| 5 | Friday 25th October 2024 | NaiveBayes + K-Nearest Neighbour | - | - |
+| 6 | Saturday 26th October 2024 | Random Forest | - | - |
+| 7 | Sunday 27th October 2024 | Random Forest | - | - |
+| 8 | Monday 28th October 2024 | Gradient Boosting | - | - |
+| 9 | Tuesday 29th October 2024 | Adaptive Boosting | - | - |
+| 10 | Wednesday 30th October 2024 | Light GBM | - | - |
+| 11 | Thursday 31st October 2024 | XGBoost | - | - |
+| 12 | Friday 1st November 2024 | XGBoost | - | - |
+| 13 | Saturday 2nd November 2024 | CatBoost | - | - |
+| 14 | Sunday 3rd November 2024 | BaggingClassifier | - | - |
+| 15 | Monday 4th November 2024 | ExtraTree Classifier | - | - |
+| 16 | Tuesday 5th November 2024 | Voting | - | - |
+| 17 | Wednesday 6th November 2024 | Stacking | - | - |
+| 18 | Thursday 7th November 2024 | - | - | - |
+| 19 | Friday 8th November 2024 | - | - | - |
+| 20 | Saturday 9th November 2024 | - | - | - |
+| 21 | Sunday 10th November 2024 | - | - | - |
+
+o	Decision Tree
+o	Naive Bayes
+o	K-Nearest Neighbor
+o	Random Forest
+o	Gradient Boosting
+o	Adaptive Boosting
+o	Light GBM
+o	XGBoost
+o	CatBoost
+o	BaggingClassifier
+o	ExtraTree Classifier (Extremely Randomized Tree)
+o	Voting
+o	Stacking
+
 # DecisionTrees
 
 ### Analyzing decision trees
@@ -429,7 +468,7 @@ DAY 4: Thursday 24th October 2024
 | 33 | knn7 | minmax | - | 78 | 0.9121307745439279 | 0.7969697685450362 | 0.83350 | knn7 and simple is same! we must reduce the features to try and improve accuracy |
 | 34 | simple | minmax | forward | 5 | 0.9838834188821323 | 0.5964048120149146 | 0.82386 | will need to test it a bit more to deduce | 
 | 35a | simple | minmax | forward | 10 | 0.9630943835746306 | 0.6591343574667629 | not submitted | high model accuracy means overfit. not submitted |
-| 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | imrpoved with more features |
+| 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | BEST CASE: imrpoved with more features |
 | 36 | simple | minmax | variance=0.1, correlation=0.9 filter | 7 | 0.9972642442136056 | 0.5 | 0.70704 | even though ROC was good, model overfit | 
 | 37a | simple | minmax | variance=0.5, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
 | 37b | simple | minmax | variance=0.3, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
@@ -445,7 +484,7 @@ DAY 4: Thursday 24th October 2024
 | 40c | simple | minmax | variance=0.0001, correlation=0.85 filter | 62 | 0.9187128404458469 | 0.7588877586887783 | not submitted | - | 
 | 40d | simple | minmax | variance=0.0001, correlation=0.87 filter | 65 | 0.9158958245865894 | 0.7754906950864966 | 0.83187 | good accuracy achieved when more features are used | 
 
-highest accuracy achieved:    
+highest accuracy achieved: 0.87148   
 started accuracy: 0.83725   
 
 ## Case 31
@@ -626,4 +665,26 @@ roc score =  0.7754906950864966
 accuracy: 0.83187
 
 ### analyzer
-accuracy improved, but not even to the starting point.. submissions have ended otherwise we could have tested for 70s features. 
+accuracy improved, but not even to the starting point.. submissions have ended otherwise we could have tested for 70s features.
+
+## Case 41a - forward=30
+- naive bayes
+- simple imputer
+- minmax scaler
+- forward=30 rows
+
+model accuracy =  0.9638392675758766    
+roc score =  0.7566986273209292    
+
+model accuracy =  0.9562820807995991    
+roc score =  0.7497710932217062 
+
+model accuracy =  0.964340371358533    
+roc score =  0.7356985869936561 
+accuracy: 0.86669
+
+## Case 41b - kbest=30
+kbest=30 rows    
+model accuracy =  0.9212183593591289    
+roc score =  0.7565948275603417 
+not submitted   
