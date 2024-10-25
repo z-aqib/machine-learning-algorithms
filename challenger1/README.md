@@ -673,6 +673,8 @@ accuracy: 0.83187
 ### analyzer
 accuracy improved, but not even to the starting point.. submissions have ended otherwise we could have tested for 70s features.
 
+DAY: Friday 25th October 2024
+
 ## Case 41a - forward=30
 - naive bayes
 - simple imputer
@@ -713,3 +715,19 @@ accuracy: 0.86875
 model accuracy =  0.9550090063247424    
 roc score =  0.7018435381296126 
 -- nb1.csv
+
+# K Nearest Neighbours
+
+### Analyzing K Nearest Neighbours
+| case number | K used | imputer | scaler | feature selector | features used | validation accuracy | roc | kaggle accuracy | analysis | 
+| 1 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
+
+## Case 43 - k=5
+- KNeighborsClassifier(k=5)
+- simple imputer
+- minmax scaling
+- no feature selection, 78 features used
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5    
+accuracy: 0.53003
