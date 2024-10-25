@@ -468,7 +468,7 @@ DAY 4: Thursday 24th October 2024
 | 33 | knn7 | minmax | - | 78 | 0.9121307745439279 | 0.7969697685450362 | 0.83350 | knn7 and simple is same! we must reduce the features to try and improve accuracy |
 | 34 | simple | minmax | forward | 5 | 0.9838834188821323 | 0.5964048120149146 | 0.82386 | will need to test it a bit more to deduce | 
 | 35a | simple | minmax | forward | 10 | 0.9630943835746306 | 0.6591343574667629 | not submitted | high model accuracy means overfit. not submitted |
-| 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | BEST CASE: imrpoved with more features |
+| 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | imrpoved with more features |
 | 36 | simple | minmax | variance=0.1, correlation=0.9 filter | 7 | 0.9972642442136056 | 0.5 | 0.70704 | even though ROC was good, model overfit | 
 | 37a | simple | minmax | variance=0.5, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
 | 37b | simple | minmax | variance=0.3, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
@@ -486,10 +486,11 @@ DAY 4: Thursday 24th October 2024
 | 41a | simple | minmax | forward | 30 | 0.964340371358533 | 0.7356985869936561 | 0.86669 | forward has been put too high, should try =25 next time |
 | 41b | simple | minmax | kbest | 30 | 0.9212183593591289 | 0.7565948275603417 | not submitted | dont know if its good, dont want to waste an entry |
 | 42 | simple | minmax | forward | 25 | 0.8100274929913187 | 0.8185403319589406 | 0.86875 | not highest but near |
+| 45 | simple | minmax | forward | 15 | 0.9776399366171432 | 0.7000642467303131 | 0.87413 | BEST CASE: improved with lesser features | 
 
-highest accuracy achieved: 0.87148 (case 35b)   
+highest accuracy achieved: 0.87413 (case 45)  
 started accuracy: 0.83725
-- forward is best at 20
+- forward is best at 15
 - simple, minmax worked best with NB
 - NB performed better with more features then lesser   
 
@@ -770,9 +771,9 @@ KNN + forward is running since past 6 hours, we are shifting to RandomForest.
 # Random Forest
 
 ### Analyzing RandomForest
-| case number | imputer | scaler | max depth | n estimators | features used | validation accuracy | roc | kaggle accuracy | analyzing |
-| ----------- | ------- | ------ | --------- | ------------ | ------------- | ------------------- | --- | --------------- | --------- |
-| 44 | simple | maxabs | 10 | 200 | 78 | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
+| case number | imputer | scaler | max depth | n estimators | features used | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
+| ----------- | ------- | ------ | --------- | ------------ | ------------- | -------- | ----------------- | ------------ | ------------ | ------------------- | --- | --------------- | --------- |
+| 44 | simple | maxabs | 10 | 200 | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
 
 ## Case 44 - simple, maxabs, max_depth=10, n_estimators=200
 - RandomForestClassifier(max_depth=10, n_estimators=200)
@@ -782,3 +783,21 @@ KNN + forward is running since past 6 hours, we are shifting to RandomForest.
 model accuracy =  0.9973319609409916    
 roc score =  0.5050251256281407   
 accuracy: 0.90507
+
+## Case 45 - forward=15
+- naive bayes
+- simple imputer
+- minmax scaler
+- forward=15 rows
+
+model accuracy =  0.9776399366171432    
+roc score =  0.7000642467303131 
+accuracy: 0.87413
+
+## Case 46 - best decision tree parameters
+- RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer   
+
+-- waiting for its result....
+
