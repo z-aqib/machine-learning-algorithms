@@ -817,9 +817,19 @@ model accuracy =  0.968064791364763
 roc score =  0.71144752877173 
 accuracy: 0.87278
 
+## Case 49 - naivebayes, forward = 13
+- naive bayes
+- simple imputer
+- minmax scaler
+- forward=13 rows
+
+model accuracy =  0.9724663786448529    
+roc score =  0.657890605723844
+accuracy: 0.87353
+
 ## Case 47 - best decision tree parameters
 - RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer   
 
--- waiting for its result....
+-- waiting for its result.... (45 minutes to fit and transform)
