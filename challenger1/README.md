@@ -759,12 +759,6 @@ model accuracy =  0.9974267643593321
 roc score =  0.5  
 -- knn4.csv
 
-## Case 44f - simple, variance=0.001, corr=0.9
-70 by variance, 58 by correlation
-model accuracy =  0.9973319609409916    
-roc score =  0.5  
--- knn4.csv
-
 ### Analyzing
 KNN + forward is running since past 6 hours, we are shifting to RandomForest.
 
@@ -784,7 +778,7 @@ model accuracy =  0.9973319609409916
 roc score =  0.5050251256281407   
 accuracy: 0.90507
 
-## Case 45 - forward=15
+## Case 45 - naivebayes, forward=15
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -794,10 +788,27 @@ model accuracy =  0.9776399366171432
 roc score =  0.7000642467303131 
 accuracy: 0.87413
 
-## Case 46 - best decision tree parameters
+## Case 46 - simple, variance=0.001, corr=0.9
+- KNeighborsClassifier(k=7)
+- simple imputer
+- minmax scaling
+- variance=0.001, corr=0.9
+- 70 by variance, 58 by correlation
+
+model accuracy =  0.9973319609409916    
+roc score =  0.5  
+accuracy: 0.54796    
+-- knn4.csv
+
+## Case 47 - best decision tree parameters
 - RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer   
 
 -- waiting for its result....
 
+## Case 48 - naivebayes, forward = 17
+- naive bayes
+- simple imputer
+- minmax scaler
+- forward=17 rows
