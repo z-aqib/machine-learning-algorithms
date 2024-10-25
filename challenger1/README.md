@@ -533,7 +533,7 @@ NO DIFFERENCE! knn7 == simple. we will have to use feature selections now to try
 - forward=5
 
 model accuracy =  0.9838834188821323    
-roc score =  0.5964048120149146 
+roc score =  0.5964048120149146   
 accuracy: 0.82386
 
 ## Case 35a - forward=10
@@ -552,7 +552,7 @@ roc score =  0.6591343574667629
 - forward=20
 
 model accuracy =  0.9770711161071007    
-roc score =  0.6887415307743486 
+roc score =  0.6887415307743486   
 accuracy: 0.87148
 
 ### analyzer 
@@ -593,7 +593,7 @@ model accuracy =  0.9577176754201823
 roc score =  0.6956493745514011   
 
 ## Case 37e - variance=0.3, correlation=0.8
-20 columns extracted through variance and correlation made it 19
+20 columns extracted through variance and correlation made it 19    
 model accuracy =  0.9457318146728605    
 roc score =  0.6916013795163546   
 
@@ -650,12 +650,12 @@ model accuracy =  0.9162479515689965
 roc score =  0.7761983869690179 
 
 ## Case 40b - variance=0.0001, correlation=0.8
-78 by variance, 57 by correlation
+78 by variance, 57 by correlation     
 model accuracy =  0.9183200834270081    
 roc score =  0.7965337080939787  
 
 ## Case 40c - variance=0.0001, correlation=0.85
-78 by variance, 62 by correlation
+78 by variance, 62 by correlation    
 model accuracy =  0.9187128404458469    
 roc score =  0.7588877586887783  
 
@@ -688,13 +688,13 @@ model accuracy =  0.9562820807995991
 roc score =  0.7497710932217062 
 
 model accuracy =  0.964340371358533    
-roc score =  0.7356985869936561 
-accuracy: 0.86669
+roc score =  0.7356985869936561    
+accuracy: 0.86669   
 
 ## Case 41b - kbest=30
 kbest=30 rows    
 model accuracy =  0.9212183593591289    
-roc score =  0.7565948275603417 
+roc score =  0.7565948275603417    
 not submitted   
 
 ## Case 42 - forward=25
@@ -704,22 +704,23 @@ not submitted
 - forward=25 rows
 
 model accuracy =  0.9617942224088194    
-roc score =  0.7343364208492563 
--- samplesubmission.csv
+roc score =  0.7343364208492563    
+-- samplesubmission.csv   
 
 model accuracy =  0.8100274929913187    
-roc score =  0.8185403319589406
-accuracy: 0.86875
--- samplesubmission2.csv
+roc score =  0.8185403319589406   
+accuracy: 0.86875   
+-- samplesubmission2.csv    
 
 model accuracy =  0.9550090063247424    
-roc score =  0.7018435381296126 
--- nb1.csv
+roc score =  0.7018435381296126    
+-- nb1.csv   
 
 # K Nearest Neighbours
 
 ### Analyzing K Nearest Neighbours
 | case number | K used | imputer | scaler | feature selector | features used | validation accuracy | roc | kaggle accuracy | analysis | 
+| ----------- | ------ | ------- | ------ | ---------------- | ------------- | ------------------- | --- | --------------- | -------- |
 | 1 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
 
 ## Case 43 - k=5
@@ -731,3 +732,53 @@ roc score =  0.7018435381296126
 model accuracy =  0.9972642442136056    
 roc score =  0.5    
 accuracy: 0.53003
+
+## Case 44a - k=7
+-- running for 360 minutes
+-- knn1.csv
+
+## Case 44b - k=7, forward=10
+-- running for 316 minutes
+-- knn2.csv
+
+## Case 44c - k=7, kbest=30
+model accuracy =  0.9975892845050585    
+roc score =  0.5028112828678414  
+-- knn3.csv
+
+## Case 44d - k=7, maxabs, knn=7, variance=0.0001, corr=0.87
+78 by variance, 65 by correlation
+model accuracy =  0.9973455042864688    
+roc score =  0.5
+-- knn4.csv
+
+## Case 44e - simple, variance=0.1, corr=0.9
+5 by variance, none by coorelation
+model accuracy =  0.9974267643593321    
+roc score =  0.5  
+-- knn4.csv
+
+## Case 44f - simple, variance=0.001, corr=0.9
+70 by variance, 58 by correlation
+model accuracy =  0.9973319609409916    
+roc score =  0.5  
+-- knn4.csv
+
+### Analyzing
+KNN + forward is running since past 6 hours, we are shifting to RandomForest.
+
+# Random Forest
+
+### Analyzing RandomForest
+| case number | imputer | scaler | max depth | n estimators | features used | validation accuracy | roc | kaggle accuracy | analyzing |
+| ----------- | ------- | ------ | --------- | ------------ | ------------- | ------------------- | --- | --------------- | --------- |
+| 44 | simple | maxabs | 10 | 200 | 78 | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
+
+## Case 44 - simple, maxabs, max_depth=10, n_estimators=200
+- RandomForestClassifier(max_depth=10, n_estimators=200)
+- simple imputer
+- maxabs scaler
+
+model accuracy =  0.9973319609409916    
+roc score =  0.5050251256281407   
+accuracy: 0.90507
