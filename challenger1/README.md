@@ -485,9 +485,13 @@ DAY 4: Thursday 24th October 2024
 | 40d | simple | minmax | variance=0.0001, correlation=0.87 filter | 65 | 0.9158958245865894 | 0.7754906950864966 | 0.83187 | good accuracy achieved when more features are used | 
 | 41a | simple | minmax | forward | 30 | 0.964340371358533 | 0.7356985869936561 | 0.86669 | forward has been put too high, should try =25 next time |
 | 41b | simple | minmax | kbest | 30 | 0.9212183593591289 | 0.7565948275603417 | not submitted | dont know if its good, dont want to waste an entry |
+| 42 | simple | minmax | forward | 25 | 0.8100274929913187 | 0.8185403319589406 | 0.86875 | not highest but near |
 
 highest accuracy achieved: 0.87148 (case 35b)   
-started accuracy: 0.83725   
+started accuracy: 0.83725
+- forward is best at 20
+- simple, minmax worked best with NB
+- NB performed better with more features then lesser   
 
 ## Case 31
 - naive bayes
@@ -699,13 +703,13 @@ not submitted
 
 model accuracy =  0.9617942224088194    
 roc score =  0.7343364208492563 
-samplesubmission.csv
+-- samplesubmission.csv
 
 model accuracy =  0.8100274929913187    
 roc score =  0.8185403319589406
 accuracy: 0.86875
-samplesubmission2.csv
+-- samplesubmission2.csv
 
 model accuracy =  0.9550090063247424    
 roc score =  0.7018435381296126 
-nb1.csv
+-- nb1.csv
