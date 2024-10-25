@@ -742,11 +742,6 @@ accuracy: 0.53003
 -- running for 316 minutes
 -- knn2.csv
 
-## Case 44c - k=7, kbest=30
-model accuracy =  0.9975892845050585    
-roc score =  0.5028112828678414  
--- knn3.csv
-
 ## Case 44d - k=7, maxabs, knn=7, variance=0.0001, corr=0.87
 78 by variance, 65 by correlation
 model accuracy =  0.9973455042864688    
@@ -788,7 +783,7 @@ model accuracy =  0.9776399366171432
 roc score =  0.7000642467303131 
 accuracy: 0.87413
 
-## Case 46 - simple, variance=0.001, corr=0.9
+## Case 46 - knearestneighbours=7, simple, variance=0.001, corr=0.9
 - KNeighborsClassifier(k=7)
 - simple imputer
 - minmax scaling
@@ -799,6 +794,18 @@ model accuracy =  0.9973319609409916
 roc score =  0.5  
 accuracy: 0.54796    
 -- knn4.csv
+
+## Case 47 - knearest neighbours, k=7, kbest=30
+- KNeighborsClassifier(k=7)
+- simple imputer
+- minmax scaling
+- kbest=30
+- 30
+
+model accuracy =  0.9975892845050585    
+roc score =  0.5028112828678414   
+accuracy: 0.57056
+-- knn3.csv
 
 ## Case 47 - best decision tree parameters
 - RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
