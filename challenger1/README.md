@@ -184,6 +184,7 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | 53 | 11 | knn=7 | minmax | kbest | 20 | 0.9970340073404933 | 0.5 | 0.59883 | imporvement, lets decrease kbest further |
 | 54 | 11 | knn=7 | minmax | kbest | 15 | 0.9976434578869673 | 0.5 | 0.60509 | improved! lets decrease further |
 | 55 | 11 | knn=7 | minmax | kbest | 10 | 0.9975486544686268 | 0.5055112852519732 | 0.61709 | improved, lets change the imputer to knn=3 |
+| 56 | 11 | knn=3 | minmax | kbest | 10 | 0.9972507008681284 | 0.5024509803921569 | 0.61709 | file values remained same, entry wasted |
 
 started accuracy: 0.53003   
 
