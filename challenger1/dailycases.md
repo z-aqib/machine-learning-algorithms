@@ -726,3 +726,7 @@ accuracy: 0.59883
 - knn=7 imputer
 - minmax scaler
 --knn2.csv
+
+model accuracy =  0.9976434578869673    
+roc score =  0.5   
+accuracy: 0.60509
