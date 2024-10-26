@@ -5,7 +5,7 @@
 | 2 | Tuesday 22nd October 2024 | Decision Tree | 10 | 0.89330 | 
 | 3 | Wednesday 23rd October 2024 | Decision Tree | 10 | 0.89522 |
 | 4 | Thursday 24th October 2024 | NaiveBayes | 10 | 0.87148 |
-| 5 | Friday 25th October 2024 | NaiveBayes + K-Nearest Neighbour | - | - |
+| 5 | Friday 25th October 2024 | NaiveBayes + K-Nearest Neighbour + Random Forest | 10 | - |
 | 6 | Saturday 26th October 2024 | Random Forest | - | - |
 | 7 | Sunday 27th October 2024 | Random Forest | - | - |
 | 8 | Monday 28th October 2024 | Gradient Boosting | - | - |
@@ -23,19 +23,19 @@
 | 20 | Saturday 9th November 2024 | - | - | - |
 | 21 | Sunday 10th November 2024 | - | - | - |
 
-o	Decision Tree
-o	Naive Bayes
-o	K-Nearest Neighbor
-o	Random Forest
-o	Gradient Boosting
-o	Adaptive Boosting
-o	Light GBM
-o	XGBoost
-o	CatBoost
-o	BaggingClassifier
-o	ExtraTree Classifier (Extremely Randomized Tree)
-o	Voting
-o	Stacking
+-	Decision Tree
+-	Naive Bayes
+-	K-Nearest Neighbor
+-	Random Forest
+-	Gradient Boosting
+-	Adaptive Boosting
+-	Light GBM
+-	XGBoost
+-	CatBoost
+-	BaggingClassifier
+-	ExtraTree Classifier (Extremely Randomized Tree)
+-	Voting
+-	Stacking
 
 # DecisionTrees
 
@@ -487,9 +487,17 @@ DAY 4: Thursday 24th October 2024
 | 41b | simple | minmax | kbest | 30 | 0.9212183593591289 | 0.7565948275603417 | not submitted | dont know if its good, dont want to waste an entry |
 | 42 | simple | minmax | forward | 25 | 0.8100274929913187 | 0.8185403319589406 | 0.86875 | not highest but near |
 | 45 | simple | minmax | forward | 15 | 0.9776399366171432 | 0.7000642467303131 | 0.87413 | BEST CASE: improved with lesser features | 
+| 48 | simple | minmax | forward | 17 | 0.968064791364763 | 0.71144752877173 | 0.87278 | accuracy decreased with more features, lets decrease them |
+| 49 | simple | minmax | forward | 13 | 0.9724663786448529 | 0.657890605723844 | 0.87353 | accuracy improved but not to the full. lets try 14 | 
+| 50 | simple | minmax | forward | 14 | 0.97654292563349 | 0.6687466615541444 | 0.87271 | forward=15 was the highest breakpoint for naivebayes |
 
 highest accuracy achieved: 0.87413 (case 45)  
-started accuracy: 0.83725
+highest parameters: 
+- simple imputer
+- minmax scaler
+- forward selection with 15 rows
+started accuracy: 0.83725   
+analysis: 
 - forward is best at 15
 - simple, minmax worked best with NB
 - NB performed better with more features then lesser   
@@ -722,7 +730,9 @@ roc score =  0.7018435381296126
 ### Analyzing K Nearest Neighbours
 | case number | K used | imputer | scaler | feature selector | features used | validation accuracy | roc | kaggle accuracy | analysis | 
 | ----------- | ------ | ------- | ------ | ---------------- | ------------- | ------------------- | --- | --------------- | -------- |
-| 1 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
+| 43 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
+| 46 | 7 | simple | minmax | variance=0.001, correlation=0.9 | 58 | 0.9973319609409916 | 0.5 | 0.54796 | accuracy improved with knn=7 and some features removed | 
+| 47 | 7 | simple | minmax | kbest=30 | 30 | 0.9975892845050585 | 0.5028112828678414 | 0.57056 | works better with lesser features | 
 
 ## Case 43 - k=5
 - KNeighborsClassifier(k=5)
@@ -769,6 +779,8 @@ model accuracy =  0.9973319609409916
 roc score =  0.5050251256281407   
 accuracy: 0.90507
 
+# NaiveBayes
+
 ## Case 45 - naivebayes, forward=15
 - naive bayes
 - simple imputer
@@ -778,6 +790,8 @@ accuracy: 0.90507
 model accuracy =  0.9776399366171432    
 roc score =  0.7000642467303131 
 accuracy: 0.87413
+
+# K-Nearest Neighbours
 
 ## Case 46 - knearestneighbours=7, simple, variance=0.001, corr=0.9
 - KNeighborsClassifier(k=7)
@@ -802,6 +816,8 @@ model accuracy =  0.9975892845050585
 roc score =  0.5028112828678414   
 accuracy: 0.57056
 -- knn3.csv
+
+# NaiveBayes
 
 ## Case 48 - naivebayes, forward = 17
 - naive bayes
@@ -833,7 +849,25 @@ model accuracy =  0.97654292563349
 roc score =  0.6687466615541444  
 accuracy: 0.87271  
 
+### Analyzing
+we have run naivebayes multiple times with forward selection, lets analyse its accuracies (while keeping all other parameters like imputer and scaler constant):
+
+| case number | feature selector | no. of features | kaggle accuracy |
+| ----------- | ---------------- | --------------- | --------------- |
+| 34 | forward | 5 | 0.82386 |
+| 49 | forward | 13 | 0.87353 | 
+| 50 | forward | 14 | 0.87271 | 
+| 45 | forward | 15 | 0.87413 |
+| 48 | forward | 17 | 0.87278 |
+| 35b | forward | 20 | 0.87148 |
+| 42 | forward | 25 | 0.86875 |
+| 41a | forward | 30 | 0.86669 |
+
+we can see that forward=14 might be an outlier, but forward=15 (case = 45) is the best case. 
+
 DAY 6: Saturday 26th October 2024
+
+# Random Forest
 
 ## Case 51 - best decision tree parameters
 - RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
