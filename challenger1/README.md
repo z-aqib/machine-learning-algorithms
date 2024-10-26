@@ -734,21 +734,17 @@ model accuracy =  0.9972642442136056
 roc score =  0.5    
 accuracy: 0.53003
 
-## Case 44a - k=7
--- running for 360 minutes
+## Case 44a - k=7, forward=10
+-- ran for 1000 minutes + and failed
 -- knn1.csv
 
-## Case 44b - k=7, forward=10
--- running for 316 minutes
--- knn2.csv
-
-## Case 44d - k=7, maxabs, knn=7, variance=0.0001, corr=0.87
+## Case 44b - k=7, maxabs, knn=7, variance=0.0001, corr=0.87
 78 by variance, 65 by correlation
 model accuracy =  0.9973455042864688    
 roc score =  0.5
 -- knn4.csv
 
-## Case 44e - simple, variance=0.1, corr=0.9
+## Case 44c - simple, variance=0.1, corr=0.9
 5 by variance, none by coorelation
 model accuracy =  0.9974267643593321    
 roc score =  0.5  
@@ -837,9 +833,14 @@ model accuracy =  0.97654292563349
 roc score =  0.6687466615541444  
 accuracy: 0.87271  
 
-## Case 47 - best decision tree parameters
+DAY 6: Saturday 26th October 2024
+
+## Case 51 - best decision tree parameters
 - RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer   
 
--- waiting for its result.... (45 minutes to fit and transform)
+-- waiting for its result.... (45 minutes to fit and transform, 50 minutes to fit)   
+model accuracy =  0.9970610940314476    
+roc score =  0.5   
+accuracy: 0.91554
