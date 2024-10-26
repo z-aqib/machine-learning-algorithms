@@ -39,7 +39,7 @@
 
 # DecisionTrees
 
-## Analyzing decision trees
+## Analyzing Decision Trees
 | case number | scaler | imputer | splitting | criteria | max depth | min samples split | max features | min samples leaf | roc | accuracy | analysis |
 | ----------- | ------ | ------- | --------- | -------- | --------- | ----------------- | ------------ | ---------------- | --- | -------- | -------- |
 | 1 | minmax | row removal | holdout 70-30 | gini | 7 | 20 | - | - | 0.5230564082198742 | 0.72913 | - |
@@ -96,7 +96,7 @@ analyzed best:
 - cross fold performs best at k=10
 - entropy is better then gini
 
-## Analyzing
+## Analyzing Scalers and Imputers
 | Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  | New Average |
 | ------------------ | ------------- | ------- | ------- | ------- | -------- | ----------- |
 | MinMaxScaler       | 0.89330       | 0.89142 | 0.87791 | 0.88134 | 0.885605 | 0.883556667 |
@@ -156,7 +156,7 @@ analysis:
 - simple, minmax worked best with NB
 - NB performed better with more features then lesser   
 
-### Analyzing
+### Analyzing Forward Feature Selection
 we have run naivebayes multiple times with forward selection, lets analyse its accuracies (while keeping all other parameters like imputer and scaler constant):
 
 | case number | feature selector | no. of features | kaggle accuracy |
@@ -186,7 +186,7 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 
 started accuracy: 0.53003   
 
-### Analyzing KBest Feature Selector
+### Analyzing KBest Feature Selection
 | case number | algo used | kbest features | kaggle accuracy |
 | ----------- | --------- | -------------- | --------------- |
 | 54 | k nearest neighbours, 11 | 15 | 0.60509 | 
