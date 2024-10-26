@@ -741,3 +741,14 @@ accuracy: 0.60509
 model accuracy =  0.9975486544686268    
 roc score =  0.5055112852519732    
 accuracy: 0.61709
+
+## Case 56 - knn=3
+- KNeighborsClassifier(n_neighbors=11)
+- SelectKBest(score_func=f_classif, k=10)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
+model accuracy =  0.9972507008681284    
+roc score =  0.5024509803921569
+accuracy: 0.61709 [ file had not changed. unfortunately my entry is wasted ]
