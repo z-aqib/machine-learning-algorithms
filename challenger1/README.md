@@ -183,6 +183,7 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | 52 | 3 | simple | minmax | forward | 5 | 0.9965735335942685 | 0.5254314763954754 | 0.55037 | accuracy decreased with low features |
 | 53 | 11 | knn=7 | minmax | kbest | 20 | 0.9970340073404933 | 0.5 | 0.59883 | imporvement, lets decrease kbest further |
 | 54 | 11 | knn=7 | minmax | kbest | 15 | 0.9976434578869673 | 0.5 | 0.60509 | improved! lets decrease further |
+| 55 | 11 | knn=7 | minmax | kbest | 10 | 0.9975486544686268 | 0.5055112852519732 | 0.61709 | improved, lets change the imputer to knn=3 |
 
 started accuracy: 0.53003   
 
