@@ -180,14 +180,27 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | 43 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
 | 46 | 7 | simple | minmax | variance=0.001, correlation=0.9 | 58 | 0.9973319609409916 | 0.5 | 0.54796 | accuracy improved with knn=7 and some features removed | 
 | 47 | 7 | simple | minmax | kbest | 30 | 0.9975892845050585 | 0.5028112828678414 | 0.57056 | works better with lesser features | 
-| 52 | 3 | simple | minmax | forward | 5 | 0.9965735335942685 | 0.5254314763954754 | 0.55037 | accuracy decreased with low features |
+| 52 | 3 | simple | minmax | forward | 5 | 0.9965735335942685 | 0.5254314763954754 | 0.55037 | accuracy decreased with too low features |
 | 53 | 11 | knn=7 | minmax | kbest | 20 | 0.9970340073404933 | 0.5 | 0.59883 | imporvement, lets decrease kbest further |
 | 54 | 11 | knn=7 | minmax | kbest | 15 | 0.9976434578869673 | 0.5 | 0.60509 | improved! lets decrease further |
 | 55 | 11 | knn=7 | minmax | kbest | 10 | 0.9975486544686268 | 0.5055112852519732 | 0.61709 | improved, lets change the imputer to knn=3 |
 | 56 | 11 | knn=3 | minmax | kbest | 10 | 0.9972507008681284 | 0.5024509803921569 | 0.61709 | file values remained same, entry wasted |
-| 57 | 11 | knn=3 | minmax | kbest | 5 | 0.9974267643593321 | 0.5053136492515911 | 0.62622 | lets try kbest=3 next |
+| 57 | 11 | knn=3 | minmax | kbest | 5 | 0.9974267643593321 | 0.5053136492515911 | 0.62622 | BEST CASE: lets try kbest=3 next |
+| 59 | 11 | knn=3 | minmax | kbest | 3 | 0.9971152674133564 | 0.507075049343145 | 0.62207 | deteroiration, kbest=5 was best |
 
-started accuracy: 0.53003   
+total submissions: 10    
+started accuracy: 0.53003
+highest accuracy: 0.62622 (case 57):
+- k-nearest-neighbours = 11
+- knn=3 imputer
+- minmax scaler
+- kbest feature importance
+- 5 features used
+analysis:
+- kbest works at lower number of features
+- knn=3, knn=7, simple imputers have no difference on accuracy
+- forward selector + k-nearest is very time taking, even after 1000 minutes it didnt work. at smaller forward selection, it runs but accuracy is too low due to less features
+
 
 ### Analyzing KBest Feature Selection
 | case number | algo used | kbest features | kaggle accuracy |
