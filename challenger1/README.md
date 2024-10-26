@@ -203,5 +203,6 @@ started accuracy: 0.53003
 | ----------- | ------- | ------ | --------- | ------------ | ------------- | -------- | ----------------- | ------------ | ------------ | ------------------- | --- | --------------- | --------- |
 | 44 | simple | maxabs | 10 | 200 | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
 | 51 | knn=7 | maxabs | 5 | 200 | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
+| 58 | knn=7 | maxabs | 5 | 300 | 78 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.91889 | very slight imporvement, lets try and increase depth |
 
 started accuracy: 0.90507   

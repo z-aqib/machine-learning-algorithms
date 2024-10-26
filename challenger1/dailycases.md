@@ -753,7 +753,7 @@ model accuracy =  0.9972507008681284
 roc score =  0.5024509803921569
 accuracy: 0.61709 [ file had not changed. unfortunately my entry is wasted ]
 
-## Case 67 - kbest=5
+## Case 57 - kbest=5
 - KNeighborsClassifier(n_neighbors=11)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -763,3 +763,14 @@ accuracy: 0.61709 [ file had not changed. unfortunately my entry is wasted ]
 model accuracy =  0.9974267643593321    
 roc score =  0.5053136492515911 
 accuracy: 0.62622
+
+## Case 58 - random forest, n_estimators = 300
+- RandomForestClassifier(max_depth=5, n_estimators=300, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+... 39 minutes + 70 minutes
+--rf1.csv
+
+model accuracy =  0.997359047631946    
+roc score =  0.5    
+accuracy: 0.91889
