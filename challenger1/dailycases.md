@@ -686,22 +686,6 @@ model accuracy =  0.97654292563349
 roc score =  0.6687466615541444  
 accuracy: 0.87271  
 
-### Analyzing
-we have run naivebayes multiple times with forward selection, lets analyse its accuracies (while keeping all other parameters like imputer and scaler constant):
-
-| case number | feature selector | no. of features | kaggle accuracy |
-| ----------- | ---------------- | --------------- | --------------- |
-| 34 | forward | 5 | 0.82386 |
-| 49 | forward | 13 | 0.87353 | 
-| 50 | forward | 14 | 0.87271 | 
-| 45 | forward | 15 | 0.87413 |
-| 48 | forward | 17 | 0.87278 |
-| 35b | forward | 20 | 0.87148 |
-| 42 | forward | 25 | 0.86875 |
-| 41a | forward | 30 | 0.86669 |
-
-we can see that forward=14 might be an outlier, but forward=15 (case = 45) is the best case. 
-
 # DAY 6: Saturday 26th October 2024
 
 ## Case 51 - best decision tree parameters
@@ -735,3 +719,10 @@ accuracy: 0.55037
 model accuracy =  0.9970340073404933    
 roc score =  0.5   
 accuracy: 0.59883
+
+## Case 54 - kbest=15
+- KNeighborsClassifier(n_neighbors=11)
+- SelectKBest(score_func=f_classif, k=15)
+- knn=7 imputer
+- minmax scaler
+--knn2.csv

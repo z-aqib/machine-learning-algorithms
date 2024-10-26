@@ -74,8 +74,8 @@
 | 30 | maxabs | knn7 | crossfold k=15 | entropy | 5 | 15 | 60 | 80 | 0.8994 | 0.87891 | increasing k resulted in overfit | 
 
 total test cases done: 30   
-highest accuracy achieved: 0.89522   
-started accuracy: 0.72913   
+started accuracy: 0.72913  
+highest accuracy achieved: 0.89522    
 best parameters: (case 26)    
 - max absolute scaler
 - knn=7 imputation
@@ -143,6 +143,8 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 | 50 | simple | minmax | forward | 14 | 0.97654292563349 | 0.6687466615541444 | 0.87271 | forward=15 was the highest breakpoint for naivebayes |
 
 total test cases done: 27   
+total submissions: 16   
+starting accuracy: 0.83725 (case 31)    
 highest accuracy achieved: 0.87413 (case 45)   
 highest parameters: 
 - simple imputer
@@ -181,6 +183,8 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | 52 | 3 | simple | minmax | forward | 5 | 0.9965735335942685 | 0.5254314763954754 | 0.55037 | accuracy decreased with low features |
 | 53 | 11 | knn=7 | minmax | kbest | 20 | 0.9970340073404933 | 0.5 | 0.59883 | highest accuracy, lets decrease kbest further |
 
+started accuracy: 0.53003   
+
 # Random Forest
 
 ### Analyzing RandomForest
@@ -188,3 +192,5 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | ----------- | ------- | ------ | --------- | ------------ | ------------- | -------- | ----------------- | ------------ | ------------ | ------------------- | --- | --------------- | --------- |
 | 44 | simple | maxabs | 10 | 200 | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
 | 51 | knn=7 | maxabs | 5 | 200 | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
+
+started accuracy: 0.90507   
