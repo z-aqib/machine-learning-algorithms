@@ -221,5 +221,12 @@ kbest works better with lower number of features. as according to this table, kb
 | 44 | simple | maxabs | 10 | 200 | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
 | 51 | knn=7 | maxabs | 5 | 200 | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
 | 58 | knn=7 | maxabs | 5 | 300 | 78 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.91889 | very slight imporvement, lets try and increase depth |
+| 60 | knn=7 | maxabs | 6 | 10 | 78 | entropy | 15 | 60 | 80 | 0.9972642442136056 | 0.5 | 0.91309 | slight difference even though trees are 30 times less. interesting. 
 
 started accuracy: 0.90507   
+
+# Gradient Boosting
+
+### Analyzing GradientBoosting
+| case number | imputer | scaler | max depth | n estimators | feature selection | features used | validation accuracy | roc | kaggle accuracy | analyzing |
+| ----------- | ------- | ------ | --------- | ------------ | ----------------- | ------------- | ------------------- | --- | --------------- | --------- |

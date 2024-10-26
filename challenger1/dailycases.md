@@ -39,7 +39,7 @@ accuracy: 0.83327
 ### Analyzing
 splitting on smaller samples is better
 
-## Case 4 - max_depth increased
+## * Case 4 - max_depth increased
 - DecisionTreeClassifier(criterion='entropy', max_depth=8, min_samples_split=15)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -52,7 +52,7 @@ accuracy: 0.78883
 ### Analyzing
 higher depth trees arent good
 
-## Case 5 - max_depth decreased
+## * Case 5 - max_depth decreased
 - DecisionTreeClassifier(criterion='entropy', max_depth=6, min_samples_split=15)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -62,7 +62,7 @@ higher depth trees arent good
 roc score =  0.5204372482116096    
 accuracy: 0.85532
 
-## Case 6 - max_depth decreased
+## * Case 6 - max_depth decreased
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -72,7 +72,7 @@ accuracy: 0.85532
 roc score =  0.5230843018336313    
 accuracy: 0.87815
 
-## Case 7 - max_depth decreased
+## * Case 7 - max_depth decreased
 - DecisionTreeClassifier(criterion='entropy', max_depth=4, min_samples_split=15)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -85,7 +85,7 @@ accuracy: 0.87296
 ### Analyzing
 smaller depth trees are good, but too small arent. keep till 5 depth
 
-## Case 8 - max_features introduced
+## * Case 8 - max_features introduced
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=10)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -95,7 +95,7 @@ smaller depth trees are good, but too small arent. keep till 5 depth
 roc score =  0.5154151037016982    
 accuracy: 0.83207
 
-## Case 9 - max_features increased
+## * Case 9 - max_features increased
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=50)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -105,7 +105,7 @@ accuracy: 0.83207
 roc score =  0.5128726511312657    
 accuracy: 0.86817
 
-## Case 10 - max_features increased
+## * Case 10 - max_features increased
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -120,7 +120,7 @@ using less features isnt good. around 60 features improves accuracy
 
 # DAY 2: Tuesday 22nd October 2024
 
-## Case 11 - simple, minmax
+## * Case 11 - simple, minmax
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
@@ -130,7 +130,7 @@ using less features isnt good. around 60 features improves accuracy
 roc score =  0.5184642260176702   
 accuracy: 0.89330
 
-## Case 12 - knn5, minmax 
+## * Case 12 - knn5, minmax 
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=5)
@@ -143,7 +143,7 @@ accuracy: 0.87791
 ### Analyzing
 MinMaxScaler average: 0.885605
 
-## Case 13 - simple, standard
+## * Case 13 - simple, standard
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
@@ -153,7 +153,7 @@ MinMaxScaler average: 0.885605
 roc score =  0.5086297947750887    
 accuracy: 0.77620   
 
-## Case 14 - knn3, standard
+## * Case 14 - knn3, standard
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - KNNImputer(n_neighbors=3)
@@ -166,7 +166,7 @@ accuracy: 0.80450
 ### Analyzing
 StandardScaler average: 0.79035
 
-## Case 15 - simple, maxabse
+## * Case 15 - simple, maxabse
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - SimpleImputer(strategy='mean')
@@ -786,9 +786,12 @@ model accuracy =  0.9971152674133564
 roc score =  0.507075049343145    
 accuracy: 0.62207
 
-## Case 60 - random forest, depth = 6
-- RandomForestClassifier(max_depth=6, n_estimators=300, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+## Case 60 - random forest, depth = 6, trees=10
+- RandomForestClassifier(max_depth=6, n_estimators=10, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
 -- rf1.csv
 
+model accuracy =  0.9972642442136056    
+roc score =  0.5    
+accuracy: 0.91309
