@@ -177,8 +177,9 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | ----------- | ------ | ------- | ------ | ---------------- | ------------- | ------------------- | --- | --------------- | -------- |
 | 43 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
 | 46 | 7 | simple | minmax | variance=0.001, correlation=0.9 | 58 | 0.9973319609409916 | 0.5 | 0.54796 | accuracy improved with knn=7 and some features removed | 
-| 47 | 7 | simple | minmax | kbest=30 | 30 | 0.9975892845050585 | 0.5028112828678414 | 0.57056 | works better with lesser features | 
+| 47 | 7 | simple | minmax | kbest | 30 | 0.9975892845050585 | 0.5028112828678414 | 0.57056 | works better with lesser features | 
 | 52 | 3 | simple | minmax | forward | 5 | 0.9965735335942685 | 0.5254314763954754 | 0.55037 | accuracy decreased with low features |
+| 53 | 11 | knn=7 | minmax | kbest | 20 | 0.9970340073404933 | 0.5 | 0.59883 | highest accuracy, lets decrease kbest further |
 
 # Random Forest
 
