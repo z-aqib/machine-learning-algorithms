@@ -201,7 +201,6 @@ analysis:
 - knn=3, knn=7, simple imputers have no difference on accuracy
 - forward selector + k-nearest is very time taking, even after 1000 minutes it didnt work. at smaller forward selection, it runs but accuracy is too low due to less features
 
-
 ### Analyzing KBest Feature Selection
 | case number | algo used | kbest features | kaggle accuracy |
 | ----------- | --------- | -------------- | --------------- |
