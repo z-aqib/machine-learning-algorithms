@@ -73,6 +73,7 @@
 | 29 | maxabs | knn7 | crossfold k=5 | entropy | 5 | 15 | 60 | 80 | 0.8812 | 0.88935 | decreasing k didnt change accuracy too much | 
 | 30 | maxabs | knn7 | crossfold k=15 | entropy | 5 | 15 | 60 | 80 | 0.8994 | 0.87891 | increasing k resulted in overfit | 
 
+total test cases done: 30   
 highest accuracy achieved: 0.89522   
 started accuracy: 0.72913   
 best parameters: (case 26)    
@@ -141,7 +142,8 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 | 49 | simple | minmax | forward | 13 | 0.9724663786448529 | 0.657890605723844 | 0.87353 | accuracy improved but not to the full. lets try 14 | 
 | 50 | simple | minmax | forward | 14 | 0.97654292563349 | 0.6687466615541444 | 0.87271 | forward=15 was the highest breakpoint for naivebayes |
 
-highest accuracy achieved: 0.87413 (case 45)  
+total test cases done: 27   
+highest accuracy achieved: 0.87413 (case 45)   
 highest parameters: 
 - simple imputer
 - minmax scaler
@@ -176,6 +178,7 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | 43 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
 | 46 | 7 | simple | minmax | variance=0.001, correlation=0.9 | 58 | 0.9973319609409916 | 0.5 | 0.54796 | accuracy improved with knn=7 and some features removed | 
 | 47 | 7 | simple | minmax | kbest=30 | 30 | 0.9975892845050585 | 0.5028112828678414 | 0.57056 | works better with lesser features | 
+| 52 | 3 | simple | minmax | forward | 5 | 0.9965735335942685 | 0.5254314763954754 | 0.55037 | accuracy decreased with low features |
 
 # Random Forest
 
@@ -183,3 +186,4 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 | case number | imputer | scaler | max depth | n estimators | features used | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
 | ----------- | ------- | ------ | --------- | ------------ | ------------- | -------- | ----------------- | ------------ | ------------ | ------------------- | --- | --------------- | --------- |
 | 44 | simple | maxabs | 10 | 200 | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
+| 51 | knn=7 | maxabs | 5 | 200 | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
