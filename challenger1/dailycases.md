@@ -1,6 +1,6 @@
 # DAY 1: Monday 21st October 2024
 
-## Case 1 - started
+## * Case 1 - started
 - DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=20), 
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal, 
@@ -13,7 +13,7 @@ Accuracy: 0.72913
 ### ERROR SOLUTION
 one error approached was that we had first splitted the data into features and target variables (X, Y) and then dropped all the NaN rows from X which made X and Y have differnet number of rows. after trying to "index" and match these rows, nothing was working. So a solution was found to restart the ipynb and first remove all the NaN rows from the train_data_processed and THEN split it into X, Y which resulted in same rows and this code line worked. 
 
-## Case 2 - changed criteria from gini to entropy
+## * Case 2 - changed criteria from gini to entropy
 - DecisionTreeClassifier(criterion='entropy', max_depth=7, min_samples_split=20)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal,
@@ -26,7 +26,7 @@ Accuracy: 0.83323
 ### Analyzing
 entropy performed better then gini
 
-## Case 3 - decreased no.of samples per split
+## * Case 3 - decreased no.of samples per split
 - DecisionTreeClassifier(criterion='entropy', max_depth=7, min_samples_split=15)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - rows removal
@@ -752,3 +752,14 @@ accuracy: 0.61709
 model accuracy =  0.9972507008681284    
 roc score =  0.5024509803921569
 accuracy: 0.61709 [ file had not changed. unfortunately my entry is wasted ]
+
+## Case 67 - kbest=5
+- KNeighborsClassifier(n_neighbors=11)
+- SelectKBest(score_func=f_classif, k=5)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
+model accuracy =  0.9974267643593321    
+roc score =  0.5053136492515911 
+accuracy: 0.62622
