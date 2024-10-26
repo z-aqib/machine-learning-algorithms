@@ -844,3 +844,14 @@ DAY 6: Saturday 26th October 2024
 model accuracy =  0.9970610940314476    
 roc score =  0.5   
 accuracy: 0.91554
+
+## Case 52 - knearestneighbours=3, forward=5
+- KNeighborsClassifier(n_neighbors=3)
+- selection = SequentialFeatureSelector(model, direction='forward',n_features_to_select=5, scoring='roc_auc', n_jobs=-1)
+- minmax scaler
+- simple imputer
+-- knn2.csv
+
+model accuracy =  0.9965735335942685    
+roc score =  0.5254314763954754 
+accuracy: 0.55037
