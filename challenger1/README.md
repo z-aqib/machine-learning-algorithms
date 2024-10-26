@@ -186,6 +186,13 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 
 started accuracy: 0.53003   
 
+### Analyzing KBest Feature Selector
+| case number | algo used | kbest features | kaggle accuracy |
+| ----------- | --------- | -------------- | --------------- |
+| 54 | k nearest neighbours, 11 | 15 | 0.60509 | 
+| 53 | k nearest neighbours, 11 | 20 | 0.59883 |
+| 47 | k nearest neighbours, 7 | 30 | 0.57056 |
+
 # Random Forest
 
 ### Analyzing RandomForest
