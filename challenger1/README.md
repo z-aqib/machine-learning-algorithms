@@ -205,9 +205,14 @@ analysis:
 ### Analyzing KBest Feature Selection
 | case number | algo used | kbest features | kaggle accuracy |
 | ----------- | --------- | -------------- | --------------- |
+| 59 | k nearest neighbours, 11 | 3 | 0.62207 |
+| 57 | k nearest neighbours, 11 | 5 | 0.62622 |
+| 55 | k nearest neighbours, 11 | 10 | 0.61709 |
 | 54 | k nearest neighbours, 11 | 15 | 0.60509 | 
 | 53 | k nearest neighbours, 11 | 20 | 0.59883 |
 | 47 | k nearest neighbours, 7 | 30 | 0.57056 |
+
+kbest works better with lower number of features. as according to this table, kbest=5 is the best breakpoint. 
 
 # Random Forest
 
