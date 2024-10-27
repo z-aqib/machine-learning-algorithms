@@ -897,3 +897,14 @@ accuracy: 0.79753
 - knn=7 imputer
 - no feature selector
 --rf1.csv
+
+model accuracy =  0.9972777875590828    
+roc score =  0.5    
+accuracy: 0.93256
+
+## Case 69 - gradient boosting, depth decreased
+- GradientBoostingClassifier(max_depth=8, n_estimators=300, criterion='squared_error', max_features=60)
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv
