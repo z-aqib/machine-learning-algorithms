@@ -858,15 +858,20 @@ odel accuracy =  0.9974538510502864
 roc score =  0.5157623171129992    
 accuracy: 0.61114
 
-## Case 65 - random forest, depth increased
-- RandomForestClassifier(max_depth=8, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
-- maxabs scaler
-- knn=7 imputer
---rf1.csv
-
-## Case 66 - gradient boosting, criteria + max_depth added
+## Case 65 - gradient boosting, criteria + max_depth added
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
 - simple imputer
 - minmax scaler
 - no feature selection
 -- gb1.csv
+
+model accuracy =  0.9955984127199101    
+roc score =  0.5545980654020854 
+accuracy: 0.88297
+
+## Case 66 - random forest, depth increased
+- RandomForestClassifier(max_depth=8, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+--rf1.csv
+
