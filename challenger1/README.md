@@ -5,8 +5,8 @@
 | 2 | Tuesday 22nd October 2024 | Decision Tree | 10 | 0.89330 | 11 | 
 | 3 | Wednesday 23rd October 2024 | Decision Tree | 10 | 0.89522 | 26 | 
 | 4 | Thursday 24th October 2024 | NaiveBayes | 10 | 0.87148 | 35b | 
-| 5 | Friday 25th October 2024 | NaiveBayes + K-Nearest Neighbour + Random Forest | 10 | 0.90507 | 44 |
-| 6 | Saturday 26th October 2024 | Random Forest | - | - | - | 
+| 5 | Friday 25th October 2024 | NaiveBayes + K-Nearest Neighbours + Random Forest | 10 | 0.90507 | 44 |
+| 6 | Saturday 26th October 2024 |K-Nearest Neighbours + Random Forest | 10 | 0.91889 | 58 | 
 | 7 | Sunday 27th October 2024 | Random Forest | - | - | - |
 | 8 | Monday 28th October 2024 | Gradient Boosting | - | - |  - | 
 | 9 | Tuesday 29th October 2024 | Adaptive Boosting | - | - |  - | 
@@ -202,7 +202,8 @@ highest accuracy: 0.62622 (case 57):
 - knn=3 imputer
 - minmax scaler
 - kbest feature importance
-- 5 features used
+- 5 features used   
+
 analysis:
 - kbest works at lower number of features
 - knn=3, knn=7, simple imputers have no difference on accuracy
