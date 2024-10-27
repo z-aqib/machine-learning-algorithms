@@ -873,8 +873,23 @@ accuracy: 0.88297
 - RandomForestClassifier(max_depth=8, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
+- no feature selector
 --rf1.csv
 
 model accuracy =  0.9974403077048093    
 roc score =  0.5    
 accuracy: 0.93079  
+
+## Case 67 - gradient boosting, depth increased
+- GradientBoostingClassifier(max_depth=10, n_estimators=300, criterion='squared_error', max_features=60)
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv
+
+## Case 68 - random forest, depth increased
+- RandomForestClassifier(max_depth=10, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+- no feature selector
+--rf1.csv
