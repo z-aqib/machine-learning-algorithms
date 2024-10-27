@@ -823,3 +823,14 @@ accuracy: 0.91309
 model accuracy =  0.9955442393380013    
 roc score =  0.560056823582126    
 accuracy: 0.88298
+
+## Case 62 - randomforest, depth increased, trees increased
+- RandomForestClassifier(max_depth=7, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+--rf1.csv
+- 5min + 63min + 90min
+
+model accuracy =  0.9974132210138549    
+roc score =  0.5    
+accuracy: 0.92693
