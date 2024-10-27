@@ -197,12 +197,12 @@ code cleaned and commented, done
 | 57 | 11 | knn=3 | minmax | kbest | 5 | 0.9974267643593321 | 0.5053136492515911 | 0.62622 | lets try kbest=3 next |
 | 59 | 11 | knn=3 | minmax | kbest | 3 | 0.9971152674133564 | 0.507075049343145 | 0.62207 | deteroiration, kbest=5 was best |
 | 63 | 9 | knn=3 | minmax | kbest | 5 | 0.9972236141771741 | 0.5048989470087107 | 0.63158 | BEST CASE: increased, lets decrease k-nearest to 7 | 
-| 64 | 7 | knn=3 | minmax | kbest | 5 | 0.9974538510502864 | 0.5157623171129992 | 0.6114 | accuracy decreased. breakdown is best at 9 |
+| 64 | 7 | knn=3 | minmax | kbest | 5 | 0.9974538510502864 | 0.5157623171129992 | 0.61114 | accuracy decreased. breakdown is best at 9 |
 
 total submissions: 10    
 started accuracy: 0.53003   
 highest accuracy: 0.63158 (case 63)
-- k-nearest neighbours = 0
+- k-nearest neighbours = 9
 - knn=3 imputer
 - minmax scaler 
 - kbest feature selector 
@@ -213,6 +213,25 @@ analysis:
 - knn=3, knn=7, simple imputers have no difference on accuracy
 - forward selector + k-nearest is very time taking, even after 17 hours it didnt work. at smaller forward selection and smaller k-nearest-neighbours, it runs after 2 hours but accuracy is too low due to less features
 - performs best on k-nearest neighbours = 9
+
+### Analyzing K in K-nearest neighbours
+| case number | K=3 | K=5 | K=7 | K=9 | K=11 |
+| ----------- | --- | --- | --- | --- | ---- |
+| 43 | - | 0.53003 | - | - | - |
+| 46 | - | - | 0.54796 | - | - |
+| 47 | - | - | 0.57056 | - | - |
+| 52 | 0.55037 | - | - | - | - | 
+| 53 | - | - | - | - | 0.59883 |
+| 54 | - | - | - | - | 0.60509 |
+| 55 | - | - | - | - | 0.61709 |
+| 56 | - | - | - | - | 0.61709 |
+| 57 | - | - | - | - | 0.62622 |
+| 59 | - | - | - | - | 0.62207 |
+| 63 | - | - | - | 0.63158 | - |
+| 64 | - | - | 0.61114 | - | - |
+
+we can have mixed analysis to this table. k=9 was only tested once but it had the highest, although k=11 has a continous record of being high   
+k=3 was only tested once because a lower k means very few variables are taken into consideration whereas the dataset is very large. 
 
 ### Analyzing KBest Feature Selection
 | case number | algo used | kbest features | kaggle accuracy |
