@@ -144,7 +144,7 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 | 61a | row removal | minmax | forward | 15 | - | - | - | error, NaN values in test cannot perform forward |
 | 61b | row removal | minmax | - | 78 | - | - | - | error, NaN values in test cannot train GNB model |
 
-total test cases done: 27   
+total test cases done: 29    
 total submissions: 16   
 starting accuracy: 0.83725 (case 31)    
 highest accuracy achieved: 0.87413 (case 45)   
@@ -152,12 +152,12 @@ highest parameters:
 - simple imputer
 - minmax scaler
 - forward selection with 15 rows
-
-started accuracy: 0.83725     
+    
 analysis:    
 - forward is best at 15
 - simple, minmax worked best with NB
 - NB performed better with more features then lesser   
+- row removal does not work in naivebayes    
 
 ### Analyzing Forward Feature Selection
 we have run naivebayes multiple times with forward selection, lets analyse its accuracies (while keeping all other parameters like imputer and scaler constant):
