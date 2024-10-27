@@ -1,4 +1,7 @@
 # All algos
+
+Work done daily: 
+
 | Day | Date | Algorithm | No. of Entries | Highest Accuracy | Case of Highest |
 | --- | ---- | --------- | -------------- | ---------------- | --------------- |
 | 1 | Monday 21st October 2024 | Decision Tree | 10 | 0.88788 | 10 |
@@ -23,6 +26,7 @@
 | 20 | Saturday 9th November 2024 | - | - | - | - | 
 | 21 | Sunday 10th November 2024 | - | - | - | - | 
 
+Total Algorithms to run: 
 -	Decision Tree
 -	Naive Bayes
 -	K-Nearest Neighbor
@@ -199,7 +203,7 @@ code cleaned and commented, done
 | 63 | 9 | knn=3 | minmax | kbest | 5 | 0.9972236141771741 | 0.5048989470087107 | 0.63158 | BEST CASE: increased, lets decrease k-nearest to 7 | 
 | 64 | 7 | knn=3 | minmax | kbest | 5 | 0.9974538510502864 | 0.5157623171129992 | 0.61114 | accuracy decreased. breakdown is best at 9 |
 
-total submissions: 10    
+total submissions: 12    
 started accuracy: 0.53003   
 highest accuracy: 0.63158 (case 63)
 - k-nearest neighbours = 9

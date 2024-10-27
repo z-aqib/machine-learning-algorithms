@@ -875,3 +875,6 @@ accuracy: 0.88297
 - knn=7 imputer
 --rf1.csv
 
+model accuracy =  0.9974403077048093    
+roc score =  0.5    
+accuracy: 0.93079  
