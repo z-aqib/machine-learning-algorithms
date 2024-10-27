@@ -706,7 +706,7 @@ accuracy: 0.91554
 -- knn2.csv
 
 model accuracy =  0.9965735335942685    
-roc score =  0.5254314763954754 
+roc score =  0.5254314763954754   
 accuracy: 0.55037
 
 ## Case 53 - knearest=11, kbest=20, knn=7
@@ -750,7 +750,7 @@ accuracy: 0.61709
 --knn2.csv
 
 model accuracy =  0.9972507008681284    
-roc score =  0.5024509803921569
+roc score =  0.5024509803921569    
 accuracy: 0.61709 [ file had not changed. unfortunately my entry is wasted ]
 
 ## Case 57 - kbest=5
@@ -761,7 +761,7 @@ accuracy: 0.61709 [ file had not changed. unfortunately my entry is wasted ]
 --knn2.csv
 
 model accuracy =  0.9974267643593321    
-roc score =  0.5053136492515911 
+roc score =  0.5053136492515911    
 accuracy: 0.62622
 
 ## Case 58 - random forest, n_estimators = 300
@@ -828,9 +828,30 @@ accuracy: 0.88298
 - RandomForestClassifier(max_depth=7, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
+- no feature selection
 --rf1.csv
 - 5min + 63min + 90min
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5    
 accuracy: 0.92693
+
+## Case 63 - random forest, depth increased
+- RandomForestClassifier(max_depth=8, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+--rf1.csv
+
+## Case 64 - gradient boosting, criteria + max_depth added
+- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
+- simple imputer
+- minmax scaler
+- no feature selection
+-- gb1.csv
+
+## Case 65 - knearest=9, kbest=5
+- KNeighborsClassifier(n_neighbors=9)
+- SelectKBest(score_func=f_classif, k=5)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
