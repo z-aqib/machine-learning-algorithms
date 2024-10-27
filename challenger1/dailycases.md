@@ -836,22 +836,26 @@ model accuracy =  0.9974132210138549
 roc score =  0.5    
 accuracy: 0.92693
 
-## Case 63 - random forest, depth increased
-- RandomForestClassifier(max_depth=8, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
-- maxabs scaler
-- knn=7 imputer
---rf1.csv
-
-## Case 64 - gradient boosting, criteria + max_depth added
-- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
-- simple imputer
-- minmax scaler
-- no feature selection
--- gb1.csv
-
-## Case 65 - knearest=9, kbest=5
+## Case 63 - knearest=9, kbest=5
 - KNeighborsClassifier(n_neighbors=9)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
 - minmax scaler
 --knn2.csv
+
+model accuracy =  0.9972236141771741    
+roc score =  0.5048989470087107   
+accuracy: 0.63158
+
+## Case 64 - random forest, depth increased
+- RandomForestClassifier(max_depth=8, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+--rf1.csv
+
+## Case 65 - gradient boosting, criteria + max_depth added
+- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
+- simple imputer
+- minmax scaler
+- no feature selection
+-- gb1.csv
