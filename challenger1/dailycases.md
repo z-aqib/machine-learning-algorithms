@@ -813,3 +813,13 @@ accuracy: 0.91309
 - no feature selector
 
 // ERROR: does not work, if forward selection is not done, again it gives error upon training the model. Thus row-removal cannot be done. 
+
+## Case 61c - GradientBoosting
+- GradientBoostingClassifier(max_depth=6, n_estimators=300)
+- no feature selector
+- minmax scaler
+- simple imputer
+
+model accuracy =  0.9955442393380013    
+roc score =  0.560056823582126    
+accuracy: 0.88298

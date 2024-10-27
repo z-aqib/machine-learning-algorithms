@@ -237,3 +237,6 @@ started accuracy: 0.90507
 ### Analyzing GradientBoosting
 | case number | imputer | scaler | max depth | n estimators | feature selection | features used | validation accuracy | roc | kaggle accuracy | analyzing |
 | ----------- | ------- | ------ | --------- | ------------ | ----------------- | ------------- | ------------------- | --- | --------------- | --------- |
+| 61c | simple | minmax | 6 | 300 | - | 78 | 0.9955442393380013 | 0.560056823582126 | 0.88298 | - |
+
+started accuracy: 0.88298   
