@@ -902,9 +902,28 @@ model accuracy =  0.9972777875590828
 roc score =  0.5    
 accuracy: 0.93256
 
-## Case 69 - gradient boosting, depth decreased
+## Case 69 - adaptive boosting
+- AdaBoostClassifier(n_estimators=100)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
+
+model accuracy =  0.9969527472676301    
+roc score =  0.5430550209247345    
+accuracy: 0.94475
+
+## Case 70 - gradient boosting, depth decreased
 - GradientBoostingClassifier(max_depth=8, n_estimators=300, criterion='squared_error', max_features=60)
 - minmax scaler
 - simple imputer
 - no feature selector
 --gb1.csv
+
+## Case 71 - random forest, depth increased
+- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+- no feature selector
+--rf1.csv
+
