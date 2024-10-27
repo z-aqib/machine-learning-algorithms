@@ -795,3 +795,21 @@ accuracy: 0.62207
 model accuracy =  0.9972642442136056    
 roc score =  0.5    
 accuracy: 0.91309
+
+# DAY 7: Sunday 27th October 2024
+
+## Case 61a - GNaiveBayes, row dropping
+- gaussian naive bayes
+- row removal
+- minmax scaler
+- forward=15 rows
+
+// ERROR: does not work, as rows removal works only on train_data_set and then not for test_data_set or it would be rejected by Kaggle. But, NaiveBayes forward selection does not run on NaN values. 
+
+## Case 61b - GNaiveBayes, row dropping, no feature selector
+- gaussian naive bayes
+- row removal
+- minmax scaler
+- no feature selector
+
+// ERROR: does not work, if forward selection is not done, again it gives error upon training the model. Thus row-removal cannot be done. 

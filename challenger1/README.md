@@ -141,6 +141,8 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 | 48 | simple | minmax | forward | 17 | 0.968064791364763 | 0.71144752877173 | 0.87278 | accuracy decreased with more features, lets decrease them |
 | 49 | simple | minmax | forward | 13 | 0.9724663786448529 | 0.657890605723844 | 0.87353 | accuracy improved but not to the full. lets try 14 | 
 | 50 | simple | minmax | forward | 14 | 0.97654292563349 | 0.6687466615541444 | 0.87271 | forward=15 was the highest breakpoint for naivebayes |
+| 61a | row removal | minmax | forward | 15 | - | - | - | error, NaN values in test cannot perform forward |
+| 61b | row removal | minmax | - | 78 | - | - | - | error, NaN values in test cannot train GNB model |
 
 total test cases done: 27   
 total submissions: 16   
@@ -150,8 +152,9 @@ highest parameters:
 - simple imputer
 - minmax scaler
 - forward selection with 15 rows
-started accuracy: 0.83725   
-analysis: 
+
+started accuracy: 0.83725     
+analysis:    
 - forward is best at 15
 - simple, minmax worked best with NB
 - NB performed better with more features then lesser   
@@ -199,7 +202,7 @@ highest accuracy: 0.62622 (case 57):
 analysis:
 - kbest works at lower number of features
 - knn=3, knn=7, simple imputers have no difference on accuracy
-- forward selector + k-nearest is very time taking, even after 1000 minutes it didnt work. at smaller forward selection, it runs but accuracy is too low due to less features
+- forward selector + k-nearest is very time taking, even after 17 hours it didnt work. at smaller forward selection and smaller k-nearest-neighbours, it runs after 2 hours but accuracy is too low due to less features
 
 ### Analyzing KBest Feature Selection
 | case number | algo used | kbest features | kaggle accuracy |
