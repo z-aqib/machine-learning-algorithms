@@ -39,6 +39,8 @@
 
 # DecisionTrees
 
+code cleaned and commented, done
+
 ## Analyzing Decision Trees
 | case number | scaler | imputer | splitting | criteria | max depth | min samples split | max features | min samples leaf | roc | accuracy | analysis |
 | ----------- | ------ | ------- | --------- | -------- | --------- | ----------------- | ------------ | ---------------- | --- | -------- | -------- |
@@ -110,6 +112,8 @@ the best among all 5 scalers is MinMaxScaler and MaxAbsScaler. the third best is
 out of KNN and SimpleImputers, we can see that both are good however simple imputer performs better on average. thus we will work with both. in the next 4 cases, lets test knn=3, 5, 7 for MinMaxScaler and MaxAbsScaler to find the best KNN going forward.
 
 # NaiveBayes
+
+code cleaned and commented, done
 
 ### Analyzing Naive Bayes
 | case number | imputer | scaler | feature selection | no. of features selected | model accuracy | roc | kaggle accuracy | analysis |
