@@ -887,6 +887,10 @@ accuracy: 0.93079
 - no feature selector
 --gb1.csv
 
+model accuracy =  0.9953140024648889    
+roc score =  0.5702606327046124  
+accuracy: 0.79753
+
 ## Case 68 - random forest, depth increased
 - RandomForestClassifier(max_depth=10, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
