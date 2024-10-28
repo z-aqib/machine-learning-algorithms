@@ -1025,15 +1025,15 @@ model accuracy =  0.9973861343229005
 roc score =  0.5    
 accuracy: 0.81121
 
------------ not running, need to run
-
-## Case 72 - gradient boosting, depth decreased
+## Case 80 - gradient boosting, depth decreased
 - GradientBoostingClassifier(max_depth=8, n_estimators=300, criterion='squared_error', max_features=60)
 - minmax scaler
 - simple imputer
 - no feature selector
 --gb1.csv
+- 92min + 66min
 
-
-
+model accuracy =  0.9951514823191625    
+roc score =  0.5543197973296156   
+accuracy: 0.83659
 
