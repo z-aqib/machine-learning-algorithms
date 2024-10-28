@@ -1037,3 +1037,42 @@ model accuracy =  0.9951514823191625
 roc score =  0.5543197973296156   
 accuracy: 0.83659
 
+# DAY 9: Tuesday 29th October 2024
+
+-- in progress, havent submitted yet 
+
+## Case 81 - adaptive boosting, estimators decreased
+- AdaBoostClassifier(n_estimators=175)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
+
+model accuracy =  0.9970204639950161    
+roc score =  0.5683960928977767
+accuracy: 
+
+## Case 82 - k-nearest neighbours, increased k
+- KNeighborsClassifier(n_neighbors=500)
+- SelectKBest(score_func=f_classif, k=5)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
+model accuracy =  0.9972507008681284    
+roc score =  0.5
+accuracy: 
+
+## Case 83 - gradboost, forward=10
+- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
+- simple imputer
+- minmax scaler
+- forward selection, 10 features
+--gb1.csv
+
+## Case 84 - random forest, kbest=30
+- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+- kbest feature selector, 30 features
+--rf1.csv
