@@ -979,6 +979,17 @@ model accuracy =  0.9967360537399949
 roc score =  0.5648649150311703    
 accuracy: 0.94948
 
+## Case 76 - adaptive boosting, estimators increased
+- AdaBoostClassifier(n_estimators=170)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
+
+model accuracy =  0.997088180722402    
+roc score =  0.563818101949167    
+accuracy: 0.94966
+
 ----------- not running, need to run
 
 ## Case 72 - gradient boosting, depth decreased
