@@ -9,9 +9,9 @@ Work done daily:
 | 3 | Wednesday 23rd October 2024 | Decision Tree | 10 | 0.89522 | 26 | 
 | 4 | Thursday 24th October 2024 | NaiveBayes | 10 | 0.87148 | 35b | 
 | 5 | Friday 25th October 2024 | NaiveBayes + K-Nearest Neighbours + Random Forest | 10 | 0.90507 | 44 |
-| 6 | Saturday 26th October 2024 |K-Nearest Neighbours + Random Forest | 10 | 0.91889 | 58 | 
-| 7 | Sunday 27th October 2024 | Random Forest | - | - | - |
-| 8 | Monday 28th October 2024 | Gradient Boosting | - | - |  - | 
+| 6 | Saturday 26th October 2024 | K-Nearest Neighbours + Random Forest | 10 | 0.91889 | 58 | 
+| 7 | Sunday 27th October 2024 | Gradient Boosting + Random Forest + K-Nearest Neighbours + Adaptive Boosting | 10 | 0.94475 | 69 |
+| 8 | Monday 28th October 2024 | Adaptive Boosting + Random Forest + K-Nearest Neighbours + Gradient Boosting | 10 | 0.94966 | 76 | 
 | 9 | Tuesday 29th October 2024 | Adaptive Boosting | - | - |  - | 
 | 10 | Wednesday 30th October 2024 | Light GBM | - | - |  - |  
 | 11 | Thursday 31st October 2024 | XGBoost | - | - | - | 

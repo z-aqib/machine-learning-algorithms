@@ -866,7 +866,7 @@ accuracy: 0.61114
 -- gb1.csv
 
 model accuracy =  0.9955984127199101    
-roc score =  0.5545980654020854 
+roc score =  0.5545980654020854   
 accuracy: 0.88297
 
 ## Case 66 - random forest, depth increased
