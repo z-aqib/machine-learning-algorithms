@@ -1014,6 +1014,17 @@ model accuracy =  0.99729133090456
 roc score =  0.5    
 accuracy: 0.93452
 
+## Case 79 - k-nearest neighbours, increased k
+- KNeighborsClassifier(n_neighbors=300)
+- SelectKBest(score_func=f_classif, k=5)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
+model accuracy =  0.9973861343229005    
+roc score =  0.5    
+accuracy: 0.81121
+
 ----------- not running, need to run
 
 ## Case 72 - gradient boosting, depth decreased
