@@ -924,6 +924,8 @@ model accuracy =  0.996885030540244
 roc score =  0.5717622628834583    
 accuracy: 0.93379
 
+# DAY 8: Monday 28th October 2024
+
 ## Case 71 - adaptive boosting, estimators decreased
 - AdaBoostClassifier(n_estimators=50)
 - minmax scaler
@@ -1001,6 +1003,17 @@ model accuracy =  0.9969933773040617
 roc score =  0.5571944470850252    
 accuracy: 0.93516
 
+## Case 78 - random forest, depth increased
+- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- maxabs scaler
+- knn=7 imputer
+- no feature selector
+--rf1.csv
+
+model accuracy =  0.99729133090456    
+roc score =  0.5    
+accuracy: 0.93452
+
 ----------- not running, need to run
 
 ## Case 72 - gradient boosting, depth decreased
@@ -1010,11 +1023,6 @@ accuracy: 0.93516
 - no feature selector
 --gb1.csv
 
-## Case 73 - random forest, depth increased
-- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
-- maxabs scaler
-- knn=7 imputer
-- no feature selector
---rf1.csv
+
 
 
