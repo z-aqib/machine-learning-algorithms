@@ -202,21 +202,17 @@ code cleaned and commented, done
 | 59 | 11 | knn=3 | minmax | kbest | 3 | 0.9971152674133564 | 0.507075049343145 | 0.62207 | deteroiration, kbest=5 was best |
 | 63 | 9 | knn=3 | minmax | kbest | 5 | 0.9972236141771741 | 0.5048989470087107 | 0.63158 | BEST CASE: increased, lets decrease k-nearest to 7 | 
 | 64 | 7 | knn=3 | minmax | kbest | 5 | 0.9974538510502864 | 0.5157623171129992 | 0.61114 | accuracy decreased. breakdown is best at 9 |
+| 79 | 300 | knn=3 | minmax | kbest | 5 | 0.9973861343229005 | 0.5 | 0.81121 | k-neighbours increases accuracy | 
 
-total submissions: 12    
+total submissions: 13    
 started accuracy: 0.53003   
-highest accuracy: 0.63158 (case 63)
-- k-nearest neighbours = 9
-- knn=3 imputer
-- minmax scaler 
-- kbest feature selector 
-- 5 features selected
+highest accuracy: 
 
 analysis:
 - kbest works at lower number of features
 - knn=3, knn=7, simple imputers have no difference on accuracy
 - forward selector + k-nearest is very time taking, even after 17 hours it didnt work. at smaller forward selection and smaller k-nearest-neighbours, it runs after 2 hours but accuracy is too low due to less features
-- performs best on k-nearest neighbours = 9
+- performs best on k-nearest neighbours = 
 
 ### Analyzing K in K-nearest neighbours
 | case number | K=3 | K=5 | K=7 | K=9 | K=11 |
@@ -261,6 +257,7 @@ kbest works better with lower number of features. as according to this table, kb
 | 62 | knn=7 | maxabs | 7 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974132210138549 | 0.5 | 0.92693 | depth increased trees, lets increase it |
 | 66 | knn=7 | maxabs | 8 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974403077048093 | 0.5 | 0.93079 | depth increased trees, lets increase further |
 | 68 | knn=7 | maxabs | 10 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9972777875590828 | 0.5 | 0.93256 | depth is increasing accuracy |
+| 78 | knn=7 | maxabs | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
 
 started accuracy: 0.90507   
 
@@ -272,10 +269,21 @@ started accuracy: 0.90507
 | 61c | simple | minmax | 6 | 300 | - | - | - | 78 | 0.9955442393380013 | 0.560056823582126 | 0.88298 | - |
 | 65 | simple | minmax | 6 | 300 | squared-error | 60 | - | 78 | 0.9955984127199101 | 0.5545980654020854 | 0.88297 | accuracy remained same, lets increase the depth |
 | 67 | simple | minmax | 10 | 300 | squared error | 60 | - | 78 | 0.9953140024648889 | 0.5702606327046124 | 0.79753 | too high depth ruined the accuracy |
+| 80 | simple | minmax | 8 | 300 | squared error | 60 | - | 78 | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try decreasing depth now to 5 |
 
 started accuracy: 0.88298   
 
 # Adaptive Boosting
 
 ### Analyzing AdaptiveBoosting
-| case number | imputer | scaler | n estimators | bagging | bagging params | 
+| case number | imputer | scaler | n estimators | bagging | bagging params | feature selector | features selected | validation accuracy | roc | kaggle accuracy | analysis |
+| - | - | - | - | - | - | - | - | - | - | - | - |
+| 69 | simple | minmax | 100 | - | - | - | 78 | 0.9969527472676301 | 0.5430550209247345 | 0.94475 | - |
+| 70 | simple | minmax | 200 | - | - | - | 78 | 0.996885030540244 | 0.5717622628834583 | 0.93379 | deterioration, too high estimators | 
+| 71 | simple | minmax | 50 | - | - | - | 78 | 0.9970746373769248 | 0.5522487676032429 | 0.93853 | deterioration, too low estimators |
+| 72 | simple | minmax | 75 | - | - | - | 78 | 0.9966141636307001 | 0.5660048884094492 | 0.94053 | improvement but not to the highest |
+| 73 | simple | minmax | 110 | - | - | - | 78 | 0.9965464469033141 | 0.5644500047530453 | 0.94521 | improved! best estimators are between 100 and 200 |
+| 74 | simple | minmax | 150 | - | - | - | 78 | 0.9971288107588336 | 0.5607445471728567 | 0.94780 | more improvement, we are closer to the breakpoint |
+| 75 | simple | minmax | 160 | - | - | - | 78 | 0.9967360537399949 | 0.5648649150311703 | 0.948948 | lets increase 10 further |
+| 76 | simple | minmax | 170 | - | - | - | 78 | 0.997088180722402 | 0.563818101949167 | 0.94966 | highest, lets increase 10 further |
+| 77 | simple | minmax | 180 | - | - | - | 78 | 0.9969933773040617 | 0.5571944470850252 | 0.93516 | deterioration, breakpoint found! if possible, can try 175 to see if its highest |
