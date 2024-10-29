@@ -31,9 +31,9 @@ Algorithms worked on:
 | Algorithm Name | Best Accuracy | Case Number | imputer | scaler | feature selector | no. of features | properties |
 | - | - | - | - | - | - | - | - |
 | Decision Tree | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), holdout at 70-30 | 
-| Naive Bayes | 0.87413 | 45 | simple | minmax | forward | 15 | gaussian |
+| Naive Bayes | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
 | K-Nearest Neighbor | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | 0.93452 | 78 | maxabs | knn=7 | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Random Forest | 0.93452 | 78 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
 | Gradient Boosting | 0.88298 | 61c | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
 | Adaptive Boosting | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | - | - | - | - | - |
@@ -206,7 +206,7 @@ code cleaned and commented, done
 | 63 | 9 | knn=3 | minmax | kbest | 5 | 0.9972236141771741 | 0.5048989470087107 | 0.63158 | BEST CASE: increased, lets decrease k-nearest to 7 | 
 | 64 | 7 | knn=3 | minmax | kbest | 5 | 0.9974538510502864 | 0.5157623171129992 | 0.61114 | accuracy decreased. breakdown is best at 9 |
 | 79 | 300 | knn=3 | minmax | kbest | 5 | 0.9973861343229005 | 0.5 | 0.81121 | k-neighbours increases accuracy | 
-| 81 | 500 | knn=3 | minmax | kbest | 5 | 0.9972507008681284 | 0.5 | 0.82533 | lets increase to 1000 |
+| 82 | 500 | knn=3 | minmax | kbest | 5 | 0.9972507008681284 | 0.5 | 0.82533 | lets increase to 1000 |
 | 85 | 1000 | knn=3 | minmax | kbest | 5 | 0.9973048742500372 | 0.5 | 0.83911 | lets add weights and increase k |
 | 86b | 2000 | knn=3 | minmax | kbest | 5 | 0.9970746373769248 | 0.4999185147963549 | 0.82641 | too many k |
 | 88 | 1500 | knn=3 | minmax | kbest | 5 | 0.997088180722402 | 0.49995246438224067 | 0.85212 | wow! i think thats enough though |
