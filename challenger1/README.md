@@ -275,6 +275,7 @@ started accuracy: 0.90507
 | 65 | simple | minmax | 6 | 300 | squared-error | 60 | - | 78 | 0.9955984127199101 | 0.5545980654020854 | 0.88297 | accuracy remained same, lets increase the depth |
 | 67 | simple | minmax | 10 | 300 | squared error | 60 | - | 78 | 0.9953140024648889 | 0.5702606327046124 | 0.79753 | too high depth ruined the accuracy |
 | 80 | simple | minmax | 8 | 300 | squared error | 60 | - | 78 | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try decreasing depth now to 5 |
+| 89 | simple | minmax | 6 | 300 | squared error | 60 | kbest | 30 | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
 
 started accuracy: 0.88298   
 

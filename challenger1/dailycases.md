@@ -1143,10 +1143,11 @@ accuracy: 0.85212
 - minmax scaler
 - kbest, 30 features
 --gb1.csv
+- 27min + 35min
 
 model accuracy =  0.9961807765754297    
 roc score =  0.5478679502290538
-accuracy: 
+accuracy: 0.85929   
 
 ## Case Z - adaboost, learning rate decreased
 - AdaBoostClassifier(n_estimators=170, learning_rate=0.6)
