@@ -1126,6 +1126,17 @@ model accuracy =  0.9972371575226513
 roc score =  0.5632272905179162    
 accuracy: 0.93369
 
+## Case 88 - k-nearest neighbours, decreased k
+- KNeighborsClassifier(n_neighbors=1500, weights="distance")
+- SelectKBest(score_func=f_classif, k=5)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
+model accuracy =  0.997088180722402    
+roc score =  0.49995246438224067 
+accuracy: 0.85212
+
 ## Case X - gradboost, kbest=30
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
 - simple imputer
@@ -1136,17 +1147,6 @@ accuracy: 0.93369
 model accuracy =  0.9961807765754297    
 roc score =  0.5478679502290538
 accuracy: 
-
-## Case Y - k-nearest neighbours, decreased k
-- KNeighborsClassifier(n_neighbors=1500, weights="distance")
-- SelectKBest(score_func=f_classif, k=5)
-- knn=3 imputer
-- minmax scaler
---knn2.csv
-
-model accuracy =  0.997088180722402    
-roc score =  0.49995246438224067 
-accuracy: 0.85212
 
 ## Case Z - adaboost, learning rate decreased
 - AdaBoostClassifier(n_estimators=170, learning_rate=0.6)
