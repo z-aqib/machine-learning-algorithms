@@ -12,7 +12,7 @@ Work done daily:
 | 6 | Saturday 26th October 2024 | K-Nearest Neighbours + Random Forest | 10 | 0.91889 | 58 | 
 | 7 | Sunday 27th October 2024 | Gradient Boosting + Random Forest + K-Nearest Neighbours + Adaptive Boosting | 10 | 0.94475 | 69 |
 | 8 | Monday 28th October 2024 | Adaptive Boosting + Random Forest + K-Nearest Neighbours + Gradient Boosting | 10 | 0.94966 | 76 | 
-| 9 | Tuesday 29th October 2024 | Adaptive Boosting | - | - |  - | 
+| 9 | Tuesday 29th October 2024 | Adaptive Boosting + K-Nearest Neighbours + Random Forest + Gradient Boosting | 10 | 0.94949 |  81 | 
 | 10 | Wednesday 30th October 2024 | Light GBM | - | - |  - |  
 | 11 | Thursday 31st October 2024 | XGBoost | - | - | - | 
 | 12 | Friday 1st November 2024 | XGBoost | - | - | - | 
@@ -26,20 +26,21 @@ Work done daily:
 | 20 | Saturday 9th November 2024 | - | - | - | - | 
 | 21 | Sunday 10th November 2024 | - | - | - | - | 
 
-Total Algorithms to run: 
--	Decision Tree
--	Naive Bayes
--	K-Nearest Neighbor
--	Random Forest
--	Gradient Boosting
--	Adaptive Boosting
--	Light GBM
--	XGBoost
--	CatBoost
--	BaggingClassifier
--	ExtraTree Classifier (Extremely Randomized Tree)
--	Voting
--	Stacking
+| Algorith Name | Best Accuracy | Case Number | imputer | scaler | feature selector | no. of features | properties |
+| - | -| - | - | -| - |
+| Decision Tree | 0.89522 | 26 | knn=7 | maxabs | - | - | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), holdout at 70-30 | 
+| Naive Bayes | 0.87413 | 45 | simple | minmax | forward | 15 | gaussian |
+| K-Nearest Neighbor | 0.85212 | 88 | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| Random Forest | 0.93452 | 78 | maxabs | knn=7 | - | - | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Gradient Boosting | 0.88298 | 61c | simple | minmax | - | - | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
+| Adaptive Boosting | 
+| Light GBM | - | - | - | - | - |
+| XGBoost | - | - | - | - | - |
+| CatBoost | - | - | - | - | - |
+| BaggingClassifier | - | - | - | - | - |
+| ExtraTree Classifier (Extremely Randomized Tree) | - | - | - | - | - |
+| Voting | - | - | - | - | - |
+| Stacking | - | - | - | - | - |
 
 # DecisionTrees
 
@@ -283,7 +284,7 @@ started accuracy: 0.88298
 
 ### Analyzing AdaptiveBoosting
 | case number | imputer | scaler | n estimators | learning rate | bagging | bagging params | feature selector | features selected | validation accuracy | roc | kaggle accuracy | analysis |
-| - | - | - | - | - | - | - | - | - | - | - | - |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | 
 | 69 | simple | minmax | 100 | default=0.5 | - | - | - | 78 | 0.9969527472676301 | 0.5430550209247345 | 0.94475 | - |
 | 70 | simple | minmax | 200 | default=0.5 | - | - | - | 78 | 0.996885030540244 | 0.5717622628834583 | 0.93379 | deterioration, too high estimators | 
 | 71 | simple | minmax | 50 | default=0.5 | - | - | - | 78 | 0.9970746373769248 | 0.5522487676032429 | 0.93853 | deterioration, too low estimators |
