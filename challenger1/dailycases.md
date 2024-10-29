@@ -1133,9 +1133,24 @@ accuracy: 0.93369
 - kbest, 30 features
 --gb1.csv
 
+model accuracy =  0.9961807765754297    
+roc score =  0.5478679502290538
+accuracy: 
+
 ## Case Y - k-nearest neighbours, decreased k
 - KNeighborsClassifier(n_neighbors=1500, weights="distance")
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
 - minmax scaler
 --knn2.csv
+
+model accuracy =  0.997088180722402    
+roc score =  0.49995246438224067 
+accuracy:
+
+## Case Z - adaboost, learning rate decreased
+- AdaBoostClassifier(n_estimators=170, learning_rate=0.6)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
