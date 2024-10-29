@@ -293,3 +293,4 @@ started accuracy: 0.88298
 | 77 | simple | minmax | 180 | default=0.5 | - | - | - | 78 | 0.9969933773040617 | 0.5571944470850252 | 0.93516 | deterioration, breakpoint found! if possible, can try 175 to see if its highest |
 | 81 | simple | minmax | 175 | default=0.5 | - | - | - | 78 | 0.9970204639950161 | 0.5683960928977767 | 0.94949 | near to highest but not highest |
 | 84 | simple | minmax | 175 | 0.1 | - | - | - | 78 | 0.9974538510502864 | 0.5026527855096471 | 0.93301 | too low, increase learning rate |
+| 87 | simple | minmax | 170 | 0.75 | - | - | - | 78 | 0.9972371575226513 | 0.5632272905179162 | 0.93369 | not too good |
