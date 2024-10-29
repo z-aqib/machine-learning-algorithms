@@ -259,6 +259,7 @@ kbest works better with lower number of features. as according to this table, kb
 | 66 | knn=7 | maxabs | 8 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974403077048093 | 0.5 | 0.93079 | depth increased trees, lets increase further |
 | 68 | knn=7 | maxabs | 10 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9972777875590828 | 0.5 | 0.93256 | depth is increasing accuracy |
 | 78 | knn=7 | maxabs | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
+| 83 | knn=7 | maxabs | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
 
 started accuracy: 0.90507   
 

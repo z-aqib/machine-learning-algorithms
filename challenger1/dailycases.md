@@ -1061,15 +1061,7 @@ model accuracy =  0.9972507008681284
 roc score =  0.5
 accuracy: 0.82533
 
-## Case 83 - gradboost, forward=10
-- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
-- simple imputer
-- minmax scaler
-- forward selection, 10 features
---gb1.csv
-ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
-
-## Case 84 - random forest, kbest=30
+## Case 83 - random forest, kbest=30
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
@@ -1079,4 +1071,13 @@ ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and sta
 
 model accuracy =  0.9972371575226513    
 roc score =  0.5   
-accuracy: 
+accuracy: 0.92633
+
+## Case X - gradboost, forward=10
+- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
+- simple imputer
+- minmax scaler
+- forward selection, 10 features
+--gb1.csv
+ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
+
