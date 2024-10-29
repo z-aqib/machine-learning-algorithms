@@ -1159,3 +1159,42 @@ accuracy: 0.85929
 model accuracy =  0.9971152674133564    
 roc score =  0.5492075935795596   
 accuracy: 0.94896
+
+# DAY 10: Wednesday 30th October 2024
+
+-- running, not submitted
+
+## Case X - adaboost, bagging
+- AdaBoostClassifier(n_estimators=170)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
+
+## Case Y - lightgbm
+- lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.1)
+- no bagging
+- minmax scaler
+- simple imputer
+- no feature selector
+--lgbm.csv
+
+model accuracy =  0.9934450207890353    
+roc score =  0.5815248594933158
+accuracy:
+
+## Case Z - gradientboosting, bagging
+- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- simple imputer
+- minmax scaler
+- no feature selector
+--gb1.csv
+
+## Case W - randomforest, algo feature importance
+- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
+- feature_importance_df['Feature'].head(35).values
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
