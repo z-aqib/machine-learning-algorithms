@@ -1095,23 +1095,35 @@ model accuracy =  0.9973048742500372
 roc score =  0.5   
 accuracy: 0.83911
 
-## Case X - gradboost, forward=10
+## Case 86a - gradboost, forward=10
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
 - simple imputer
 - minmax scaler
 - forward selection, 10 features
 --gb1.csv
 ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
+ran it again for 256 min but laptop stopped working
 
-## Case Y - k-nearest neighbours, increased k and weights
+## Case 86b - k-nearest neighbours, increased k and weights
 - KNeighborsClassifier(n_neighbors=2000, weights="distance")
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
 - minmax scaler
 --knn2.csv
 
-## Case Z - adaboost, 
-- AdaBoostClassifier(n_estimators=175, learning_rate=0.75)
+model accuracy =  0.9970746373769248    
+roc score =  0.4999185147963549
+accuracy: 0.82641
+
+## Case X - gradboost, kbest=30
+- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
+- simple imputer
+- minmax scaler
+- kbest, 30 features
+--gb1.csv
+
+## Case Z - adaboost, learning rate increased
+- AdaBoostClassifier(n_estimators=170, learning_rate=0.75)
 - minmax scaler
 - simple imputer
 - no feature selector

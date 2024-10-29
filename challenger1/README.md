@@ -205,6 +205,7 @@ code cleaned and commented, done
 | 79 | 300 | knn=3 | minmax | kbest | 5 | 0.9973861343229005 | 0.5 | 0.81121 | k-neighbours increases accuracy | 
 | 81 | 500 | knn=3 | minmax | kbest | 5 | 0.9972507008681284 | 0.5 | 0.82533 | lets increase to 1000 |
 | 85 | 1000 | knn=3 | minmax | kbest | 5 | 0.9973048742500372 | 0.5 | 0.83911 | lets add weights and increase k |
+| 86b | 2000 | knn=3 | minmax | kbest | 5 | 0.9970746373769248 | 0.4999185147963549 | 0.82641 | too many k |
 
 total submissions: 13    
 started accuracy: 0.53003   
@@ -291,4 +292,4 @@ started accuracy: 0.88298
 | 76 | simple | minmax | 170 | default=0.5 | - | - | - | 78 | 0.997088180722402 | 0.563818101949167 | 0.94966 | highest, lets increase 10 further |
 | 77 | simple | minmax | 180 | default=0.5 | - | - | - | 78 | 0.9969933773040617 | 0.5571944470850252 | 0.93516 | deterioration, breakpoint found! if possible, can try 175 to see if its highest |
 | 81 | simple | minmax | 175 | default=0.5 | - | - | - | 78 | 0.9970204639950161 | 0.5683960928977767 | 0.94949 | near to highest but not highest |
-| 84 | simple | minmax | 170 | 0.1 | - | - | - | 78 | 0.9974538510502864 | 0.5026527855096471 | 0.93301 | too low, increase learning rate |
+| 84 | simple | minmax | 175 | 0.1 | - | - | - | 78 | 0.9974538510502864 | 0.5026527855096471 | 0.93301 | too low, increase learning rate |
