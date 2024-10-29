@@ -1146,7 +1146,7 @@ accuracy:
 
 model accuracy =  0.997088180722402    
 roc score =  0.49995246438224067 
-accuracy:
+accuracy: 0.85212
 
 ## Case Z - adaboost, learning rate decreased
 - AdaBoostClassifier(n_estimators=170, learning_rate=0.6)

@@ -206,6 +206,7 @@ code cleaned and commented, done
 | 81 | 500 | knn=3 | minmax | kbest | 5 | 0.9972507008681284 | 0.5 | 0.82533 | lets increase to 1000 |
 | 85 | 1000 | knn=3 | minmax | kbest | 5 | 0.9973048742500372 | 0.5 | 0.83911 | lets add weights and increase k |
 | 86b | 2000 | knn=3 | minmax | kbest | 5 | 0.9970746373769248 | 0.4999185147963549 | 0.82641 | too many k |
+| 88 | 1500 | knn=3 | minmax | kbest | 5 | 0.997088180722402 | 0.49995246438224067 | 0.85212 | wow! i think thats enough though |
 
 total submissions: 13    
 started accuracy: 0.53003   
