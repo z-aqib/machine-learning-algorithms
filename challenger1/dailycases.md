@@ -1103,3 +1103,16 @@ accuracy: 0.83911
 --gb1.csv
 ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
 
+## Case Y - k-nearest neighbours, increased k and weights
+- KNeighborsClassifier(n_neighbors=2000, weights="distance")
+- SelectKBest(score_func=f_classif, k=5)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
+## Case Z - adaboost, 
+- AdaBoostClassifier(n_estimators=175, learning_rate=0.75)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
