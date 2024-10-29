@@ -1049,8 +1049,8 @@ accuracy: 0.83659
 --ab1.csv
 
 model accuracy =  0.9970204639950161    
-roc score =  0.5683960928977767
-accuracy: 
+roc score =  0.5683960928977767    
+accuracy: 0.94949
 
 ## Case 82 - k-nearest neighbours, increased k
 - KNeighborsClassifier(n_neighbors=500)
@@ -1069,6 +1069,7 @@ accuracy:
 - minmax scaler
 - forward selection, 10 features
 --gb1.csv
+ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
 
 ## Case 84 - random forest, kbest=30
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
@@ -1076,6 +1077,7 @@ accuracy:
 - knn=7 imputer
 - kbest feature selector, 30 features
 --rf1.csv
+- 51 min + 72 min
 
 model accuracy =  0.9972371575226513    
 roc score =  0.5   
