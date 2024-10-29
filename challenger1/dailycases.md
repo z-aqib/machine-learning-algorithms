@@ -1039,8 +1039,6 @@ accuracy: 0.83659
 
 # DAY 9: Tuesday 29th October 2024
 
--- in progress, havent submitted yet 
-
 ## Case 81 - adaptive boosting, estimators decreased
 - AdaBoostClassifier(n_estimators=175)
 - minmax scaler
@@ -1061,7 +1059,7 @@ accuracy: 0.94949
 
 model accuracy =  0.9972507008681284    
 roc score =  0.5
-accuracy: 
+accuracy: 0.82533
 
 ## Case 83 - gradboost, forward=10
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
