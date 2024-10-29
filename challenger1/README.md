@@ -204,6 +204,7 @@ code cleaned and commented, done
 | 64 | 7 | knn=3 | minmax | kbest | 5 | 0.9974538510502864 | 0.5157623171129992 | 0.61114 | accuracy decreased. breakdown is best at 9 |
 | 79 | 300 | knn=3 | minmax | kbest | 5 | 0.9973861343229005 | 0.5 | 0.81121 | k-neighbours increases accuracy | 
 | 81 | 500 | knn=3 | minmax | kbest | 5 | 0.9972507008681284 | 0.5 | 0.82533 | lets increase to 1000 |
+| 85 | 1000 | knn=3 | minmax | kbest | 5 | 0.9973048742500372 | 0.5 | 0.83911 | lets add weights and increase k |
 
 total submissions: 13    
 started accuracy: 0.53003   
