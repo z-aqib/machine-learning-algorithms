@@ -1058,7 +1058,7 @@ accuracy: 0.94949
 --knn2.csv
 
 model accuracy =  0.9972507008681284    
-roc score =  0.5
+roc score =  0.5    
 accuracy: 0.82533
 
 ## Case 83 - random forest, kbest=30
@@ -1112,7 +1112,7 @@ ran it again for 256 min but laptop stopped working
 --knn2.csv
 
 model accuracy =  0.9970746373769248    
-roc score =  0.4999185147963549
+roc score =  0.4999185147963549    
 accuracy: 0.82641
 
 ## Case 87 - adaboost, learning rate increased
@@ -1134,7 +1134,7 @@ accuracy: 0.93369
 --knn2.csv
 
 model accuracy =  0.997088180722402    
-roc score =  0.49995246438224067 
+roc score =  0.49995246438224067     
 accuracy: 0.85212
 
 ## Case 89 - gradboost, kbest=30
@@ -1146,7 +1146,7 @@ accuracy: 0.85212
 - 27min + 35min
 
 model accuracy =  0.9961807765754297    
-roc score =  0.5478679502290538
+roc score =  0.5478679502290538    
 accuracy: 0.85929   
 
 ## Case 90 - adaboost, learning rate decreased

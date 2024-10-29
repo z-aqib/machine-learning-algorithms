@@ -26,14 +26,14 @@ Work done daily:
 | 20 | Saturday 9th November 2024 | - | - | - | - | 
 | 21 | Sunday 10th November 2024 | - | - | - | - | 
 
-| Algorith Name | Best Accuracy | Case Number | imputer | scaler | feature selector | no. of features | properties |
-| - | -| - | - | -| - |
-| Decision Tree | 0.89522 | 26 | knn=7 | maxabs | - | - | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), holdout at 70-30 | 
+| Algorithm Name | Best Accuracy | Case Number | imputer | scaler | feature selector | no. of features | properties |
+| - | - | - | - | - | - | - | - |
+| Decision Tree | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), holdout at 70-30 | 
 | Naive Bayes | 0.87413 | 45 | simple | minmax | forward | 15 | gaussian |
 | K-Nearest Neighbor | 0.85212 | 88 | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | 0.93452 | 78 | maxabs | knn=7 | - | - | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | 0.88298 | 61c | simple | minmax | - | - | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
-| Adaptive Boosting | 
+| Random Forest | 0.93452 | 78 | maxabs | knn=7 | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Gradient Boosting | 0.88298 | 61c | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
+| Adaptive Boosting | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | - | - | - | - | - |
 | XGBoost | - | - | - | - | - |
 | CatBoost | - | - | - | - | - |
@@ -291,7 +291,7 @@ started accuracy: 0.88298
 | 72 | simple | minmax | 75 | default=0.5 | - | - | - | 78 | 0.9966141636307001 | 0.5660048884094492 | 0.94053 | improvement but not to the highest |
 | 73 | simple | minmax | 110 | default=0.5 | - | - | - | 78 | 0.9965464469033141 | 0.5644500047530453 | 0.94521 | improved! best estimators are between 100 and 200 |
 | 74 | simple | minmax | 150 | default=0.5 | - | - | - | 78 | 0.9971288107588336 | 0.5607445471728567 | 0.94780 | more improvement, we are closer to the breakpoint |
-| 75 | simple | minmax | 160 | default=0.5 | - | - | - | 78 | 0.9967360537399949 | 0.5648649150311703 | 0.948948 | lets increase 10 further |
+| 75 | simple | minmax | 160 | default=0.5 | - | - | - | 78 | 0.9967360537399949 | 0.5648649150311703 | 0.94948 | lets increase 10 further |
 | 76 | simple | minmax | 170 | default=0.5 | - | - | - | 78 | 0.997088180722402 | 0.563818101949167 | 0.94966 | highest, lets increase 10 further |
 | 77 | simple | minmax | 180 | default=0.5 | - | - | - | 78 | 0.9969933773040617 | 0.5571944470850252 | 0.93516 | deterioration, breakpoint found! if possible, can try 175 to see if its highest |
 | 81 | simple | minmax | 175 | default=0.5 | - | - | - | 78 | 0.9970204639950161 | 0.5683960928977767 | 0.94949 | near to highest but not highest |
