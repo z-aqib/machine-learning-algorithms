@@ -278,15 +278,16 @@ started accuracy: 0.88298
 # Adaptive Boosting
 
 ### Analyzing AdaptiveBoosting
-| case number | imputer | scaler | n estimators | bagging | bagging params | feature selector | features selected | validation accuracy | roc | kaggle accuracy | analysis |
+| case number | imputer | scaler | n estimators | learning rate | bagging | bagging params | feature selector | features selected | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - |
-| 69 | simple | minmax | 100 | - | - | - | 78 | 0.9969527472676301 | 0.5430550209247345 | 0.94475 | - |
-| 70 | simple | minmax | 200 | - | - | - | 78 | 0.996885030540244 | 0.5717622628834583 | 0.93379 | deterioration, too high estimators | 
-| 71 | simple | minmax | 50 | - | - | - | 78 | 0.9970746373769248 | 0.5522487676032429 | 0.93853 | deterioration, too low estimators |
-| 72 | simple | minmax | 75 | - | - | - | 78 | 0.9966141636307001 | 0.5660048884094492 | 0.94053 | improvement but not to the highest |
-| 73 | simple | minmax | 110 | - | - | - | 78 | 0.9965464469033141 | 0.5644500047530453 | 0.94521 | improved! best estimators are between 100 and 200 |
-| 74 | simple | minmax | 150 | - | - | - | 78 | 0.9971288107588336 | 0.5607445471728567 | 0.94780 | more improvement, we are closer to the breakpoint |
-| 75 | simple | minmax | 160 | - | - | - | 78 | 0.9967360537399949 | 0.5648649150311703 | 0.948948 | lets increase 10 further |
-| 76 | simple | minmax | 170 | - | - | - | 78 | 0.997088180722402 | 0.563818101949167 | 0.94966 | highest, lets increase 10 further |
-| 77 | simple | minmax | 180 | - | - | - | 78 | 0.9969933773040617 | 0.5571944470850252 | 0.93516 | deterioration, breakpoint found! if possible, can try 175 to see if its highest |
-| 81 | simple | minmax | 175 | - | - | - | 78 | 0.9970204639950161 | 0.5683960928977767 | 0.94949 | near to highest but not highest |
+| 69 | simple | minmax | 100 | default=0.5 | - | - | - | 78 | 0.9969527472676301 | 0.5430550209247345 | 0.94475 | - |
+| 70 | simple | minmax | 200 | default=0.5 | - | - | - | 78 | 0.996885030540244 | 0.5717622628834583 | 0.93379 | deterioration, too high estimators | 
+| 71 | simple | minmax | 50 | default=0.5 | - | - | - | 78 | 0.9970746373769248 | 0.5522487676032429 | 0.93853 | deterioration, too low estimators |
+| 72 | simple | minmax | 75 | default=0.5 | - | - | - | 78 | 0.9966141636307001 | 0.5660048884094492 | 0.94053 | improvement but not to the highest |
+| 73 | simple | minmax | 110 | default=0.5 | - | - | - | 78 | 0.9965464469033141 | 0.5644500047530453 | 0.94521 | improved! best estimators are between 100 and 200 |
+| 74 | simple | minmax | 150 | default=0.5 | - | - | - | 78 | 0.9971288107588336 | 0.5607445471728567 | 0.94780 | more improvement, we are closer to the breakpoint |
+| 75 | simple | minmax | 160 | default=0.5 | - | - | - | 78 | 0.9967360537399949 | 0.5648649150311703 | 0.948948 | lets increase 10 further |
+| 76 | simple | minmax | 170 | default=0.5 | - | - | - | 78 | 0.997088180722402 | 0.563818101949167 | 0.94966 | highest, lets increase 10 further |
+| 77 | simple | minmax | 180 | default=0.5 | - | - | - | 78 | 0.9969933773040617 | 0.5571944470850252 | 0.93516 | deterioration, breakpoint found! if possible, can try 175 to see if its highest |
+| 81 | simple | minmax | 175 | default=0.5 | - | - | - | 78 | 0.9970204639950161 | 0.5683960928977767 | 0.94949 | near to highest but not highest |
+| 84 | simple | minmax | 170 | 0.1 | - | - | - | 78 | 0.9974538510502864 | 0.5026527855096471 | 0.93301 | too low, increase learning rate |

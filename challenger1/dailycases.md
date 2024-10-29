@@ -1073,6 +1073,24 @@ model accuracy =  0.9972371575226513
 roc score =  0.5   
 accuracy: 0.92633
 
+## Case 84 - adaboost, learning rate introduced 
+- AdaBoostClassifier(n_estimators=175, learning_rate=0.1)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
+
+model accuracy =  0.9974538510502864    
+roc score =  0.5026527855096471  
+accuracy: 0.93301
+
+## Case Z - k-nearest neighbours, increased k
+- KNeighborsClassifier(n_neighbors=1000)
+- SelectKBest(score_func=f_classif, k=5)
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
 ## Case X - gradboost, forward=10
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
 - simple imputer
