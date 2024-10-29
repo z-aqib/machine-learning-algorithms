@@ -1137,7 +1137,7 @@ model accuracy =  0.997088180722402
 roc score =  0.49995246438224067 
 accuracy: 0.85212
 
-## Case X - gradboost, kbest=30
+## Case 89 - gradboost, kbest=30
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
 - simple imputer
 - minmax scaler
@@ -1149,9 +1149,13 @@ model accuracy =  0.9961807765754297
 roc score =  0.5478679502290538
 accuracy: 0.85929   
 
-## Case Z - adaboost, learning rate decreased
+## Case 90 - adaboost, learning rate decreased
 - AdaBoostClassifier(n_estimators=170, learning_rate=0.6)
 - minmax scaler
 - simple imputer
 - no feature selector
 --ab1.csv
+
+model accuracy =  0.9971152674133564    
+roc score =  0.5492075935795596   
+accuracy: 0.94896
