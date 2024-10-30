@@ -309,3 +309,5 @@ started accuracy: 0.88298
 | 91 | simple | minmax | 10 | 100 | 0.9 | default=0.001 | - | - | - | 78 | 0.9934450207890353 | 0.5815248594933158 | 0.75561 | lets try and increase estimators |
 | 92 | simple | minmax | 10 | 400 | 0.9 | default=0.001 | - | - | - | 78 | 0.9963297533756789 | 0.5020350035153998 | 0.50533 | very very low. lets normalize the learning rate |
 | 93 | simple | minmax | 10 | 400 | 0.5 | default=0.001 | - | - | - | 78 | 0.9897206007828053 | 0.5109621532460307 | 0.50408 | still low, estimators is the problem |
+| 94 | simple | minmax | 9 | 100 | 0.5 | default=0.001 | - | - | - | 78 | 0.9382288012784918 | 0.5318142882431025 | 0.37172 | wow. so low. lets add bagging because its not controlling |
+
