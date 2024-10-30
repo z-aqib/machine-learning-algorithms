@@ -1246,6 +1246,9 @@ model accuracy =  0.9974403077048093
 roc score =  0.5    
 accuracy: 0.49841
 
+### Analyzing
+i remember hearing once that the more the estimators, the lesser the learning rate. so lets try that. lets increase estimators but decrease learning rate at the same time
+
 ## Case 98 - lightgbm, learning rate decreased, estimators increased
 - lgb.LGBMClassifier(max_depth=10, n_estimators=200, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50)
@@ -1257,6 +1260,24 @@ accuracy: 0.49841
 model accuracy =  0.9972777875590828    
 roc score =  0.5024807720320663    
 accuracy: 0.87767    
+
+### Analyzing
+this case just proved my theory. lets repeat - increase estimators and decrease learning rate
+
+## Case 98 - lightgbm, learning rate decreased, estimators increased
+- lgb.LGBMClassifier(max_depth=10, n_estimators=300, learning_rate=0.01)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
+
+model accuracy =  0.9973048742500372    
+roc score =  0.517066380205849   
+accuracy: 0.94165
+
+### Analyzing
+omg wow! i dont even know what to change to get higher. im thinking what to do - how do i use my 10th entry of the day?
 
 // currently running
 
