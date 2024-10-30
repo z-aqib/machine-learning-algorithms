@@ -1287,7 +1287,9 @@ omg wow! i dont even know what to change to get higher. im thinking what to do -
 - no feature selection
 --lgbm.csv
 
-
+model accuracy =  0.9973455042864688    
+roc score =  0.5174796298056683
+accuracy: 0.94321
 
 // currently running
 
