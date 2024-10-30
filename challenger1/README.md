@@ -300,3 +300,10 @@ started accuracy: 0.88298
 | 84 | simple | minmax | 175 | 0.1 | - | - | - | 78 | 0.9974538510502864 | 0.5026527855096471 | 0.93301 | too low, increase learning rate |
 | 87 | simple | minmax | 170 | 0.75 | - | - | - | 78 | 0.9972371575226513 | 0.5632272905179162 | 0.93369 | not too good |
 | 90 | simple | minmax | 170 | 0.6 | - | - | - | 78 | 0.9971152674133564 | 0.5492075935795596 | 0.94896 | not the highest, i guess learning rate=0.5 was the best |
+
+# LightGBM
+
+### Analyzing LightGBM
+| case number | imputer | scaler | max depth | n estimators | learning rate | min child weight | bagging | bagging params | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 91 | simple | minmax | 10 | 400 | 0.9 | default=0.001 | - | - | - | 78 | 0.9934450207890353 | 0.5815248594933158 | 0.75561 |
