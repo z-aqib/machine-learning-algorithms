@@ -1264,7 +1264,7 @@ accuracy: 0.87767
 ### Analyzing
 this case just proved my theory. lets repeat - increase estimators and decrease learning rate
 
-## Case 98 - lightgbm, learning rate decreased, estimators increased
+## Case 99 - lightgbm, learning rate decreased, estimators increased
 - lgb.LGBMClassifier(max_depth=10, n_estimators=300, learning_rate=0.01)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
@@ -1278,6 +1278,16 @@ accuracy: 0.94165
 
 ### Analyzing
 omg wow! i dont even know what to change to get higher. im thinking what to do - how do i use my 10th entry of the day?
+
+## Case 100 - lightgbm, max_depth decreased
+- lgb.LGBMClassifier(max_depth=8, n_estimators=300, learning_rate=0.01)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
+
+
 
 // currently running
 
