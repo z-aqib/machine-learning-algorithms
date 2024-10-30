@@ -1162,17 +1162,7 @@ accuracy: 0.94896
 
 # DAY 10: Wednesday 30th October 2024
 
--- running, not submitted
-
-## Case X - adaboost, bagging
-- AdaBoostClassifier(n_estimators=170)
-- BaggingClassifier(estimator=model, n_estimators=50)
-- minmax scaler
-- simple imputer
-- no feature selector
---ab1.csv
-
-## Case Y - lightgbm
+## Case 91 - lightgbm
 - lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.1)
 - no bagging
 - minmax scaler
@@ -1182,7 +1172,15 @@ accuracy: 0.94896
 
 model accuracy =  0.9934450207890353    
 roc score =  0.5815248594933158
-accuracy:
+accuracy: 0.75561
+
+## Case X - adaboost, bagging
+- AdaBoostClassifier(n_estimators=170)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
 
 ## Case Z - gradientboosting, bagging
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
