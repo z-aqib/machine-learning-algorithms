@@ -1222,6 +1222,18 @@ model accuracy =  0.9972777875590828
 roc score =  0.5
 accuracy: 0.77939
 
+## Case 96 - lightgbm, higher bagging estimators
+- lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
+- BaggingClassifier(estimator=model, n_estimators=100)
+- maxabs scaler
+- simple imputer
+- no feature selector
+--lgbm.csv
+
+model accuracy =  0.997494481086718    
+roc score =  0.5
+accuracy: 0.77699
+
 ## Case X - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
 - BaggingClassifier(estimator=model, n_estimators=50)
