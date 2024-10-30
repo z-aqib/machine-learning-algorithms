@@ -28,15 +28,15 @@ Work done daily:
 
 Algorithms worked on: 
 
-| Algorithm Name | Best Accuracy | Case Number | imputer | scaler | feature selector | no. of features | properties |
-| - | - | - | - | - | - | - | - |
-| Decision Tree | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), holdout at 70-30 | 
-| Naive Bayes | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
-| K-Nearest Neighbor | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | 0.93452 | 78 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | 0.88298 | 61c | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
-| Adaptive Boosting | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | - | - | - | - | - |
+| Algorithm Name | Best Accuracy | Case Number | imputer | scaler | feature selector | no. of features | bagging | properties |
+| - | - | - | - | - | - | - | - | - |
+| Decision Tree | 0.89522 | 26 | knn=7 | maxabs | - | 78 | - | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), holdout at 70-30 | 
+| Naive Bayes | 0.87413 | 45 | simple | minmax | forward | 15 | - | GaussianNB() |
+| K-Nearest Neighbor | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | - | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| Random Forest | 0.93452 | 78 | knn=7 | maxabs | - | 78 | - | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Gradient Boosting | 0.88298 | 61c | simple | minmax | - | 78 | - | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
+| Adaptive Boosting | 0.94966 | 76 | simple | minmax | - | 78 | - | AdaBoostClassifier(n_estimators=170) |
+| Light GBM | 0.77939 | 95 | simple | minmax | - | 78 | BaggingClassifier(estimator=model, n_estimators=50) | lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9) |
 | XGBoost | - | - | - | - | - |
 | CatBoost | - | - | - | - | - |
 | BaggingClassifier | - | - | - | - | - |
