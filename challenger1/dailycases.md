@@ -1163,7 +1163,7 @@ accuracy: 0.94896
 # DAY 10: Wednesday 30th October 2024
 
 ## Case 91 - lightgbm
-- lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.1)
+- lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
 - no bagging
 - minmax scaler
 - simple imputer
@@ -1174,8 +1174,8 @@ model accuracy =  0.9934450207890353
 roc score =  0.5815248594933158
 accuracy: 0.75561
 
-## Case 91 - lightgbm, increased 
-- lgb.LGBMClassifier(max_depth=10, n_estimators=400, learning_rate=0.1)
+## Case 92 - lightgbm, increased estimators
+- lgb.LGBMClassifier(max_depth=10, n_estimators=400, learning_rate=0.9)
 - no bagging
 - minmax scaler
 - simple imputer
@@ -1185,6 +1185,18 @@ accuracy: 0.75561
 model accuracy =  0.9963297533756789    
 roc score =  0.5020350035153998
 accuracy: 0.50533
+
+## Case 93 - lightgbm, default learning rate
+- lgb.LGBMClassifier(max_depth=10, n_estimators=400, learning_rate=0.5)
+- no bagging
+- minmax scaler
+- simple imputer
+- no feature selector
+--lgbm.csv
+
+model accuracy =  0.9897206007828053    
+roc score =  0.5109621532460307
+accuracy: 0.50408
 
 ## Case X - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
