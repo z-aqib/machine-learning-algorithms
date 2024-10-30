@@ -1235,7 +1235,7 @@ roc score =  0.5
 accuracy: 0.77699
 
 ## Case 97 - lightgbm, kbest feature selector added
- lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
+- lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
 - knn=7 imputer 
@@ -1246,14 +1246,19 @@ model accuracy =  0.9974403077048093
 roc score =  0.5    
 accuracy: 0.49841
 
-
-## Case X - adaboost, bagging
-- AdaBoostClassifier(n_estimators=170)
+## Case 98 - lightgbm, learning rate decreased, estimators increased
+- lgb.LGBMClassifier(max_depth=10, n_estimators=200, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50)
-- minmax scaler
+- maxabs scaler
 - simple imputer
-- no feature selector
---ab1.csv
+- no feature selection
+--lgbm.csv
+
+model accuracy =  0.9972777875590828    
+roc score =  0.5024807720320663    
+accuracy: 0.87767    
+
+// currently running
 
 ## Case Z - gradientboosting, bagging
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
@@ -1262,6 +1267,16 @@ accuracy: 0.49841
 - minmax scaler
 - no feature selector
 --gb1.csv
+
+// to be run, notebooks are ready
+
+## Case X - adaboost, bagging
+- AdaBoostClassifier(n_estimators=170)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
 
 ## Case W - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
