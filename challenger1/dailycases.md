@@ -1291,10 +1291,20 @@ model accuracy =  0.9973455042864688
 roc score =  0.5174796298056683
 accuracy: 0.94321
 
+# DAY 11: Thursday 31st October 2024
+
 // currently running
 
-## Case Z - gradientboosting, bagging
-- GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
+## Case 101 - lightgbm, max_depth decreased, bagging estimators increased
+- lgb.LGBMClassifier(max_depth=7, n_estimators=300, learning_rate=0.01)
+- BaggingClassifier(estimator=model, n_estimators=100)
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
+
+## Case Z - gradientboosting, bagging added
+- GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - simple imputer
 - minmax scaler
