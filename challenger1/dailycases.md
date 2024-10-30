@@ -1234,6 +1234,19 @@ model accuracy =  0.997494481086718
 roc score =  0.5
 accuracy: 0.77699
 
+## Case 97 - lightgbm, kbest feature selector added
+ lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- maxabs scaler
+- knn=7 imputer 
+- SelectKBest(score_func=f_classif, k=5)
+--lgbm.csv
+ 
+model accuracy =  0.9974403077048093    
+roc score =  0.5    
+accuracy: 0.49841
+
+
 ## Case X - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
 - BaggingClassifier(estimator=model, n_estimators=50)
