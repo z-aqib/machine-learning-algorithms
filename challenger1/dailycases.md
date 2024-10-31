@@ -1312,11 +1312,19 @@ accuracy: 0.94351
 - minmax scaler
 - no feature selector
 --gb1.csv
-- 453 min for training fitting + 10002 min
+- 453 min for training fitting + 1002 min
 
 model accuracy =  0.9975351111231496    
 roc score =  0.5317120864929359
-accuracy: 
+accuracy: 0.90148
+
+## Case 103 - lightgbm, bagging estimators decreased
+- lgb.LGBMClassifier(max_depth=7, n_estimators=300, learning_rate=0.01)
+- BaggingClassifier(estimator=model, n_estimators=50)
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
 
 // running
 

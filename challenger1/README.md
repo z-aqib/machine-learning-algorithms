@@ -316,15 +316,16 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 # Gradient Boosting
 
 ### Analyzing GradientBoosting
-| case number | imputer | scaler | max depth | n estimators | criterion | max features | feature selection | no. of features | validation accuracy | roc | kaggle accuracy | analyzing |
-| - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 61c | simple | minmax | 6 | 300 | - | - | - | 78 | 0.9955442393380013 | 0.560056823582126 | 0.88298 | - |
-| 65 | simple | minmax | 6 | 300 | squared-error | 60 | - | 78 | 0.9955984127199101 | 0.5545980654020854 | 0.88297 | accuracy remained same, lets increase the depth |
-| 67 | simple | minmax | 10 | 300 | squared error | 60 | - | 78 | 0.9953140024648889 | 0.5702606327046124 | 0.79753 | too high depth ruined the accuracy |
-| 80 | simple | minmax | 8 | 300 | squared error | 60 | - | 78 | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try decreasing depth now to 5 |
-| 86a | simple | minmax | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | error, ran for 756 min, didnt work |
-| 86b | simple | minmax | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | error, again ran for 256 min with n_jobs = -1, didnt work |
-| 89 | simple | minmax | 6 | 300 | squared error | 60 | kbest | 30 | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
+| case number | imputer | scaler | max depth | n estimators | criterion | max features | feature selection | no. of features | bagging | validation accuracy | roc | kaggle accuracy | analyzing |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 61c | simple | minmax | 6 | 300 | - | - | - | 78 | - | 0.9955442393380013 | 0.560056823582126 | 0.88298 | improved, lets add some features we used in decision trees |
+| 65 | simple | minmax | 6 | 300 | squared-error | 60 | - | 78 | - | 0.9955984127199101 | 0.5545980654020854 | 0.88297 | accuracy remained same, lets increase the depth |
+| 67 | simple | minmax | 10 | 300 | squared error | 60 | - | 78 | - | 0.9953140024648889 | 0.5702606327046124 | 0.79753 | too high depth ruined the accuracy |
+| 80 | simple | minmax | 8 | 300 | squared error | 60 | - | 78 | - | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try decreasing depth now to 5 |
+| 86a | simple | minmax | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, ran for 756 min, didnt work |
+| 86b | simple | minmax | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, again ran for 256 min with n_jobs = -1, didnt work |
+| 89 | simple | minmax | 6 | 300 | squared error | 60 | kbest | 30 | - | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
+| 102 | simple | minmax | 6 | 100 | squared error | 60 | - | 78 | 50 estimators | 0.9975351111231496 | 0.5317120864929359 | 0.90158 | 24hour running: improved but not efficient |
 
 total tests: 7  
 total submissions: 5   
@@ -369,7 +370,6 @@ analysis:
 - best estimator value is 170
 - too many estimators and too less estimators can be wrong
 
-
 ### Analyzing Estimators with AdaBoost
 | case number | n estimators | kaggle accuracy |
 | ----------- | ------------ | --------------- | 
@@ -401,14 +401,17 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 ### Analyzing LightGBM
 | case number | imputer | scaler | max depth | n estimators | learning rate | min child weight | bagging | bagging params | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 91 | simple | minmax | 10 | 100 | 0.9 | default=0.001 | - | - | - | 78 | 0.9934450207890353 | 0.5815248594933158 | 0.75561 | lets try and increase estimators |
-| 92 | simple | minmax | 10 | 400 | 0.9 | default=0.001 | - | - | - | 78 | 0.9963297533756789 | 0.5020350035153998 | 0.50533 | very very low. lets normalize the learning rate |
-| 93 | simple | minmax | 10 | 400 | 0.5 | default=0.001 | - | - | - | 78 | 0.9897206007828053 | 0.5109621532460307 | 0.50408 | still low, estimators is the problem |
-| 94 | simple | minmax | 9 | 100 | 0.5 | default=0.001 | - | - | - | 78 | 0.9382288012784918 | 0.5318142882431025 | 0.37172 | wow. so low. lets add bagging because its not controlling |
-| 95 | simple | maxabs | 10 | 100 | 0.9 | default=0.001 | yes | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5 | 0.77939 | improved, but v low, lets increase estimators in bagging | 
-| 96 | simple | maxabs | 10 | 100 | 0.9 | default=0.001 | yes | estimators = 100 | - | 78 | 0.997494481086718 | 0.5 | 0.77699 | reduced, lets go back and try feature selection | 
-| 97 | knn=7 | maxabs | 10 | 100 | 0.9 | default=0.001 | yes | estimators = 50 | kbest | 5 | 0.9974403077048093 | 0.5 | 0.49841 | very low, we dont know if the issue is imputer or kbest selector |
-| 98 | simple | maxabs | 10 | 200 | 0.1 | default=0.001 | yes | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5024807720320663 | 0.87767 | relationship b/w estimators and learning rate is found |
+| 91 | simple | minmax | 10 | 100 | 0.9 | default = 0.001 | - | - | - | 78 | 0.9934450207890353 | 0.5815248594933158 | 0.75561 | lets try and increase estimators |
+| 92 | simple | minmax | 10 | 400 | 0.9 | default = 0.001 | - | - | - | 78 | 0.9963297533756789 | 0.5020350035153998 | 0.50533 | very very low. lets normalize the learning rate |
+| 93 | simple | minmax | 10 | 400 | 0.5 | default = 0.001 | - | - | - | 78 | 0.9897206007828053 | 0.5109621532460307 | 0.50408 | still low, estimators is the problem |
+| 94 | simple | minmax | 9 | 100 | 0.5 | default = 0.001 | - | - | - | 78 | 0.9382288012784918 | 0.5318142882431025 | 0.37172 | wow. so low. lets add bagging because its not controlling |
+| 95 | simple | maxabs | 10 | 100 | 0.9 | default = 0.001 | yes | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5 | 0.77939 | improved, but v low, lets increase estimators in bagging | 
+| 96 | simple | maxabs | 10 | 100 | 0.9 | default = 0.001 | yes | estimators = 100 | - | 78 | 0.997494481086718 | 0.5 | 0.77699 | reduced, lets go back and try feature selection | 
+| 97 | knn=7 | maxabs | 10 | 100 | 0.9 | default = 0.001 | yes | estimators = 50 | kbest | 5 | 0.9974403077048093 | 0.5 | 0.49841 | very low, we dont know if the issue is imputer or kbest selector |
+| 98 | simple | maxabs | 10 | 200 | 0.1 | default = 0.001 | yes | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5024807720320663 | 0.87767 | relationship b/w estimators and learning rate is found |
+| 99 | simple | maxabs | 10 | 300 | 0.01 | default = 0.001 | yes | estimators = 50 | - | 78 | 0.9973048742500372 | 0.517066380205849 | 0.94165 | shotup! lets decrease depth now | 
+| 100 | simple | maxabs | 8 | 300 | 0.01 | default = 0.001 | yes | estimators = 50 | - | 78 | 0.9973455042864688 | 0.5174796298056683 | 0.94321 | increased, lets decrease depth further |
+| 101 | simple | maxabs | 7 | 300 | 0.01 | default = 0.001 | yes | estimators = 100 | - | 78 | 0.997359047631946 | 0.512612682865538 | 0.94351 | negligible increase, lets decrease bagging |
 
 starting accuracy: 0.75561     
 highest accuracy:    
