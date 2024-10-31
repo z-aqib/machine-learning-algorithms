@@ -1303,9 +1303,9 @@ accuracy: 0.94321
 
 model accuracy =  0.997359047631946    
 roc score =  0.512612682865538
-accuracy: 
+accuracy: 0.94351
 
-## Case Z - gradientboosting, bagging added
+## Case 102 - gradientboosting, bagging added
 - GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - simple imputer
@@ -1318,7 +1318,7 @@ model accuracy =  0.9975351111231496
 roc score =  0.5317120864929359
 accuracy: 
 
-// to be run, notebooks are ready
+// running
 
 ## Case X - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
