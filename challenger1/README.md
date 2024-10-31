@@ -339,6 +339,7 @@ analysis:
 - boosting is itself a very slow algorithm. using any forward or backword feature selector takes more than 12 hours and still doesnt even run on train data let alone full data and prediction
 - the max_depth breakpoint was 6. too high depth leads to overfitting thus low accuracy
 - kbest could not be rigourously tested as each submission took over 3 hours. 
+- bagging does work but it takes extremely long, over 24 hours of running and laptop use. its not very feasible. accuracy improved by 2 percent but very inefficient. 
 
 # Adaptive Boosting
 
@@ -412,6 +413,7 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 | 99 | simple | maxabs | 10 | 300 | 0.01 | default = 0.001 | yes | estimators = 50 | - | 78 | 0.9973048742500372 | 0.517066380205849 | 0.94165 | shotup! lets decrease depth now | 
 | 100 | simple | maxabs | 8 | 300 | 0.01 | default = 0.001 | yes | estimators = 50 | - | 78 | 0.9973455042864688 | 0.5174796298056683 | 0.94321 | increased, lets decrease depth further |
 | 101 | simple | maxabs | 7 | 300 | 0.01 | default = 0.001 | yes | estimators = 100 | - | 78 | 0.997359047631946 | 0.512612682865538 | 0.94351 | negligible increase, lets decrease bagging |
+| 103 | simple | maxabs | 6 | 300 | 0.01 | default = 0.001 | yes | estimators = 50 | - | 78 | 0.9976705445779216 | 0.5302129918143766 | 0.94395 | negligible increase, lets increase estimators + learning rate combo |
 
 starting accuracy: 0.75561     
 highest accuracy:    

@@ -1326,6 +1326,10 @@ accuracy: 0.90148
 - no feature selection
 --lgbm.csv
 
+model accuracy =  0.9976705445779216    
+roc score =  0.5302129918143766
+accuracy: 0.94395
+
 // running
 
 ## Case X - adaboost, bagging
