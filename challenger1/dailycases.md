@@ -1344,8 +1344,6 @@ accuracy: 0.94395
 --lgbm.csv
 - failed after 271min, need to reduce grid search parameters as it was over 3100 fits
 
-// running
-
 ## Case 104b - lightgbm, grid search
 - lgb.LGBMClassifier(max_depth=6, n_estimators=400, learning_rate=0.001)
 - param_grid = {
@@ -1363,6 +1361,20 @@ accuracy: 0.94395
 model accuracy =  0.9973725909774233    
 roc score =  0.5521437437723113
 accuracy: 0.94948
+
+## Case 105 - lightgbm, grid search
+- lgb.LGBMClassifier()
+- param_grid = {
+    'max_depth': [2, 3, 6, 7, 8, 9, 10],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05],
+    'n_estimators': [400, 500, 1000, 2000, 3000]
+}
+- no bagging
+- best params: 
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
 
 // not running, need time to run
 
