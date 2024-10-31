@@ -1453,7 +1453,7 @@ model accuracy =  0.99729133090456
 roc score =  0.504950495049505
 accuracy: 
 
-## Case 112 - xgboost, grid search
+## Case 112 - xgboost, grid search for depth
 - xgb.XGBClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1480,32 +1480,31 @@ model accuracy =  0.9975215677776724
 roc score =  0.5390217640369339
 accuracy: 
 
-## Case Y - lightgbm, grid search
+## Case 113 - lightgbm, grid search
 - lgb.LGBMClassifier()
 - param_grid = {
     'max_depth': [2, 3, 6, 7, 8, 9, 10],
     'learning_rate': [0.001, 0.005, 0.01, 0.05],
     'n_estimators': [400, 500, 1000, 2000, 3000]
 }
-- no bagging
+- no bagging // i have turned it on, lets see if it works
 - best params: 
 - maxabs scaler
 - simple imputer
 - no feature selection
 --lgbm.csv
-- 304min ongoing + ..
+- 332min ongoing + ..
 
-// not running, need time to run
-
-## Case X - adaboost, bagging
+## Case 114 - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
-- BaggingClassifier(estimator=model, n_estimators=50)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - minmax scaler
 - simple imputer
 - no feature selector
 --ab1.csv
 - stopped at 216min
 - restarted, 330min + 11min + 73 min, failed
+- restarted, bismillah
 
 // notebook is ready however there is some error to fix
 
