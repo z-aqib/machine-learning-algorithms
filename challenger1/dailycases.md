@@ -1330,7 +1330,41 @@ model accuracy =  0.9976705445779216
 roc score =  0.5302129918143766
 accuracy: 0.94395
 
+## Case 104a - lightgbm, grid search
+- lgb.LGBMClassifier(max_depth=6, n_estimators=400, learning_rate=0.001)
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9],
+    'n_estimators': [50, 100, 200, 300, 400, 500, 1000, 2000, 3000]
+}
+- BaggingClassifier(estimator=model, n_estimators=50)
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
+- failed after 271min, need to reduce grid search parameters as it was over 3100 fits
+
 // running
+
+## Case 104b - lightgbm, grid search
+- lgb.LGBMClassifier(max_depth=6, n_estimators=400, learning_rate=0.001)
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05],
+    'n_estimators': [50, 100, 200, 300]
+}
+- no bagging
+- best params: {'learning_rate': 0.05, 'max_depth': 2, 'n_estimators': 300}
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
+
+model accuracy =  0.9973725909774233    
+roc score =  0.5521437437723113
+accuracy: 0.94948
+
+// not running, need time to run
 
 ## Case X - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
@@ -1340,6 +1374,9 @@ accuracy: 0.94395
 - no feature selector
 --ab1.csv
 - stopped at 216min
+- restarted, 330min + 11min + 73 min, failed
+
+// notebook is ready however there is some error to fix
 
 ## Case W - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
@@ -1347,3 +1384,5 @@ accuracy: 0.94395
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+- ran it, 63min later, error
+- fixed error, ran it, 72min later, error
