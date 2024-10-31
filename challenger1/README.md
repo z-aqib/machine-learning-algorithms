@@ -278,8 +278,9 @@ kbest works better with lower number of features. as according to this table, kb
 # Random Forest
 
 ### Analyzing RandomForest
+
 | case number | imputer | scaler | max depth | n estimators | feature selector | no. of features | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
-| ----------- | ------- | ------ | --------- | ------------ | ---------------- | ------------- | -------- | ----------------- | ------------ | ---------------- | ------------------- | --- | -------- | --------- |
+| - | - | - | - | - | - | - | -------- | --------------- | ------------ | ---------------- | -- | - | - | - |
 | 44 | simple | maxabs | 10 | 200 | - | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
 | 51 | knn=7 | maxabs | 5 | 200 | - | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
 | 58 | knn=7 | maxabs | 5 | 300 | - | 78 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.91889 | very slight imporvement, lets try and increase depth |
@@ -295,7 +296,7 @@ total submissions: 9
 started accuracy: 0.90507   
 highest accuracy: X (case Y)    
 highest parameters: 
--
+- params
 
 analysis:
 - higher depth of trees allows greater accuracy while lower depth moves to underfitting
@@ -330,7 +331,7 @@ total submissions: 5
 started accuracy: 0.88298   
 highest accuracy: X (case Y)   
 highest case parameters:
-- 
+- params
 
 analysis:
 - each submission took AT LEAST three hours and more. some submissions took exceptional time like 12+ hours. 
@@ -362,7 +363,7 @@ total submissions: 13
 starting accuracy: 0.94475   
 highest accuracy: X (case Y)
 highest case parameters:
-- 
+- params
 
 analysis:
 - best estimator value is 170
@@ -412,7 +413,7 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 starting accuracy: 0.75561     
 highest accuracy:    
 highest parameters:
-- 
+- params
 
 analysis: 
 - relationship found between number of estimators and learning rate. less estimators == high learning rate. more estimators == low learning rate
