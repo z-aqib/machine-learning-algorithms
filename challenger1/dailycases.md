@@ -1450,10 +1450,6 @@ accuracy: 0.95063
 --cat1.csv
 - 
 
-
-
-// running
-
 ## Case Y - lightgbm, grid search
 - lgb.LGBMClassifier()
 - param_grid = {
@@ -1467,6 +1463,7 @@ accuracy: 0.95063
 - simple imputer
 - no feature selection
 --lgbm.csv
+- 304min ongoing + ..
 
 // not running, need time to run
 
