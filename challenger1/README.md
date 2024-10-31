@@ -438,4 +438,5 @@ analysis:
 ### Analyzing CatBoost
 | case number | imputer | scaler | grid | iterations | depth | learning rate | loss function | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 107 | simple | maxabs | - | default = 1000 | - | 0.108132 | - | - | - | 78 | 0.99729133090456 | 0.5215311004784688 | 0.93798 | lets introduce loss function |
+| 107 | simple | maxabs | - | default = 1000 | - | 0.108132 | - | - | - | 78 | 0.99729133090456 | 0.5215311004784688 | 0.93798 | lets introduce bagging |
+| 109 | simple | maxabs | - | 100 | - | 0.5 | - | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5165542206956393 | 0.93612 | bagging didnt do so well. could be because estimators decreased and learning rate increased. lets add loss function |

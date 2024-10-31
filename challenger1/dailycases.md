@@ -1406,19 +1406,21 @@ accuracy: 0.93798
 - maxabs scaler
 - no feature selection
 --xgb1.csv
+- 33min + 50min
 
 model accuracy =  0.9973725909774233    
 roc score =  0.5150685869118535
 accuracy: 0.94900
 
 ## Case 109 - catboost, bagging introduced
-- CatBoostClassifier()
+- CatBoostClassifier(n_estimators=100)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- 
+- Learning rate set to 0.5
 - simple imputer
 - maxabs scaler
 - no feature selection
 --cat1.csv
+- 22min + 10min
 
 model accuracy =  0.9975892845050585    
 roc score =  0.5165542206956393
