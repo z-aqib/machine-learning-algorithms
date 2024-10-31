@@ -1362,7 +1362,31 @@ model accuracy =  0.9973725909774233
 roc score =  0.5521437437723113
 accuracy: 0.94948
 
-## Case 105 - lightgbm, grid search
+## Case 105 - xgboost
+- xgb.XGBClassifier() 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+ 
+model accuracy =  0.9972100708316969    
+roc score =  0.5164319248826291   
+accuracy: 0.95474
+
+## Case 106 - xgboost, n_estimators introduced
+- xgb.XGBClassifier(n_estimators=100) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+
+model accuracy =  0.9975215677776724    
+roc score =  0.5210458424361445
+accuracy: 0.95347
+
+## Case Y - lightgbm, grid search
 - lgb.LGBMClassifier()
 - param_grid = {
     'max_depth': [2, 3, 6, 7, 8, 9, 10],
@@ -1375,18 +1399,6 @@ accuracy: 0.94948
 - simple imputer
 - no feature selection
 --lgbm.csv
-
-## Case 106 - xgboost
-- xgb.XGBClassifier() 
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- simple imputer
-- maxabs scaler
-- no feature selection
---xgb1.csv
- 
-model accuracy =  0.9972100708316969    
-roc score =  0.5164319248826291   
-accuracy: 0.95474
 
 // not running, need time to run
 
