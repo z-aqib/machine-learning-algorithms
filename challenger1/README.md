@@ -431,6 +431,7 @@ analysis:
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | 105 | simple | maxabs | - | - | - | - | estimators = 50 | - | 78 | 0.9972100708316969 | 0.5164319248826291 | 0.95474 | lets add some estimators |
 | 106 | simple | maxabs | - | 100 | - | - | estimators = 50 | - | 78 | 0.9975215677776724 | 0.5210458424361445 | 0.95347 | deterioration, lets increase the estimators |
+| 108 | simple | maxabs | - | 500 | - | - | estimators = 50 | - | 78 | 0.9973725909774233 | 0.5150685869118535 | 0.94900 | deterioration, too high estimators. lets decrease them and move to learning rate |
 
 # CatBoost
 
