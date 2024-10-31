@@ -28,15 +28,15 @@ Work done daily:
 
 Algorithms worked on: 
 
-| Algorithm Name | Best Accuracy | Case Number | imputer | scaler | feature selector | no. of features | bagging | properties |
+| Algorithm Name | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
 | - | - | - | - | - | - | - | - | - |
-| Decision Tree | 0.89522 | 26 | knn=7 | maxabs | - | 78 | - | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), holdout at 70-30 | 
-| Naive Bayes | 0.87413 | 45 | simple | minmax | forward | 15 | - | GaussianNB() |
-| K-Nearest Neighbor | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | - | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | 0.93452 | 78 | knn=7 | maxabs | - | 78 | - | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | 0.88298 | 61c | simple | minmax | - | 78 | - | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
-| Adaptive Boosting | 0.94966 | 76 | simple | minmax | - | 78 | - | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | 0.77939 | 95 | simple | minmax | - | 78 | BaggingClassifier(estimator=model, n_estimators=50) | lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9) |
+| Decision Tree | 30 | 30 | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | 
+| Naive Bayes | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
+| K-Nearest Neighbor | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| Random Forest | 9 | 9 | 0.93452 | 78 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Gradient Boosting | 7 | 5 | 0.88298 | 61c | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
+| Adaptive Boosting | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
+| Light GBM | 0.77939 | 95 | simple | minmax | - | 78 | lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9), BaggingClassifier(estimator=model, n_estimators=50) |
 | XGBoost | - | - | - | - | - |
 | CatBoost | - | - | - | - | - |
 | BaggingClassifier | - | - | - | - | - |
@@ -86,14 +86,15 @@ total test cases done: 30
 started accuracy: 0.72913  
 highest accuracy achieved: 0.89522    
 best parameters: (case 26)    
-- max absolute scaler
-- knn=7 imputation
-- entropy criteria 
-- holdout method, at 70-30 ratio
-- maximum 5 depth tree
-- minimum 15 samples split
-- maximum 60 features used
-- minimum samples per leaf is 80
+- scaler = maxabs
+- imputer = knn=7
+- feature selection = none
+- data splitting = holdout, 70-30 ratio
+- criteria: entropy
+- maximum depth tree: 5
+- minimum samples split: 15
+- maximum features used: 60
+- minimum samples per leaf: 80
 
 analyzed best:    
 - minmax and maxabs is the best scalers
@@ -147,7 +148,9 @@ code cleaned and commented, done
 | 40d | simple | minmax | variance=0.0001, correlation=0.87 filter | 65 | 0.9158958245865894 | 0.7754906950864966 | 0.83187 | good accuracy achieved when more features are used | 
 | 41a | simple | minmax | forward | 30 | 0.964340371358533 | 0.7356985869936561 | 0.86669 | forward has been put too high, should try =25 next time |
 | 41b | simple | minmax | kbest | 30 | 0.9212183593591289 | 0.7565948275603417 | not submitted | dont know if its good, dont want to waste an entry |
-| 42 | simple | minmax | forward | 25 | 0.8100274929913187 | 0.8185403319589406 | 0.86875 | not highest but near |
+| 42a | simple | minmax | forward | 25 | 0.9617942224088194 | 0.7343364208492563 | not submitted | waiting for a good roc |
+| 42b | simple | minmax | forward | 25 | 0.9550090063247424 | 0.7018435381296126 | not submitted | waiting for a good roc |
+| 42c | simple | minmax | forward | 25 | 0.8100274929913187 | 0.8185403319589406 | 0.86875 | not highest but near |
 | 45 | simple | minmax | forward | 15 | 0.9776399366171432 | 0.7000642467303131 | 0.87413 | BEST CASE: improved with lesser features | 
 | 48 | simple | minmax | forward | 17 | 0.968064791364763 | 0.71144752877173 | 0.87278 | accuracy decreased with more features, lets decrease them |
 | 49 | simple | minmax | forward | 13 | 0.9724663786448529 | 0.657890605723844 | 0.87353 | accuracy improved but not to the full. lets try 14 | 
@@ -155,17 +158,18 @@ code cleaned and commented, done
 | 61a | row removal | minmax | forward | 15 | - | - | - | error, NaN values in test cannot perform forward |
 | 61b | row removal | minmax | - | 78 | - | - | - | error, NaN values in test cannot train GNB model |
 
-total test cases done: 29    
+total test cases done: 31    
 total submissions: 16   
 starting accuracy: 0.83725 (case 31)    
 highest accuracy achieved: 0.87413 (case 45)   
 highest parameters: 
-- simple imputer
-- minmax scaler
+- imputer = simple
+- scaler = minmax 
 - forward selection with 15 rows
     
 analysis:    
-- forward is best at 15
+- forward selection is best at 15
+- knn=7 and simple imputer have no difference in performance with naivebayes
 - simple, minmax worked best with NB
 - NB performed better with more features then lesser   
 - row removal does not work in naivebayes    
@@ -191,9 +195,12 @@ we can see that forward=14 might be an outlier, but forward=15 (case = 45) is th
 code cleaned and commented, done
 
 ### Analyzing K Nearest Neighbours
-| case number | K used | imputer | scaler | feature selector | features used | validation accuracy | roc | kaggle accuracy | analysis | 
+| case number | K used | imputer | scaler | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis | 
 | ----------- | ------ | ------- | ------ | ---------------- | ------------- | ------------------- | --- | --------------- | -------- |
 | 43 | 5 | simple | minmax | - | 78 | 0.9972642442136056 | 0.5 | 0.53003 | so low, lets try k=7 and k=11 to improve |
+| 44a | 7 | simple | minmax | forward | 10 | - | - | - | ran for 1000 minutes, didnt work |
+| 44b | 7 | knn-7 | maxabs | variance=0.0001, correlationr=0.87 | 68 | 0.9973455042864688 | 0.5 | not submitted | waiting for forward to run, didnt want to waste a submission |
+| 44c | 7 | knn-7 | maxabs | variance=0.1, correlationr=0.9 | 5 | 0.9974267643593321 | 0.5 | not submitted | waiting for forward to run, didnt want to waste a submission |
 | 46 | 7 | simple | minmax | variance=0.001, correlation=0.9 | 58 | 0.9973319609409916 | 0.5 | 0.54796 | accuracy improved with knn=7 and some features removed | 
 | 47 | 7 | simple | minmax | kbest | 30 | 0.9975892845050585 | 0.5028112828678414 | 0.57056 | works better with lesser features | 
 | 52 | 3 | simple | minmax | forward | 5 | 0.9965735335942685 | 0.5254314763954754 | 0.55037 | accuracy decreased with too low features |
@@ -203,42 +210,58 @@ code cleaned and commented, done
 | 56 | 11 | knn=3 | minmax | kbest | 10 | 0.9972507008681284 | 0.5024509803921569 | 0.61709 | file values remained same, entry wasted |
 | 57 | 11 | knn=3 | minmax | kbest | 5 | 0.9974267643593321 | 0.5053136492515911 | 0.62622 | lets try kbest=3 next |
 | 59 | 11 | knn=3 | minmax | kbest | 3 | 0.9971152674133564 | 0.507075049343145 | 0.62207 | deteroiration, kbest=5 was best |
-| 63 | 9 | knn=3 | minmax | kbest | 5 | 0.9972236141771741 | 0.5048989470087107 | 0.63158 | BEST CASE: increased, lets decrease k-nearest to 7 | 
+| 63 | 9 | knn=3 | minmax | kbest | 5 | 0.9972236141771741 | 0.5048989470087107 | 0.63158 | increased, lets decrease k-nearest to 7 | 
 | 64 | 7 | knn=3 | minmax | kbest | 5 | 0.9974538510502864 | 0.5157623171129992 | 0.61114 | accuracy decreased. breakdown is best at 9 |
 | 79 | 300 | knn=3 | minmax | kbest | 5 | 0.9973861343229005 | 0.5 | 0.81121 | k-neighbours increases accuracy | 
 | 82 | 500 | knn=3 | minmax | kbest | 5 | 0.9972507008681284 | 0.5 | 0.82533 | lets increase to 1000 |
 | 85 | 1000 | knn=3 | minmax | kbest | 5 | 0.9973048742500372 | 0.5 | 0.83911 | lets add weights and increase k |
 | 86b | 2000 | knn=3 | minmax | kbest | 5 | 0.9970746373769248 | 0.4999185147963549 | 0.82641 | too many k |
-| 88 | 1500 | knn=3 | minmax | kbest | 5 | 0.997088180722402 | 0.49995246438224067 | 0.85212 | wow! i think thats enough though |
+| 88 | 1500 | knn=3 | minmax | kbest | 5 | 0.997088180722402 | 0.49995246438224067 | 0.85212 | BEST CASE: wow! i think thats enough though |
 
-total submissions: 13    
+total tries: 20    
+total submissions: 17    
 started accuracy: 0.53003   
-highest accuracy: 
+highest accuracy: 0.85212 (case 88)   
+highest case parameters:
+- scaler = minmax
+- imputer = knn=3
+- feature selector = kbest, at k = 5
+- k-nearest neighbours at k = 1500
 
 analysis:
 - kbest works at lower number of features
 - knn=3, knn=7, simple imputers have no difference on accuracy
 - forward selector + k-nearest is very time taking, even after 17 hours it didnt work. at smaller forward selection and smaller k-nearest-neighbours, it runs after 2 hours but accuracy is too low due to less features
-- performs best on k-nearest neighbours = 
+- performs best on k-nearest neighbours = 1500. the more the k, the higher the accuracy
 
 ### Analyzing K in K-nearest neighbours
-| case number | K=3 | K=5 | K=7 | K=9 | K=11 |
-| ----------- | --- | --- | --- | --- | ---- |
-| 43 | - | 0.53003 | - | - | - |
-| 46 | - | - | 0.54796 | - | - |
-| 47 | - | - | 0.57056 | - | - |
-| 52 | 0.55037 | - | - | - | - | 
-| 53 | - | - | - | - | 0.59883 |
-| 54 | - | - | - | - | 0.60509 |
-| 55 | - | - | - | - | 0.61709 |
-| 56 | - | - | - | - | 0.61709 |
-| 57 | - | - | - | - | 0.62622 |
-| 59 | - | - | - | - | 0.62207 |
-| 63 | - | - | - | 0.63158 | - |
-| 64 | - | - | 0.61114 | - | - |
+| case number | K=3 | K=5 | K=7 | K=9 | K=11 | K=300 | K=500 | K=1000 | K=1500 | K=2000 |
+| ----------- | --- | --- | --- | --- | ---- | ----- | ----- | ------ | ------ | ------ |
+| 43 | - | 0.53003 | - | - | - | - | - | - | - | - |
+| 46 | - | - | 0.54796 | - | - | - | - | - | - | - |
+| 47 | - | - | 0.57056 | - | - | - | - | - | - | - |
+| 52 | 0.55037 | - | - | - | - | - | - | - | - | - |
+| 53 | - | - | - | - | 0.59883 | - | - | - | - | - |
+| 54 | - | - | - | - | 0.60509 | - | - | - | - | - |
+| 55 | - | - | - | - | 0.61709 | - | - | - | - | - |
+| 56 | - | - | - | - | 0.61709 | - | - | - | - | - |
+| 57 | - | - | - | - | 0.62622 | - | - | - | - | - |
+| 59 | - | - | - | - | 0.62207 | - | - | - | - | - |
+| 63 | - | - | - | 0.63158 | - | - | - | - | - | - |
+| 64 | - | - | 0.61114 | - | - | - | - | - | - | - |
+| 79 | - | - | - | - | - | 0.81121 | - | - | - | - |
+| 82 | - | - | - | - | - | - | 0.82533 | - | - | - |
+| 85 | - | - | - | - | - | - | - | 0.83911 | - | - |
+| 88 | - | - | - | - | - | - | - | - | 0.85212 | - |
+|86b | - | - | - | - | - | - | - | - | - | 0.82641 |
 
-we can have mixed analysis to this table. k=9 was only tested once but it had the highest, although k=11 has a continous record of being high   
-k=3 was only tested once because a lower k means very few variables are taken into consideration whereas the dataset is very large. 
+BEFORE USING LARGE K:   
+- we can have mixed analysis to this table. k=9 was only tested once but it had the highest, although k=11 has a continous record of being high   
+- k=3 was only tested once because a lower k means very few variables are taken into consideration whereas the dataset is very large. 
+
+AFTER USING LARGE K:
+- we see that there is a linear relationship or exponential relationship between k-nearest neighbours and accuracy. the more the k, the better the accuracy - but there is a breakpoint where increasing k decreases the accuarcy. this breakpoint was found between k=1500 and k=2000 where k=1500 has a very high accuracy but k=2000 has low.
+- mistakenly, odd k's should have been used. this was realized after all submissions were made. 
 
 ### Analyzing KBest Feature Selection
 | case number | algo used | kbest features | kaggle accuracy |
@@ -255,7 +278,7 @@ kbest works better with lower number of features. as according to this table, kb
 # Random Forest
 
 ### Analyzing RandomForest
-| case number | imputer | scaler | max depth | n estimators | feature selector | features used | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
+| case number | imputer | scaler | max depth | n estimators | feature selector | no. of features | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
 | ----------- | ------- | ------ | --------- | ------------ | ---------------- | ------------- | -------- | ----------------- | ------------ | ---------------- | ------------------- | --- | -------- | --------- |
 | 44 | simple | maxabs | 10 | 200 | - | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
 | 51 | knn=7 | maxabs | 5 | 200 | - | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
@@ -267,25 +290,58 @@ kbest works better with lower number of features. as according to this table, kb
 | 78 | knn=7 | maxabs | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
 | 83 | knn=7 | maxabs | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
 
+total tests: 9   
+total submissions: 9   
 started accuracy: 0.90507   
+highest accuracy: X (case Y)    
+highest parameters: 
+-
+
+analysis:
+- higher depth of trees allows greater accuracy while lower depth moves to underfitting
+
+### Analyzing Depth of Trees
+| case number | max_depth | kaggle accuracy |
+| ----------- | --------- | --------------- |
+| 51, 58 | 5 | 0.91554, 0.91889 |
+| 60 | 6 | 0.91309 |
+| 62 | 7 | 0.92693 |
+| 66 | 8 | 0.93079 |
+| 44, 68 | 10 | 0.90507, 0.93256 |
+| 78, 83 | 11 | 0.93452, 0.92633 |
+
+from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 to some extent. thus, the larger the tree, the more the near the breakpoint. we have not found the breakpoint yet. 
 
 # Gradient Boosting
 
 ### Analyzing GradientBoosting
-| case number | imputer | scaler | max depth | n estimators | criterion | max_features | feature selection | features used | validation accuracy | roc | kaggle accuracy | analyzing |
+| case number | imputer | scaler | max depth | n estimators | criterion | max features | feature selection | no. of features | validation accuracy | roc | kaggle accuracy | analyzing |
 | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | 61c | simple | minmax | 6 | 300 | - | - | - | 78 | 0.9955442393380013 | 0.560056823582126 | 0.88298 | - |
 | 65 | simple | minmax | 6 | 300 | squared-error | 60 | - | 78 | 0.9955984127199101 | 0.5545980654020854 | 0.88297 | accuracy remained same, lets increase the depth |
 | 67 | simple | minmax | 10 | 300 | squared error | 60 | - | 78 | 0.9953140024648889 | 0.5702606327046124 | 0.79753 | too high depth ruined the accuracy |
 | 80 | simple | minmax | 8 | 300 | squared error | 60 | - | 78 | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try decreasing depth now to 5 |
+| 86a | simple | minmax | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | error, ran for 756 min, didnt work |
+| 86b | simple | minmax | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | error, again ran for 256 min with n_jobs = -1, didnt work |
 | 89 | simple | minmax | 6 | 300 | squared error | 60 | kbest | 30 | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
 
+total tests: 7  
+total submissions: 5   
 started accuracy: 0.88298   
+highest accuracy: X (case Y)   
+highest case parameters:
+- 
+
+analysis:
+- each submission took AT LEAST three hours and more. some submissions took exceptional time like 12+ hours. 
+- boosting is itself a very slow algorithm. using any forward or backword feature selector takes more than 12 hours and still doesnt even run on train data let alone full data and prediction
+- the max_depth breakpoint was 6. too high depth leads to overfitting thus low accuracy
+- kbest could not be rigourously tested as each submission took over 3 hours. 
 
 # Adaptive Boosting
 
 ### Analyzing AdaptiveBoosting
-| case number | imputer | scaler | n estimators | learning rate | bagging | bagging params | feature selector | features selected | validation accuracy | roc | kaggle accuracy | analysis |
+| case number | imputer | scaler | n estimators | learning rate | bagging | bagging params | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | 
 | 69 | simple | minmax | 100 | default=0.5 | - | - | - | 78 | 0.9969527472676301 | 0.5430550209247345 | 0.94475 | - |
 | 70 | simple | minmax | 200 | default=0.5 | - | - | - | 78 | 0.996885030540244 | 0.5717622628834583 | 0.93379 | deterioration, too high estimators | 
@@ -301,6 +357,44 @@ started accuracy: 0.88298
 | 87 | simple | minmax | 170 | 0.75 | - | - | - | 78 | 0.9972371575226513 | 0.5632272905179162 | 0.93369 | not too good |
 | 90 | simple | minmax | 170 | 0.6 | - | - | - | 78 | 0.9971152674133564 | 0.5492075935795596 | 0.94896 | not the highest, i guess learning rate=0.5 was the best |
 
+total tests: 13    
+total submissions: 13    
+starting accuracy: 0.94475   
+highest accuracy: X (case Y)
+highest case parameters:
+- 
+
+analysis:
+- best estimator value is 170
+- too many estimators and too less estimators can be wrong
+
+
+### Analyzing Estimators with AdaBoost
+| case number | n estimators | kaggle accuracy |
+| ----------- | ------------ | --------------- | 
+| 71 | 50 | 0.93853 |
+| 72 | 75 | 0.94053 |
+| 69 | 100 | 0.94475 |
+| 73 | 110 | 0.94521 |
+| 74 | 150 | 0.94780 |
+| 75 | 160 | 0.94948 |
+| 76, 87, 90 | 170 | 0.94966, 0.93369, 0.94896 |
+| 81, 84 | 175 | 0.94949, 0.93301 |
+| 77 | 180 | 0.93516 |
+| 70 | 200 | 0.93379 |
+
+from this table we can see that roughly 170 estimators is the breakpoint with the highest accuracy. lesser than 100 is too less estimators and more than 200 is too many estimators. in our search to find the breakpoint, we tested 10 different estimator values and found 170 as the best. 
+
+### Analyzing Learning Rate with AdaBoost
+| case number | learning rate | kaggle accuracy |
+| ----------- | ------------- | --------------- |
+| 84 | 0.1 | 0.93301 |
+| 76 | default=0.5 | 0.94966 |
+| 90 | 0.6 | 0.94896 |
+| 87 | 0.75 | 0.93369 |
+
+from this we can analyse that learning rate is best at default of 0.5, even though l.rate is good at 0.6, however best is at 0.5. having a too high or too low learning rate depreciates the accuracy performance. 
+
 # LightGBM
 
 ### Analyzing LightGBM
@@ -313,7 +407,12 @@ started accuracy: 0.88298
 | 95 | simple | maxabs | 10 | 100 | 0.9 | default=0.001 | yes | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5 | 0.77939 | improved, but v low, lets increase estimators in bagging | 
 | 96 | simple | maxabs | 10 | 100 | 0.9 | default=0.001 | yes | estimators = 100 | - | 78 | 0.997494481086718 | 0.5 | 0.77699 | reduced, lets go back and try feature selection | 
 | 97 | knn=7 | maxabs | 10 | 100 | 0.9 | default=0.001 | yes | estimators = 50 | kbest | 5 | 0.9974403077048093 | 0.5 | 0.49841 | very low, we dont know if the issue is imputer or kbest selector |
-| 98 | simple | maxabs | 10 | 200 | 0.1 | default=0.001 | yes | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5024807720320663 | 0.87767 | good improvement. |
+| 98 | simple | maxabs | 10 | 200 | 0.1 | default=0.001 | yes | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5024807720320663 | 0.87767 | relationship b/w estimators and learning rate is found |
+
+starting accuracy: 0.75561     
+highest accuracy:    
+highest parameters:
+- 
 
 analysis: 
 - relationship found between number of estimators and learning rate. less estimators == high learning rate. more estimators == low learning rate
