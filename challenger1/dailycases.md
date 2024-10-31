@@ -1440,15 +1440,45 @@ accuracy: 0.95063
 
 # DAY 12: Friday 1st November 2024
 
-## Case Z - catboost, bagging removed, depth increased
+## Case 111 - catboost, bagging removed, depth increased
 - model = CatBoostClassifier(loss_function='Logloss', depth=10)
 - no bagging
-- 
+- Learning rate set to 0.108132
 - simple imputer
 - maxabs scaler
 - no feature selection
 --cat1.csv
-- 
+
+model accuracy =  0.99729133090456    
+roc score =  0.504950495049505
+accuracy: 
+
+## Case 112 - xgboost, grid search
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best depth found: 2
+- XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, device=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=None, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=2, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              multi_strategy=None, n_estimators=None, n_jobs=None,
+              num_parallel_tree=None, random_state=None, ...)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+
+model accuracy =  0.9975215677776724    
+roc score =  0.5390217640369339
+accuracy: 
 
 ## Case Y - lightgbm, grid search
 - lgb.LGBMClassifier()
