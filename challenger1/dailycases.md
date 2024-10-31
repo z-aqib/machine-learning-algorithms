@@ -1293,8 +1293,6 @@ accuracy: 0.94321
 
 # DAY 11: Thursday 31st October 2024
 
-// currently running
-
 ## Case 101 - lightgbm, max_depth decreased, bagging estimators increased
 - lgb.LGBMClassifier(max_depth=7, n_estimators=300, learning_rate=0.01)
 - BaggingClassifier(estimator=model, n_estimators=100)
@@ -1303,6 +1301,10 @@ accuracy: 0.94321
 - no feature selection
 --lgbm.csv
 
+model accuracy =  0.997359047631946    
+roc score =  0.512612682865538
+accuracy: 
+
 ## Case Z - gradientboosting, bagging added
 - GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60)
 - BaggingClassifier(estimator=model, n_estimators=50)
@@ -1310,6 +1312,11 @@ accuracy: 0.94321
 - minmax scaler
 - no feature selector
 --gb1.csv
+- 453 min for training fitting + 10002 min
+
+model accuracy =  0.9975351111231496    
+roc score =  0.5317120864929359
+accuracy: 
 
 // to be run, notebooks are ready
 
@@ -1320,6 +1327,7 @@ accuracy: 0.94321
 - simple imputer
 - no feature selector
 --ab1.csv
+- stopped at 216min
 
 ## Case W - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
