@@ -427,7 +427,14 @@ analysis:
 # XGBoost
 
 ### Analyzing XGBoost
-| case number | scaler | imputer | grid | n estimators | max depth | learning rate | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
+| case number | imputer | scaler | grid | n estimators | max depth | learning rate | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | 105 | simple | maxabs | - | - | - | - | estimators = 50 | - | 78 | 0.9972100708316969 | 0.5164319248826291 | 0.95474 | lets add some estimators |
 | 106 | simple | maxabs | - | 100 | - | - | estimators = 50 | - | 78 | 0.9975215677776724 | 0.5210458424361445 | 0.95347 | deterioration, lets increase the estimators |
+
+# CatBoost
+
+### Analyzing CatBoost
+| case number | imputer | scaler | grid | iterations | depth | learning rate | loss function | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 107 | simple | maxabs | - | default = 1000 | - | 0.108132 | - | - | - | 78 | 0.99729133090456 | 0.5215311004784688 | 0.93798 | lets introduce loss function |

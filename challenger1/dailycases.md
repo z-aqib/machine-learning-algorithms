@@ -1386,6 +1386,33 @@ model accuracy =  0.9975215677776724
 roc score =  0.5210458424361445
 accuracy: 0.95347
 
+## Case 107 - catboost
+- CatBoostClassifier()
+- no bagging
+- Learning rate set to 0.108132
+- simple imputer
+- maxabs scaler
+- no feature selection
+--cat1.csv
+
+model accuracy =  0.99729133090456    
+roc score =  0.5215311004784688
+accuracy: 
+
+## Case 108 - xgboost, n_estimators increased
+- xgb.XGBClassifier(n_estimators=500) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+
+model accuracy =  0.9973725909774233    
+roc score =  0.5150685869118535
+accuracy: 
+
+// running
+
 ## Case Y - lightgbm, grid search
 - lgb.LGBMClassifier()
 - param_grid = {
