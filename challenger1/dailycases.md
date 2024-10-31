@@ -1376,6 +1376,18 @@ accuracy: 0.94948
 - no feature selection
 --lgbm.csv
 
+## Case 106 - xgboost
+- xgb.XGBClassifier() 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+ 
+model accuracy =  0.9972100708316969    
+roc score =  0.5164319248826291   
+accuracy: 0.95474
+
 // not running, need time to run
 
 ## Case X - adaboost, bagging
