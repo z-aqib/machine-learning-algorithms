@@ -1424,7 +1424,33 @@ accuracy: 0.94900
 
 model accuracy =  0.9975892845050585    
 roc score =  0.5165542206956393
-accuracy: 
+accuracy: 0.93612
+
+## Case 110 - xgboost, estimators decreased + learning rate introduced
+- xgb.XGBClassifier(n_estimators=100, learning_rate=0.1) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+
+model accuracy =  0.9975892845050585    
+roc score =  0.5137985780696528
+accuracy: 0.95063
+
+# DAY 12: Friday 1st November 2024
+
+## Case Z - catboost, bagging removed, depth increased
+- model = CatBoostClassifier(loss_function='Logloss', depth=10)
+- no bagging
+- 
+- simple imputer
+- maxabs scaler
+- no feature selection
+--cat1.csv
+- 
+
+
 
 // running
 

@@ -432,11 +432,12 @@ analysis:
 | 105 | simple | maxabs | - | - | - | - | estimators = 50 | - | 78 | 0.9972100708316969 | 0.5164319248826291 | 0.95474 | lets add some estimators |
 | 106 | simple | maxabs | - | 100 | - | - | estimators = 50 | - | 78 | 0.9975215677776724 | 0.5210458424361445 | 0.95347 | deterioration, lets increase the estimators |
 | 108 | simple | maxabs | - | 500 | - | - | estimators = 50 | - | 78 | 0.9973725909774233 | 0.5150685869118535 | 0.94900 | deterioration, too high estimators. lets decrease them and move to learning rate |
+| 110 | simple | maxabs | - | 100 | - | 0.1 | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5137985780696528 | 0.95063 | improved but not so much. lets try shifting depth next |
 
 # CatBoost
 
 ### Analyzing CatBoost
 | case number | imputer | scaler | grid | iterations | depth | learning rate | loss function | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 107 | simple | maxabs | - | default = 1000 | - | 0.108132 | - | - | - | 78 | 0.99729133090456 | 0.5215311004784688 | 0.93798 | lets introduce bagging |
-| 109 | simple | maxabs | - | 100 | - | 0.5 | - | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5165542206956393 | 0.93612 | bagging didnt do so well. could be because estimators decreased and learning rate increased. lets add loss function |
+| 107 | simple | maxabs | - | 1000 | default = 6 | 0.108132 | default = Logloss | - | - | 78 | 0.99729133090456 | 0.5215311004784688 | 0.93798 | lets introduce bagging |
+| 109 | simple | maxabs | - | 100 | default = 6 | 0.5 | default = Logloss | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5165542206956393 | 0.93612 | bagging didnt do so well. could be because estimators decreased and learning rate increased. lets change depth |
