@@ -1602,6 +1602,11 @@ accuracy: 0.95236
 --rf1.csv
 - ran it, 63min later, error
 - fixed error, ran it, 72min later, error
+- fixed error, ran it, 198min + 52min + 129min
+
+model accuracy =  0.997359047631946    
+roc score =  0.5
+accuracy: 0.93546
 
 ## Case 119 - lgbm, grid search on min_child_samples
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
@@ -1615,7 +1620,7 @@ accuracy: 0.95236
 - no feature selection
 --lgbm.csv
 
-## Case X - catboost, grid search for estimators and learning rate
+## Case 120 - catboost, grid search for estimators and learning rate
 - CatBoostClassifier(max_depth=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1655,9 +1660,9 @@ accuracy: 0.95236
 --ab1.csv
 
 ## Case Y - gradboost, grid search for depth + bagging
-- same model trained as in case 116 is now being bagged
+- same model trained as in case 116 is now being bagged, low bagging estimators though
 - GradientBoostingClassifier()
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
