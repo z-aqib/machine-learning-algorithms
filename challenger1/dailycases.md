@@ -1546,3 +1546,18 @@ accuracy:
 --rf1.csv
 - ran it, 63min later, error
 - fixed error, ran it, 72min later, error
+
+// need to run, notebook is ready
+
+## Case Y - xgb, grid search for estimators
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 200, 300, 400, 500, 1000, 2000]
+}
+- best estimators found: 
+- 
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
