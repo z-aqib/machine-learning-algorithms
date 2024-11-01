@@ -433,6 +433,7 @@ analysis:
 | 106 | simple | maxabs | - | 100 | - | - | estimators = 50 | - | 78 | 0.9975215677776724 | 0.5210458424361445 | 0.95347 | deterioration, lets increase the estimators |
 | 108 | simple | maxabs | - | 500 | - | - | estimators = 50 | - | 78 | 0.9973725909774233 | 0.5150685869118535 | 0.94900 | deterioration, too high estimators. lets decrease them and move to learning rate |
 | 110 | simple | maxabs | - | 100 | - | 0.1 | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5137985780696528 | 0.95063 | improved but not so much. lets try shifting depth next |
+| 112 | simple | maxabs | param_grid = {'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} | - | 2 | - | estimators = 50 | - | 78 | 0.9975215677776724 | 0.5390217640369339 | 0.95332 | good but overall not highest. lets put grid search for estimators now |
 
 # CatBoost
 

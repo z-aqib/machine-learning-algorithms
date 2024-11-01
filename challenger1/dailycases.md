@@ -1441,7 +1441,7 @@ accuracy: 0.95063
 # DAY 12: Friday 1st November 2024
 
 ## Case 111 - catboost, bagging removed, depth increased
-- model = CatBoostClassifier(loss_function='Logloss', depth=10)
+- CatBoostClassifier(loss_function='Logloss', depth=10)
 - no bagging
 - Learning rate set to 0.108132
 - simple imputer
@@ -1478,7 +1478,7 @@ accuracy: 0.92756
 
 model accuracy =  0.9975215677776724    
 roc score =  0.5390217640369339
-accuracy: 
+accuracy: 0.95332
 
 ## Case 113 - lightgbm, grid search
 - lgb.LGBMClassifier()
@@ -1525,6 +1525,18 @@ accuracy:
 - simple imputer
 - no feature scaler
 --gb1.csv
+
+## Case X - catboost, grid search for depth
+- CatBoostClassifier()
+- no bagging
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- simple imputer
+- maxabs scaler
+- 
+- no feature selection
+--cat1.csv
 
 ## Case 116 - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
