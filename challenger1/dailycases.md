@@ -1487,13 +1487,17 @@ accuracy:
     'learning_rate': [0.001, 0.005, 0.01, 0.05],
     'n_estimators': [400, 500, 1000, 2000, 3000]
 }
-- no bagging // i have turned it on, lets see if it works
-- best params: 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- best params: {'learning_rate': 0.01, 'max_depth': 3, 'n_estimators': 1000}
 - maxabs scaler
 - simple imputer
 - no feature selection
 --lgbm.csv
-- 332min ongoing + ..
+- 393min + 15min + 21min
+
+model accuracy =  0.9974403077048093    
+roc score =  0.5307284931466785
+accuracy:
 
 ## Case 114 - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
