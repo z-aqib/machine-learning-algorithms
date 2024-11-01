@@ -1512,7 +1512,7 @@ accuracy: 0.95106
 
 model accuracy =  0.9972371575226513    
 roc score =  0.5406533738276343
-accuracy: 
+accuracy: 0.93386
 
 ## Case 115 - gradboost, grid search for depth
 - GradientBoostingClassifier()
