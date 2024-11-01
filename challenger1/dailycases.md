@@ -1660,12 +1660,16 @@ accuracy: 0.94989
     'iterations': [50, 100, 200, 300, 500, 600, 700, 900, 1000, 2000],
     'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9]
 }
-- best params:
+- best params: {'iterations': 2000, 'learning_rate': 0.1}
 - simple imputer
 - maxabs scaler
-- 
 - no feature selection
 --cat1.csv
+- 147min + 58min + 93min
+
+model accuracy =  0.9973861343229005    
+roc score =  0.5287075514634675
+accuracy: 
 
 ## Case 122 - gradboost, grid search for depth + bagging
 - same model trained as in case 116 is now being bagged, low bagging estimators though
