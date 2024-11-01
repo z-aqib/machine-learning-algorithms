@@ -1550,19 +1550,24 @@ model accuracy =  0.9976028278505357
 roc score =  0.5496287205207183   
 accuracy: 0.94063
 
-## Case 117 - gradboost, grid search for depth
+## Case 116 - gradboost, grid search for depth
 - GradientBoostingClassifier()
 - no bagging as with bagging takes 24 hours+
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
-- best depth: 
+- best depth: 3
 - minmax scaler
 - simple imputer
-- no feature scaler
+- no feature selector
 --gb1.csv 
+- 512min + 12min + 15min
 
-## Case 116 - randomforest, algo feature importance
+model accuracy =  0.9968308571583353    
+roc score =  0.5404496829489119
+accuracy: 0.84769
+
+## Case 117 - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - feature_importance_df['Feature'].head(35).values
 - knn=7 imputer
