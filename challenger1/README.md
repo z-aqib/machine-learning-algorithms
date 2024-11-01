@@ -445,3 +445,4 @@ analysis:
 | 107 | simple | maxabs | - | 1000 | default = 6 | 0.108132 | default = Logloss | - | - | 78 | 0.99729133090456 | 0.5215311004784688 | 0.93798 | lets introduce bagging |
 | 109 | simple | maxabs | - | 100 | default = 6 | 0.5 | default = Logloss | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5165542206956393 | 0.93612 | bagging didnt do so well. could be because estimators decreased and learning rate increased. lets change depth |
 | 111 | simple | maxabs | - | default = 1000 | 10 | 0.108132 | Logloss | - | - | 78 | 0.99729133090456 | 0.504950495049505 | 0.92756 | deterioration, lets try grid to find the perfect depth |
+| 115 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | default = 1000 | 1 | 0.108132 | default = Logloss | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5496287205207183 | 0.94063 | improved! lets do grid on iterations and learning rate |

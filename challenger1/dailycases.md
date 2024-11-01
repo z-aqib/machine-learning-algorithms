@@ -1532,18 +1532,6 @@ model accuracy =  0.9975351111231496
 roc score =  0.5523504215805054
 accuracy: not submitted
 
-## Case 116 - gradboost, grid search for depth
-- GradientBoostingClassifier()
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- param_grid = {
-    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-}
-- best depth: 
-- minmax scaler
-- simple imputer
-- no feature scaler
---gb1.csv
-
 ## Case 115b - catboost, grid search for depth, bagging
 - CatBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -1553,10 +1541,26 @@ accuracy: not submitted
 - best depth: 1
 - simple imputer
 - maxabs scaler
-- Learning rate set to 0.092856
+- Learning rate set to 0.108132
 - no feature selection
 --cat1.csv
-- 69min + 
+- 69min + 30min + 46 min
+
+model accuracy =  0.9976028278505357    
+roc score =  0.5496287205207183   
+accuracy: 0.94063
+
+## Case 117 - gradboost, grid search for depth
+- GradientBoostingClassifier()
+- no bagging as with bagging takes 24 hours+
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best depth: 
+- minmax scaler
+- simple imputer
+- no feature scaler
+--gb1.csv 
 
 ## Case 116 - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
