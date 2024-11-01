@@ -21,8 +21,8 @@ Work done daily:
 | 15 | Monday 4th November 2024 | ExtraTree Classifier | - | - | - | 
 | 16 | Tuesday 5th November 2024 | Voting | - | - | - | 
 | 17 | Wednesday 6th November 2024 | Stacking | - | - | - | 
-| 18 | Thursday 7th November 2024 | - | - | - | - | 
-| 19 | Friday 8th November 2024 | - | - | - | - | 
+| 18 | Thursday 7th November 2024 | Stacking | - | - | - | 
+| 19 | Friday 8th November 2024 | PCA | - | - | - | 
 | 20 | Saturday 9th November 2024 | - | - | - | - | 
 | 21 | Sunday 10th November 2024 | - | - | - | - | 
 
@@ -403,22 +403,23 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 # LightGBM
 
 ### Analyzing LightGBM
-| case number | imputer | scaler | grid |  max depth | n estimators | learning rate | min child weight | bagging params | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
+| case number | imputer | scaler | grid | max depth | n estimators | learning rate | min child samples | bagging params | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 91 | simple | minmax | - | 10 | 100 | 0.9 | default = 0.001 | - | - | 78 | 0.9934450207890353 | 0.5815248594933158 | 0.75561 | lets try and increase estimators |
-| 92 | simple | minmax | - | 10 | 400 | 0.9 | default = 0.001 | - | - | 78 | 0.9963297533756789 | 0.5020350035153998 | 0.50533 | very very low. lets normalize the learning rate |
-| 93 | simple | minmax | - | 10 | 400 | 0.5 | default = 0.001 | - | - | 78 | 0.9897206007828053 | 0.5109621532460307 | 0.50408 | still low, estimators is the problem |
-| 94 | simple | minmax | - | 9 | 100 | 0.5 | default = 0.001 | - | - | 78 | 0.9382288012784918 | 0.5318142882431025 | 0.37172 | wow. so low. lets add bagging because its not controlling |
-| 95 | simple | maxabs | - | 10 | 100 | 0.9 | default = 0.001 | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5 | 0.77939 | improved, but v low, lets increase estimators in bagging | 
-| 96 | simple | maxabs | - | 10 | 100 | 0.9 | default = 0.001 | estimators = 100 | - | 78 | 0.997494481086718 | 0.5 | 0.77699 | reduced, lets go back and try feature selection | 
-| 97 | knn=7 | maxabs | - | 10 | 100 | 0.9 | default = 0.001 | estimators = 50 | kbest | 5 | 0.9974403077048093 | 0.5 | 0.49841 | very low, we dont know if the issue is imputer or kbest selector |
-| 98 | simple | maxabs | - | 10 | 200 | 0.1 | default = 0.001 | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5024807720320663 | 0.87767 | relationship b/w estimators and learning rate is found |
-| 99 | simple | maxabs | -| 10 | 300 | 0.01 | default = 0.001 | estimators = 50 | - | 78 | 0.9973048742500372 | 0.517066380205849 | 0.94165 | shotup! lets decrease depth now | 
-| 100 | simple | maxabs | - | 8 | 300 | 0.01 | default = 0.001 | estimators = 50 | - | 78 | 0.9973455042864688 | 0.5174796298056683 | 0.94321 | increased, lets decrease depth further |
-| 101 | simple | maxabs | - | 7 | 300 | 0.01 | default = 0.001 | estimators = 100 | - | 78 | 0.997359047631946 | 0.512612682865538 | 0.94351 | negligible increase, lets decrease bagging |
-| 103 | simple | maxabs | - | 6 | 300 | 0.01 | default = 0.001 | estimators = 50 | - | 78 | 0.9976705445779216 | 0.5302129918143766 | 0.94395 | negligible increase, lets increase estimators + learning rate combo |
-| 104 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [50, 100, 200, 300] } | 2 | 300 | 0.05 | default = 0.001 | - | - | 78 | 0.9973725909774233 | 0.5521437437723113 | 0.94948 | increased FINALLY. lets run a second grid search with diff parameters | 
-| 111 | simple | maxabs | param_grid = { 'max_depth': [2, 3, 6, 7, 8, 9, 10], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [400, 500, 1000, 2000, 3000] } | 3 | 1000 | 0.01 | default = 0.001 | estimators = 50 | - | 78 | 0.9974403077048093 | 0.5307284931466785 | 0.95106 | improved! lets grid with min child weight
+| 91 | simple | minmax | - | 10 | 100 | 0.9 | default = 20 | - | - | 78 | 0.9934450207890353 | 0.5815248594933158 | 0.75561 | lets try and increase estimators |
+| 92 | simple | minmax | - | 10 | 400 | 0.9 | default = 20 | - | - | 78 | 0.9963297533756789 | 0.5020350035153998 | 0.50533 | very very low. lets normalize the learning rate |
+| 93 | simple | minmax | - | 10 | 400 | 0.5 | default = 20 | - | - | 78 | 0.9897206007828053 | 0.5109621532460307 | 0.50408 | still low, estimators is the problem |
+| 94 | simple | minmax | - | 9 | 100 | 0.5 | default = 20 | - | - | 78 | 0.9382288012784918 | 0.5318142882431025 | 0.37172 | wow. so low. lets add bagging because its not controlling |
+| 95 | simple | maxabs | - | 10 | 100 | 0.9 | default = 20 | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5 | 0.77939 | improved, but v low, lets increase estimators in bagging | 
+| 96 | simple | maxabs | - | 10 | 100 | 0.9 | default = 20 | estimators = 100 | - | 78 | 0.997494481086718 | 0.5 | 0.77699 | reduced, lets go back and try feature selection | 
+| 97 | knn=7 | maxabs | - | 10 | 100 | 0.9 | default = 20 | estimators = 50 | kbest | 5 | 0.9974403077048093 | 0.5 | 0.49841 | very low, we dont know if the issue is imputer or kbest selector |
+| 98 | simple | maxabs | - | 10 | 200 | 0.1 | default = 20 | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5024807720320663 | 0.87767 | relationship b/w estimators and learning rate is found |
+| 99 | simple | maxabs | -| 10 | 300 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9973048742500372 | 0.517066380205849 | 0.94165 | shotup! lets decrease depth now | 
+| 100 | simple | maxabs | - | 8 | 300 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9973455042864688 | 0.5174796298056683 | 0.94321 | increased, lets decrease depth further |
+| 101 | simple | maxabs | - | 7 | 300 | 0.01 | default = 20 | estimators = 100 | - | 78 | 0.997359047631946 | 0.512612682865538 | 0.94351 | negligible increase, lets decrease bagging |
+| 103 | simple | maxabs | - | 6 | 300 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9976705445779216 | 0.5302129918143766 | 0.94395 | negligible increase, lets increase estimators + learning rate combo |
+| 104 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [50, 100, 200, 300] } | 2 | 300 | 0.05 | default = 20 | - | - | 78 | 0.9973725909774233 | 0.5521437437723113 | 0.94948 | increased FINALLY. lets run a second grid search with diff parameters | 
+| 111 | simple | maxabs | param_grid = { 'max_depth': [2, 3, 6, 7, 8, 9, 10], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [400, 500, 1000, 2000, 3000] } | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9974403077048093 | 0.5307284931466785 | 0.95106 | improved! lets grid with min child weight
+| 119 | simple | maxabs | param_grid = { 'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000] } | 3 | 1000 | 0.01 | 40 | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5320719837648076 | 0.95087 | deterioration, seems like the default=40 was better. now lets try lgbm feature importance |
 
 starting accuracy: 0.75561     
 highest accuracy:    

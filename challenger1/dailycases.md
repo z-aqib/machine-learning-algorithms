@@ -1614,11 +1614,15 @@ accuracy: 0.93546
     'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000]
 }
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- best params: 
+- best params: {'min_child_samples': 40}
 - maxabs scaler
 - simple imputer
 - no feature selection
 --lgbm.csv
+
+model accuracy =  0.9976028278505357    
+roc score =  0.5320719837648076
+accuracy: 
 
 ## Case 120 - catboost, grid search for estimators and learning rate
 - CatBoostClassifier(max_depth=1)
