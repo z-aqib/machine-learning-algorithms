@@ -1510,6 +1510,20 @@ accuracy:
 - restarted, 330min + 11min + 73 min, failed
 - restarted, bismillah
 
+## Case 115 - gradboost, grid search for depth
+- GradientBoostingClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best depth: 
+- minmax scaler
+- simple imputer
+- no feature scaler
+--gb1.csv
+
+
+
 // notebook is ready however there is some error to fix
 
 ## Case W - randomforest, algo feature importance
