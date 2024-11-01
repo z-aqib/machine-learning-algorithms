@@ -1689,7 +1689,7 @@ model accuracy =  0.9974809377412408
 roc score =  0.5458640497792794 
 accuracy: 
 
-## Case W - adaboost, grid search for best estimators and learning rate
+## Case 123 - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1701,7 +1701,7 @@ accuracy:
 - no feature selector
 --ab1.csv
 
-## Case X - randomforest, grid search for depth and estimators
+## Case 124 - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 
