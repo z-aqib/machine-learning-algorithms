@@ -1609,3 +1609,17 @@ accuracy: 0.94063
 - simple imputer
 - no feature selector
 --ab1.csv
+
+## Case X - catboost, grid search for estimators and learning rate
+- CatBoostClassifier(max_depth=1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'iterations': [50, 100, 200, 300, 500, 600, 700, 900, 1000, 2000],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9]
+}
+- best params:
+- simple imputer
+- maxabs scaler
+- 
+- no feature selection
+--cat1.csv
