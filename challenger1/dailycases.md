@@ -1514,7 +1514,25 @@ model accuracy =  0.9972371575226513
 roc score =  0.5406533738276343
 accuracy: 0.93386
 
-## Case 115 - gradboost, grid search for depth
+## Case 115a - catboost, grid search for depth, no bagging
+- CatBoostClassifier()
+- no bagging
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best depth: 1
+- simple imputer
+- maxabs scaler
+- Learning rate set to 0.092856
+- no feature selection
+--cat1.csv
+- 69min + 10min
+
+model accuracy =  0.9975351111231496    
+roc score =  0.5523504215805054
+accuracy: not submitted
+
+## Case 116 - gradboost, grid search for depth
 - GradientBoostingClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1526,17 +1544,19 @@ accuracy: 0.93386
 - no feature scaler
 --gb1.csv
 
-## Case X - catboost, grid search for depth
+## Case 115b - catboost, grid search for depth, bagging
 - CatBoostClassifier()
-- no bagging
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
+- best depth: 1
 - simple imputer
 - maxabs scaler
-- 
+- Learning rate set to 0.092856
 - no feature selection
 --cat1.csv
+- 69min + 
 
 ## Case 116 - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
@@ -1563,7 +1583,7 @@ accuracy: 0.93386
 --xgb1.csv
 
 ## Case Z - lgbm, grid search on min_child_samples
-- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000)
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - param_grid = {
     'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000]
 }
