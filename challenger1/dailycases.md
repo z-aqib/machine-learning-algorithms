@@ -1603,7 +1603,7 @@ accuracy: 0.95236
 - ran it, 63min later, error
 - fixed error, ran it, 72min later, error
 
-## Case Z - lgbm, grid search on min_child_samples
+## Case 119 - lgbm, grid search on min_child_samples
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - param_grid = {
     'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000]
@@ -1628,6 +1628,19 @@ accuracy: 0.95236
 - 
 - no feature selection
 --cat1.csv
+
+## Case Z - xgb, grid search for learning rate
+- xgb.XGBClassifier(max_depth=2, n_estimators=100)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'learning_rate': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.09, 0.1, 0.25, 0.5, 0.6, 0.75, 0.9]
+}
+- best learning_rate found: 
+- 
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
 
 ## Case W - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
