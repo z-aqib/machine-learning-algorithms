@@ -1508,7 +1508,11 @@ accuracy:
 --ab1.csv
 - stopped at 216min
 - restarted, 330min + 11min + 73 min, failed
-- restarted, bismillah
+- restarted, bismillah, 353min + 302min, completed
+
+model accuracy =  0.9972371575226513    
+roc score =  0.5406533738276343
+accuracy: 
 
 ## Case 115 - gradboost, grid search for depth
 - GradientBoostingClassifier()
