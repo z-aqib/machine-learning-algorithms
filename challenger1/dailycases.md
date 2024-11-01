@@ -1526,11 +1526,7 @@ accuracy:
 - no feature scaler
 --gb1.csv
 
-
-
-// notebook is ready however there is some error to fix
-
-## Case W - randomforest, algo feature importance
+## Case 116 - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - feature_importance_df['Feature'].head(35).values
 - knn=7 imputer
