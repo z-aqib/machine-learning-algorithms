@@ -440,6 +440,7 @@ analysis:
 | 110 | simple | maxabs | - | 100 | - | 0.1 | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5137985780696528 | 0.95063 | improved but not so much. lets try shifting depth next |
 | 112 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | - | 2 | - | estimators = 50 | - | 78 | 0.9975215677776724 | 0.5390217640369339 | 0.95332 | good but overall not highest. lets put grid search for estimators now |
 | 117 | simple | maxabs | param_grid = { 'n_estimators': [50, 100, 200, 300, 400, 500, 1000, 2000] } | 100 | 2 | - | estimators = 50 | - | 78 | 0.9974267643593321 | 0.5485165268480601 | 0.95236 | good, but not best. lets add in learning rate |
+| 120 | simple | maxabs | param_grid = { 'learning_rate': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.09, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.75, 0.9] } | 100 | 2 | 0.2 | estimators = 50 | - | 78 | 0.9974403077048093 | 0.5430861000283999 | 0.94989 | deterioration, default was fine. lets add feature importance |
 
 # CatBoost
 

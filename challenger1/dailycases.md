@@ -1624,7 +1624,36 @@ model accuracy =  0.9976028278505357
 roc score =  0.5320719837648076
 accuracy: 
 
-## Case 120 - catboost, grid search for estimators and learning rate
+## Case 120 - xgb, grid search for learning rate
+- xgb.XGBClassifier(max_depth=2, n_estimators=100)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'learning_rate': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.09, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.75, 0.9]
+}
+- best learning_rate found: 0.2
+- XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, device=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=0.2, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=2, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              multi_strategy=None, n_estimators=100, n_jobs=None,
+              num_parallel_tree=None, random_state=None, ...)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+
+model accuracy =  0.9974403077048093    
+roc score =  0.5430861000283999 
+accuracy: 0.94989
+
+# DAY 13: Saturday 2nd November 2024
+
+## Case 121 - catboost, grid search for estimators and learning rate
 - CatBoostClassifier(max_depth=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1638,18 +1667,18 @@ accuracy:
 - no feature selection
 --cat1.csv
 
-## Case Z - xgb, grid search for learning rate
-- xgb.XGBClassifier(max_depth=2, n_estimators=100)
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+## Case 122 - gradboost, grid search for depth + bagging
+- same model trained as in case 116 is now being bagged, low bagging estimators though
+- GradientBoostingClassifier()
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
 - param_grid = {
-    'learning_rate': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.09, 0.1, 0.25, 0.5, 0.6, 0.75, 0.9]
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
-- best learning_rate found: 
-- 
+- best depth: 3
+- minmax scaler
 - simple imputer
-- maxabs scaler
-- no feature selection
---xgb1.csv
+- no feature selector
+--gb1.csv 
 
 ## Case W - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
@@ -1662,19 +1691,6 @@ accuracy:
 - simple imputer
 - no feature selector
 --ab1.csv
-
-## Case Y - gradboost, grid search for depth + bagging
-- same model trained as in case 116 is now being bagged, low bagging estimators though
-- GradientBoostingClassifier()
-- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
-- param_grid = {
-    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-}
-- best depth: 3
-- minmax scaler
-- simple imputer
-- no feature selector
---gb1.csv 
 
 ## Case X - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
