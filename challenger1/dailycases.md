@@ -1671,3 +1671,15 @@ accuracy: 0.93546
 - simple imputer
 - no feature selector
 --gb1.csv 
+
+## Case X - randomforest, grid search for depth and estimators
+- RandomForestClassifier(criterion='entropy', verbose=2)
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 
+    'n_estimators': [50, 100, 200, 300, 400, 500, 1000]
+}
+- best depth and estimators: 
+- feature_importance_df['Feature'].head(35).values
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
