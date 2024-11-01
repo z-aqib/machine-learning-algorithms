@@ -1561,3 +1561,15 @@ accuracy:
 - maxabs scaler
 - no feature selection
 --xgb1.csv
+
+## Case Z - lgbm, grid search on min_child_samples
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000)
+- param_grid = {
+    'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000]
+}
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- best params: 
+- maxabs scaler
+- simple imputer
+- no feature selection
+--lgbm.csv
