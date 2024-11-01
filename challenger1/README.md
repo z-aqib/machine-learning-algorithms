@@ -415,6 +415,7 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 | 101 | simple | maxabs | - | 7 | 300 | 0.01 | default = 0.001 | estimators = 100 | - | 78 | 0.997359047631946 | 0.512612682865538 | 0.94351 | negligible increase, lets decrease bagging |
 | 103 | simple | maxabs | - | 6 | 300 | 0.01 | default = 0.001 | estimators = 50 | - | 78 | 0.9976705445779216 | 0.5302129918143766 | 0.94395 | negligible increase, lets increase estimators + learning rate combo |
 | 104 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [50, 100, 200, 300] } | 2 | 300 | 0.05 | default = 0.001 | - | - | 78 | 0.9973725909774233 | 0.5521437437723113 | 0.94948 | increased FINALLY. lets run a second grid search with diff parameters | 
+| 111 | simple | maxabs | param_grid = { 'max_depth': [2, 3, 6, 7, 8, 9, 10], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [400, 500, 1000, 2000, 3000] } | 3 | 1000 | 0.01 | default = 0.001 | estimators = 50 | - | 78 | 0.9974403077048093 | 0.5307284931466785 | 0.95106 | improved! lets grid with min child weight
 
 starting accuracy: 0.75561     
 highest accuracy:    

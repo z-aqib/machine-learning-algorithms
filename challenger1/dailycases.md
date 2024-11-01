@@ -1497,7 +1497,7 @@ accuracy: 0.95332
 
 model accuracy =  0.9974403077048093    
 roc score =  0.5307284931466785
-accuracy:
+accuracy: 0.95106
 
 ## Case 114 - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
