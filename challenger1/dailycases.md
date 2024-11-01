@@ -1567,7 +1567,34 @@ model accuracy =  0.9968308571583353
 roc score =  0.5404496829489119
 accuracy: 0.84769
 
-## Case 117 - randomforest, algo feature importance
+## Case 117 - xgb, grid search for estimators
+- xgb.XGBClassifier(max_depth=2)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 200, 300, 400, 500, 1000, 2000]
+}
+- best estimators found: 100
+- XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, device=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=None, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=2, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              multi_strategy=None, n_estimators=100, n_jobs=None,
+              num_parallel_tree=None, random_state=None, ...)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--xgb1.csv
+
+model accuracy =  0.9974267643593321    
+roc score =  0.5485165268480601
+accuracy: 0.95236
+
+## Case 118 - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - feature_importance_df['Feature'].head(35).values
 - knn=7 imputer
@@ -1575,21 +1602,6 @@ accuracy: 0.84769
 --rf1.csv
 - ran it, 63min later, error
 - fixed error, ran it, 72min later, error
-
-// need to run, notebook is ready
-
-## Case Y - xgb, grid search for estimators
-- xgb.XGBClassifier()
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- param_grid = {
-    'n_estimators': [50, 100, 200, 300, 400, 500, 1000, 2000]
-}
-- best estimators found: 
-- 
-- simple imputer
-- maxabs scaler
-- no feature selection
---xgb1.csv
 
 ## Case Z - lgbm, grid search on min_child_samples
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
@@ -1602,18 +1614,6 @@ accuracy: 0.84769
 - simple imputer
 - no feature selection
 --lgbm.csv
-
-## Case W - adaboost, grid search for best estimators and learning rate
-- AdaBoostClassifier()
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- param_grid = {
-    'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500, 1000, 3000],
-    'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.6, 0.9]
-}
-- minmax scaler
-- simple imputer
-- no feature selector
---ab1.csv
 
 ## Case X - catboost, grid search for estimators and learning rate
 - CatBoostClassifier(max_depth=1)
@@ -1628,3 +1628,28 @@ accuracy: 0.84769
 - 
 - no feature selection
 --cat1.csv
+
+## Case W - adaboost, grid search for best estimators and learning rate
+- AdaBoostClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500, 1000, 3000],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.6, 0.9]
+}
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
+
+## Case Y - gradboost, grid search for depth + bagging
+- same model trained as in case 116 is now being bagged
+- GradientBoostingClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best depth: 3
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv 
