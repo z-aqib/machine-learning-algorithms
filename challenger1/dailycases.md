@@ -1672,7 +1672,7 @@ roc score =  0.5287075514634675
 accuracy: 
 
 ## Case 122 - gradboost, grid search for depth + bagging
-- same model trained as in case 116 is now being bagged, low bagging estimators though
+- same model trained as in case 116 is now being bagged, low bagging estimators though as 50 estimators take over 24 hours of running time (1 estimator takes approx 20-30 minutes on average)
 - GradientBoostingClassifier()
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
 - param_grid = {
@@ -1683,6 +1683,11 @@ accuracy:
 - simple imputer
 - no feature selector
 --gb1.csv 
+- 512min + 229min + 186min
+
+model accuracy =  0.9974809377412408    
+roc score =  0.5458640497792794 
+accuracy: 
 
 ## Case W - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
