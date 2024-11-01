@@ -1712,3 +1712,10 @@ accuracy: 0.94989
 - algorithm feature importance of top 35 features
 --lgbm1.csv
 
+## Case U - xgboost, feature importance
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- feature importance on top 35 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
