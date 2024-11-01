@@ -1451,7 +1451,7 @@ accuracy: 0.95063
 
 model accuracy =  0.99729133090456    
 roc score =  0.504950495049505
-accuracy: 
+accuracy: 0.92756
 
 ## Case 112 - xgboost, grid search for depth
 - xgb.XGBClassifier()
