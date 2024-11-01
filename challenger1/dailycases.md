@@ -1687,3 +1687,12 @@ accuracy:
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+
+## Case T - lgbm, feature importance
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 35 features
+--lgbm1.csv
+
