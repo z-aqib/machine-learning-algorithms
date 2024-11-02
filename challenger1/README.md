@@ -448,6 +448,7 @@ analysis:
 | 120 | simple | maxabs | param_grid = { 'learning_rate': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.05, 0.09, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6, 0.75, 0.9] } | 100 | 2 | 0.2 | estimators = 50 | - | 78 | 0.9974403077048093 | 0.5430861000283999 | 0.94989 | deterioration, default was fine. lets add feature importance |
 | 124 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 35 | 0.9973725909774233 | 0.5274660496761139 | 0.95846 | wow! we can increase features in the next round |
 | 127 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 40 | 0.9975080244321952 | 0.5184142634887761 | 0.95371 | deterioration. lets decrease features in next round |
+| 129 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 30 | 0.9974403077048093 | 0.52283584980575 | 0.94984 | deterioration. would 36 be better? |
 
 # CatBoost
 
