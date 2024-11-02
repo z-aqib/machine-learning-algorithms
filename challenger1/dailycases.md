@@ -1689,7 +1689,7 @@ model accuracy =  0.9974809377412408
 roc score =  0.5458640497792794 
 accuracy: 
 
-## Case 123 - adaboost, grid search for best estimators and learning rate
+## Case 123a - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1700,8 +1700,9 @@ accuracy:
 - simple imputer
 - no feature selector
 --ab1.csv
+- after 605min of running, i calculated that it would take estimated 4105mins to run it all which is equivalent to 3 days of running. this is extremely inefficient. so i interrupted it and shortened the parameters
 
-## Case 124a - randomforest, grid search for depth and estimators
+## Case 123b - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 
@@ -1714,7 +1715,7 @@ accuracy:
 --rf1.csv
 - code stopped running after 512min, so i manually stopped it. too many parameters in grid made it very long. 
 
-## Case T - lgbm, feature importance
+## Case 125 - lgbm, feature importance
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1741,3 +1742,15 @@ accuracy:
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+
+## Case Y - adaboost, grid search for best estimators and learning rate
+- AdaBoostClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05]
+}
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
