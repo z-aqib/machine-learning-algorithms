@@ -1726,7 +1726,7 @@ accuracy: 0.88551
 
 model accuracy =  0.9975757411595813    
 roc score =  0.5317324536447935
-accuracy:
+accuracy: 0.95070
 
 ## Case 124 - xgboost, feature importance
 - xgb.XGBClassifier()
