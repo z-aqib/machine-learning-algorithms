@@ -1701,7 +1701,7 @@ accuracy:
 - no feature selector
 --ab1.csv
 
-## Case 124 - randomforest, grid search for depth and estimators
+## Case 124a - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 
@@ -1712,6 +1712,7 @@ accuracy:
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+- code stopped running after 512min, so i manually stopped it. too many parameters in grid made it very long. 
 
 ## Case T - lgbm, feature importance
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
@@ -1728,3 +1729,15 @@ accuracy:
 - simple imputer
 - maxabs scaler
 --xgb1.csv
+
+## Case X - randomforest, grid search for depth and estimators
+- RandomForestClassifier(criterion='entropy', verbose=2)
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 
+    'n_estimators': [50, 100, 200]
+}
+- best depth and estimators: 
+- feature_importance_df['Feature'].head(35).values
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
