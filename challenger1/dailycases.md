@@ -1810,7 +1810,19 @@ accuracy: 0.95323
 
 model accuracy =  0.9975080244321952    
 roc score =  0.5184142634887761    
-accuracy: 
+accuracy: 0.95371
+
+## Case 128 - lgbm, feature importance decreased features
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 15 features
+--lgbm1.csv
+
+model accuracy =  0.9972777875590828    
+roc score =  0.5286809703922187    
+accuracy: 0.94903
 
 ## Case G - gboost, grid search for criterion
 - GradientBoostingClassifier(max_depth=3)
@@ -1823,14 +1835,6 @@ accuracy:
 - simple imputer
 - no feature selector
 --gb1.csv 
-
-## Case S - lgbm, feature importance decreased features
-- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- simple imputer
-- maxabs scaler
-- algorithm feature importance of top 15 features
---lgbm1.csv
 
 ## Case Y - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', max_depth=9, verbose=2)
