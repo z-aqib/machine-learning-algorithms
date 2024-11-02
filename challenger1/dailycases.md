@@ -1739,7 +1739,7 @@ accuracy: 0.95070
 
 model accuracy =  0.9973725909774233    
 roc score =  0.5274660496761139  
-accuracy: 
+accuracy: 0.95846
 
 ## Case X - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
@@ -1791,10 +1791,18 @@ accuracy:
 - no feature selector
 --gb1.csv 
 
-## Case Y - lgbm, feature importance decreased featuree
+## Case Z - lgbm, feature importance decreased featuree
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
 - maxabs scaler
 - algorithm feature importance of top 20 features
 --lgbm1.csv
+
+## Case W - xgboost, feature importance increased
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- feature importance on top 40 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
