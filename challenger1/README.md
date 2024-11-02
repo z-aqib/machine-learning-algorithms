@@ -279,18 +279,19 @@ kbest works better with lower number of features. as according to this table, kb
 
 ### Analyzing RandomForest
 
-| case number | imputer | scaler | max depth | n estimators | feature selector | no. of features | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
-| - | - | - | - | - | - | - | -------- | --------------- | ------------ | ---------------- | -- | - | - | - |
-| 44 | simple | maxabs | 10 | 200 | - | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
-| 51 | knn=7 | maxabs | 5 | 200 | - | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
-| 58 | knn=7 | maxabs | 5 | 300 | - | 78 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.91889 | very slight imporvement, lets try and increase depth |
-| 60 | knn=7 | maxabs | 6 | 10 | - | 78 | entropy | 15 | 60 | 80 | 0.9972642442136056 | 0.5 | 0.91309 | slight difference even though trees are 30 times less. interesting. |
-| 62 | knn=7 | maxabs | 7 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974132210138549 | 0.5 | 0.92693 | depth increased trees, lets increase it |
-| 66 | knn=7 | maxabs | 8 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974403077048093 | 0.5 | 0.93079 | depth increased trees, lets increase further |
-| 68 | knn=7 | maxabs | 10 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9972777875590828 | 0.5 | 0.93256 | depth is increasing accuracy |
-| 78 | knn=7 | maxabs | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
-| 83 | knn=7 | maxabs | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
-| 118 | knn=7 | maxabs | 11 | 400 | random forest feature importance | 35 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.93546 | improved! lets use some grid on RF to find best depth + estimators |
+| case number | imputer | scaler | grid | max depth | n estimators | feature selector | no. of features | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 44 | simple | maxabs | - | 10 | 200 | - | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
+| 51 | knn=7 | maxabs | - | 5 | 200 | - | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
+| 58 | knn=7 | maxabs | - | 5 | 300 | - | 78 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.91889 | very slight imporvement, lets try and increase depth |
+| 60 | knn=7 | maxabs | - | 6 | 10 | - | 78 | entropy | 15 | 60 | 80 | 0.9972642442136056 | 0.5 | 0.91309 | slight difference even though trees are 30 times less. interesting. |
+| 62 | knn=7 | maxabs | - | 7 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974132210138549 | 0.5 | 0.92693 | depth increased trees, lets increase it |
+| 66 | knn=7 | maxabs | - | 8 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974403077048093 | 0.5 | 0.93079 | depth increased trees, lets increase further |
+| 68 | knn=7 | maxabs | - | 10 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9972777875590828 | 0.5 | 0.93256 | depth is increasing accuracy |
+| 78 | knn=7 | maxabs | - | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
+| 83 | knn=7 | maxabs | - | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
+| 118 | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 35 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.93546 | improved! lets use some grid on RF to find best depth + estimators |
+| 125 | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'n_estimators': [50, 100, 200] } | 9 | 200 | algorithm feature importance | 35 | entropy | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.92154 | deterioration, lets increase estimators in depth to find the best estimators |
 
 total tests: 9   
 total submissions: 9   

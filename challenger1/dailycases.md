@@ -1741,17 +1741,22 @@ model accuracy =  0.9973725909774233
 roc score =  0.5274660496761139  
 accuracy: 0.95846
 
-## Case X - randomforest, grid search for depth and estimators
+## Case 125 - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 
     'n_estimators': [50, 100, 200]
 }
-- best depth and estimators: 
+- best depth and estimators: {'max_depth': 9, 'n_estimators': 200}
 - feature_importance_df['Feature'].head(35).values
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+- 134min + 7min + 6min
+
+model accuracy =  0.9973319609409916    
+roc score =  0.5050251256281407
+accuracy: 0.92154
 
 ## Case Y - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
