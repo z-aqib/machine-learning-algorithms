@@ -1836,6 +1836,18 @@ model accuracy =  0.9974403077048093
 roc score =  0.52283584980575    
 accuracy: 0.94984
 
+## Case 130 - xgboost, feature importance increased
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- feature importance on top 36 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+
+model accuracy =  0.9971694407952653    
+roc score =  0.5118279679945126 
+accuracy: 0.95522
+
 ## Case G - gboost, grid search for criterion
 - GradientBoostingClassifier(max_depth=3)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
