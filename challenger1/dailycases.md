@@ -1820,6 +1820,14 @@ accuracy: 0.95323
 - maxabs scaler
 --xgb1.csv
 
+## Case S - lgbm, feature importance decreased features
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 15 features
+--lgbm1.csv
+
 ## Case Y - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', max_depth=9, verbose=2)
 - param_grid = {
