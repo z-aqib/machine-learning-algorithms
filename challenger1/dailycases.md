@@ -1715,21 +1715,31 @@ accuracy:
 --rf1.csv
 - code stopped running after 512min, so i manually stopped it. too many parameters in grid made it very long. 
 
-## Case 125 - lgbm, feature importance
+## Case 123c - lgbm, feature importance
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
 - maxabs scaler
 - algorithm feature importance of top 35 features
 --lgbm1.csv
+- 16min + 19min
 
-## Case U - xgboost, feature importance
+model accuracy =  0.9975757411595813    
+roc score =  0.5317324536447935
+accuracy:
+
+## Case 124 - xgboost, feature importance
 - xgb.XGBClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - feature importance on top 35 features
 - simple imputer
 - maxabs scaler
 --xgb1.csv
+- 5min + 4min
+
+model accuracy =  0.9973725909774233    
+roc score =  0.5274660496761139  
+accuracy: 
 
 ## Case X - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
