@@ -327,7 +327,8 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 | 86b | simple | minmax | - | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, again ran for 256 min with n_jobs = -1, didnt work |
 | 89 | simple | minmax | - | 6 | 300 | squared error | 60 | kbest | 30 | - | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
 | 102 | simple | minmax | - | 6 | 100 | squared error | 60 | - | 78 | estimators = 50 | 0.9975351111231496 | 0.5317120864929359 | 0.90158 | 24hour running: improved but not efficient |
-| 116 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | - | - | - | 78 | estimators = 50 | 0.9968308571583353 | 0.5404496829489119 | 0.84769 | very low. lets use this depth and repeat grid with estimators + learning rate |
+| 116 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | - | - | - | 78 | - | 0.9968308571583353 | 0.5404496829489119 | 0.84769 | very low. lets use this depth and repeat grid with estimators + learning rate |
+| 122 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | - | - | - | 78 | estimators = 10 | 0.9974809377412408 | 0.5458640497792794 | 0.88551 | bagging improved the same model, even at less estimators |
 
 total tests: 7  
 total submissions: 5   
