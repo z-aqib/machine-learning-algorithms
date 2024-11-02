@@ -1787,6 +1787,19 @@ accuracy: 0.92154
 --ab1.csv
 - crashed after 300mins (VS code shut down)
 
+## Case 126c - lgbm, feature importance decreased featuree
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 20 features
+--lgbm1.csv
+- 6min + 11min
+
+model accuracy =  0.9974267643593321    
+roc score =  0.5321714275725801    
+accuracy: 0.95323
+
 ## Case G - gboost, grid search for criterion
 - GradientBoostingClassifier(max_depth=3)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -1798,14 +1811,6 @@ accuracy: 0.92154
 - simple imputer
 - no feature selector
 --gb1.csv 
-
-## Case Z - lgbm, feature importance decreased featuree
-- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- simple imputer
-- maxabs scaler
-- algorithm feature importance of top 20 features
---lgbm1.csv
 
 ## Case W - xgboost, feature importance increased
 - xgb.XGBClassifier()

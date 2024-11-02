@@ -422,7 +422,8 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 | 104 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [50, 100, 200, 300] } | 2 | 300 | 0.05 | default = 20 | - | - | 78 | 0.9973725909774233 | 0.5521437437723113 | 0.94948 | increased FINALLY. lets run a second grid search with diff parameters | 
 | 111 | simple | maxabs | param_grid = { 'max_depth': [2, 3, 6, 7, 8, 9, 10], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [400, 500, 1000, 2000, 3000] } | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9974403077048093 | 0.5307284931466785 | 0.95106 | improved! lets grid with min child weight
 | 119 | simple | maxabs | param_grid = { 'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000] } | 3 | 1000 | 0.01 | 40 | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5320719837648076 | 0.95087 | deterioration, seems like the default=40 was better. now lets try lgbm feature importance |
-| 123 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importace | 35 | 0.9975757411595813 | 0.5317324536447935 | 0.95070 | nice, but a bit low. lets decrease features and try again | 
+| 123 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 35 | 0.9975757411595813 | 0.5317324536447935 | 0.95070 | nice, but a bit low. lets decrease features and try again | 
+| 126c | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974267643593321 | 0.5321714275725801 | 0.95323 | improved! lets decrease them further |
 
 starting accuracy: 0.75561     
 highest accuracy:    
