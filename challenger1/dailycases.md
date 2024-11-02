@@ -1836,6 +1836,22 @@ accuracy: 0.94903
 - no feature selector
 --gb1.csv 
 
+## Case T - lgbm, feature importance increased features
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 25 features
+--lgbm1.csv
+
+## Case X - xgboost, feature importance decreased
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- feature importance on top 20 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+
 ## Case Y - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', max_depth=9, verbose=2)
 - param_grid = {
