@@ -1758,19 +1758,7 @@ model accuracy =  0.9973319609409916
 roc score =  0.5050251256281407
 accuracy: 0.92154
 
-## Case Y - adaboost, grid search for best estimators and learning rate
-- AdaBoostClassifier()
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- param_grid = {
-    'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500],
-    'learning_rate': [0.001, 0.005, 0.01, 0.05]
-}
-- minmax scaler
-- simple imputer
-- no feature selector
---ab1.csv
-
-## Case F - catboost, grid search for estimators and learning rate
+## Case 126 - catboost, grid search for estimators and learning rate
 - case 121 is same but now we have increased iterations to find is 2000 the breakpoint? or was it 2000 because it was the highest parameter in case 121
 - CatBoostClassifier(max_depth=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -1783,6 +1771,19 @@ accuracy: 0.92154
 - maxabs scaler
 - no feature selection
 --cat1.csv
+
+## Case Y - adaboost, grid search for best estimators and learning rate
+// started at 2.Nov.24 1pm: acccording to calculations this will be completed at 3.Nov.24 6am. so this would most probably be entered as Day 14 entry
+- AdaBoostClassifier()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05]
+}
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
 
 ## Case G - gboost, grid search for criterion
 - GradientBoostingClassifier(max_depth=3)
@@ -1811,3 +1812,14 @@ accuracy: 0.92154
 - simple imputer
 - maxabs scaler
 --xgb1.csv
+
+## Case Y - randomforest, grid search for depth and estimators
+- RandomForestClassifier(criterion='entropy', max_depth=9, verbose=2)
+- param_grid = {
+    'n_estimators': [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700]
+}
+- best estimators: 
+- feature_importance_df['Feature'].head(35).values
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
