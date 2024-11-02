@@ -1764,3 +1764,17 @@ accuracy:
 - simple imputer
 - no feature selector
 --ab1.csv
+
+## Case F - catboost, grid search for estimators and learning rate
+- case 121 is same but now we have increased iterations to find is 2000 the breakpoint? or was it 2000 because it was the highest parameter in case 121
+- CatBoostClassifier(max_depth=1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- param_grid = {
+    'iterations': [2000, 2500, 3000, 3500],
+    'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9]
+}
+- best params: 
+- simple imputer
+- maxabs scaler
+- no feature selection
+--cat1.csv
