@@ -1669,7 +1669,7 @@ accuracy: 0.94989
 
 model accuracy =  0.9973861343229005    
 roc score =  0.5287075514634675
-accuracy: 
+accuracy: 0.94631
 
 ## Case 122 - gradboost, grid search for depth + bagging
 - same model trained as in case 116 is now being bagged, low bagging estimators though as 50 estimators take over 24 hours of running time (1 estimator takes approx 20-30 minutes on average)
