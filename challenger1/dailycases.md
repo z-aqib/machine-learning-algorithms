@@ -1778,3 +1778,15 @@ accuracy:
 - maxabs scaler
 - no feature selection
 --cat1.csv
+
+## Case G - gboost, grid search for criterion
+- GradientBoostingClassifier(max_depth=3)
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- param_grid = {
+    'criterion': ['friedman_mse', 'squared_error']
+}
+- best criteria: 
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv 

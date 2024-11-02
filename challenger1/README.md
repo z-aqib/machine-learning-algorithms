@@ -319,7 +319,7 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 ### Analyzing GradientBoosting
 | case number | imputer | scaler | grid | max depth | n estimators | criterion | max features | feature selection | no. of features | bagging | validation accuracy | roc | kaggle accuracy | analyzing |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 61c | simple | minmax | - | 6 | 300 | - | - | - | 78 | - | 0.9955442393380013 | 0.560056823582126 | 0.88298 | improved, lets add some features we used in decision trees |
+| 61c | simple | minmax | - | 6 | 300 | default = friedman_mse | - | - | 78 | - | 0.9955442393380013 | 0.560056823582126 | 0.88298 | improved, lets add some features we used in decision trees |
 | 65 | simple | minmax | - | 6 | 300 | squared-error | 60 | - | 78 | - | 0.9955984127199101 | 0.5545980654020854 | 0.88297 | accuracy remained same, lets increase the depth |
 | 67 | simple | minmax | - | 10 | 300 | squared error | 60 | - | 78 | - | 0.9953140024648889 | 0.5702606327046124 | 0.79753 | too high depth ruined the accuracy |
 | 80 | simple | minmax | - | 8 | 300 | squared error | 60 | - | 78 | - | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try decreasing depth now to 5 |
@@ -327,8 +327,8 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 | 86b | simple | minmax | - | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, again ran for 256 min with n_jobs = -1, didnt work |
 | 89 | simple | minmax | - | 6 | 300 | squared error | 60 | kbest | 30 | - | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
 | 102 | simple | minmax | - | 6 | 100 | squared error | 60 | - | 78 | estimators = 50 | 0.9975351111231496 | 0.5317120864929359 | 0.90158 | 24hour running: improved but not efficient |
-| 116 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | - | - | - | 78 | - | 0.9968308571583353 | 0.5404496829489119 | 0.84769 | very low. lets use this depth and repeat grid with estimators + learning rate |
-| 122 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | - | - | - | 78 | estimators = 10 | 0.9974809377412408 | 0.5458640497792794 | 0.88551 | bagging improved the same model, even at less estimators |
+| 116 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | default = friedman_mse | - | - | 78 | - | 0.9968308571583353 | 0.5404496829489119 | 0.84769 | very low. lets use this depth and repeat grid with estimators + learning rate |
+| 122 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | default = friedman_mse | - | - | 78 | estimators = 10 | 0.9974809377412408 | 0.5458640497792794 | 0.88551 | bagging improved the same model, even at less estimators |
 
 total tests: 7  
 total submissions: 5   
