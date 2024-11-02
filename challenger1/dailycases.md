@@ -1790,3 +1790,11 @@ accuracy:
 - simple imputer
 - no feature selector
 --gb1.csv 
+
+## Case Y - lgbm, feature importance decreased featuree
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 20 features
+--lgbm1.csv
