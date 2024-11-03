@@ -1943,7 +1943,7 @@ accuracy: 0.94664
 
 model accuracy =  0.997359047631946    
 roc score =  0.5319857527264058    
-accuracy:   
+accuracy: 0.94971  
 
 ## Case A - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()

@@ -453,7 +453,8 @@ analysis:
 | 124 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 35 | 0.9973725909774233 | 0.5274660496761139 | 0.95846 | wow! we can increase features in the next round |
 | 127 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 40 | 0.9975080244321952 | 0.5184142634887761 | 0.95371 | deterioration. lets decrease features in next round |
 | 129 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 30 | 0.9974403077048093 | 0.52283584980575 | 0.94984 | deterioration. would 36 be better? |
-| 130 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 36 | 0.9971694407952653 | 0.5118279679945126 | 0.95522 | deterioration. 35 was the breakpoint. 
+| 130 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 36 | 0.9971694407952653 | 0.5118279679945126 | 0.95522 | deterioration. 35 was the breakpoint. |
+| 135 | simple | maxabs | param_grid = { 'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9], 'n_estimators': [100, 200, 300, 400], 'max_depth': [1, 2, 3, 4] } | 200 | 2 | 0.1 | estimators = 50 | algprothm feature importance | 35 | 0.997359047631946 | 0.5319857527264058 | 0.94971 | deterioration, alot. looks like xgboost only works best with default parameters |
 
 # CatBoost
 
