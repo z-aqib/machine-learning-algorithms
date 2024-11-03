@@ -1956,3 +1956,15 @@ accuracy:
 - simple imputer
 - no feature selector
 --ab1.csv
+
+## Case 131 - gboost, grid search for estimators
+- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 200]
+}
+- best estimators: 
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv 
