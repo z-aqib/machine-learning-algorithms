@@ -1945,6 +1945,19 @@ model accuracy =  0.997359047631946
 roc score =  0.5319857527264058    
 accuracy: 0.94971  
 
+## Case 136 - lgbm, estimators increased
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 20 features
+--lgbm1.csv
+- 31min + 3min + 30min + 5min
+
+model accuracy =  0.9974809377412408    
+roc score =  0.5184913623160419
+accuracy: 0.94173
+
 ## Case A - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -1952,10 +1965,12 @@ accuracy: 0.94971
     'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300],
     'learning_rate': [0.001, 0.005]
 }
+- best params: {'learning_rate': 0.005, 'n_estimators': 300}
 - minmax scaler
 - simple imputer
 - no feature selector
 --ab1.csv
+- 210min + 167min + 
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
@@ -1968,14 +1983,6 @@ accuracy: 0.94971
 - simple imputer
 - no feature selector
 --gb1.csv 
-
-## Case L - lgbm, estimators increased
-- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) 
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- simple imputer
-- maxabs scaler
-- algorithm feature importance of top 20 features
---lgbm1.csv
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)

@@ -429,6 +429,7 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 | 126c | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974267643593321 | 0.5321714275725801 | 0.95323 | improved! lets decrease them further |
 | 128 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 15 | 0.9972777875590828 | 0.5286809703922187 | 0.94903 | deterioration. would they work at features = 25? |
 | 132 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 25 | 0.9974538510502864 | 0.5331293168263355 | 0.95242 | wow, nice, but not to the fullest. seems like features = 20 was the breakpoint. lets increase estimators |
+| 136 | simple | maxabs | - | 3 | 3000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974809377412408 | 0.5184913623160419 | 0.94173 | so low. i think this is enough testing on lgbm |
 
 starting accuracy: 0.75561     
 highest accuracy:    
