@@ -1878,7 +1878,7 @@ accuracy: 0.90057
 
 model accuracy =  0.9974538510502864    
 roc score =  0.5331293168263355 
-accuracy:
+accuracy: 0.95242
 
 ## Case 133 - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', max_depth=9, verbose=2)
