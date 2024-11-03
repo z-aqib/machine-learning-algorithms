@@ -468,6 +468,7 @@ analysis:
 | 115 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | default = 1000 | 1 | 0.108132 | default = Logloss | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5496287205207183 | 0.94063 | improved! lets do grid on iterations and learning rate |
 | 121 | simple | maxabs | param_grid = { 'iterations': [50, 100, 200, 300, 500, 600, 700, 900, 1000, 2000], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9] } | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | - | 78 | 0.5287075514634675 | 0.9973861343229005 | 0.94631 | improved! lets analyse if there are any other features otherwise we can apply feature importance |
 | 134 | simple | maxabs | param_grid = { 'iterations': [2000, 2200, 2500], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9] } | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5304944615658465 | 0.94664 | wow, improved further (same thing was run as case 121 lol). lets add some feature importance now |
+| 137 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 20 | 0.9975892845050585 | 0.519719707742552 | 0.95006 | omg wow. should we increase features or decrease? |
 
 no. of tries: 5
 no. of submissions: 5
