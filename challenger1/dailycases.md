@@ -1993,6 +1993,14 @@ accuracy: 0.95006
 - maxabs scaler
 --xgb1.csv
 
+## Case C - catboost, feature importance decreased
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 15 features
+--cat1.csv
+
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
 - param_grid = {
