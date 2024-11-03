@@ -1848,38 +1848,55 @@ model accuracy =  0.9971694407952653
 roc score =  0.5118279679945126 
 accuracy: 0.95522
 
-## Case G - gboost, grid search for criterion
+# DAY 14: Sunday 3rd November 2024
+
+## Case 131 - gboost, grid search for criterion
 - GradientBoostingClassifier(max_depth=3)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
 - param_grid = {
     'criterion': ['friedman_mse', 'squared_error']
 }
-- best criteria: 
+- best criteria: {'criterion': 'friedman_mse'}
 - minmax scaler
 - simple imputer
 - no feature selector
 --gb1.csv 
+- 92min + 156min + 163min
 
-## Case T - lgbm, feature importance increased features
+model accuracy =  0.9974132210138549    
+roc score =  0.5332722268995048  
+accuracy:
+
+## Case 132 - lgbm, feature importance increased features
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
 - maxabs scaler
 - algorithm feature importance of top 25 features
 --lgbm1.csv
+- 16min + 18min + 2min
 
-## Case Y - randomforest, grid search for depth and estimators
+model accuracy =  0.9974538510502864    
+roc score =  0.5331293168263355 
+accuracy:
+
+## Case 133 - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', max_depth=9, verbose=2)
 - param_grid = {
     'n_estimators': [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700]
 }
-- best estimators: 
+- best estimators: {'n_estimators': 650}
 - feature_importance_df['Feature'].head(35).values
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+- 463min + 12min + 145min + 13min
 
-## Case C - catboost, grid search for estimators and learning rate
+model accuracy =  0.9976570012324444    
+roc score =  0.5167597765363129 
+accuracy: 
+
+## Case 134 - catboost, grid search for estimators and learning rate
 - case 121 is same but now we have increased iterations to find is 2000 the breakpoint? or was it 2000 because it was the highest parameter in case 121
 - CatBoostClassifier(max_depth=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -1887,11 +1904,16 @@ accuracy: 0.95522
     'iterations': [2000, 2200, 2500],
     'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9]
 }
-- best params: 
+- best params: {'iterations': 2000, 'learning_rate': 0.1}
 - simple imputer
 - maxabs scaler
 - no feature selection
 --cat1.csv
+- 91min + 49min + 57min
+
+model accuracy =  0.9975892845050585    
+roc score =  0.5304944615658465    
+accuracy: 
 
 ## Case A - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
@@ -1904,3 +1926,16 @@ accuracy: 0.95522
 - simple imputer
 - no feature selector
 --ab1.csv
+
+## Case X - xgboost, grid search on all values
+- xgb.XGBClassifier()
+- param_grid = {
+    'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9],
+    'n_estimators': [100, 200, 300, 400],
+    'max_depth': [1, 2, 3, 4]
+}
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- feature importance on top 35 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
