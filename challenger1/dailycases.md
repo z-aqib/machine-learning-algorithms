@@ -1957,7 +1957,7 @@ accuracy:
 - no feature selector
 --ab1.csv
 
-## Case 131 - gboost, grid search for estimators
+## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
 - param_grid = {
@@ -1968,3 +1968,11 @@ accuracy:
 - simple imputer
 - no feature selector
 --gb1.csv 
+
+## Case L - lgbm, estimators increased
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance of top 20 features
+--lgbm1.csv
