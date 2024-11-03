@@ -1865,7 +1865,7 @@ accuracy: 0.95522
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5332722268995048  
-accuracy:
+accuracy: 0.90057
 
 ## Case 132 - lgbm, feature importance increased features
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
