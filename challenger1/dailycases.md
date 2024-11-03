@@ -1894,7 +1894,7 @@ accuracy: 0.95242
 
 model accuracy =  0.9976570012324444    
 roc score =  0.5167597765363129 
-accuracy: 
+accuracy: 0.92877
 
 ## Case 134 - catboost, grid search for estimators and learning rate
 - case 121 is same but now we have increased iterations to find is 2000 the breakpoint? or was it 2000 because it was the highest parameter in case 121

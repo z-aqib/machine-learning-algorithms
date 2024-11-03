@@ -292,6 +292,7 @@ kbest works better with lower number of features. as according to this table, kb
 | 83 | knn=7 | maxabs | - | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
 | 118 | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 35 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.93546 | improved! lets use some grid on RF to find best depth + estimators |
 | 125 | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'n_estimators': [50, 100, 200] } | 9 | 200 | algorithm feature importance | 35 | entropy | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.92154 | deterioration, lets increase estimators in depth to find the best estimators |
+| 133 | knn=7 | maxabs | param_grid = { 'n_estimators': [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700] } | 9 | 650 | algorithm feature importance | 35 | entropy | - | - | - | 0.9976570012324444 | 0.5167597765363129 | 0.92877 | deterioration, slight imporvement but overall less. lets introduce min samples split in grid |
 
 total tests: 9   
 total submissions: 9   
