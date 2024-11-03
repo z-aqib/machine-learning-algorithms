@@ -1976,3 +1976,14 @@ accuracy:
 - maxabs scaler
 - algorithm feature importance of top 20 features
 --lgbm1.csv
+
+## Case R - randomforest, grid search for min samples split
+- RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
+- param_grid = {
+    'min_samples_split': [5, 10, 15, 20, 30, 40, 50, 100, 200]
+}
+- best samples split: 
+- feature_importance_df['Feature'].head(35).values
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
