@@ -1972,29 +1972,6 @@ accuracy: 0.94173
 --ab1.csv
 - 210min + 167min + 
 
-## Case G - gboost, grid search for estimators
-- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
-- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
-- param_grid = {
-    'n_estimators': [50, 100, 200]
-}
-- best estimators: 
-- minmax scaler
-- simple imputer
-- no feature selector
---gb1.csv 
-
-## Case R - randomforest, grid search for min samples split
-- RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
-- param_grid = {
-    'min_samples_split': [5, 10, 15, 20, 30, 40, 50, 100, 200]
-}
-- best samples split: 
-- feature_importance_df['Feature'].head(35).values
-- knn=7 imputer
-- maxabs scaler
---rf1.csv
-
 ## Case C - catboost, feature importance introduced
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -2010,3 +1987,26 @@ accuracy: 0.94173
 - simple imputer
 - maxabs scaler
 --xgb1.csv
+
+## Case R - randomforest, grid search for min samples split
+- RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
+- param_grid = {
+    'min_samples_split': [5, 10, 15, 20, 30, 40, 50, 100, 200]
+}
+- best samples split: 
+- feature_importance_df['Feature'].head(35).values
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
+
+## Case G - gboost, grid search for estimators
+- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 200]
+}
+- best estimators: 
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv 
