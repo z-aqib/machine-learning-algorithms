@@ -278,7 +278,6 @@ kbest works better with lower number of features. as according to this table, kb
 # Random Forest
 
 ### Analyzing RandomForest
-
 | case number | imputer | scaler | grid | max depth | n estimators | feature selector | no. of features | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | 44 | simple | maxabs | - | 10 | 200 | - | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
@@ -455,7 +454,8 @@ analysis:
 | 127 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 40 | 0.9975080244321952 | 0.5184142634887761 | 0.95371 | deterioration. lets decrease features in next round |
 | 129 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 30 | 0.9974403077048093 | 0.52283584980575 | 0.94984 | deterioration. would 36 be better? |
 | 130 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 36 | 0.9971694407952653 | 0.5118279679945126 | 0.95522 | deterioration. 35 was the breakpoint. |
-| 135 | simple | maxabs | param_grid = { 'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9], 'n_estimators': [100, 200, 300, 400], 'max_depth': [1, 2, 3, 4] } | 200 | 2 | 0.1 | estimators = 50 | algprothm feature importance | 35 | 0.997359047631946 | 0.5319857527264058 | 0.94971 | deterioration, alot. looks like xgboost only works best with default parameters |
+| 135 | simple | maxabs | param_grid = { 'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9], 'n_estimators': [100, 200, 300, 400], 'max_depth': [1, 2, 3, 4] } | 200 | 2 | 0.1 | estimators = 50 | algorithm feature importance | 35 | 0.997359047631946 | 0.5319857527264058 | 0.94971 | deterioration, alot. looks like xgboost only works best with default parameters |
+| 138 | simple | maxabs | - | - | - | - | estimators = 100 | algorithm feature importance | 35 | 0.9976163711960129 | 0.5325815412932204 | 0.95979 | wow, lets increase bagging more |
 
 # CatBoost
 
