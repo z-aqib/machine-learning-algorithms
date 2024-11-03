@@ -2012,13 +2012,18 @@ accuracy:
 
 # DAY 15: Monday 4th November 2024
 
-## Case C - catboost, feature importance decreased
+## Case 141 - catboost, feature importance decreased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
 - maxabs scaler
 - algorithm feature importance on top 15 features
 --cat1.csv
+- 82min + 112min
+
+model accuracy =  0.997494481086718    
+roc score =  0.5264142921513115  
+accuracy: 
 
 ## Case A - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
