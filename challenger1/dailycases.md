@@ -1915,6 +1915,36 @@ model accuracy =  0.9975892845050585
 roc score =  0.5304944615658465    
 accuracy: 
 
+## Case 135 - xgboost, grid search on all values
+- xgb.XGBClassifier()
+- param_grid = {
+    'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9],
+    'n_estimators': [100, 200, 300, 400],
+    'max_depth': [1, 2, 3, 4]
+}
+- best parameters: {'learning_rate': 0.1, 'max_depth': 2, 'n_estimators': 200}
+- XGBClassifier(base_score=None, booster=None, callbacks=None,
+              colsample_bylevel=None, colsample_bynode=None,
+              colsample_bytree=None, device=None, early_stopping_rounds=None,
+              enable_categorical=False, eval_metric=None, feature_types=None,
+              gamma=None, grow_policy=None, importance_type=None,
+              interaction_constraints=None, learning_rate=0.1, max_bin=None,
+              max_cat_threshold=None, max_cat_to_onehot=None,
+              max_delta_step=None, max_depth=2, max_leaves=None,
+              min_child_weight=None, missing=nan, monotone_constraints=None,
+              multi_strategy=None, n_estimators=200, n_jobs=None,
+              num_parallel_tree=None, random_state=None, ...)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- feature importance on top 35 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+- 15min + 2min + 3min
+
+model accuracy =  0.997359047631946    
+roc score =  0.5319857527264058    
+accuracy:   
+
 ## Case A - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -1926,16 +1956,3 @@ accuracy:
 - simple imputer
 - no feature selector
 --ab1.csv
-
-## Case X - xgboost, grid search on all values
-- xgb.XGBClassifier()
-- param_grid = {
-    'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9],
-    'n_estimators': [100, 200, 300, 400],
-    'max_depth': [1, 2, 3, 4]
-}
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- feature importance on top 35 features
-- simple imputer
-- maxabs scaler
---xgb1.csv
