@@ -1913,7 +1913,7 @@ accuracy: 0.92877
 
 model accuracy =  0.9975892845050585    
 roc score =  0.5304944615658465    
-accuracy: 
+accuracy: 0.94664
 
 ## Case 135 - xgboost, grid search on all values
 - xgb.XGBClassifier()
