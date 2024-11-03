@@ -1987,3 +1987,11 @@ accuracy:
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+
+## Case C - catboost, feature importance introduced
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 20 features
+--cat1.csv
