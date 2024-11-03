@@ -1995,3 +1995,11 @@ accuracy: 0.94971
 - maxabs scaler
 - algorithm feature importance on top 20 features
 --cat1.csv
+
+## Case X - xgboost, bagging increased
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- feature importance on top 35 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
