@@ -456,6 +456,7 @@ analysis:
 | 130 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 36 | 0.9971694407952653 | 0.5118279679945126 | 0.95522 | deterioration. 35 was the breakpoint. |
 | 135 | simple | maxabs | param_grid = { 'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9], 'n_estimators': [100, 200, 300, 400], 'max_depth': [1, 2, 3, 4] } | 200 | 2 | 0.1 | estimators = 50 | algorithm feature importance | 35 | 0.997359047631946 | 0.5319857527264058 | 0.94971 | deterioration, alot. looks like xgboost only works best with default parameters |
 | 138 | simple | maxabs | - | - | - | - | estimators = 100 | algorithm feature importance | 35 | 0.9976163711960129 | 0.5325815412932204 | 0.95979 | wow, lets increase bagging more |
+| 139 | simple | maxabs | - | - | - | - | estimators = 150 | algorithm feature importance | 35 | 0.9973725909774233 | 0.5249728397408912 | 0.95586 | uh oh. lets try 99 baggers lol |
 
 # CatBoost
 

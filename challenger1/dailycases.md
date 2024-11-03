@@ -1984,6 +1984,29 @@ model accuracy =  0.9976163711960129
 roc score =  0.5325815412932204
 accuracy: 0.95979
 
+## Case 139 - xgboost, bagging increased
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=150, verbose=2)
+- feature importance on top 35 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+- 7min + 9min
+
+model accuracy =  0.9973725909774233    
+roc score =  0.5249728397408912 
+accuracy: 
+
+## Case C - catboost, feature importance decreased
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 15 features
+--cat1.csv
+
+# DAY 15: Monday 4th November 2024
+
 ## Case A - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -1996,15 +2019,7 @@ accuracy: 0.95979
 - simple imputer
 - no feature selector
 --ab1.csv
-- 210min + 167min + 
-
-## Case C - catboost, feature importance decreased
-- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- simple imputer
-- maxabs scaler
-- algorithm feature importance on top 15 features
---cat1.csv
+- 210min + 376min ongoing
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
