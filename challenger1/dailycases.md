@@ -2036,7 +2036,7 @@ accuracy: 0.94413
 
 model accuracy =  0.997494481086718    
 roc score =  0.5264142921513115     
-accuracy: 
+accuracy: 0.95191
 
 ## Case X - xgboost, bagging for loop
 - xgb.XGBClassifier()
