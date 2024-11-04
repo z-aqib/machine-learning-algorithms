@@ -580,3 +580,4 @@ analyse:
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | 148 | 181min | simple | maxabs | - | default = 100 | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging, that was very long |
 | 149 | 7min | simple | maxabs | - | default = 100 | - | - | 78 | 0.9973861343229005 | 0.5051478496636952 | 0.82590 | so bagging matters alot, lets check, does estimators mean alot too? |
+| 150 | 3min | simple | maxabs | - | 10 | - | - | 78 | 0.9976299145414901 | 0.5138888888888888 | 0.66440 | wow. low. so we need to do bagging + high estimators |

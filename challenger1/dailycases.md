@@ -2130,19 +2130,24 @@ accuracy: 0.91809
 - maxabs scaler
 - no feature selection
 --ert1.csv
-- 4min + 3min
+- 4min + 3min = 7min
 
 model accuracy =  0.9973861343229005    
 roc score =  0.5051478496636952    
-accuracy: 
+accuracy: 0.82590
 
 ## Case 150 - ert, estimators decreased
-- ExtraTreesClassifier()
+- ExtraTreesClassifier(n_estimators=10, verbose=2)
 - no bagging
 - simple imputer
 - maxabs scaler
 - no feature selection
 --ert1.csv
+- 1min + 2min = 3min
+
+model accuracy =  0.9976299145414901    
+roc score =  0.5138888888888888    
+accuracy: 0.66440
 
 # DAY 16: Tuesday 5th November 2024
 
