@@ -2151,6 +2151,14 @@ accuracy: 0.66440
 
 # DAY 16: Tuesday 5th November 2024
 
+## Case E - ert, bagging increased
+- ExtraTreesClassifier(verbose=2)
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
+
 ## Case C - catboost, bagging increased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
