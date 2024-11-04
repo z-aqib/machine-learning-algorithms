@@ -36,7 +36,7 @@ Algorithms worked on:
 | Random Forest | kbest (atleast 2), PCA, bagging (atleast 3), algo feature imp (atleast 2) | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
 | Gradient Boosting | kbest (atleast 2), PCA, algo feature imp (atleast 3) | 7 | 5 | 0.90158 | 102 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60), BaggingClassifier(estimator=model, n_estimators=50) |
 | Adaptive Boosting | bagging=10 on best, PCA, algo feature imp (atleast 3) | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | - | - | - | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| Light GBM | forward selection (atleast 3), PCA | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | XGBoost | - | - | - | - | - | - |
 | CatBoost | - | - | - | - | - | - |
 | BaggingClassifier | - | - | - | - | - | - |
@@ -476,11 +476,11 @@ this table analyses with constant estimators of 170.
 | 132 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 25 | 0.9974538510502864 | 0.5331293168263355 | 0.95242 | wow, nice, but not to the fullest. seems like features = 20 was the breakpoint. lets increase estimators |
 | 136 | simple | maxabs | - | 3 | 3000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974809377412408 | 0.5184913623160419 | 0.94173 | so low. i think this is enough testing on lgbm |
 
-total tests: 22
-total submissions: 20
-starting accuracy: 0.75561     
-highest accuracy: 0.95323 (case 126c)    
-highest parameters:
+total tests: 22    
+total submissions: 20     
+starting accuracy: 0.75561         
+highest accuracy: 0.95323 (case 126c)        
+highest parameters:     
 - imputer: simple
 - scaler: maxabs
 - max depth: 3
@@ -489,7 +489,7 @@ highest parameters:
 - bagging estimators: 50
 - algorithm feature importance: 20 features
 
-analysis: 
+analysis:     
 - relationship found between number of estimators and learning rate. less estimators == high learning rate. more estimators == low learning rate
 - 20 features are the breakpoint, too less decreases accuracy whether it be algorithm feature importance or kbest feature selector, and too many is also bad
 - too much depth can be long and ineffective, smaller depth is better
@@ -499,7 +499,27 @@ analysis:
 ### Analyzing Estimators and Learning Rate
 | case number | estimators | learning rate | accuracy |
 | ----------- | ---------- | ------------- | -------- | 
+| 94 | 100 | 0.5 | 0.37172 |
+| 91, 95, 96, 97 | 100 | 0.9 | 0.75561, 0.77939, 0.77699, 0.49841 |
+| 98 | 200 | 0.1 | 0.87767 |
+| 99, 100, 101, 103 | 300 | 0.01 | 0.94165, 0.94321, 0.94351, 0.94395 |
+| 104b | 300 | 0.05 | 0.94948 |
+| 92 | 400 | 0.9 | 0.50533 |
+| 93 | 400 | 0.5 | 0.50408 | 
+| 111, 119, 123c, 126c, 128, 132 | 1000 | 0.01 | 0.95106, 0.95087, 0.95070, 0.95323, 0.94903, 0.95242 |
+| 136 | 3000 | 0.01 | 0.94173 |
 
+based on this table, we can see that if estimators are small <=100, then a higher learning rate i preferred however if the learning rate is high >=300, ==1000, then a lower learning rate is preferred. too much high requires too much low, otherwise accuracy decreases. 
+
+### Analyzing Algorithm Feature Importance
+| case number | features | accuracy |
+| ----------- | -------- | -------- |
+| 128 | 15 | 0.94903 |
+| 126c, 136 | 20 | 0.95323, 0.94173 |
+| 132 | 25 | 0.95242 |
+| 123c | 35 | 0.95070 |
+
+according to this table, 20, 25, 35 are good accuracies however 20 is the highest. it does not perform well on lower number of features. 
 
 # XGBoost
 
