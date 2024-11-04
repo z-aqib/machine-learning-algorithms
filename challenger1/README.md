@@ -457,7 +457,8 @@ analysis:
 | 135 | simple | maxabs | param_grid = { 'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9], 'n_estimators': [100, 200, 300, 400], 'max_depth': [1, 2, 3, 4] } | 200 | 2 | 0.1 | estimators = 50 | algorithm feature importance | 35 | 0.997359047631946 | 0.5319857527264058 | 0.94971 | deterioration, alot. looks like xgboost only works best with default parameters |
 | 138 | simple | maxabs | - | - | - | - | estimators = 100 | algorithm feature importance | 35 | 0.9976163711960129 | 0.5325815412932204 | 0.95979 | wow, lets increase bagging more |
 | 139 | simple | maxabs | - | - | - | - | estimators = 150 | algorithm feature importance | 35 | 0.9973725909774233 | 0.5249728397408912 | 0.95586 | uh oh. lets try 99 baggers lol |
-| 140 | simple | maxabs | - | - | - | - | estimators = 99 | algorithm feature importance | 35 | 0.997697631268876 | 0.5251396648044693 | 0.94394 | YAAR WHAT is this outlier. lets make a new file which analyses all the roc's at all bagging estimators 1 to 150 and selects the best one |
+| 140 | simple | maxabs | - | - | - | - | estimators = 99 | algorithm feature importance | 35 | 0.997697631268876 | 0.5251396648044693 | 0.94394 | YAAR WHAT. this is an outlier. lets make a new file which analyses all the roc's at all bagging estimators 1 to 150 and selects the best one |
+| 141 | simple | maxabs | forloop for bagging, highest roc 1 to 100 estimators | - | - | - | estimatos = 4 | algorithm feature importance | 35 | 0.9975351111231496 | 0.5287822330483466 | 0.94413 | so lets try lowest ROC |
 
 # CatBoost
 
