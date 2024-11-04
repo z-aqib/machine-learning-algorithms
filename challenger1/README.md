@@ -35,8 +35,8 @@ Algorithms worked on:
 | K-Nearest Neighbor | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
 | Random Forest | 9 | 9 | 0.93452 | 78 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
 | Gradient Boosting | 7 | 5 | 0.88298 | 61c | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
-| Adaptive Boosting | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | 0.77939 | 95 | simple | minmax | - | 78 | lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9), BaggingClassifier(estimator=model, n_estimators=50) |
+| Adaptive Boosting | - | - | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
+| Light GBM | - | - | 0.77939 | 95 | simple | minmax | - | 78 | lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9), BaggingClassifier(estimator=model, n_estimators=50) |
 | XGBoost | - | - | - | - | - |
 | CatBoost | - | - | - | - | - |
 | BaggingClassifier | - | - | - | - | - |
