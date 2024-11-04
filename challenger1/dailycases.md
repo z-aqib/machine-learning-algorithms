@@ -2100,3 +2100,16 @@ accuracy:
 - simple imputer
 - no feature selector
 --gb1.csv 
+
+## Case A - adaboost, grid search for estimators and learning rate, lowered bagging
+- AdaBoostClassifier()
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300],
+    'learning_rate': [0.01, 0.05]
+}
+- best params: 
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
