@@ -2097,7 +2097,18 @@ model accuracy =  0.9973048742500372
 roc score =  0.5    
 accuracy: 0.50000
 
-// currently running
+## Case 147 - catboost, feature importance decreased
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 13 features
+--cat1.csv
+- 26min + 45min
+
+model accuracy =  0.9976028278505357    
+roc score =  0.5190217391304348    
+accuracy: 0.94950
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
@@ -2109,6 +2120,7 @@ accuracy: 0.50000
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
+- crashed after 150mins
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
@@ -2121,16 +2133,9 @@ accuracy: 0.50000
 - simple imputer
 - no feature selector
 --gb1.csv 
+- crashed after 200mins
 
 // need to run, perhaps raat ko
-
-## Case C - catboost, feature importance decreased
-- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- simple imputer
-- maxabs scaler
-- algorithm feature importance on top 13 features
---cat1.csv
 
 ## Case A - adaboost, grid search for estimators and learning rate, lowered bagging
 - AdaBoostClassifier()

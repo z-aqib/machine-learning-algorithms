@@ -477,6 +477,7 @@ analysis:
 | 137 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 20 | 0.9975892845050585 | 0.519719707742552 | 0.95006 | omg wow. should we increase features or decrease? |
 | 142 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 15 | 0.997494481086718 | 0.5264142921513115 | 0.95191 | wow. lets decrease to 14 |
 | 144 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 14 | 0.9975215677776724 | 0.5188849755093714 | 0.95270 | lets decrease to 13 |
+| 147 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 13 | 0.9976028278505357 | 0.5190217391304348 | 0.94950 | breakpoint found. lets increase bagging now |
 
 no. of tries: 5
 no. of submissions: 5
