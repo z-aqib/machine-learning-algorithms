@@ -2038,16 +2038,7 @@ model accuracy =  0.997494481086718
 roc score =  0.5264142921513115     
 accuracy: 0.95191
 
-## Case X - xgboost, bagging for loop
-- xgb.XGBClassifier()
-- xgboostANDbagging.ipynb is used, in which a for-loop is used and each bagging estimator is analysed to find the best bagging estimators. the LOWEST ROC one is chosen which is
-- 
-- feature importance on top 35 features
-- simple imputer
-- maxabs scaler
---xgbBagging1.csv
-
-## Case A - adaboost, grid search for best estimators and learning rate
+## Case 143 - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -2059,7 +2050,33 @@ accuracy: 0.95191
 - simple imputer
 - no feature selector
 --ab1.csv
-- 210min + 376min ongoing
+- 210min + 747min + 15min + 644min + 15min
+
+model accuracy =  0.9971965274862197    
+roc score =  0.5    
+accuracy: 
+
+## Case 143 - catboost, feature importance decreased
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 14 features
+--cat1.csv
+- 71min + 
+
+model accuracy =  0.9975215677776724    
+roc score =  0.5188849755093714    
+accuracy: 
+
+## Case X - xgboost, bagging for loop
+- xgb.XGBClassifier()
+- xgboostANDbagging.ipynb is used, in which a for-loop is used and each bagging estimator is analysed to find the best bagging estimators. the LOWEST ROC one is chosen which is
+- 
+- feature importance on top 35 features
+- simple imputer
+- maxabs scaler
+--xgbBagging1.csv
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
