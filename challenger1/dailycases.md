@@ -2025,7 +2025,7 @@ model accuracy = 0.9975351111231496
 roc = 0.5287822330483466
 accuracy: 0.94413
 
-## Case 141 - catboost, feature importance decreased
+## Case 142 - catboost, feature importance decreased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -2037,6 +2037,15 @@ accuracy: 0.94413
 model accuracy =  0.997494481086718    
 roc score =  0.5264142921513115     
 accuracy: 
+
+## Case X - xgboost, bagging for loop
+- xgb.XGBClassifier()
+- xgboostANDbagging.ipynb is used, in which a for-loop is used and each bagging estimator is analysed to find the best bagging estimators. the LOWEST ROC one is chosen which is
+- 
+- feature importance on top 35 features
+- simple imputer
+- maxabs scaler
+--xgbBagging1.csv
 
 ## Case A - adaboost, grid search for best estimators and learning rate
 - AdaBoostClassifier()
