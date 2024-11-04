@@ -474,6 +474,7 @@ analysis:
 | 134 | simple | maxabs | param_grid = { 'iterations': [2000, 2200, 2500], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9] } | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5304944615658465 | 0.94664 | wow, improved further (same thing was run as case 121 lol). lets add some feature importance now |
 | 137 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 20 | 0.9975892845050585 | 0.519719707742552 | 0.95006 | omg wow. should we increase features or decrease? |
 | 142 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 15 | 0.997494481086718 | 0.5264142921513115 | 0.95191 | wow. lets decrease to 14 |
+| 144 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 14 | 0.9975215677776724 | 0.5188849755093714 | 0.95270 | lets decrease to 13 |
 
 no. of tries: 5
 no. of submissions: 5

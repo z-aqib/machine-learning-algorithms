@@ -2063,7 +2063,7 @@ accuracy:
 - maxabs scaler
 - algorithm feature importance on top 14 features
 --cat1.csv
-- 71min + 
+- 71min + 39min
 
 model accuracy =  0.9975215677776724    
 roc score =  0.5188849755093714    
