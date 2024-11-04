@@ -459,7 +459,8 @@ analysis:
 | 138 | simple | maxabs | - | - | - | - | estimators = 100 | algorithm feature importance | 35 | 0.9976163711960129 | 0.5325815412932204 | 0.95979 | wow, lets increase bagging more |
 | 139 | simple | maxabs | - | - | - | - | estimators = 150 | algorithm feature importance | 35 | 0.9973725909774233 | 0.5249728397408912 | 0.95586 | uh oh. lets try 99 baggers lol |
 | 140 | simple | maxabs | - | - | - | - | estimators = 99 | algorithm feature importance | 35 | 0.997697631268876 | 0.5251396648044693 | 0.94394 | YAAR WHAT. this is an outlier. lets make a new file which analyses all the roc's at all bagging estimators 1 to 150 and selects the best one |
-| 141 | simple | maxabs | forloop for bagging, highest roc 1 to 100 estimators | - | - | - | estimatos = 4 | algorithm feature importance | 35 | 0.9975351111231496 | 0.5287822330483466 | 0.94413 | so lets try lowest ROC |
+| 141 | simple | maxabs | forloop for bagging, highest roc 1 to 100 estimators | - | - | - | estimators = 4 | algorithm feature importance | 35 | 0.9975351111231496 | 0.5287822330483466 | 0.94413 | so lets try lowest ROC |
+| 145 | simple | maxabs | forloop for bagging, lowest roc 1 to 100 estimators | - | - | - | estimators = 3 | algorithm feature importance | 35 | 0.997494481086718 | 0.5107323218497934 | 0.94978 | decreased like alot. so its not roc dependent |
 
 # CatBoost
 

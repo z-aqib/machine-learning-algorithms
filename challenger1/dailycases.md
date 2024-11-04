@@ -2069,14 +2069,19 @@ model accuracy =  0.9975215677776724
 roc score =  0.5188849755093714    
 accuracy: 
 
-## Case X - xgboost, bagging for loop
+## Case 145 - xgboost, bagging for loop
 - xgb.XGBClassifier()
 - xgboostANDbagging.ipynb is used, in which a for-loop is used and each bagging estimator is analysed to find the best bagging estimators. the LOWEST ROC one is chosen which is
-- 
+- BaggingClassifier(estimator=model, n_estimators=3, verbose=2)
 - feature importance on top 35 features
 - simple imputer
 - maxabs scaler
 --xgbBagging1.csv
+- 148min
+
+model accuracy = 0.997494481086718
+roc = 0.5107323218497934
+accuracy: 0.94978
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
