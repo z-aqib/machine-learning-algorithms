@@ -2056,7 +2056,7 @@ model accuracy =  0.9971965274862197
 roc score =  0.5    
 accuracy: 
 
-## Case 143 - catboost, feature importance decreased
+## Case 144 - catboost, feature importance decreased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -2100,6 +2100,14 @@ accuracy:
 - simple imputer
 - no feature selector
 --gb1.csv 
+
+## Case C - catboost, feature importance decreased
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 13 features
+--cat1.csv
 
 ## Case A - adaboost, grid search for estimators and learning rate, lowered bagging
 - AdaBoostClassifier()
