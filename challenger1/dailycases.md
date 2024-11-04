@@ -2114,6 +2114,15 @@ accuracy: 0.94978
 - algorithm feature importance on top 13 features
 --cat1.csv
 
+## Case X - xgboost, correlation filter introduced
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- feature importance on top 35 features
+- filter: correlation > 0.9, features left = 
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+
 ## Case A - adaboost, grid search for estimators and learning rate, lowered bagging
 - AdaBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
