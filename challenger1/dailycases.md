@@ -2124,6 +2124,19 @@ roc score =  0.5028089887640449
 accuracy: 0.91809
 
 ## Case 149 - ert, no bagging
+- ExtraTreesClassifier(verbose=2) # verbose helps display the tree output to know status of the work going on
+- no bagging
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
+- 4min + 3min
+
+model accuracy =  0.9973861343229005    
+roc score =  0.5051478496636952    
+accuracy: 
+
+## Case 150 - ert, estimators decreased
 - ExtraTreesClassifier()
 - no bagging
 - simple imputer
@@ -2131,13 +2144,7 @@ accuracy: 0.91809
 - no feature selection
 --ert1.csv
 
-## Case 150 - ert, boostrap true
-- ExtraTreesClassifier()
-- no bagging
-- simple imputer
-- maxabs scaler
-- no feature selection
---ert1.csv
+# DAY 16: Tuesday 5th November 2024
 
 ## Case C - catboost, bagging increased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)

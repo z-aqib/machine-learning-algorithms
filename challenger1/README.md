@@ -578,4 +578,5 @@ analyse:
 ### Analyzing ERT
 | case number | time | imputer | scaler | grid | estimators | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 148 | 181min | simple | maxabs | - | - | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging |
+| 148 | 181min | simple | maxabs | - | default = 100 | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging, that was very long |
+| 149 | 7min | simple | maxabs | - | default = 100 | - | - | 78 | 0.9973861343229005 | 0.5051478496636952 | 0.82590 | so bagging matters alot, lets check, does estimators mean alot too? |
