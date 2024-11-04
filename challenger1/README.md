@@ -28,21 +28,21 @@ Work done daily:
 
 Algorithms worked on: 
 
-| Algorithm Name | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
-| - | - | - | - | - | - | - | - | - | - |
-| Decision Tree | 30 | 30 | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | 
-| Naive Bayes | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
-| K-Nearest Neighbor | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | 9 | 9 | 0.93452 | 78 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | 7 | 5 | 0.88298 | 61c | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=300) |
-| Adaptive Boosting | - | - | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | - | - | 0.77939 | 95 | simple | minmax | - | 78 | lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9), BaggingClassifier(estimator=model, n_estimators=50) |
-| XGBoost | - | - | - | - | - |
-| CatBoost | - | - | - | - | - |
-| BaggingClassifier | - | - | - | - | - |
-| ExtraTree Classifier (Extremely Randomized Tree) | - | - | - | - | - |
-| Voting | - | - | - | - | - |
-| Stacking | - | - | - | - | - |
+| Algorithm Name | Status | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
+| - | - | - | - | - | - | - | - | - | - | - |
+| Decision Tree | bagging & PCA left | 30 | 30 | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | 
+| Naive Bayes | bagging & PCA left | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
+| K-Nearest Neighbor | bagging & PCA left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| Random Forest | kbest (atleast 2), PCA, bagging (atleast 3), algo feature imp (atleast 2) | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Gradient Boosting | kbest (atleast 2), PCA, algo feature imp (atleast 3) | 7 | 5 | 0.90158 | 102 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60), BaggingClassifier(estimator=model, n_estimators=50) |
+| Adaptive Boosting | bagging=10 on best, PCA, algo feature imp (atleast 3) | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
+| Light GBM | - | - | - | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| XGBoost | - | - | - | - | - | - |
+| CatBoost | - | - | - | - | - | - |
+| BaggingClassifier | - | - | - | - | - | - |
+| ExtraTree Classifier (Extremely Randomized Tree) | - | - | - | - | - | - |
+| Voting | - | - | - | - | - | - |
+| Stacking | - | - | - | - | - | - |
 
 # DecisionTrees
 
@@ -289,19 +289,32 @@ kbest works better with lower number of features. as according to this table, kb
 | 68 | knn=7 | maxabs | - | 10 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9972777875590828 | 0.5 | 0.93256 | depth is increasing accuracy |
 | 78 | knn=7 | maxabs | - | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
 | 83 | knn=7 | maxabs | - | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
-| 118 | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 35 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.93546 | improved! lets use some grid on RF to find best depth + estimators |
+| 118 | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 35 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.93546 | BEST CASE: improved! lets use some grid on RF to find best depth + estimators |
+| 123b | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],  'n_estimators': [50, 100, 200, 300, 400, 500, 1000] } | - | - | algorithm feature importance | 35 | entropy | - | - | - | - | - | - | error, code stopped after 9hours of running |
 | 125 | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'n_estimators': [50, 100, 200] } | 9 | 200 | algorithm feature importance | 35 | entropy | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.92154 | deterioration, lets increase estimators in depth to find the best estimators |
 | 133 | knn=7 | maxabs | param_grid = { 'n_estimators': [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700] } | 9 | 650 | algorithm feature importance | 35 | entropy | - | - | - | 0.9976570012324444 | 0.5167597765363129 | 0.92877 | deterioration, slight imporvement but overall less. lets introduce min samples split in grid |
 
-total tests: 9   
-total submissions: 9   
+total tests: 13   
+total submissions: 12   
 started accuracy: 0.90507   
-highest accuracy: X (case Y)    
+highest accuracy: 0.93546 (case 118)    
 highest parameters: 
-- params
+- imputer: knn=7
+- scaler: maxabs
+- max depth: 11
+- estimators: 400
+- criterion: entropy
+- min samples split: 15
+- max features: 60
+- min samples leaf: 80
+- algorithm feature importance: 35 features
 
 analysis:
 - higher depth of trees allows greater accuracy while lower depth moves to underfitting
+- gini underperforms while entropy performs way better
+- kbest feature selection doesnt work well with random forest (wasnt very tested heavily to say this)
+- algorithm feature importance improves the accuracy
+- grid search takes alot of time in random forest
 
 ### Analyzing Depth of Trees
 | case number | max_depth | kaggle accuracy |
@@ -310,8 +323,9 @@ analysis:
 | 60 | 6 | 0.91309 |
 | 62 | 7 | 0.92693 |
 | 66 | 8 | 0.93079 |
+| 125, 133 | 9 | 0.92154, 0.92877 |
 | 44, 68 | 10 | 0.90507, 0.93256 |
-| 78, 83 | 11 | 0.93452, 0.92633 |
+| 78, 83, 118 | 11 | 0.93452, 0.92633, 0.93546 |
 
 from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 to some extent. thus, the larger the tree, the more the near the breakpoint. we have not found the breakpoint yet. 
 
@@ -323,28 +337,46 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 | 61c | simple | minmax | - | 6 | 300 | default = friedman_mse | - | - | 78 | - | 0.9955442393380013 | 0.560056823582126 | 0.88298 | improved, lets add some features we used in decision trees |
 | 65 | simple | minmax | - | 6 | 300 | squared-error | 60 | - | 78 | - | 0.9955984127199101 | 0.5545980654020854 | 0.88297 | accuracy remained same, lets increase the depth |
 | 67 | simple | minmax | - | 10 | 300 | squared error | 60 | - | 78 | - | 0.9953140024648889 | 0.5702606327046124 | 0.79753 | too high depth ruined the accuracy |
-| 80 | simple | minmax | - | 8 | 300 | squared error | 60 | - | 78 | - | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try decreasing depth now to 5 |
+| 80 | simple | minmax | - | 8 | 300 | squared error | 60 | - | 78 | - | 0.9951514823191625 | 0.5543197973296156 | 0.83659 | too low, lets try feature selection |
 | 86a | simple | minmax | - | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, ran for 756 min, didnt work |
 | 86b | simple | minmax | - | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, again ran for 256 min with n_jobs = -1, didnt work |
 | 89 | simple | minmax | - | 6 | 300 | squared error | 60 | kbest | 30 | - | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
-| 102 | simple | minmax | - | 6 | 100 | squared error | 60 | - | 78 | estimators = 50 | 0.9975351111231496 | 0.5317120864929359 | 0.90158 | 24hour running: improved but not efficient |
+| 102 | simple | minmax | - | 6 | 100 | squared error | 60 | - | 78 | estimators = 50 | 0.9975351111231496 | 0.5317120864929359 | 0.90158 | BEST CASE: 24hour running: improved but not efficient |
 | 116 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | default = friedman_mse | - | - | 78 | - | 0.9968308571583353 | 0.5404496829489119 | 0.84769 | very low. lets use this depth and repeat grid with estimators + learning rate |
 | 122 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | default = friedman_mse | - | - | 78 | estimators = 10 | 0.9974809377412408 | 0.5458640497792794 | 0.88551 | bagging improved the same model, even at less estimators |
 | 131 | simple | minmax | param_grid = { 'criterion': ['friedman_mse', 'squared_error'] } | 3 | - | friedman_mse | - | - | 78 | estimators = 10 | 0.9974132210138549 | 0.5332722268995048 | 0.90057 | 7hour running: improved and more effecient. lets do grid on estimators next |
 
-total tests: 7  
-total submissions: 5   
+total tests: 11  
+total submissions: 9   
 started accuracy: 0.88298   
-highest accuracy: X (case Y)   
+highest accuracy: 0.90158 (case 102)   
 highest case parameters:
-- params
+- imputer: simple
+- scaler: minmax
+- max depth: 6
+- estimators: 100
+- criterion: squared_error
+- max features: 60
+- bagging of 50 estimators
+- no feature selection
 
 analysis:
 - each submission took AT LEAST three hours and more. some submissions took exceptional time like 12+ hours. 
 - boosting is itself a very slow algorithm. using any forward or backword feature selector takes more than 12 hours and still doesnt even run on train data let alone full data and prediction
 - the max_depth breakpoint was 6. too high depth leads to overfitting thus low accuracy
 - kbest could not be rigourously tested as each submission took over 3 hours. 
-- bagging does work but it takes extremely long, **over 24 hours of running** and laptop use. its not very feasible. accuracy improved by 2 percent but very inefficient. 
+- bagging does work but it takes extremely long, **over 24 hours of running** and laptop use. its not very feasible. accuracy improved by 2 percent but very inefficient. better to use 10 estimators instead of 50, whereas 50 gives better results
+- friedman_mse criterion is much better than squared_error
+
+### Analyzing depth
+| case number | depth | accuracy |
+| ----------- | ----- | -------- | 
+| 116, 122, 131 | 3 | 0.84769, 0.88551, 0.90057 |
+| 61c, 65, 89, 102 | 6 | 0.88298, 0.88297, 0.85929, 0.90158 |
+| 80 | 8 | 0.83659 |
+| 67 | 10 | 0.79753 |
+
+according to this table, higher depth doesnt have much power, but differnet values such as bagging and other parameters matter. on average, smaller depths performed better. 
 
 # Adaptive Boosting
 
@@ -353,30 +385,39 @@ analysis:
 | - | - | - | - | - | - | - | - | - | - | - | - | - |
 | 69 | simple | minmax | - | 100 | default = 0.5 | - | - | 78 | 0.9969527472676301 | 0.5430550209247345 | 0.94475 | - |
 | 70 | simple | minmax | - | 200 | default = 0.5 | - | - | 78 | 0.996885030540244 | 0.5717622628834583 | 0.93379 | deterioration, too high estimators | 
-| 71 | simple | minmax | - | 50 | default = 0.5 | - | - | 78 | 0.9970746373769248 | 0.5522487676032429 | 0.93853 | deterioration, too low estimators |
-| 72 | simple | minmax | - | 75 | default = 0.5 | - | - | 78 | 0.9966141636307001 | 0.5660048884094492 | 0.94053 | improvement but not to the highest |
+| 71 | simple | minmax | - | 50  | default = 0.5 | - | - | 78 | 0.9970746373769248 | 0.5522487676032429 | 0.93853 | deterioration, too low estimators |
+| 72 | simple | minmax | - | 75  | default = 0.5 | - | - | 78 | 0.9966141636307001 | 0.5660048884094492 | 0.94053 | improvement but not to the highest |
 | 73 | simple | minmax | - | 110 | default = 0.5 | - | - | 78 | 0.9965464469033141 | 0.5644500047530453 | 0.94521 | improved! best estimators are between 100 and 200 |
 | 74 | simple | minmax | - | 150 | default = 0.5 | - | - | 78 | 0.9971288107588336 | 0.5607445471728567 | 0.94780 | more improvement, we are closer to the breakpoint |
 | 75 | simple | minmax | - | 160 | default = 0.5 | - | - | 78 | 0.9967360537399949 | 0.5648649150311703 | 0.94948 | lets increase 10 further |
-| 76 | simple | minmax | - | 170 | default = 0.5 | - | - | 78 | 0.997088180722402 | 0.563818101949167 | 0.94966 | highest, lets increase 10 further |
+| 76 | simple | minmax | - | 170 | default = 0.5 | - | - | 78 | 0.997088180722402 | 0.563818101949167 | 0.94966 | BEST CASE: highest, lets increase 10 further |
 | 77 | simple | minmax | - | 180 | default = 0.5 | - | - | 78 | 0.9969933773040617 | 0.5571944470850252 | 0.93516 | deterioration, breakpoint found! if possible, can try 175 to see if its highest |
 | 81 | simple | minmax | - | 175 | default = 0.5 | - | - | 78 | 0.9970204639950161 | 0.5683960928977767 | 0.94949 | near to highest but not highest |
 | 84 | simple | minmax | - | 175 | 0.1 | - | - | 78 | 0.9974538510502864 | 0.5026527855096471 | 0.93301 | too low, increase learning rate |
 | 87 | simple | minmax | - | 170 | 0.75 | - | - | 78 | 0.9972371575226513 | 0.5632272905179162 | 0.93369 | not too good |
 | 90 | simple | minmax | - | 170 | 0.6 | - | - | 78 | 0.9971152674133564 | 0.5492075935795596 | 0.94896 | not the highest, i guess learning rate=0.5 was the best |
 | 114 | simple | minmax | - | 170 | default = 0.5 | estimators = 50 | - | 78 | 0.9972371575226513 | 0.5406533738276343 | 0.93386 | deterioration, lets use grid to find best params, bagging didnt do so well |
+| 123a | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500, 1000, 3000], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.6, 0.9] } | - | - | estimators = 50 | - | 78 | - | - | - | error: after 10hours of running, it would take 3 days to run, stopped as parameters too many |
+| 126b | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500], 'learning_rate': [0.001, 0.005, 0.01, 0.05] } | - | - | estimators = 50 | - | 78 | - | - | - | error, crashed after 5hours |
 | 142 | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300], 'learning_rate': [0.001, 0.005] } | 300 | 0.005 | estimators = 50 | - | 78 | 0.9971965274862197 | 0.5 | 0.86318 | too long and very low. lets do some other grid with bagging at 10 because bagging at 50 takes 22 hours+ |
 
-total tests: 13    
-total submissions: 13    
+total tests: 17    
+total submissions: 15    
 starting accuracy: 0.94475   
-highest accuracy: X (case Y)
+highest accuracy: 0.94966 (case 76)
 highest case parameters:
-- params
+- imputer: simple
+- scaler: minmax
+- n estimators: 170
+- no feature selector, no bagging
 
 analysis:
 - best estimator value is 170
 - too many estimators and too less estimators can be wrong
+- the default learning rate of 0.5 performs best
+- grid search is very slow on adaboost and takes alot of time. especially with bagging
+- bagging of 50 estimators is too slow
+- greater estimators == lower learning rate
 
 ### Analyzing Estimators with AdaBoost
 | case number | n estimators | kaggle accuracy |
@@ -387,22 +428,26 @@ analysis:
 | 73 | 110 | 0.94521 |
 | 74 | 150 | 0.94780 |
 | 75 | 160 | 0.94948 |
-| 76, 87, 90 | 170 | 0.94966, 0.93369, 0.94896 |
+| 76, 87, 90, 114 | 170 | 0.94966, 0.93369, 0.94896, 0.93386 |
 | 81, 84 | 175 | 0.94949, 0.93301 |
 | 77 | 180 | 0.93516 |
 | 70 | 200 | 0.93379 |
+| 142 | 300 | 0.86318 |
 
 from this table we can see that roughly 170 estimators is the breakpoint with the highest accuracy. lesser than 100 is too less estimators and more than 200 is too many estimators. in our search to find the breakpoint, we tested 10 different estimator values and found 170 as the best. 
+after more testing we can also see that too high estimators is bad. 
 
 ### Analyzing Learning Rate with AdaBoost
 | case number | learning rate | kaggle accuracy |
 | ----------- | ------------- | --------------- |
+| 142 | 0.005 | 0.86318 --estimators=300 |
 | 84 | 0.1 | 0.93301 |
-| 76 | default=0.5 | 0.94966 |
+| 76, 114 | default=0.5 | 0.94966, 0.93386 |
 | 90 | 0.6 | 0.94896 |
 | 87 | 0.75 | 0.93369 |
 
-from this we can analyse that learning rate is best at default of 0.5, even though l.rate is good at 0.6, however best is at 0.5. having a too high or too low learning rate depreciates the accuracy performance. 
+from this we can analyse that learning rate is best at default of 0.5, even though l.rate is good at 0.6, however best is at 0.5. having a too high or too low learning rate depreciates the accuracy performance.    
+this table analyses with constant estimators of 170. 
 
 # LightGBM
 
@@ -415,29 +460,46 @@ from this we can analyse that learning rate is best at default of 0.5, even thou
 | 94 | simple | minmax | - | 9 | 100 | 0.5 | default = 20 | - | - | 78 | 0.9382288012784918 | 0.5318142882431025 | 0.37172 | wow. so low. lets add bagging because its not controlling |
 | 95 | simple | maxabs | - | 10 | 100 | 0.9 | default = 20 | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5 | 0.77939 | improved, but v low, lets increase estimators in bagging | 
 | 96 | simple | maxabs | - | 10 | 100 | 0.9 | default = 20 | estimators = 100 | - | 78 | 0.997494481086718 | 0.5 | 0.77699 | reduced, lets go back and try feature selection | 
-| 97 | knn=7 | maxabs | - | 10 | 100 | 0.9 | default = 20 | estimators = 50 | kbest | 5 | 0.9974403077048093 | 0.5 | 0.49841 | very low, we dont know if the issue is imputer or kbest selector |
+| 97 | knn=7 | maxabs | - | 10 | 100 | 0.9 | default = 20 | estimators = 50 | kbest | 5 | 0.9974403077048093 | 0.5 | 0.49841 | very low, we dont know if the issue is imputer or kbest selector. lets decrease the learning rate |
 | 98 | simple | maxabs | - | 10 | 200 | 0.1 | default = 20 | estimators = 50 | - | 78 | 0.9972777875590828 | 0.5024807720320663 | 0.87767 | relationship b/w estimators and learning rate is found |
 | 99 | simple | maxabs | -| 10 | 300 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9973048742500372 | 0.517066380205849 | 0.94165 | shotup! lets decrease depth now | 
 | 100 | simple | maxabs | - | 8 | 300 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9973455042864688 | 0.5174796298056683 | 0.94321 | increased, lets decrease depth further |
 | 101 | simple | maxabs | - | 7 | 300 | 0.01 | default = 20 | estimators = 100 | - | 78 | 0.997359047631946 | 0.512612682865538 | 0.94351 | negligible increase, lets decrease bagging |
-| 103 | simple | maxabs | - | 6 | 300 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9976705445779216 | 0.5302129918143766 | 0.94395 | negligible increase, lets increase estimators + learning rate combo |
+| 103 | simple | maxabs | - | 6 | 300 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9976705445779216 | 0.5302129918143766 | 0.94395 | negligible increase, lets perform grid to find better parameters |
 | 104a | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9], 'n_estimators': [50, 100, 200, 300, 400, 500, 1000, 2000, 3000] } | 6 | 400 | 0.001 | default = 20 | estimators = 50 | - | 78 | - | - | - | error, failed after 271min, too many parameters == 3100 fits |
 | 104b | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [50, 100, 200, 300] } | 2 | 300 | 0.05 | default = 20 | - | - | 78 | 0.9973725909774233 | 0.5521437437723113 | 0.94948 | increased FINALLY. lets run a second grid search with diff parameters | 
 | 111 | simple | maxabs | param_grid = { 'max_depth': [2, 3, 6, 7, 8, 9, 10], 'learning_rate': [0.001, 0.005, 0.01, 0.05], 'n_estimators': [400, 500, 1000, 2000, 3000] } | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | - | 78 | 0.9974403077048093 | 0.5307284931466785 | 0.95106 | improved! lets grid with min child weight |
 | 119 | simple | maxabs | param_grid = { 'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000] } | 3 | 1000 | 0.01 | 40 | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5320719837648076 | 0.95087 | deterioration, seems like the default=40 was better. now lets try lgbm feature importance |
-| 123 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 35 | 0.9975757411595813 | 0.5317324536447935 | 0.95070 | nice, but a bit low. lets decrease features and try again | 
-| 126c | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974267643593321 | 0.5321714275725801 | 0.95323 | improved! lets decrease them further |
+| 123c | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 35 | 0.9975757411595813 | 0.5317324536447935 | 0.95070 | nice, but a bit low. lets decrease features and try again | 
+| 126c | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974267643593321 | 0.5321714275725801 | 0.95323 | BEST CASE: improved! lets decrease them further |
 | 128 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 15 | 0.9972777875590828 | 0.5286809703922187 | 0.94903 | deterioration. would they work at features = 25? |
 | 132 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 25 | 0.9974538510502864 | 0.5331293168263355 | 0.95242 | wow, nice, but not to the fullest. seems like features = 20 was the breakpoint. lets increase estimators |
 | 136 | simple | maxabs | - | 3 | 3000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974809377412408 | 0.5184913623160419 | 0.94173 | so low. i think this is enough testing on lgbm |
 
+total tests: 22
+total submissions: 20
 starting accuracy: 0.75561     
-highest accuracy:    
+highest accuracy: 0.95323 (case 126c)    
 highest parameters:
-- params
+- imputer: simple
+- scaler: maxabs
+- max depth: 3
+- estimators: 1000
+- learning rate: 0.01
+- bagging estimators: 50
+- algorithm feature importance: 20 features
 
 analysis: 
 - relationship found between number of estimators and learning rate. less estimators == high learning rate. more estimators == low learning rate
+- 20 features are the breakpoint, too less decreases accuracy whether it be algorithm feature importance or kbest feature selector, and too many is also bad
+- too much depth can be long and ineffective, smaller depth is better
+- default min child weight is better, 20 has a higher roc however accuracy decreased
+- increasing estimators without altering learning rate makes no difference
+
+### Analyzing Estimators and Learning Rate
+| case number | estimators | learning rate | accuracy |
+| ----------- | ---------- | ------------- | -------- | 
+
 
 # XGBoost
 
@@ -471,8 +533,10 @@ analysis:
 | 107 | simple | maxabs | - | 1000 | default = 6 | 0.108132 | default = Logloss | - | - | 78 | 0.99729133090456 | 0.5215311004784688 | 0.93798 | lets introduce bagging |
 | 109 | simple | maxabs | - | 100 | default = 6 | 0.5 | default = Logloss | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5165542206956393 | 0.93612 | bagging didnt do so well. could be because estimators decreased and learning rate increased. lets change depth |
 | 111 | simple | maxabs | - | default = 1000 | 10 | 0.108132 | Logloss | - | - | 78 | 0.99729133090456 | 0.504950495049505 | 0.92756 | deterioration, lets try grid to find the perfect depth |
-| 115 | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | default = 1000 | 1 | 0.108132 | default = Logloss | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5496287205207183 | 0.94063 | improved! lets do grid on iterations and learning rate |
+| 115a | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | default = 1000 | 1 | 0.108132 | default = Logloss | - | - | 78 | 0.9975351111231496 | 0.5523504215805054 | not submitted | wanted to do bagging first |
+| 115b | simple | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | default = 1000 | 1 | 0.108132 | default = Logloss | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5496287205207183 | 0.94063 | improved! lets do grid on iterations and learning rate |
 | 121 | simple | maxabs | param_grid = { 'iterations': [50, 100, 200, 300, 500, 600, 700, 900, 1000, 2000], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9] } | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | - | 78 | 0.5287075514634675 | 0.9973861343229005 | 0.94631 | improved! lets analyse if there are any other features otherwise we can apply feature importance |
+| 126a | simple | maxabs | param_grid = { 'iterations': [2000, 2500, 3000, 3500], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9] } | - | - | - | default = Logloss | estimators = 50 | - | 78 | - | - | - | error, crashed after 3hours |
 | 134 | simple | maxabs | param_grid = { 'iterations': [2000, 2200, 2500], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9] } | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5304944615658465 | 0.94664 | wow, improved further (same thing was run as case 121 lol). lets add some feature importance now |
 | 137 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 20 | 0.9975892845050585 | 0.519719707742552 | 0.95006 | omg wow. should we increase features or decrease? |
 | 142 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 15 | 0.997494481086718 | 0.5264142921513115 | 0.95191 | wow. lets decrease to 14 |
