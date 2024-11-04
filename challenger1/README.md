@@ -572,3 +572,10 @@ highest case parameters:
 
 analyse:
 - a
+
+# Extremely Randomized Tree
+
+### Analyzing ERT
+| case number | time | imputer | scaler | grid | estimators | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 148 | 181min | simple | maxabs | - | - | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging |

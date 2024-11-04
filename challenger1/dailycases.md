@@ -2110,14 +2110,34 @@ model accuracy =  0.9976028278505357
 roc score =  0.5190217391304348    
 accuracy: 0.94950
 
-## Case 148 - ert
+## Case 148 - ert, bagging
 - ExtraTreesClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
 - maxabs scaler
 - no feature selection
 --ert1.csv
+- 71min + 4min + 100min + 6min = 181min
 
+model accuracy =  0.9976028278505357    
+roc score =  0.5028089887640449   
+accuracy: 0.91809
+
+## Case 149 - ert, no bagging
+- ExtraTreesClassifier()
+- no bagging
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
+
+## Case 150 - ert, boostrap true
+- ExtraTreesClassifier()
+- no bagging
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
 
 ## Case C - catboost, bagging increased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
