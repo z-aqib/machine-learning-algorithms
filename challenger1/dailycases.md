@@ -2083,6 +2083,22 @@ model accuracy = 0.997494481086718
 roc = 0.5107323218497934
 accuracy: 0.94978
 
+## Case 146 - xgboost, correlation filter introduced
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- feature importance on top 35 features
+- filter: correlation > 0.9, features left = 66, then feature importance to 35
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+- MODEL IS INCORRECTLY TRAINED, ALL VALUES IN SUBMISSION ARE SAME
+
+model accuracy =  0.9973048742500372    
+roc score =  0.5    
+accuracy: 0.50000
+
+// currently running
+
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
 - param_grid = {
@@ -2106,6 +2122,8 @@ accuracy: 0.94978
 - no feature selector
 --gb1.csv 
 
+// need to run, perhaps raat ko
+
 ## Case C - catboost, feature importance decreased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -2113,15 +2131,6 @@ accuracy: 0.94978
 - maxabs scaler
 - algorithm feature importance on top 13 features
 --cat1.csv
-
-## Case X - xgboost, correlation filter introduced
-- xgb.XGBClassifier()
-- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
-- feature importance on top 35 features
-- filter: correlation > 0.9, features left = 
-- simple imputer
-- maxabs scaler
---xgb1.csv
 
 ## Case A - adaboost, grid search for estimators and learning rate, lowered bagging
 - AdaBoostClassifier()
