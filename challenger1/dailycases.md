@@ -2236,6 +2236,18 @@ model accuracy =  0.9974267643593321
 roc score =  0.5358363294636074    
 accuracy: 0.90485
 
+## Case G - gboost, grid search for estimators
+- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- param_grid = {
+    'n_estimators': [300, 400, 500]
+}
+- best estimators: 
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv 
+
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
 - param_grid = {
