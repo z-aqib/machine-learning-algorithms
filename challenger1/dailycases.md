@@ -2175,7 +2175,15 @@ accuracy: 0.91783
 
 model accuracy =  0.9974267643593321    
 roc score =  0.5186486888775136    
-accuracy:
+accuracy: 0.95263
+
+## Case E - ert, bootstrap inserted
+- model = ExtraTreesClassifier(bootstrap=True)
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)

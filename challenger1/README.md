@@ -34,7 +34,7 @@ Algorithms worked on:
 | Naive Bayes | bagging & PCA left | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
 | K-Nearest Neighbor | bagging & PCA left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
 | Random Forest | kbest (atleast 2), PCA, bagging (atleast 3), algo feature imp (atleast 2) | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | kbest (atleast 2), PCA, algo feature imp (atleast 3) | 7 | 5 | 0.90158 | 102 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60), BaggingClassifier(estimator=model, n_estimators=50) |
+| Gradient Boosting | kbest (atleast 2), PCA, algo feature imp (atleast 3) | 7 | 5 | 0.90158 | 102 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60), BaggingClassifier(estimator=model, n_estimators=50) | 
 | Adaptive Boosting | bagging=10 on best, PCA, algo feature imp (atleast 3) | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | forward selection (atleast 3), PCA | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | XGBoost | - | - | - | - | - | - |
@@ -562,6 +562,7 @@ according to this table, 20, 25, 35 are good accuracies however 20 is the highes
 | 142 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 15 | 0.997494481086718 | 0.5264142921513115 | 0.95191 | wow. lets decrease to 14 |
 | 144 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 14 | 0.9975215677776724 | 0.5188849755093714 | 0.95270 | lets decrease to 13 |
 | 147 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 13 | 0.9976028278505357 | 0.5190217391304348 | 0.94950 | breakpoint found. lets increase bagging now |
+| 152 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 100 | algorithm feature importance | 14 | 0.9974267643593321 | 0.5186486888775136 | 0.95263 | decreased. lets do bagging=75 |
 
 no. of tries: 5
 no. of submissions: 5
@@ -581,3 +582,4 @@ analyse:
 | 148 | 181min | simple | maxabs | - | default = 100 | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging, that was very long |
 | 149 | 7min | simple | maxabs | - | default = 100 | - | - | 78 | 0.9973861343229005 | 0.5051478496636952 | 0.82590 | so bagging matters alot, lets check, does estimators mean alot too? |
 | 150 | 3min | simple | maxabs | - | 10 | - | - | 78 | 0.9976299145414901 | 0.5138888888888888 | 0.66440 | wow. low. so we need to do bagging + high estimators |
+| 151 | 163min | simple | maxabs | - | default = 100 | estimators = 100 | - | 78 | 0.9974267643593321 | 0.5186486888775136 | 0.91783 | good but higher bagging doesnt give better result |
