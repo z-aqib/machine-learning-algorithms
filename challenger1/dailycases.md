@@ -2272,7 +2272,7 @@ accuracy: 0.76001
 roc score =  0.5
 accuracy: 0.91215
 
-## Case E - ert, grid search on estimators
+## Case 160 - ert, grid search on estimators
 - ExtraTreesClassifier(verbose=2)
 - param_grid = {
     'n_estimators': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
@@ -2287,7 +2287,21 @@ accuracy: 0.91215
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5026041666666666    
-accuracy: 
+accuracy: 0.92081
+
+# DAY 17: Wednesday 6th November 2024
+
+## Case V - voting, xgb + lgbm + xgb features
+- model_1 = xgb.XGBClassifier()
+- model_1 = featureImportance(model_1, 35, X, trainX, trainY, testX, test_data_processed)
+- model_1 = BaggingClassifier(estimator=model_1, n_estimators=100, verbose=2)
+- model_2 = lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000)
+- model_2 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2)
+- VotingClassifier(estimators=[['xgb_best_fimp', model_1], ['lgb_best', model_2]], voting='soft', verbose=True)
+- simple imputer
+- maxabs scaler
+--voting1.csv
+- 14.8mins to train XGB model + 
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
@@ -2304,7 +2318,6 @@ accuracy:
 # Remaining Cases left to do (that need to be done)
 
 Decision Trees:
-- bagging: try 10
 - algo feature importance: try 35
 
 NaiveBayes:
