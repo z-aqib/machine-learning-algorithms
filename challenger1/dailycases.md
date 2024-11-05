@@ -2203,21 +2203,6 @@ model accuracy =  0.9972371575226513
 roc score =  0.5    
 accuracy: 0.91049
 
-## Case 154 - ert, grid search on estimators
-- ExtraTreesClassifier(verbose=2)
-- param_grid = {
-    'n_estimators': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
-}
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- best estimators: {'n_estimators': 800}
-- simple imputer
-- maxabs scaler
-- no feature selection
---ert1.csv
-- 85min + 
-
-
-
 ## Case 155 - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2236,6 +2221,44 @@ model accuracy =  0.9974267643593321
 roc score =  0.5358363294636074    
 accuracy: 0.90485
 
+## Case 156 - decision trees, best, PCA 15
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
+- no grid, no bagging
+- knn=7 imputer
+- maxabs scaler
+- PCA(n_components=15)
+--dt1.csv
+- 1min max
+
+roc score =  0.5
+accuracy: 0.76281
+
+## Case E - ert, grid search on estimators
+- ExtraTreesClassifier(verbose=2)
+- param_grid = {
+    'n_estimators': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+}
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- best estimators: {'n_estimators': 800}
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
+- 85min + 193min + 10min + 
+
+model accuracy =  0.9974132210138549    
+roc score =  0.5026041666666666    
+accuracy: 
+
+## Case C - catboost, bagging decreased
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=75, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 14 features
+--cat1.csv
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2248,44 +2271,65 @@ accuracy: 0.90485
 - no feature selector
 --gb1.csv 
 
-## Case R - randomforest, grid search for min samples split
-- RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
-- param_grid = {
-    'min_samples_split': [5, 10, 15, 20, 30, 40, 50, 100, 200]
-}
-- best samples split: 
-- feature_importance_df['Feature'].head(35).values
-- knn=7 imputer
-- maxabs scaler
---rf1.csv
-- crashed after 150mins
+# Remaining Cases left to do (that need to be done)
 
-// need to run, perhaps raat ko
+Decision Trees:
+- PCA: 15 values
+- PCA: plot graph 1-30, then 1-50 if needed and use best
+- bagging: try 10
+- algo feature importance: try 35
 
-## Case A - adaboost, grid search for estimators and learning rate, lowered bagging
-- AdaBoostClassifier()
-- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
-- param_grid = {
-    'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300],
-    'learning_rate': [0.01, 0.05]
-}
-- best params: 
-- minmax scaler
-- simple imputer
-- no feature selector
---ab1.csv
+NaiveBayes:
+- PCA: use the best found in DT
+- bagging: try 10
+- algo feature importance: try 35
 
-## Case D1 - decision trees, best, PCA 15
-- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
-- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
-- no grid, no bagging
-- knn=7 imputer
-- maxabs scaler
-- PCA(n_components=15)
---dt1.csv
-- 1min max
+KNN:
+- PCA: use best found in DT
+- bagging: try 10
 
-roc score =  0.5
-accuracy: 
+Random Forest:
+- PCA: use best found in DT
+- kbest feature selection: 35
+- algo feature importance: 20
+- bagging: try 10
 
-// plot graph of PCA
+Gradient Boosting:
+- PCA: use best found in DT
+- kbest feature selection: 35
+- algo feature importance: 20
+
+Adaptive Boosting: 
+- bagging=10 on best case
+- PCA: use best found in DT
+- kbest feature selection: 35
+- algo feature importance: 20
+
+LightGBM:
+- forward=5
+- PCA: use best found in DT
+
+XGBoost:
+- PCA: use best found in DT
+- correlation filter > 0.9 on best, without feature imp
+- kbest at 35
+- forward=5
+
+CatBoost:
+- kbest at 35
+- forward=5
+- PCA: use best found in DT
+
+ERT:
+- kbest feature selection: 35
+- algo feature importance: 20
+- PCA: use best found in DT
+
+total: 32 cases    
+days left: tues (2) + wed (10) + thurs (10) + fri (10) + sat (10) + sun (10) = 53 cases    
+left: 21    
+
+Stacking:
+- 10 algos, 1 for each
+
+left: 10 for voting
