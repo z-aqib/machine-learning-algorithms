@@ -2259,6 +2259,19 @@ accuracy: 0.95106
 roc score =  0.5
 accuracy: 0.76001
 
+## Case 159 - decision trees, best, bagging 50
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- no grid
+- knn=7 imputer
+- maxabs scaler
+--dt1.csv
+- 34min
+
+roc score =  0.5
+accuracy: 0.91215
+
 ## Case E - ert, grid search on estimators
 - ExtraTreesClassifier(verbose=2)
 - param_grid = {
@@ -2270,7 +2283,7 @@ accuracy: 0.76001
 - maxabs scaler
 - no feature selection
 --ert1.csv
-- 85min + 193min + 10min + 
+- 85min + 193min + 10min + 400min + 
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5026041666666666    
@@ -2291,7 +2304,6 @@ accuracy:
 # Remaining Cases left to do (that need to be done)
 
 Decision Trees:
-- PCA: plot graph 1-30, then 1-50 if needed and use best
 - bagging: try 10
 - algo feature importance: try 35
 
@@ -2299,6 +2311,7 @@ NaiveBayes:
 - PCA: use the best found in DT
 - bagging: try 10
 - algo feature importance: try 35
+- categorical naivebayes
 
 KNN:
 - PCA: use best found in DT
@@ -2327,7 +2340,6 @@ LightGBM:
 
 XGBoost:
 - PCA: use best found in DT
-- correlation filter > 0.9 on best, without feature imp
 - kbest at 35
 - forward=5
 
