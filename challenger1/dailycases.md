@@ -2241,7 +2241,6 @@ accuracy: 0.76281
 - knn=7 imputer
 - maxabs scaler
 - PCA(n_components=50)
-- best PCA from graph: 
 --dt1.csv
 
 ## Case E - ert, grid search on estimators
@@ -2268,6 +2267,11 @@ accuracy:
 - maxabs scaler
 - algorithm feature importance on top 14 features
 --cat1.csv
+- 3min + 110min + 121min = 235min
+
+model accuracy =  0.9976299145414901    
+roc score =  0.5493758769911102    
+accuracy: 
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')

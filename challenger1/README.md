@@ -605,6 +605,7 @@ bagging=4 is probably an outlier, as well as bagging=99, but bagging=100 is the 
 | 144 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 14 | 0.9975215677776724 | 0.5188849755093714 | 0.95270 | BEST CASE: lets decrease to 13 |
 | 147 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 13 | 0.9976028278505357 | 0.5190217391304348 | 0.94950 | breakpoint found. lets increase bagging now |
 | 152 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 100 | algorithm feature importance | 14 | 0.9974267643593321 | 0.5186486888775136 | 0.95263 | decreased. lets do bagging=75 |
+| 157 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 75 | algorithm feature importance | 14 | 0.9976299145414901 | 0.5493758769911102 | 0.95106 | decreased. bagging=50 was fine |
 
 no. of tries: 13    
 no. of submissions: 11     
@@ -642,9 +643,10 @@ hence we can see the breakpoint at features=14, which has the highest accuracy
 | case number | estimators | accuracy |
 | - | - | - |
 | 144 | 50 | 0.95270 |
+| 157 | 75 | 0.95106 |
 | 152 | 100 | 0.95263 |
 
-cannot make an assumption without testing 75. but we can see the negligible differnece. 
+best bagging is seen at 100 estimators, while 75 may be an outlier. 
 
 # Extremely Randomized Tree
 
