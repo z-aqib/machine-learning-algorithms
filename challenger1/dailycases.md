@@ -2227,7 +2227,7 @@ accuracy: 0.90485
 - no grid, no bagging
 - knn=7 imputer
 - maxabs scaler
-- PCA(n_components=15)
+- PCA(n_components=15), represents 80% features
 --dt1.csv
 - 10min max
 
@@ -2247,14 +2247,17 @@ model accuracy =  0.9976299145414901
 roc score =  0.5493758769911102    
 accuracy: 0.95106
 
-## Case DT - decision trees, best, PCA graph plot
+## Case 158 - decision trees, best, PCA graph plot
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
 - no grid, no bagging
 - knn=7 imputer
 - maxabs scaler
-- PCA(n_components=50)
+- PCA(n_components=24), captures 90% features
 --dt1.csv
+
+roc score =  0.5
+accuracy: 0.76001
 
 ## Case E - ert, grid search on estimators
 - ExtraTreesClassifier(verbose=2)

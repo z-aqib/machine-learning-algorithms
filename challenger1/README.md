@@ -30,7 +30,7 @@ Algorithms worked on:
 
 | Algorithm Name | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
 | - | - | - | - | - | - | - | - | - | - |
-| Decision Tree | 31 | 31 | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | 
+| Decision Tree | 32 | 32 | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | 
 | Naive Bayes | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
 | K-Nearest Neighbor | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
 | Random Forest | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
@@ -81,9 +81,10 @@ code cleaned and commented, done
 | 28 | maxabs | knn7 | crossfold k=10 | entropy | 5 | 15 | 60 | 80 | - | 0.8964 | 0.89174 | near to best accuracy | 
 | 29 | maxabs | knn7 | crossfold k=5 | entropy | 5 | 15 | 60 | 80 | - | 0.8812 | 0.88935 | decreasing k didnt change accuracy too much | 
 | 30 | maxabs | knn7 | crossfold k=15 | entropy | 5 | 15 | 60 | 80 | - | 0.8994 | 0.87891 | increasing k resulted in overfit | 
-| 156 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | 15 | 0.5 | 0.76281 | wow PCA is bad. lets analyse its graph plot to find the best |
+| 156 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | 15, 80% | 0.5 | 0.76281 | wow PCA is bad. lets analyse its graph plot to find the best |
+| 158 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | 24, 90% | 0.5 | 0.76001 | even worser. lets leave it. |
 
-total test cases done: 31   
+total test cases done: 32   
 started accuracy: 0.72913  
 highest accuracy achieved: 0.89522    
 best parameters: (case 26)    
@@ -106,6 +107,7 @@ analyzed best:
 - too many samples on a leaf like 100 result in underfit. 80 is the breakpoint. smaller then 80 result in overfit
 - cross fold performs best at k=10
 - entropy is better then gini
+- PCA did not perform well, even at best case
 
 ## Analyzing Scalers and Imputers
 | Scalers / Imputers | SimpleImputer | KNN = 3 | KNN = 5 | KNN = 7 | Average  | New Average |
