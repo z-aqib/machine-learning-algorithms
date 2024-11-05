@@ -2234,6 +2234,19 @@ accuracy: 0.90485
 roc score =  0.5
 accuracy: 0.76281
 
+## Case 157 - catboost, bagging decreased
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=75, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance on top 14 features
+--cat1.csv
+- 3min + 110min + 121min = 235min
+
+model accuracy =  0.9976299145414901    
+roc score =  0.5493758769911102    
+accuracy: 0.95106
+
 ## Case DT - decision trees, best, PCA graph plot
 - DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
@@ -2258,19 +2271,6 @@ accuracy: 0.76281
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5026041666666666    
-accuracy: 
-
-## Case C - catboost, bagging decreased
-- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
-- BaggingClassifier(estimator=model, n_estimators=75, verbose=2)
-- simple imputer
-- maxabs scaler
-- algorithm feature importance on top 14 features
---cat1.csv
-- 3min + 110min + 121min = 235min
-
-model accuracy =  0.9976299145414901    
-roc score =  0.5493758769911102    
 accuracy: 
 
 ## Case G - gboost, grid search for estimators
