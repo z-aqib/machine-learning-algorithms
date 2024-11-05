@@ -2203,6 +2203,39 @@ model accuracy =  0.9972371575226513
 roc score =  0.5    
 accuracy: 0.91049
 
+## Case 154 - ert, grid search on estimators
+- ExtraTreesClassifier(verbose=2)
+- param_grid = {
+    'n_estimators': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]
+}
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- best estimators: {'n_estimators': 800}
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
+- 85min + 
+
+
+
+## Case 155 - gboost, grid search for estimators
+- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- param_grid = {
+    'n_estimators': [50, 100, 200]
+}
+- best estimators: {'n_estimators': 200}
+- minmax scaler
+- simple imputer
+- no feature selector
+--gb1.csv 
+- crashed after 200mins
+- restarted, 93min + 154min + 200min = 447min
+
+model accuracy =  0.9974267643593321    
+roc score =  0.5358363294636074    
+accuracy: 0.90485
+
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
 - param_grid = {
@@ -2214,19 +2247,6 @@ accuracy: 0.91049
 - maxabs scaler
 --rf1.csv
 - crashed after 150mins
-
-## Case G - gboost, grid search for estimators
-- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
-- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
-- param_grid = {
-    'n_estimators': [50, 100, 200]
-}
-- best estimators: 
-- minmax scaler
-- simple imputer
-- no feature selector
---gb1.csv 
-- crashed after 200mins
 
 // need to run, perhaps raat ko
 

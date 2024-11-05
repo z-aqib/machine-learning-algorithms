@@ -34,10 +34,10 @@ Algorithms worked on:
 | Naive Bayes | bagging & PCA left | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
 | K-Nearest Neighbor | bagging & PCA left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
 | Random Forest | kbest (atleast 2), PCA, bagging (atleast 3), algo feature imp (atleast 2) | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | kbest (atleast 2), PCA, algo feature imp (atleast 3) | 7 | 5 | 0.90158 | 102 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60), BaggingClassifier(estimator=model, n_estimators=50) | 
+| Gradient Boosting | kbest (atleast 2), PCA, algo feature imp (atleast 3) | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
 | Adaptive Boosting | bagging=10 on best, PCA, algo feature imp (atleast 3) | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | forward selection (atleast 3), PCA | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
-| XGBoost | - | - | - | - | - | - |
+| XGBoost | PCA, kbest (atleast 3), forward (atleast 3), correlation alone | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
 | CatBoost | - | - | - | - | - | - |
 | BaggingClassifier | - | - | - | - | - | - |
 | ExtraTree Classifier (Extremely Randomized Tree) | - | - | - | - | - | - |
@@ -341,23 +341,23 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 | 86a | simple | minmax | - | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, ran for 756 min, didnt work |
 | 86b | simple | minmax | - | 6 | 300 | squared error | 60 | forward | 10 | - | - | - | - | error, again ran for 256 min with n_jobs = -1, didnt work |
 | 89 | simple | minmax | - | 6 | 300 | squared error | 60 | kbest | 30 | - | 0.9961807765754297 | 0.5478679502290538 | 0.85929 | low, lets try bagging next |
-| 102 | simple | minmax | - | 6 | 100 | squared error | 60 | - | 78 | estimators = 50 | 0.9975351111231496 | 0.5317120864929359 | 0.90158 | BEST CASE: 24hour running: improved but not efficient |
+| 102 | simple | minmax | - | 6 | 100 | squared error | 60 | - | 78 | estimators = 50 | 0.9975351111231496 | 0.5317120864929359 | 0.90158 | 24hour running: improved but not efficient |
 | 116 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | default = friedman_mse | - | - | 78 | - | 0.9968308571583353 | 0.5404496829489119 | 0.84769 | very low. lets use this depth and repeat grid with estimators + learning rate |
 | 122 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | default = friedman_mse | - | - | 78 | estimators = 10 | 0.9974809377412408 | 0.5458640497792794 | 0.88551 | bagging improved the same model, even at less estimators |
 | 131 | simple | minmax | param_grid = { 'criterion': ['friedman_mse', 'squared_error'] } | 3 | - | friedman_mse | - | - | 78 | estimators = 10 | 0.9974132210138549 | 0.5332722268995048 | 0.90057 | 7hour running: improved and more effecient. lets do grid on estimators next |
+| 155 | simple | minmax | param_grid = { 'n_estimators': [50, 100, 200] } | 3 | 200 | friedman_mse | - | - | 78 | estimators = 10 | 0.9974267643593321 | 0.5358363294636074 | 0.90485 | BEST CASE: ok good improved, lets grid again with more estimators |
 
-total tests: 11  
-total submissions: 9   
+total tests: 12  
+total submissions: 10   
 started accuracy: 0.88298   
-highest accuracy: 0.90158 (case 102)   
+highest accuracy: 0.90485 (case 155)   
 highest case parameters:
 - imputer: simple
 - scaler: minmax
-- max depth: 6
-- estimators: 100
-- criterion: squared_error
-- max features: 60
-- bagging of 50 estimators
+- max depth: 3
+- estimators: 200
+- criterion: friedman_mse
+- bagging of 10 estimators
 - no feature selection
 
 analysis:
@@ -367,6 +367,7 @@ analysis:
 - kbest could not be rigourously tested as each submission took over 3 hours. 
 - bagging does work but it takes extremely long, **over 24 hours of running** and laptop use. its not very feasible. accuracy improved by 2 percent but very inefficient. better to use 10 estimators instead of 50, whereas 50 gives better results
 - friedman_mse criterion is much better than squared_error
+- uptil now, more estimators means better accuracy
 
 ### Analyzing depth
 | case number | depth | accuracy |
@@ -538,7 +539,7 @@ according to this table, 20, 25, 35 are good accuracies however 20 is the highes
 | 129 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 30 | 0.9974403077048093 | 0.52283584980575 | 0.94984 | deterioration. would 36 be better? |
 | 130 | simple | maxabs | - | - | - | - | estimators = 50 | algorithm feature importance | 36 | 0.9971694407952653 | 0.5118279679945126 | 0.95522 | deterioration. 35 was the breakpoint. |
 | 135 | simple | maxabs | param_grid = { 'learning_rate': [0.01, 0.05, 0.1, 0.5, 0.9], 'n_estimators': [100, 200, 300, 400], 'max_depth': [1, 2, 3, 4] } | 200 | 2 | 0.1 | estimators = 50 | algorithm feature importance | 35 | 0.997359047631946 | 0.5319857527264058 | 0.94971 | deterioration, alot. looks like xgboost only works best with default parameters |
-| 138 | simple | maxabs | - | - | - | - | estimators = 100 | algorithm feature importance | 35 | 0.9976163711960129 | 0.5325815412932204 | 0.95979 | wow, lets increase bagging more |
+| 138 | simple | maxabs | - | - | - | - | estimators = 100 | algorithm feature importance | 35 | 0.9976163711960129 | 0.5325815412932204 | 0.95979 | BEST CASE: wow, lets increase bagging more |
 | 139 | simple | maxabs | - | - | - | - | estimators = 150 | algorithm feature importance | 35 | 0.9973725909774233 | 0.5249728397408912 | 0.95586 | uh oh. lets try 99 baggers lol |
 | 140 | simple | maxabs | - | - | - | - | estimators = 99 | algorithm feature importance | 35 | 0.997697631268876 | 0.5251396648044693 | 0.94394 | YAAR WHAT. this is an outlier. lets make a new file which analyses all the roc's at all bagging estimators 1 to 150 and selects the best one |
 | 141 | simple | maxabs | forloop for bagging, highest roc 1 to 100 estimators | - | - | - | estimators = 4 | algorithm feature importance | 35 | 0.9975351111231496 | 0.5287822330483466 | 0.94413 | so lets try lowest ROC |
@@ -548,12 +549,33 @@ according to this table, 20, 25, 35 are good accuracies however 20 is the highes
 total tries: 18    
 total submissions: 18   
 starting accuracy: 0.95474   
-highest accuracy: X (case Y)
+highest accuracy: 0.95979 (case 138)
 highest parameters:
-- params
+- imputer: simple
+- scaler: maxabs
+- no parameters in xgboost brackets
+- bagging of 100 estimators
+- algorithm feature importance, 35 features
 
 analysis:
-- a
+- after singular grids the best params were 100 estimators, 0.2 learning rate, 2 max depth but still accuracy is low
+- after multiple grids the best params were 200 estimators, 0.1 learning rate, 2 max depth but still accuracy is low
+- best accuracy was achieved at "None" parameters, when brackets are empty
+- best algorithm feature importance is at 35 features. 40 is good as well, but 30 has alot of deterioration
+- bagging was best at 100. i tested all bagging from 1 to 100 and the lowest roc was at bagging=3 and highest roc at bagging=4 but still
+
+### Analyzing Algorithm Feature Importance
+| case number | features | accuracy | 
+| - | - | - | 
+| 129 | 30 | 0.94984 |
+| 124 | 35 | 0.95846 |
+| 130 | 36 | 0.95522 |
+| 127 | 40 | 0.95371 |
+
+35 features was breakpoint, more were good but less were bad 
+
+### Analyzing Bagging
+| case number | 
 
 # CatBoost
 
