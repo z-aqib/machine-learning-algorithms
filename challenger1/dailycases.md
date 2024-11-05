@@ -2274,7 +2274,6 @@ accuracy:
 # Remaining Cases left to do (that need to be done)
 
 Decision Trees:
-- PCA: 15 values
 - PCA: plot graph 1-30, then 1-50 if needed and use best
 - bagging: try 10
 - algo feature importance: try 35

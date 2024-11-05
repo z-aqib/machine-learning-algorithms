@@ -28,17 +28,17 @@ Work done daily:
 
 Algorithms worked on: 
 
-| Algorithm Name | Status | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
-| - | - | - | - | - | - | - | - | - | - | - |
-| Decision Tree | bagging & PCA left | 30 | 30 | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | 
-| Naive Bayes | bagging & PCA left | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
-| K-Nearest Neighbor | bagging & PCA left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | kbest (atleast 2), PCA, bagging (atleast 3), algo feature imp (atleast 2) | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | kbest (atleast 2), PCA, algo feature imp (atleast 3) | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
-| Adaptive Boosting | bagging=10 on best, PCA, algo feature imp (atleast 3) | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | forward selection (atleast 3), PCA | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
-| XGBoost | PCA, kbest (atleast 3), forward (atleast 3), correlation alone | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
-| CatBoost | PCA, kbest, forward | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| Algorithm Name | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
+| - | - | - | - | - | - | - | - | - | - |
+| Decision Tree | 31 | 31 | 0.89522 | 26 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | 
+| Naive Bayes | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
+| K-Nearest Neighbor | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| Random Forest | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Gradient Boosting | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
+| Adaptive Boosting | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
+| Light GBM | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| XGBoost | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
+| CatBoost | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | BaggingClassifier | - | - | - | - | - | - |
 | ExtraTree Classifier (Extremely Randomized Tree) | - | - | - | - | - | - |
 | Voting | - | - | - | - | - | - |
@@ -49,40 +49,41 @@ Algorithms worked on:
 code cleaned and commented, done
 
 ## Analyzing Decision Trees
-| case number | scaler | imputer | splitting | criteria | max depth | min samples split | max features | min samples leaf | roc | accuracy | analysis |
-| ----------- | ------ | ------- | --------- | -------- | --------- | ----------------- | ------------ | ---------------- | --- | -------- | -------- |
-| 1 | minmax | row removal | holdout 70-30 | gini | 7 | 20 | - | - | 0.5230564082198742 | 0.72913 | - |
-| 2 | minmax | row removal | holdout 70-30 | entropy | 7 | 20 | - | - | 0.5229797007820421 | 0.83323 | improved on this criteria |
-| 3 | minmax | row removal | holdout 70-30 | entropy | 7 | 15 | - | - | 0.5203814609840954 | 0.83327 | improved minutely of 5dp on lesser samples per split | 
-| 4 | minmax | row removal | holdout 70-30 | entropy | 8 | 15 | - | - | 0.5306000850899 | 0.78883 | deteriorated, longer trees resulted in overfit; test had bad performance |
-| 5 | minmax | row removal | holdout 70-30 | entropy | 6 | 15 | - | - | 0.5204372482116096  | 0.85532 | lowering depth shot the improvement up |
-| 6 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | - | - | 0.5230843018336313 | 0.87815 | lesser depth improved tree | 
-| 7 | minmax | row removal | holdout 70-30 | entropy | 4 | 15 | - | - | 0.5025494259738718 | 0.87296 | depth is too low, accuracy deteriorated at 3dp | 
-| 8 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 10 | - | 0.5154151037016982 | 0.83207 | need to use more features to improve |
-| 9 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 50 | - | 0.5128726511312657 | 0.86817 | more features improved tree but to the full extent |
-| 10 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5205418492631988 | 0.88788 | increasing features improved highly | 
-| 11 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5184642260176702 | 0.89330 | - | 
-| 12 | minmax | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5138345831202585 | 0.87791 | simple performs better on minmax | 
-| 13 | standard | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5086297947750887 | 0.77620 | - | 
-| 14 | standard | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5151673183025117 | 0.80450 | knn performs better on standard | 
-| 15 | maxabs | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5071707936463162 | 0.88454 | - | 
-| 16 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.523861491669948 | 0.88389 | both simple and knn perform well with maxabs | 
-| 17 | robust | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5181612733948899 | 0.88517 | - | 
-| 18 | robust | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5173654042244641 | 0.87303 | simple performs better on robust | 
-| 19 | normalizer | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.512349538904424 | 0.64969 | - | 
-| 20 | normalizer | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5204856620977856 | 0.65308 | normalizer is not a good scaler | 
-| 21 | minmax | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.510941492151186 | 0.89142 | - | 
-| 22 | minmax | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5100979659586905 | 0.88134 | in minmax, simple performed best | 
-| 23 | maxabs | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5200733426222888 | 0.88155 | - | 
-| 24 | maxabs | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | 0.5133797612483052 | 0.84670 | in maxabs, simple performed just 3dp better then knn=7 | 
-| 25 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 50 | 0.5150632467068051 | 0.85877 | - | 
-| 26 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | 0.5 | 0.89522 | BEST CASE: highest accuracy | 
-| 27 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 100 | 0.5 | 0.85276 | worser performance when too many samples on leaf | 
-| 28 | maxabs | knn7 | crossfold k=10 | entropy | 5 | 15 | 60 | 80 | 0.8964 | 0.89174 | near to best accuracy | 
-| 29 | maxabs | knn7 | crossfold k=5 | entropy | 5 | 15 | 60 | 80 | 0.8812 | 0.88935 | decreasing k didnt change accuracy too much | 
-| 30 | maxabs | knn7 | crossfold k=15 | entropy | 5 | 15 | 60 | 80 | 0.8994 | 0.87891 | increasing k resulted in overfit | 
+| case number | scaler | imputer | splitting | criteria | max depth | min samples split | max features | min samples leaf | PCA | roc | accuracy | analysis |
+| ----------- | ------ | ------- | --------- | -------- | --------- | ----------------- | ------------ | ---------------- | --- | -------- | -------- | - |
+| 1 | minmax | row removal | holdout 70-30 | gini | 7 | 20 | - | - | - | 0.5230564082198742 | 0.72913 | - |
+| 2 | minmax | row removal | holdout 70-30 | entropy | 7 | 20 | - | - | - | 0.5229797007820421 | 0.83323 | improved on this criteria |
+| 3 | minmax | row removal | holdout 70-30 | entropy | 7 | 15 | - | - | - | 0.5203814609840954 | 0.83327 | improved minutely of 5dp on lesser samples per split | 
+| 4 | minmax | row removal | holdout 70-30 | entropy | 8 | 15 | - | - | - | 0.5306000850899 | 0.78883 | deteriorated, longer trees resulted in overfit; test had bad performance |
+| 5 | minmax | row removal | holdout 70-30 | entropy | 6 | 15 | - | - | - | 0.5204372482116096  | 0.85532 | lowering depth shot the improvement up |
+| 6 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | - | - | - | 0.5230843018336313 | 0.87815 | lesser depth improved tree | 
+| 7 | minmax | row removal | holdout 70-30 | entropy | 4 | 15 | - | - | - | 0.5025494259738718 | 0.87296 | depth is too low, accuracy deteriorated at 3dp | 
+| 8 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 10 | - | - | 0.5154151037016982 | 0.83207 | need to use more features to improve |
+| 9 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 50 | - | - | 0.5128726511312657 | 0.86817 | more features improved tree but to the full extent |
+| 10 | minmax | row removal | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5205418492631988 | 0.88788 | increasing features improved highly | 
+| 11 | minmax | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5184642260176702 | 0.89330 | - | 
+| 12 | minmax | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5138345831202585 | 0.87791 | simple performs better on minmax | 
+| 13 | standard | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5086297947750887 | 0.77620 | - | 
+| 14 | standard | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5151673183025117 | 0.80450 | knn performs better on standard | 
+| 15 | maxabs | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5071707936463162 | 0.88454 | - | 
+| 16 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.523861491669948 | 0.88389 | both simple and knn perform well with maxabs | 
+| 17 | robust | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5181612733948899 | 0.88517 | - | 
+| 18 | robust | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5173654042244641 | 0.87303 | simple performs better on robust | 
+| 19 | normalizer | simple | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.512349538904424 | 0.64969 | - | 
+| 20 | normalizer | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5204856620977856 | 0.65308 | normalizer is not a good scaler | 
+| 21 | minmax | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.510941492151186 | 0.89142 | - | 
+| 22 | minmax | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5100979659586905 | 0.88134 | in minmax, simple performed best | 
+| 23 | maxabs | knn3 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5200733426222888 | 0.88155 | - | 
+| 24 | maxabs | knn5 | holdout 70-30 | entropy | 5 | 15 | 60 | - | - | 0.5133797612483052 | 0.84670 | in maxabs, simple performed just 3dp better then knn=7 | 
+| 25 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 50 | - | 0.5150632467068051 | 0.85877 | - | 
+| 26 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | - | 0.5 | 0.89522 | BEST CASE: highest accuracy | 
+| 27 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 100 | - | 0.5 | 0.85276 | worser performance when too many samples on leaf | 
+| 28 | maxabs | knn7 | crossfold k=10 | entropy | 5 | 15 | 60 | 80 | - | 0.8964 | 0.89174 | near to best accuracy | 
+| 29 | maxabs | knn7 | crossfold k=5 | entropy | 5 | 15 | 60 | 80 | - | 0.8812 | 0.88935 | decreasing k didnt change accuracy too much | 
+| 30 | maxabs | knn7 | crossfold k=15 | entropy | 5 | 15 | 60 | 80 | - | 0.8994 | 0.87891 | increasing k resulted in overfit | 
+| 156 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | 15 | 0.5 | 0.76281 | wow PCA is bad. lets analyse its graph plot to find the best |
 
-total test cases done: 30   
+total test cases done: 31   
 started accuracy: 0.72913  
 highest accuracy achieved: 0.89522    
 best parameters: (case 26)    
