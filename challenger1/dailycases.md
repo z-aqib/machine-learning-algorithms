@@ -2151,13 +2151,18 @@ accuracy: 0.66440
 
 # DAY 16: Tuesday 5th November 2024
 
-## Case E - ert, bagging increased
+## Case 151 - ert, bagging increased
 - ExtraTreesClassifier(verbose=2)
 - BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
 - simple imputer
 - maxabs scaler
 - no feature selection
 --ert1.csv
+- 121min + 42min
+
+model accuracy =  0.9975215677776724    
+roc score =  0.5    
+accuracy: 0.91783
 
 ## Case C - catboost, bagging increased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
@@ -2166,6 +2171,11 @@ accuracy: 0.66440
 - maxabs scaler
 - algorithm feature importance on top 14 features
 --cat1.csv
+- 121min + 174min
+
+model accuracy =  0.9974267643593321    
+roc score =  0.5186486888775136    
+accuracy:
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
