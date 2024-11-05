@@ -545,6 +545,16 @@ according to this table, 20, 25, 35 are good accuracies however 20 is the highes
 | 145 | simple | maxabs | forloop for bagging, lowest roc 1 to 100 estimators | - | - | - | estimators = 3 | algorithm feature importance | 35 | 0.997494481086718 | 0.5107323218497934 | 0.94978 | decreased like alot. so its not roc dependent |
 | 146 | simple | maxabs | - | - | - | - | estimators = 100 | correlation filter = 0.9, algorithm feature importance | 66 then 35 | 0.9973048742500372 | 0.5 | 0.50000 | file was faulty and all values submitted in each row were same |
 
+total tries: 18    
+total submissions: 18   
+starting accuracy: 0.95474   
+highest accuracy: X (case Y)
+highest parameters:
+- params
+
+analysis:
+- a
+
 # CatBoost
 
 ### Analyzing CatBoost
@@ -577,9 +587,10 @@ analyse:
 # Extremely Randomized Tree
 
 ### Analyzing ERT
-| case number | time | imputer | scaler | grid | estimators | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
+| case number | time | imputer | scaler | grid | estimators | bootstrap | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 148 | 181min | simple | maxabs | - | default = 100 | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging, that was very long |
-| 149 | 7min | simple | maxabs | - | default = 100 | - | - | 78 | 0.9973861343229005 | 0.5051478496636952 | 0.82590 | so bagging matters alot, lets check, does estimators mean alot too? |
-| 150 | 3min | simple | maxabs | - | 10 | - | - | 78 | 0.9976299145414901 | 0.5138888888888888 | 0.66440 | wow. low. so we need to do bagging + high estimators |
-| 151 | 163min | simple | maxabs | - | default = 100 | estimators = 100 | - | 78 | 0.9974267643593321 | 0.5186486888775136 | 0.91783 | good but higher bagging doesnt give better result |
+| 148 | 181min | simple | maxabs | - | default = 100 | estimators = 50 | default = False | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging, that was very long |
+| 149 | 7min | simple | maxabs | - | default = 100 | default = False | - | - | 78 | 0.9973861343229005 | 0.5051478496636952 | 0.82590 | so bagging matters alot, lets check, does estimators mean alot too? |
+| 150 | 3min | simple | maxabs | - | 10 | default = False | - | - | 78 | 0.9976299145414901 | 0.5138888888888888 | 0.66440 | wow. low. so we need to do bagging + high estimators |
+| 151 | 163min | simple | maxabs | - | default = 100 | estimators = 100 | default = False | - | 78 | 0.9974267643593321 | 0.5186486888775136 | 0.91783 | good but higher bagging doesnt give better result |
+| 153 | 73min | simple | maxabs | - | default = 100 | estimators = 100 | True | - | 78 | 0.9976705445779216 | 0.5028901734104047 | 0.91258 | decreased, lets do bagging=50 with bootstrap true |

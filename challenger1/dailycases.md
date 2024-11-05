@@ -2164,7 +2164,7 @@ model accuracy =  0.9975215677776724
 roc score =  0.5    
 accuracy: 0.91783
 
-## Case C - catboost, bagging increased
+## Case 152 - catboost, bagging increased
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
 - simple imputer
@@ -2177,13 +2177,18 @@ model accuracy =  0.9974267643593321
 roc score =  0.5186486888775136    
 accuracy: 0.95263
 
-## Case E - ert, bootstrap inserted
+## Case 153 - ert, bootstrap inserted
 - model = ExtraTreesClassifier(bootstrap=True)
 - BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
 - simple imputer
 - maxabs scaler
 - no feature selection
 --ert1.csv
+- 27min + 2min + 41min + 3min = 73min
+
+model accuracy =  0.9976705445779216    
+roc score =  0.5028901734104047    
+accuracy: 0.91258
 
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
