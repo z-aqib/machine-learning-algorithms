@@ -2190,6 +2190,19 @@ model accuracy =  0.9976705445779216
 roc score =  0.5028901734104047    
 accuracy: 0.91258
 
+## Case 154 - ert, bagging decreased
+- model = ExtraTreesClassifier(bootstrap=True)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- no feature selection
+--ert1.csv
+- 17min + 2min + 17min + 2min = 38min
+
+model accuracy =  0.9972371575226513    
+roc score =  0.5    
+accuracy: 0.91049
+
 ## Case R - randomforest, grid search for min samples split
 - RandomForestClassifier(criterion='entropy', max_depth=9, n_estimators=650, verbose=2)
 - param_grid = {
@@ -2229,3 +2242,18 @@ accuracy: 0.91258
 - simple imputer
 - no feature selector
 --ab1.csv
+
+## Case D1 - decision trees, best, PCA 15
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
+- no grid, no bagging
+- knn=7 imputer
+- maxabs scaler
+- PCA(n_components=15)
+--dt1.csv
+- 1min max
+
+roc score =  0.5
+accuracy: 
+
+// plot graph of PCA

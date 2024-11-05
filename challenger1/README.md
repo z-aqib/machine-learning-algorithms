@@ -594,3 +594,4 @@ analyse:
 | 150 | 3min | simple | maxabs | - | 10 | default = False | - | - | 78 | 0.9976299145414901 | 0.5138888888888888 | 0.66440 | wow. low. so we need to do bagging + high estimators |
 | 151 | 163min | simple | maxabs | - | default = 100 | estimators = 100 | default = False | - | 78 | 0.9974267643593321 | 0.5186486888775136 | 0.91783 | good but higher bagging doesnt give better result |
 | 153 | 73min | simple | maxabs | - | default = 100 | estimators = 100 | True | - | 78 | 0.9976705445779216 | 0.5028901734104047 | 0.91258 | decreased, lets do bagging=50 with bootstrap true |
+| 154 | 38min | simple | maxabs | - | default = 100 | estimators = 50 | True | - | 78 | 0.9972371575226513 | 0.5 | 0.91049 | decreased further. lets increase estimators |
