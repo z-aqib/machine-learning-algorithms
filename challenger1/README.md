@@ -38,7 +38,7 @@ Algorithms worked on:
 | Adaptive Boosting | bagging=10 on best, PCA, algo feature imp (atleast 3) | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | forward selection (atleast 3), PCA | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | XGBoost | PCA, kbest (atleast 3), forward (atleast 3), correlation alone | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
-| CatBoost | - | - | - | - | - | - |
+| CatBoost | PCA, kbest, forward | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | BaggingClassifier | - | - | - | - | - | - |
 | ExtraTree Classifier (Extremely Randomized Tree) | - | - | - | - | - | - |
 | Voting | - | - | - | - | - | - |
@@ -562,7 +562,7 @@ analysis:
 - after multiple grids the best params were 200 estimators, 0.1 learning rate, 2 max depth but still accuracy is low
 - best accuracy was achieved at "None" parameters, when brackets are empty
 - best algorithm feature importance is at 35 features. 40 is good as well, but 30 has alot of deterioration
-- bagging was best at 100. i tested all bagging from 1 to 100 and the lowest roc was at bagging=3 and highest roc at bagging=4 but still
+- bagging was best at 100. i tested all bagging from 1 to 100 and the lowest roc was at bagging=3 and highest roc at bagging=4 but still accuracy was low on both. bagging=99 was an outlier, but bagging=100 and bagging=150 were highest. 
 
 ### Analyzing Algorithm Feature Importance
 | case number | features | accuracy | 
@@ -575,7 +575,16 @@ analysis:
 35 features was breakpoint, more were good but less were bad 
 
 ### Analyzing Bagging
-| case number | 
+| case number | bagging estimators | accuracy |
+| - | - | - |
+| 145 | 3 | 0.94978 |
+| 141 | 4 | 0.94413 |
+| 135 | 50 | 0.94971 |
+| 140 | 99 | 0.94394 |
+| 138 | 100 | 0.95979 |
+| 139 | 150 | 0.95586 |
+
+bagging=4 is probably an outlier, as well as bagging=99, but bagging=100 is the best. too low baggers can be bad and too many baggers is very time consuming and ineffective. 
 
 # CatBoost
 
@@ -592,28 +601,72 @@ analysis:
 | 134 | simple | maxabs | param_grid = { 'iterations': [2000, 2200, 2500], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.9] } | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | - | 78 | 0.9975892845050585 | 0.5304944615658465 | 0.94664 | wow, improved further (same thing was run as case 121 lol). lets add some feature importance now |
 | 137 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 20 | 0.9975892845050585 | 0.519719707742552 | 0.95006 | omg wow. should we increase features or decrease? |
 | 142 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 15 | 0.997494481086718 | 0.5264142921513115 | 0.95191 | wow. lets decrease to 14 |
-| 144 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 14 | 0.9975215677776724 | 0.5188849755093714 | 0.95270 | lets decrease to 13 |
+| 144 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 14 | 0.9975215677776724 | 0.5188849755093714 | 0.95270 | BEST CASE: lets decrease to 13 |
 | 147 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 50 | algorithm feature importance | 13 | 0.9976028278505357 | 0.5190217391304348 | 0.94950 | breakpoint found. lets increase bagging now |
 | 152 | simple | maxabs | - | 2000 | 1 | 0.1 | default = Logloss | estimators = 100 | algorithm feature importance | 14 | 0.9974267643593321 | 0.5186486888775136 | 0.95263 | decreased. lets do bagging=75 |
 
-no. of tries: 5
-no. of submissions: 5
-starting accuracy: 0.93798
-highest accuracy: X (case Y)
+no. of tries: 13    
+no. of submissions: 11     
+starting accuracy: 0.93798     
+highest accuracy: 0.95270 (case 144)      
 highest case parameters:
-- params
+- imputer: simple
+- scaler: maxabs
+- no of estimators: 2000
+- depth: 1
+- learning rate: 0.1
+- bagging, 50 estimators
+- algorithm feature importance of 14 features
 
-analyse:
-- a
+analyse:      
+- bagging improves the performance on average
+- higher depth is not good. smaller depth works better
+- default iterations are 1000, smaller iterations underperform, 2000 is the best. 2200, 2500, 3000 were also checked but they had lower roc in grid
+- the more the iterations, the relatively smaller learning rate
+- feature importance is AMAZING. accuracy immediately went into 95s
+- the smaller number of features, the better. breakpoint of best features number was found at 14
+- USES ALOT OF MEMORY/RAM. cannot be done with other boosting algorithms or the laptop terminates the process due to >95% usage of RAM
+
+### Analyze Algorithm Feature Importance
+| case number | features | accuracy |
+| - | - | - |
+| 147 | 13 | 0.94950 |
+| 144 | 14 | 0.95270 |
+| 142 | 15 | 0.95191 |
+| 137 | 20 | 0.95006 |
+
+hence we can see the breakpoint at features=14, which has the highest accuracy
+
+### Analyze Bagging Estimators
+| case number | estimators | accuracy |
+| - | - | - |
+| 144 | 50 | 0.95270 |
+| 152 | 100 | 0.95263 |
+
+cannot make an assumption without testing 75. but we can see the negligible differnece. 
 
 # Extremely Randomized Tree
 
 ### Analyzing ERT
 | case number | time | imputer | scaler | grid | estimators | bootstrap | bagging | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 148 | 181min | simple | maxabs | - | default = 100 | estimators = 50 | default = False | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging, that was very long |
+| 148 | 181min | simple | maxabs | - | default = 100 | default = False | estimators = 50 | - | 78 | 0.9976028278505357 | 0.5028089887640449 | 0.91809 | ok good, lets do without bagging, that was very long |
 | 149 | 7min | simple | maxabs | - | default = 100 | default = False | - | - | 78 | 0.9973861343229005 | 0.5051478496636952 | 0.82590 | so bagging matters alot, lets check, does estimators mean alot too? |
 | 150 | 3min | simple | maxabs | - | 10 | default = False | - | - | 78 | 0.9976299145414901 | 0.5138888888888888 | 0.66440 | wow. low. so we need to do bagging + high estimators |
-| 151 | 163min | simple | maxabs | - | default = 100 | estimators = 100 | default = False | - | 78 | 0.9974267643593321 | 0.5186486888775136 | 0.91783 | good but higher bagging doesnt give better result |
-| 153 | 73min | simple | maxabs | - | default = 100 | estimators = 100 | True | - | 78 | 0.9976705445779216 | 0.5028901734104047 | 0.91258 | decreased, lets do bagging=50 with bootstrap true |
-| 154 | 38min | simple | maxabs | - | default = 100 | estimators = 50 | True | - | 78 | 0.9972371575226513 | 0.5 | 0.91049 | decreased further. lets increase estimators |
+| 151 | 163min | simple | maxabs | - | default = 100 | default = False | estimators = 100 | - | 78 | 0.9974267643593321 | 0.5186486888775136 | 0.91783 | good but higher bagging doesnt give better result |
+| 153 | 73min | simple | maxabs | - | default = 100 | True | estimators = 100 | - | 78 | 0.9976705445779216 | 0.5028901734104047 | 0.91258 | decreased, lets do bagging=50 with bootstrap true |
+| 154 | 38min | simple | maxabs | - | default = 100 | True | estimators = 50 | - | 78 | 0.9972371575226513 | 0.5 | 0.91049 | decreased further. lets increase estimators |
+
+total tries: 6   
+total submissions: 6   
+starting accuracy: 0.91809   
+highest accuracy: X (case Y)
+highest case parameters:
+- imputer: simple
+- scaler: maxabs
+
+analysis:
+- doesnot have a difference with bootstrap=True
+- estimators matter alot - the lower they are the worse
+- bagging improves results but on average is very slow and requires alot of time
+- performs better on bagging=50 instead of bagging=100
