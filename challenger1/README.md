@@ -563,9 +563,10 @@ according to this table, 20, 25, 35 are good accuracies however 20 is the highes
 | 141 | simple | maxabs | forloop for bagging, highest roc 1 to 100 estimators | - | - | - | estimators = 4 | algorithm feature importance | 35 | 0.9975351111231496 | 0.5287822330483466 | 0.94413 | so lets try lowest ROC |
 | 145 | simple | maxabs | forloop for bagging, lowest roc 1 to 100 estimators | - | - | - | estimators = 3 | algorithm feature importance | 35 | 0.997494481086718 | 0.5107323218497934 | 0.94978 | decreased like alot. so its not roc dependent |
 | 146 | simple | maxabs | - | - | - | - | estimators = 100 | correlation filter = 0.9, algorithm feature importance | 66 then 35 | 0.9973048742500372 | 0.5 | 0.50000 | file was faulty and all values submitted in each row were same |
+| 167 | simple | maxabs | - | - | - | - | estimators = 100 | PCA | 24, 90% | 0.9975486544686268 | 0.5027472527472527 | 0.88955 | PCA is really bad, put it from 0.959 to 0.889. wow |
 
-total tries: 18    
-total submissions: 18   
+total tries: 19    
+total submissions: 19   
 starting accuracy: 0.95474   
 highest accuracy: 0.95979 (case 138)
 highest parameters:
@@ -581,6 +582,7 @@ analysis:
 - best accuracy was achieved at "None" parameters, when brackets are empty
 - best algorithm feature importance is at 35 features. 40 is good as well, but 30 has alot of deterioration
 - bagging was best at 100. i tested all bagging from 1 to 100 and the lowest roc was at bagging=3 and highest roc at bagging=4 but still accuracy was low on both. bagging=99 was an outlier, but bagging=100 and bagging=150 were highest. 
+- PCA does not work well
 
 ### Analyzing Algorithm Feature Importance
 | case number | features | accuracy | 
@@ -676,9 +678,10 @@ best bagging is seen at 100 estimators, while 75 may be an outlier.
 | 166a | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | forward | 10 | - | - | - | ERROR, crashed after 45 min |
 | 166b | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | forward | 5 | - | - | - | ERROR, crashed after 30 min |
 | 166c | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | PCA | 24, 90% | 0.9973996776683777 | 0.5201884404412956 | 0.89981 | PCA ruined the accuracy |
+| 167 | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | PCA | 24, 90% | 0.9975486544686268 | 0.5027472527472527 | 0.88955 | PCA does not perform well |
 
-total tries: 6    
-total submissions: 4     
+total tries: 7    
+total submissions: 5     
 starting accuracy: dunno yet   
 highest accuracy: X (case Y)    
 highest case parameters:

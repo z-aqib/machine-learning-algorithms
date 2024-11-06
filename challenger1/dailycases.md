@@ -2404,6 +2404,19 @@ model accuracy =  0.9973996776683777
 roc score =  0.5201884404412956    
 accuracy: 0.89981
 
+## Case 167 - xgb, best, PCA
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- PCA at 24 features
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+- 5min + 6min
+
+model accuracy =  0.9975486544686268    
+roc score =  0.5027472527472527    
+accuracy: 0.88955
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2438,9 +2451,6 @@ Adaptive Boosting:
 - PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
-
-LightGBM:
-- PCA: use best found in DT
 
 XGBoost:
 - PCA: use best found in DT
