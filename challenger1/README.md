@@ -28,21 +28,21 @@ Work done daily:
 
 Algorithms worked on: 
 
-| Algorithm Name | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
-| - | - | - | - | - | - | - | - | - | - |
-| Decision Tree | 34 | 34 | 0.91215 | 159 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | 
-| Naive Bayes | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
-| K-Nearest Neighbor | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
-| Adaptive Boosting | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
-| XGBoost | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
-| CatBoost | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| Algorithm Name | status | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
+| - | - | - | - | - | - | - | - | - | - | - |
+| Decision Tree | completed | 34 | 34 | 0.91215 | 159 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | 
+| Naive Bayes | 4 cases left | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
+| K-Nearest Neighbor | 2 cases left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| Random Forest | 4 cases left | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
+| Gradient Boosting | 3 cases left | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
+| Adaptive Boosting | 4 cases left | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
+| Light GBM | 2 cases left | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| XGBoost | 3 cases left | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
+| CatBoost | 3 cases left | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | BaggingClassifier | - | - | - | - | - | - |
-| ExtraTree Classifier (Extremely Randomized Tree) | - | - | - | - | - | - |
-| Voting | - | - | - | - | - | - |
-| Stacking | - | - | - | - | - | - |
+| ExtraTree Classifier (Extremely Randomized Tree) | 3 cases left |  - | - | - | - | - | - |
+| Voting | 8 cases left | - | - | - | - | - | - |
+| Stacking | 10 cases left | - | - | - | - | - | - |
 
 # DecisionTrees
 // cases completed

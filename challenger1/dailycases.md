@@ -2337,6 +2337,15 @@ accuracy: 0.95703
 roc score =  0.5
 accuracy: 0.91039
 
+## Case 164 - naive bayes, best, bagging 50
+- GaussianNB()
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- minmax scaler
+- SequentialFeatureSelector(model, direction='forward',n_features_to_select=15, scoring='roc_auc')
+
+
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2398,8 +2407,8 @@ ERT:
 - PCA: use best found in DT
 
 total: 32 cases    
-days left: tues (2) + wed (10) + thurs (10) + fri (10) + sat (10) + sun (10) = 53 cases    
-left: 21    
+days left: tues (2) + wed (10) + thurs (10) + fri (10) + sat (10) + sun (10) = 52 cases    
+left: 20    
 
 Stacking:
 - 10 algos, 1 for each
