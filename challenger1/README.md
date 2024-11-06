@@ -564,9 +564,10 @@ according to this table, 20, 25, 35 are good accuracies however 20 is the highes
 | 145 | simple | maxabs | forloop for bagging, lowest roc 1 to 100 estimators | - | - | - | estimators = 3 | algorithm feature importance | 35 | 0.997494481086718 | 0.5107323218497934 | 0.94978 | decreased like alot. so its not roc dependent |
 | 146 | simple | maxabs | - | - | - | - | estimators = 100 | correlation filter = 0.9, algorithm feature importance | 66 then 35 | 0.9973048742500372 | 0.5 | 0.50000 | file was faulty and all values submitted in each row were same |
 | 167 | simple | maxabs | - | - | - | - | estimators = 100 | PCA | 24, 90% | 0.9975486544686268 | 0.5027472527472527 | 0.88955 | PCA is really bad, put it from 0.959 to 0.889. wow |
+| 168 | simple | maxabs | - | - | - | - | estimators = 100 | kbest | 35 | 0.9972642442136056 | 0.5144859629128801 | 0.95000 | ok so kbest does perform good, not the best, but good |
 
-total tries: 19    
-total submissions: 19   
+total tries: 20    
+total submissions: 20   
 starting accuracy: 0.95474   
 highest accuracy: 0.95979 (case 138)
 highest parameters:
@@ -679,9 +680,10 @@ best bagging is seen at 100 estimators, while 75 may be an outlier.
 | 166b | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | forward | 5 | - | - | - | ERROR, crashed after 30 min |
 | 166c | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | PCA | 24, 90% | 0.9973996776683777 | 0.5201884404412956 | 0.89981 | PCA ruined the accuracy |
 | 167 | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | PCA | 24, 90% | 0.9975486544686268 | 0.5027472527472527 | 0.88955 | PCA does not perform well |
+| 168 | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | kbest | 35 | 0.9972642442136056 | 0.5144859629128801 | 0.95000 | bagging was same, features were different |
 
-total tries: 7    
-total submissions: 5     
+total tries: 8    
+total submissions: 6     
 starting accuracy: dunno yet   
 highest accuracy: X (case Y)    
 highest case parameters:
