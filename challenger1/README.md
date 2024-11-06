@@ -31,15 +31,15 @@ Algorithms worked on:
 | Algorithm Name | status | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
 | - | - | - | - | - | - | - | - | - | - | - |
 | Decision Tree | completed | 34 | 34 | 0.91215 | 159 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | 
-| Naive Bayes | 3 cases left | 33 | 17 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
+| Naive Bayes | completed | 33 | 17 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
 | K-Nearest Neighbor | 2 cases left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
 | Random Forest | 4 cases left | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
 | Gradient Boosting | 3 cases left | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
 | Adaptive Boosting | 4 cases left | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
-| Light GBM | 2 cases left | 22 | 20 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| Light GBM | completed | 25 | 21 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | XGBoost | 3 cases left | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
 | CatBoost | 3 cases left | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
-| BaggingClassifier | - | - | - | - | - | - |
+| BaggingClassifier | - | 6 | 4 | - | - | - |
 | ExtraTree Classifier (Extremely Randomized Tree) | 3 cases left |  - | - | - | - | - | - |
 | Voting | 8 cases left | - | - | - | - | - | - |
 | Stacking | 10 cases left | - | - | - | - | - | - |
@@ -490,9 +490,12 @@ this table analyses with constant estimators of 170.
 | 128 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 15 | 0.9972777875590828 | 0.5286809703922187 | 0.94903 | deterioration. would they work at features = 25? |
 | 132 | simple | maxabs | - | 3 | 1000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 25 | 0.9974538510502864 | 0.5331293168263355 | 0.95242 | wow, nice, but not to the fullest. seems like features = 20 was the breakpoint. lets increase estimators |
 | 136 | simple | maxabs | - | 3 | 3000 | 0.01 | default = 20 | estimators = 50 | algorithm feature importance | 20 | 0.9974809377412408 | 0.5184913623160419 | 0.94173 | so low. i think this is enough testing on lgbm |
+| 166a | simple | maxabs | - | 3 | 3000 | 0.01 | default = 20 | estimators = 50 | forward | 10 | - | - | - | ERROR: crashed after 45min |
+| 166b | simple | maxabs | - | 3 | 3000 | 0.01 | default = 20 | estimators = 50 | forward | 5 | - | - | - | ERROR: crashed after 30min |
+| 166c | simple | maxabs | - | 3 | 3000 | 0.01 | default = 20 | estimators = 50 | PCA | 24, 90% | 0.9973996776683777 | 0.5201884404412956 | 0.89981 | PCA didnt perform well and ruined the accuracy |
 
-total tests: 22    
-total submissions: 20     
+total tests: 25    
+total submissions: 21     
 starting accuracy: 0.75561         
 highest accuracy: 0.95323 (case 126c)        
 highest parameters:     
@@ -510,6 +513,7 @@ analysis:
 - too much depth can be long and ineffective, smaller depth is better
 - default min child weight is better, 20 has a higher roc however accuracy decreased
 - increasing estimators without altering learning rate makes no difference
+- PCA didnt perform well and ruined the accuracy
 
 ### Analyzing Estimators and Learning Rate
 | case number | estimators | learning rate | accuracy |
@@ -669,9 +673,12 @@ best bagging is seen at 100 estimators, while 75 may be an outlier.
 | 159 | decision tree | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | knn=7 | maxabs | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | - | 78 | - | 0.5 | 0.91215 | best on DT was 0.89, bagging improved it alot |
 | 163 | decision tree | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | knn=7 | maxabs | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | algorithm feature importance | 35 | - | 0.5 | 0.91039 | bagging made it good, otherwise feature imp deteriorated it |
 | 164 | naivebayes | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | minmax | GaussianNB() | forward | 15 | 0.9773148963256904 | 0.6661261228757619 | 0.87014 | bagging decreased the overall accuracy from 0.874 to 0.870 |
+| 166a | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | forward | 10 | - | - | - | ERROR, crashed after 45 min |
+| 166b | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | forward | 5 | - | - | - | ERROR, crashed after 30 min |
+| 166c | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | PCA | 24, 90% | 0.9973996776683777 | 0.5201884404412956 | 0.89981 | PCA ruined the accuracy |
 
-total tries: 2    
-total submissions: 2     
+total tries: 6    
+total submissions: 4     
 starting accuracy: dunno yet   
 highest accuracy: X (case Y)    
 highest case parameters:

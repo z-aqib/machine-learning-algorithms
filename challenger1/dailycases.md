@@ -2372,6 +2372,38 @@ model accuracy =  0.9702181832956377
 roc score =  0.6879233888954087    
 accuracy: 0.85555
 
+## Case 166a - lgbm, best, forward=10
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- forward of 10 features
+--lgbm1.csv
+- ERROR, crashed after 45mins of running
+
+## Case 166b - lgbm, best, forward=5
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- forward of 5 features
+--lgbm1.csv
+- ERROR, crashed after 30mins of running
+
+## Case 166c - lgbm, best, PCA 24
+- lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) 
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- PCA(n_components=24) 
+- no feature importance or selection
+--lgb1.csv
+- 45min + 6min + 60min + 15min
+
+model accuracy =  0.9973996776683777    
+roc score =  0.5201884404412956    
+accuracy: 0.89981
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2385,10 +2417,6 @@ accuracy: 0.85555
 --gb1.csv 
 
 # Remaining Cases left to do (that need to be done)
-
-NaiveBayes:
-- PCA: use the best found in DT
-- categorical naivebayes
 
 KNN:
 - PCA: use best found in DT
@@ -2412,7 +2440,6 @@ Adaptive Boosting:
 - algo feature importance: 20
 
 LightGBM:
-- forward=5
 - PCA: use best found in DT
 
 XGBoost:
@@ -2437,4 +2464,4 @@ left: 20
 Stacking:
 - 10 algos, 1 for each
 
-left: 10 for voting
+left: 8 for voting
