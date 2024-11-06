@@ -2430,14 +2430,6 @@ model accuracy =  0.9972642442136056
 roc score =  0.5144859629128801    
 accuracy: 0.95000
 
-## Case 168 - xgb, best, forward=10
-- xgb.XGBClassifier()
-- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
-- SequentialFeatureSelector(model, direction='forward',n_features_to_select=10, scoring='roc_auc')
-- simple imputer
-- maxabs scaler
---xgb1.csv
-
 ## Case 169 - k-nearest neighbours, PCA=25
 - KNeighborsClassifier(n_neighbors=1500, weights="distance")
 - PCA(n_components=25)    
@@ -2449,6 +2441,30 @@ accuracy: 0.95000
 model accuracy =  0.9971152674133564    
 roc score =  0.5    
 accuracy: 0.79966
+
+## Case 170a - xgb, best, forward=10
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- SequentialFeatureSelector(model, direction='forward',n_features_to_select=10, scoring='roc_auc')
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+- ERROR, failed after 20 minutes of running
+
+## Case 170b - xgb, best, forward=5
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- SequentialFeatureSelector(model, direction='forward',n_features_to_select=5, scoring='roc_auc')
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+- 40min + 16min + idunno = 61min total from file
+
+model accuracy =  0.9976163711960129    
+roc score =  0.5029042822218859    
+accuracy: 0.93188
+
+# DAY 18: Thursday 7th November 2024
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
@@ -2465,7 +2481,6 @@ accuracy: 0.79966
 # Remaining Cases left to do (that need to be done)
 
 KNN:
-- PCA: use best found in DT
 - bagging: try 10
 
 Random Forest:
@@ -2484,9 +2499,6 @@ Adaptive Boosting:
 - PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
-
-XGBoost:
-- forward=5
 
 CatBoost:
 - kbest at 35

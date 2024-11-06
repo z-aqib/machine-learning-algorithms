@@ -37,7 +37,7 @@ Algorithms worked on:
 | Gradient Boosting | 3 cases left | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
 | Adaptive Boosting | 4 cases left | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | completed | 25 | 21 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
-| XGBoost | 3 cases left | 18 | 18 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
+| XGBoost | completed | 22 | 21 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
 | CatBoost | 3 cases left | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | BaggingClassifier | - | 6 | 4 | - | - | - |
 | ExtraTree Classifier (Extremely Randomized Tree) | 3 cases left |  - | - | - | - | - | - |
@@ -567,9 +567,11 @@ according to this table, 20, 25, 35 are good accuracies however 20 is the highes
 | 146 | simple | maxabs | - | - | - | - | estimators = 100 | correlation filter = 0.9, algorithm feature importance | 66 then 35 | 0.9973048742500372 | 0.5 | 0.50000 | file was faulty and all values submitted in each row were same |
 | 167 | simple | maxabs | - | - | - | - | estimators = 100 | PCA | 24, 90% | 0.9975486544686268 | 0.5027472527472527 | 0.88955 | PCA is really bad, put it from 0.959 to 0.889. wow |
 | 168 | simple | maxabs | - | - | - | - | estimators = 100 | kbest | 35 | 0.9972642442136056 | 0.5144859629128801 | 0.95000 | ok so kbest does perform good, not the best, but good |
+| 170a | simple | maxabs | - | - | - | - | estimators = 100 | forward | 10 | - | - | - | ERROR: crashed after 30mins |
+| 170b | simple | maxabs | - | - | - | - | estimators = 100 | forward | 5 | 0.9976163711960129 | 0.5029042822218859 | 0.93188 | very low, forward has too less features but too alot of time |
 
-total tries: 20    
-total submissions: 20   
+total tries: 22    
+total submissions: 21   
 starting accuracy: 0.95474   
 highest accuracy: 0.95979 (case 138)
 highest parameters:
@@ -683,6 +685,8 @@ best bagging is seen at 100 estimators, while 75 may be an outlier.
 | 166c | lightgbm | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=3000) | PCA | 24, 90% | 0.9973996776683777 | 0.5201884404412956 | 0.89981 | PCA ruined the accuracy |
 | 167 | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | PCA | 24, 90% | 0.9975486544686268 | 0.5027472527472527 | 0.88955 | PCA does not perform well |
 | 168 | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | kbest | 35 | 0.9972642442136056 | 0.5144859629128801 | 0.95000 | bagging was same, features were different |
+| 170a | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | forward | 10 | - | - | - | error, crashed after 30mins |
+| 170b | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | forward | 10 | 0.9976163711960129 | 0.5029042822218859 | 0.93188 | bagging took long, problem is less features |
 
 total tries: 8    
 total submissions: 6     
