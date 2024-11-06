@@ -2323,6 +2323,20 @@ model accuracy =  0.997765347996262
 roc score =  0.5406501620314466    
 accuracy: 0.95703
 
+## Case 163 - decision trees, best, algo feature importance 35
+- DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- no grid
+- knn=7 imputer
+- maxabs scaler
+- algorithm feature importance, 35 features
+--dt1.csv
+- 15min
+
+roc score =  0.5
+accuracy: 0.91039
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2336,9 +2350,6 @@ accuracy: 0.95703
 --gb1.csv 
 
 # Remaining Cases left to do (that need to be done)
-
-Decision Trees:
-- algo feature importance: try 35
 
 NaiveBayes:
 - PCA: use the best found in DT
