@@ -2343,8 +2343,12 @@ accuracy: 0.91039
 - simple imputer
 - minmax scaler
 - SequentialFeatureSelector(model, direction='forward',n_features_to_select=15, scoring='roc_auc')
+--nb1.csv
+- 10mins
 
-
+model accuracy =  0.9773148963256904    
+roc score =  0.6661261228757619    
+accuracy: 0.87014
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')

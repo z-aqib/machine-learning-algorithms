@@ -83,8 +83,8 @@ code cleaned and commented, done
 | 30 | maxabs | knn7 | crossfold k=15 | entropy | 5 | 15 | 60 | 80 | - | - | - | 78 | 0.8994 | 0.87891 | increasing k resulted in overfit | 
 | 156 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | - | 15, 80% | - | 78 | 0.5 | 0.76281 | wow PCA is bad. lets analyse its graph plot to find the best |
 | 158 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | - | 24, 90% | - | 78 | 0.5 | 0.76001 | even worser. lets leave it. |
-| 159 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | estimators = 50 | - | 78 | 0.5 | 0.91215 | BEST CASE: bagging improved it! |
-| 163 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | estimators = 50 | algorithm feature importance | 35 | 0.5 | 0.91039 | deterioration, feature importance not so good |
+| 159 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | estimators = 50 | - | - | 78 | 0.5 | 0.91215 | BEST CASE: bagging improved it! |
+| 163 | maxabs | knn7 | holdout 70-30 | entropy | 5 | 15 | 60 | 80 | estimators = 50 | - | algorithm feature importance | 35 | 0.5 | 0.91039 | deterioration, feature importance not so good |
 
 total test cases done: 34   
 started accuracy: 0.72913  
@@ -132,42 +132,43 @@ out of KNN and SimpleImputers, we can see that both are good however simple impu
 code cleaned and commented, done
 
 ### Analyzing Naive Bayes
-| case number | imputer | scaler | feature selection | no. of features selected | model accuracy | roc | kaggle accuracy | analysis |
-| ----------- | ------- | ------ | ----------------- | ------------------------ | -------------- | --- | --------------- | -------- |
-| 31 | simple | maxabs | - | 78 | 0.8670720641412841 | 0.8015837569508879 | 0.83725 | need to test a bit more to see what was lacking and what to improve |
-| 32 | simple | minmax | - | 78 | 0.9109254167964571 | 0.7956827745161095 | 0.83350 | minmax and maxabs have negligible difference in 3 dp |
-| 33 | knn7 | minmax | - | 78 | 0.9121307745439279 | 0.7969697685450362 | 0.83350 | knn7 and simple is same! we must reduce the features to try and improve accuracy |
-| 34 | simple | minmax | forward | 5 | 0.9838834188821323 | 0.5964048120149146 | 0.82386 | will need to test it a bit more to deduce | 
-| 35a | simple | minmax | forward | 10 | 0.9630943835746306 | 0.6591343574667629 | not submitted | high model accuracy means overfit. not submitted |
-| 35b | simple | minmax | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | imrpoved with more features |
-| 36 | simple | minmax | variance=0.1, correlation=0.9 filter | 7 | 0.9972642442136056 | 0.5 | 0.70704 | even though ROC was good, model overfit | 
-| 37a | simple | minmax | variance=0.5, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
-| 37b | simple | minmax | variance=0.3, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
-| 37c | simple | minmax | variance=0.01, correlation=0.9 filter | 49 | 0.9121849479258366 | 0.7996191732926649 | not submitted | looking for lower ROC |
-| 37d | simple | minmax | variance=0.05, correlation=0.9 filter | 14 | 0.9577176754201823 | 0.6956493745514011 | not submitted | too high accuracy, overfit chance |
-| 37e | simple | minmax | variance=0.03, correlation=0.8 filter | 19 | 0.9457318146728605 | 0.6916013795163546 | not submitted | too high accuracy, overfit chance |
-| 37f | simple | minmax | variance=0.03, correlation=0.9 filter | 20 | 0.9441201565610737 | 0.6819374512237548 | 0.75852 | accuracy improved from last time but we need more features |
-| 38 | simple | minmax | variance=0.01, correlation=0.9 filter | 49 | 0.9129975486544686 | 0.7505591957401304 | 0.81494 | accuracy improved due to number of features, will use more in next round |
-| 39a | simple | minmax | variance=0.005, correlation=0.9 filter | 57 | 0.9132142421821038 | 0.7612309576110358 | not submitted | model accuracy is too high, overfit chance | 
-| 39b | simple | minmax | variance=0.001, correlation=0.9 filter | 61 | 0.9134715657461706 | 0.758662810781139 | 0.82598 | accuracy improved, need to increase more rows |
-| 40a | simple | minmax | variance=0.0001, correlation=0.9 filter | 66 | 0.9162479515689965 | 0.7761983869690179 | not submitted | - | 
-| 40b | simple | minmax | variance=0.0001, correlation=0.8 filter | 57 | 0.9183200834270081 | 0.7965337080939787 | not submitted | - | 
-| 40c | simple | minmax | variance=0.0001, correlation=0.85 filter | 62 | 0.9187128404458469 | 0.7588877586887783 | not submitted | - | 
-| 40d | simple | minmax | variance=0.0001, correlation=0.87 filter | 65 | 0.9158958245865894 | 0.7754906950864966 | 0.83187 | good accuracy achieved when more features are used | 
-| 41a | simple | minmax | forward | 30 | 0.964340371358533 | 0.7356985869936561 | 0.86669 | forward has been put too high, should try =25 next time |
-| 41b | simple | minmax | kbest | 30 | 0.9212183593591289 | 0.7565948275603417 | not submitted | dont know if its good, dont want to waste an entry |
-| 42a | simple | minmax | forward | 25 | 0.9617942224088194 | 0.7343364208492563 | not submitted | waiting for a good roc |
-| 42b | simple | minmax | forward | 25 | 0.9550090063247424 | 0.7018435381296126 | not submitted | waiting for a good roc |
-| 42c | simple | minmax | forward | 25 | 0.8100274929913187 | 0.8185403319589406 | 0.86875 | not highest but near |
-| 45 | simple | minmax | forward | 15 | 0.9776399366171432 | 0.7000642467303131 | 0.87413 | BEST CASE: improved with lesser features | 
-| 48 | simple | minmax | forward | 17 | 0.968064791364763 | 0.71144752877173 | 0.87278 | accuracy decreased with more features, lets decrease them |
-| 49 | simple | minmax | forward | 13 | 0.9724663786448529 | 0.657890605723844 | 0.87353 | accuracy improved but not to the full. lets try 14 | 
-| 50 | simple | minmax | forward | 14 | 0.97654292563349 | 0.6687466615541444 | 0.87271 | forward=15 was the highest breakpoint for naivebayes |
-| 61a | row removal | minmax | forward | 15 | - | - | - | error, NaN values in test cannot perform forward |
-| 61b | row removal | minmax | - | 78 | - | - | - | error, NaN values in test cannot train GNB model |
+| case number | imputer | scaler | bagging | feature selection | no. of features selected | model accuracy | roc | kaggle accuracy | analysis |
+| ----------- | ------- | ------ | ----------------- | ------------------------ | -------------- | --- | --------------- | - | -------- |
+| 31 | simple | maxabs | - | - | 78 | 0.8670720641412841 | 0.8015837569508879 | 0.83725 | need to test a bit more to see what was lacking and what to improve |
+| 32 | simple | minmax | - | - | 78 | 0.9109254167964571 | 0.7956827745161095 | 0.83350 | minmax and maxabs have negligible difference in 3 dp |
+| 33 | knn7 | minmax | - | - | 78 | 0.9121307745439279 | 0.7969697685450362 | 0.83350 | knn7 and simple is same! we must reduce the features to try and improve accuracy |
+| 34 | simple | minmax | - | forward | 5 | 0.9838834188821323 | 0.5964048120149146 | 0.82386 | will need to test it a bit more to deduce | 
+| 35a | simple | minmax | - | forward | 10 | 0.9630943835746306 | 0.6591343574667629 | not submitted | high model accuracy means overfit. not submitted |
+| 35b | simple | minmax | - | forward | 20 | 0.9770711161071007 | 0.6887415307743486 | 0.87148 | imrpoved with more features |
+| 36 | simple | minmax | - | variance=0.1, correlation=0.9 filter | 7 | 0.9972642442136056 | 0.5 | 0.70704 | even though ROC was good, model overfit | 
+| 37a | simple | minmax | - | variance=0.5, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
+| 37b | simple | minmax | - | variance=0.3, correlation=0.9 filter | 0 | - | - | - | error, no columns exist with that variance limit | 
+| 37c | simple | minmax | - | variance=0.01, correlation=0.9 filter | 49 | 0.9121849479258366 | 0.7996191732926649 | not submitted | looking for lower ROC |
+| 37d | simple | minmax | - | variance=0.05, correlation=0.9 filter | 14 | 0.9577176754201823 | 0.6956493745514011 | not submitted | too high accuracy, overfit chance |
+| 37e | simple | minmax | - | variance=0.03, correlation=0.8 filter | 19 | 0.9457318146728605 | 0.6916013795163546 | not submitted | too high accuracy, overfit chance |
+| 37f | simple | minmax | - | variance=0.03, correlation=0.9 filter | 20 | 0.9441201565610737 | 0.6819374512237548 | 0.75852 | accuracy improved from last time but we need more features |
+| 38 | simple | minmax | - | variance=0.01, correlation=0.9 filter | 49 | 0.9129975486544686 | 0.7505591957401304 | 0.81494 | accuracy improved due to number of features, will use more in next round |
+| 39a | simple | minmax | - | variance=0.005, correlation=0.9 filter | 57 | 0.9132142421821038 | 0.7612309576110358 | not submitted | model accuracy is too high, overfit chance | 
+| 39b | simple | minmax | - | variance=0.001, correlation=0.9 filter | 61 | 0.9134715657461706 | 0.758662810781139 | 0.82598 | accuracy improved, need to increase more rows |
+| 40a | simple | minmax | - | variance=0.0001, correlation=0.9 filter | 66 | 0.9162479515689965 | 0.7761983869690179 | not submitted | - | 
+| 40b | simple | minmax | - | variance=0.0001, correlation=0.8 filter | 57 | 0.9183200834270081 | 0.7965337080939787 | not submitted | - | 
+| 40c | simple | minmax | - | variance=0.0001, correlation=0.85 filter | 62 | 0.9187128404458469 | 0.7588877586887783 | not submitted | - | 
+| 40d | simple | minmax | - | variance=0.0001, correlation=0.87 filter | 65 | 0.9158958245865894 | 0.7754906950864966 | 0.83187 | good accuracy achieved when more features are used | 
+| 41a | simple | minmax | - | forward | 30 | 0.964340371358533 | 0.7356985869936561 | 0.86669 | forward has been put too high, should try =25 next time |
+| 41b | simple | minmax | - | kbest | 30 | 0.9212183593591289 | 0.7565948275603417 | not submitted | dont know if its good, dont want to waste an entry |
+| 42a | simple | minmax | - | forward | 25 | 0.9617942224088194 | 0.7343364208492563 | not submitted | waiting for a good roc |
+| 42b | simple | minmax | - | forward | 25 | 0.9550090063247424 | 0.7018435381296126 | not submitted | waiting for a good roc |
+| 42c | simple | minmax | - | forward | 25 | 0.8100274929913187 | 0.8185403319589406 | 0.86875 | not highest but near |
+| 45 | simple | minmax | - | forward | 15 | 0.9776399366171432 | 0.7000642467303131 | 0.87413 | BEST CASE: improved with lesser features | 
+| 48 | simple | minmax | - | forward | 17 | 0.968064791364763 | 0.71144752877173 | 0.87278 | accuracy decreased with more features, lets decrease them |
+| 49 | simple | minmax | - | forward | 13 | 0.9724663786448529 | 0.657890605723844 | 0.87353 | accuracy improved but not to the full. lets try 14 | 
+| 50 | simple | minmax | - | forward | 14 | 0.97654292563349 | 0.6687466615541444 | 0.87271 | forward=15 was the highest breakpoint for naivebayes |
+| 61a | row removal | minmax | - | forward | 15 | - | - | - | error, NaN values in test cannot perform forward |
+| 61b | row removal | minmax | - | - | 78 | - | - | - | error, NaN values in test cannot train GNB model |
+| 164 | simple | minmax | estimators = 50 | forward | 15 | 0.9773148963256904 | 0.6661261228757619 | 0.87014 | deterioration slightly, bagging didnt perform as well as estimated |
 
-total test cases done: 31    
-total submissions: 16   
+total test cases done: 32    
+total submissions: 17   
 starting accuracy: 0.83725 (case 31)    
 highest accuracy achieved: 0.87413 (case 45)   
 highest parameters: 
@@ -181,6 +182,7 @@ analysis:
 - simple, minmax worked best with NB
 - NB performed better with more features then lesser   
 - row removal does not work in naivebayes    
+- bagging didnt work so well
 
 ### Analyzing Forward Feature Selection
 we have run naivebayes multiple times with forward selection, lets analyse its accuracies (while keeping all other parameters like imputer and scaler constant):
@@ -659,9 +661,10 @@ best bagging is seen at 100 estimators, while 75 may be an outlier.
 
 ### Analyzing BaggingClassifier
 | case number | model | bagging | imputer | scaler | model params | feature selector | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
-| - | - | - | - | - | - | - | - | - | - | - |
+| - | - | - | - | - | - | - | - | - | - | - | - |   
 | 159 | decision tree | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | knn=7 | maxabs | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | - | 78 | - | 0.5 | 0.91215 | best on DT was 0.89, bagging improved it alot |
 | 163 | decision tree | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | knn=7 | maxabs | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3) | algorithm feature importance | 35 | - | 0.5 | 0.91039 | bagging made it good, otherwise feature imp deteriorated it |
+| 164 | naivebayes | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | minmax | GaussianNB() | forward | 15 | 0.9773148963256904 | 0.6661261228757619 | 0.87014 | bagging decreased the overall accuracy from 0.874 to 0.870 |
 
 total tries: 2    
 total submissions: 2     
@@ -672,6 +675,7 @@ highest case parameters:
 
 analysis:
 - decision tree: performs amazing! did not have enough submissions to find the best breakpoint of bagging, but it performs very well, especially at 50 estimators
+- naivebayes: not so good, did some negligible deterioration
 
 
 # Extremely Randomized Tree
