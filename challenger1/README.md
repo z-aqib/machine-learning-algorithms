@@ -32,7 +32,7 @@ Algorithms worked on:
 | - | - | - | - | - | - | - | - | - | - | - |
 | Decision Tree | completed | 34 | 34 | 0.91215 | 159 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | 
 | Naive Bayes | completed | 33 | 17 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
-| K-Nearest Neighbor | 2 cases left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| K-Nearest Neighbor | 2 cases left | 21 | 18 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
 | Random Forest | 4 cases left | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
 | Gradient Boosting | 3 cases left | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
 | Adaptive Boosting | 4 cases left | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
@@ -231,9 +231,10 @@ code cleaned and commented, done
 | 85 | 1000 | knn=3 | minmax | kbest | 5 | 0.9973048742500372 | 0.5 | 0.83911 | lets add weights and increase k |
 | 86b | 2000 | knn=3 | minmax | kbest | 5 | 0.9970746373769248 | 0.4999185147963549 | 0.82641 | too many k |
 | 88 | 1500 | knn=3 | minmax | kbest | 5 | 0.997088180722402 | 0.49995246438224067 | 0.85212 | BEST CASE: wow! i think thats enough though |
+| 169 | 1500 | knn=3 | minmax | PCA | 25, 91% | 0.9971152674133564 | 0.5 | 0.79966 | PCA did not perform well and decreased the accuracy by 7% | 
 
-total tries: 20    
-total submissions: 17    
+total tries: 21    
+total submissions: 18    
 started accuracy: 0.53003   
 highest accuracy: 0.85212 (case 88)   
 highest case parameters:
@@ -247,6 +248,7 @@ analysis:
 - knn=3, knn=7, simple imputers have no difference on accuracy
 - forward selector + k-nearest is very time taking, even after 17 hours it didnt work. at smaller forward selection and smaller k-nearest-neighbours, it runs after 2 hours but accuracy is too low due to less features
 - performs best on k-nearest neighbours = 1500. the more the k, the higher the accuracy
+- PCA does not perform well
 
 ### Analyzing K in K-nearest neighbours
 | case number | K=3 | K=5 | K=7 | K=9 | K=11 | K=300 | K=500 | K=1000 | K=1500 | K=2000 |

@@ -2430,6 +2430,26 @@ model accuracy =  0.9972642442136056
 roc score =  0.5144859629128801    
 accuracy: 0.95000
 
+## Case 168 - xgb, best, forward=10
+- xgb.XGBClassifier()
+- BaggingClassifier(estimator=model, n_estimators=100, verbose=2)
+- SequentialFeatureSelector(model, direction='forward',n_features_to_select=10, scoring='roc_auc')
+- simple imputer
+- maxabs scaler
+--xgb1.csv
+
+## Case 169 - k-nearest neighbours, PCA=25
+- KNeighborsClassifier(n_neighbors=1500, weights="distance")
+- PCA(n_components=25)    
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+- 17min
+
+model accuracy =  0.9971152674133564    
+roc score =  0.5    
+accuracy: 0.79966
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2466,7 +2486,6 @@ Adaptive Boosting:
 - algo feature importance: 20
 
 XGBoost:
-- kbest at 35
 - forward=5
 
 CatBoost:
