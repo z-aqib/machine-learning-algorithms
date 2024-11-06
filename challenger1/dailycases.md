@@ -2291,7 +2291,7 @@ accuracy: 0.92081
 
 # DAY 17: Wednesday 6th November 2024
 
-## Case V - voting, xgb + lgbm + xgb features
+## Case 161 - voting, xgb + lgbm + xgb features
 - model_1 = xgb.XGBClassifier()
 - model_1 = featureImportance(model_1, 35, X, trainX, trainY, testX, test_data_processed)
 - model_1 = BaggingClassifier(estimator=model_1, n_estimators=100, verbose=2)
@@ -2301,7 +2301,12 @@ accuracy: 0.92081
 - simple imputer
 - maxabs scaler
 --voting1.csv
-- 14.8mins to train XGB model + 
+- 14.8mins to train XGB model + code crashed. amazing
+- running again, 45min (20 + 2 + 24 + 2)
+
+model accuracy =  0.9974538510502864    
+roc score =  0.5324932099352228   
+accuracy: 0.95250
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
