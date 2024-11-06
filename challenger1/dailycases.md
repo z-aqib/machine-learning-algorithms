@@ -2466,6 +2466,21 @@ accuracy: 0.93188
 
 # DAY 18: Thursday 7th November 2024
 
+## Case 171 - k-nearest neighbours, PCA=25
+- KNeighborsClassifier(n_neighbors=1500, weights="distance")
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2) 
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+
+## Case 172 - ert, kbest features
+- ExtraTreesClassifier(n_estimators=800, verbose=1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- SelectKBest(score_func=f_classif, k=15) 
+--ert1.csv
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
