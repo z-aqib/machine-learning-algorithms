@@ -31,7 +31,7 @@ Algorithms worked on:
 | Algorithm Name | status | No. of Tries | No. of Submissions | Best Accuracy | Case Number | Imputer | Scaler | Feature Selector | No. of Features | Properties |
 | - | - | - | - | - | - | - | - | - | - | - |
 | Decision Tree | completed | 34 | 34 | 0.91215 | 159 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | 
-| Naive Bayes | 4 cases left | 31 | 16 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
+| Naive Bayes | 3 cases left | 33 | 17 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
 | K-Nearest Neighbor | 2 cases left | 20 | 17 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
 | Random Forest | 4 cases left | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
 | Gradient Boosting | 3 cases left | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
@@ -166,9 +166,11 @@ code cleaned and commented, done
 | 61a | row removal | minmax | - | forward | 15 | - | - | - | error, NaN values in test cannot perform forward |
 | 61b | row removal | minmax | - | - | 78 | - | - | - | error, NaN values in test cannot train GNB model |
 | 164 | simple | minmax | estimators = 50 | forward | 15 | 0.9773148963256904 | 0.6661261228757619 | 0.87014 | deterioration slightly, bagging didnt perform as well as estimated |
+| 165a | simple | minmax | - | algorithm feature importance | 20 | - | - | - | ERORR: naive bayes does not have feature importance |
+| 165b | simple | minmax | - | PCA | 24, 90% | 0.9702181832956377 | 0.6879233888954087 | 0.85555 | deterioration, PCA did not perform well |
 
-total test cases done: 32    
-total submissions: 17   
+total test cases done: 34    
+total submissions: 18   
 starting accuracy: 0.83725 (case 31)    
 highest accuracy achieved: 0.87413 (case 45)   
 highest parameters: 
@@ -183,6 +185,8 @@ analysis:
 - NB performed better with more features then lesser   
 - row removal does not work in naivebayes    
 - bagging didnt work so well
+- naive bayes does not have algorithm feature importance
+- PCA does not perform well
 
 ### Analyzing Forward Feature Selection
 we have run naivebayes multiple times with forward selection, lets analyse its accuracies (while keeping all other parameters like imputer and scaler constant):

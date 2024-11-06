@@ -2350,6 +2350,28 @@ model accuracy =  0.9773148963256904
 roc score =  0.6661261228757619    
 accuracy: 0.87014
 
+## Case 165a - naive bayes, best, algorithm feature importance
+- GaussianNB()
+- no bagging
+- simple imputer
+- minmax scaler
+- algorithm feature importance, 20 features
+--nb1.csv
+ERR0R, NaiveBayes does not have feature importance
+
+## Case 165b - naive bayes, best, PCA
+- GaussianNB()
+- no bagging
+- simple imputer
+- minmax scaler
+- PCA(n_components=24) covers 90%
+--nb1.csv
+- 2min
+
+model accuracy =  0.9702181832956377    
+roc score =  0.6879233888954087    
+accuracy: 0.85555
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2366,8 +2388,6 @@ accuracy: 0.87014
 
 NaiveBayes:
 - PCA: use the best found in DT
-- bagging: try 10
-- algo feature importance: try 35
 - categorical naivebayes
 
 KNN:
