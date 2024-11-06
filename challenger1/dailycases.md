@@ -2283,7 +2283,7 @@ accuracy: 0.91215
 - maxabs scaler
 - no feature selection
 --ert1.csv
-- 85min + 193min + 10min + 400min + 
+- 85min + 193min + 10min + 400min
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5026041666666666    
@@ -2307,6 +2307,21 @@ accuracy: 0.92081
 model accuracy =  0.9974538510502864    
 roc score =  0.5324932099352228   
 accuracy: 0.95250
+
+## Case 162 - voting, lgbm + xgb features
+- xgb = xgb.XGBClassifier()
+- xgb = featureImportance(xgb, 35, X, trainX, trainY, testX, test_data_processed)
+- model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000)
+- model_1 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2)
+- model = VotingClassifier(estimators=[['lgb_bagged', model_1], ['lgb', model_2]], voting='soft', verbose=True)
+- simple imputer
+- maxabs scaler
+--voting1.csv
+- 60min + 2min + 67min + 3min
+
+model accuracy =  0.997765347996262    
+roc score =  0.5406501620314466    
+accuracy: 0.95703
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
