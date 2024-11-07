@@ -2585,8 +2585,33 @@ model accuracy =  0.9975757411595813
 roc score =  0.5437035391127617    
 accuracy: 0.94906
 
-## Case V - voting, lgbm, lgbm+bagging
+## Case 178 - adaboost, best, kbest
+- AdaBoostClassifier(n_estimator=170)
+- no bagging
+- minmax scaler
+- simple imputer
+- SelectKBest(score_func=f_classif, k=30)
+--ab1.csv
+- 15min
+
+model accuracy =  0.9970340073404933    
+roc score =  0.5412529083325384    
+accuracy: 0.94456
+
+## Case V - voting, lgbm, lgbm+bagging // done on kaggle
 - in previous 2 voting cases, feature importance did not work and was still 78 features. i have fixed the error and re ran the second case with tuned parmeters
+- xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
+- xgb_m, X, trainX, trainY, testX, test_data_processed = featureImportance(xgb_m, 40, X, trainX, trainY, testX, test_data_processed)
+- model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu')
+- model_1 = BaggingClassifier(estimator= model_2, n_estimators=100, verbose=2, n_jobs=-1)
+- model = VotingClassifier(estimators=[('bg_c', model_1), ('lgb2', model_2)], voting='soft', verbose=True)
+- simple imputer
+- minmax scaler
+--voting1.csv
+
+model accuracy =  0.9972236141771741    
+roc score =  0.5271326592834472    
+accuracy: 
 
 
 ## Case G - gboost, grid search for estimators
@@ -2616,7 +2641,6 @@ Gradient Boosting:
 
 Adaptive Boosting: 
 - kbest feature selection: 35
-- algo feature importance: 20
 
 ERT:
 - algo feature importance: 20 // raat ko karoongi

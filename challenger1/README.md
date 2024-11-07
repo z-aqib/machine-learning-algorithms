@@ -420,6 +420,7 @@ according to this table, higher depth doesnt have much power, but differnet valu
 | 175 | 180min | simple | minmax | - | 170 | - | estimators = 10 | - | 78 | 0.9975486544686268 | 0.5478800520332386 | 0.93704 | decreased from best. bagging took time and didnt do so well | 
 | 176 | 20min | simple | minmax | - | 170 | - | - | PCA | 25, 90% | 0.9968579438492896 | 0.5312123336570682 | 0.88640 | accuracy deteriorated due to PCA |
 | 177 | 30min | simple | minmax | - | 170 | - | - | algorithm feature importance | 20 | 0.9975757411595813 | 0.5437035391127617 | 0.94906 | good, but not highest |
+| 178 | simple | simple | minmax | - | 170 | - | - | kbest | 30 | 0.9970340073404933 | 0.5412529083325384 | 0.94456 | decreased due to kbest |
 
 total tests: 17    
 total submissions: 15    
@@ -440,7 +441,8 @@ analysis:
 - greater estimators == lower learning rate
 - bagging on best params didnt do so well and underperformed the model
 - PCA does not perform well
-- algorithm feature importance performs well, but not the best. with the same parameters and 78 features, the model performed better in 3 decimal places. 
+- algorithm feature importance performs well, but not the best. with the same parameters and 78 features, the model performed better in 4 decimal places. 
+- kbest did not perform so well and decrease the accuracy by 0.05%
 
 ### Analyzing Estimators with AdaBoost
 | case number | n estimators | kaggle accuracy |
