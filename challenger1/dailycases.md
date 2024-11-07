@@ -2559,6 +2559,19 @@ model accuracy =  0.9975486544686268
 roc score =  0.5478800520332386    
 accuracy: 0.93704
 
+## Case 176 - adaboost, best, PCA
+- AdaBoostClassifier(n_estimator=170)
+- no bagging
+- minmax scaler
+- simple imputer
+- PCA(n_components=25)
+--ab1.csv
+- 20min
+
+model accuracy =  0.9968579438492896    
+roc score =  0.5312123336570682    
+accuracy: 0.88640
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2585,7 +2598,6 @@ Gradient Boosting:
 - algo feature importance: 20
 
 Adaptive Boosting: 
-- bagging=10 on best case
 - PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
