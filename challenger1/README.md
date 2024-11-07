@@ -38,9 +38,9 @@ Algorithms worked on:
 | Adaptive Boosting | 4 cases left | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | completed | 25 | 21 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | XGBoost | completed | 22 | 21 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
-| CatBoost | 3 cases left | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| CatBoost | completed | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | BaggingClassifier | - | 6 | 4 | - | - | - |
-| ExtraTree Classifier (Extremely Randomized Tree) | 3 cases left |  - | - | - | - | - | - |
+| ExtraTree Classifier (Extremely Randomized Tree) | 3 cases left | 7 | 7 | 0.92081 | 160 | simple | maxabs | - | 78 | ExtraTreesClassifier(n_estimators=800, verbose=2), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | Voting | 8 cases left | - | - | - | - | - | - |
 | Stacking | 10 cases left | - | - | - | - | - | - |
 
@@ -416,7 +416,8 @@ according to this table, higher depth doesnt have much power, but differnet valu
 | 114 | simple | minmax | - | 170 | default = 0.5 | estimators = 50 | - | 78 | 0.9972371575226513 | 0.5406533738276343 | 0.93386 | deterioration, lets use grid to find best params, bagging didnt do so well |
 | 123a | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500, 1000, 3000], 'learning_rate': [0.001, 0.005, 0.01, 0.05, 0.1, 0.5, 0.6, 0.9] } | - | - | estimators = 50 | - | 78 | - | - | - | error: after 10hours of running, it would take 3 days to run, stopped as parameters too many |
 | 126b | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300, 400, 500], 'learning_rate': [0.001, 0.005, 0.01, 0.05] } | - | - | estimators = 50 | - | 78 | - | - | - | error, crashed after 5hours |
-| 142 | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300], 'learning_rate': [0.001, 0.005] } | 300 | 0.005 | estimators = 50 | - | 78 | 0.9971965274862197 | 0.5 | 0.86318 | too long and very low. lets do some other grid with bagging at 10 because bagging at 50 takes 22 hours+ |
+| 143 | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300], 'learning_rate': [0.001, 0.005] } | 300 | 0.005 | estimators = 50 | - | 78 | 0.9971965274862197 | 0.5 | 0.86318 | too long and very low. lets do some other grid with bagging at 10 because bagging at 50 takes 22 hours+ |
+| 175 | 180min | simple | minmax | - | 170 | - | estimators = 10 | - | 78 | 0.9975486544686268 | 0.5478800520332386 | 0.93704 | decreased from best. bagging took time and didnt do so well | 
 
 total tests: 17    
 total submissions: 15    
@@ -435,6 +436,7 @@ analysis:
 - grid search is very slow on adaboost and takes alot of time. especially with bagging
 - bagging of 50 estimators is too slow
 - greater estimators == lower learning rate
+- bagging on best params didnt do so well and underperformed the model
 
 ### Analyzing Estimators with AdaBoost
 | case number | n estimators | kaggle accuracy |
@@ -711,17 +713,43 @@ analysis:
 | 151 | 163min | simple | maxabs | - | default = 100 | default = False | estimators = 100 | - | 78 | 0.9974267643593321 | 0.5186486888775136 | 0.91783 | good but higher bagging doesnt give better result |
 | 153 | 73min | simple | maxabs | - | default = 100 | True | estimators = 100 | - | 78 | 0.9976705445779216 | 0.5028901734104047 | 0.91258 | decreased, lets do bagging=50 with bootstrap true |
 | 154 | 38min | simple | maxabs | - | default = 100 | True | estimators = 50 | - | 78 | 0.9972371575226513 | 0.5 | 0.91049 | decreased further. lets increase estimators |
+| 160 | 688min | simple | maxabs | param_grid = { 'n_estimators': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000] } | 800 | default = False | estimators = 50 | - | 78 | 0.9974132210138549 | 0.5026041666666666 | 0.92081 | wow, more estimators, better ert |
+| 171 | 360min | simple | maxabs | - | 800 | default = False | estimators = 50 | kbest | 15 | 0.9971829841407425 | 0.5023923444976076 | 0.87757 | kbest did not perform well |
 
-total tries: 6   
-total submissions: 6   
+total tries: 8   
+total submissions: 8   
 starting accuracy: 0.91809   
-highest accuracy: X (case Y)
+highest accuracy: 0.92081 (case 160)
 highest case parameters:
 - imputer: simple
 - scaler: maxabs
+- no feature importance or selection
+- n_estimators = 800
+- bootstrap is default True
+- bagging is of 50 estimators
 
 analysis:
-- doesnot have a difference with bootstrap=True
+- doesnot have a difference with bootstrap=True and boostrap=False
 - estimators matter alot - the lower they are the worse
 - bagging improves results but on average is very slow and requires alot of time
 - performs better on bagging=50 instead of bagging=100
+- more estimators improves accuracy
+- kbest did not perform well and decreased the accuracy by 5%
+
+# VotingClassifier
+
+### Analyzing VotingClassifier
+| case number | time | algorithms used | no. of models | imputer | scaler | parameters | feature selection | no. of features | validation accuracy | roc | kaggle accuracy | analysing |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | 
+| 161 | 45min | xgb, lgbm | 2 | simple | maxabs | model_1 = xgb.XGBClassifier(), model_1 = BaggingClassifier(estimator=model_1, n_estimators=100, verbose=2), model_2 = lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), model_2 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35 | 0.9974538510502864 | 0.5324932099352228 | 0.95250 | surprised, these were two of my best accuracies, one as 0.959 and one as 0.952 |
+| 162 | 72min | lgbm | 2 | simple | maxabs | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000), model_1 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35 | 0.997765347996262 | 0.5406501620314466 | 0.95703 | improved, lets tweak params for a better accuracy |
+
+total tries: 2     
+total submissions: 2    
+starting accuracy: 0.95250    
+highest accuracy: X (case Y)    
+highest case parameters:
+- params
+
+analysis:
+- a

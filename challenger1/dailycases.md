@@ -2284,7 +2284,7 @@ accuracy: 0.91215
 - maxabs scaler
 - no feature selection
 --ert1.csv
-- 85min + 193min + 10min + 400min
+- 85min + 193min + 10min + 400min = 
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5026041666666666    
@@ -2545,6 +2545,19 @@ accuracy: 0.93659
 model accuracy =  0.9972777875590828    
 roc score =  0.5074121620758532    
 accuracy: 0.90736
+
+## Case 175 - adaboost, best, bagged = 10
+- AdaBoostClassifier(n_estimator=170)
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- minmax scaler
+- simple imputer
+- no feature selector
+--ab1.csv
+- 180min
+
+model accuracy =  0.9975486544686268    
+roc score =  0.5478800520332386    
+accuracy: 0.93704
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
