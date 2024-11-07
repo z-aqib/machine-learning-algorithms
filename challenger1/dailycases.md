@@ -2466,20 +2466,30 @@ accuracy: 0.93188
 
 # DAY 18: Thursday 7th November 2024
 
-## Case 171 - k-nearest neighbours, PCA=25
-- KNeighborsClassifier(n_neighbors=1500, weights="distance")
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2) 
-- knn=3 imputer
-- minmax scaler
---knn2.csv
-
-## Case 172 - ert, kbest features
+## Case 171 - ert, kbest features
 - ExtraTreesClassifier(n_estimators=800, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
 - maxabs scaler
 - SelectKBest(score_func=f_classif, k=15) 
 --ert1.csv
+- 66min + 10min + 261min + 17min = 360min approx
+
+model accuracy =  0.9971829841407425    
+roc score =  0.5023923444976076    
+accuracy: 0.87757
+
+## Case 172 - k-nearest neighbours, PCA=25
+- KNeighborsClassifier(n_neighbors=1500, weights="distance")
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2) 
+- knn=3 imputer
+- minmax scaler
+--knn2.csv
+- 450min (15min imputer + 132min pred + 298min pred)
+
+model accuracy =  0.9971829841407425    
+roc score =  0.5023923444976076    
+accuracy: 
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
@@ -2494,9 +2504,6 @@ accuracy: 0.93188
 --gb1.csv 
 
 # Remaining Cases left to do (that need to be done)
-
-KNN:
-- bagging: try 10
 
 Random Forest:
 - PCA: use best found in DT
@@ -2521,13 +2528,8 @@ CatBoost:
 - PCA: use best found in DT
 
 ERT:
-- kbest feature selection: 35
 - algo feature importance: 20
 - PCA: use best found in DT
-
-total: 32 cases    
-days left: tues (2) + wed (10) + thurs (10) + fri (10) + sat (10) + sun (10) = 52 cases    
-left: 20    
 
 Stacking:
 - 10 algos, 1 for each
