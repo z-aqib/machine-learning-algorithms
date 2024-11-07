@@ -419,6 +419,7 @@ according to this table, higher depth doesnt have much power, but differnet valu
 | 143 | simple | minmax | param_grid = { 'n_estimators': [50, 100, 140, 160, 170, 180, 200, 300], 'learning_rate': [0.001, 0.005] } | 300 | 0.005 | estimators = 50 | - | 78 | 0.9971965274862197 | 0.5 | 0.86318 | too long and very low. lets do some other grid with bagging at 10 because bagging at 50 takes 22 hours+ |
 | 175 | 180min | simple | minmax | - | 170 | - | estimators = 10 | - | 78 | 0.9975486544686268 | 0.5478800520332386 | 0.93704 | decreased from best. bagging took time and didnt do so well | 
 | 176 | 20min | simple | minmax | - | 170 | - | - | PCA | 25, 90% | 0.9968579438492896 | 0.5312123336570682 | 0.88640 | accuracy deteriorated due to PCA |
+| 177 | 30min | simple | minmax | - | 170 | - | - | algorithm feature importance | 20 | 0.9975757411595813 | 0.5437035391127617 | 0.94906 | good, but not highest |
 
 total tests: 17    
 total submissions: 15    
@@ -439,6 +440,7 @@ analysis:
 - greater estimators == lower learning rate
 - bagging on best params didnt do so well and underperformed the model
 - PCA does not perform well
+- algorithm feature importance performs well, but not the best. with the same parameters and 78 features, the model performed better in 3 decimal places. 
 
 ### Analyzing Estimators with AdaBoost
 | case number | n estimators | kaggle accuracy |

@@ -2572,6 +2572,23 @@ model accuracy =  0.9968579438492896
 roc score =  0.5312123336570682    
 accuracy: 0.88640
 
+## Case 177 - adaboost, best, algorithm feature importance
+- AdaBoostClassifier(n_estimator=170)
+- no bagging
+- minmax scaler
+- simple imputer
+- algorithm feature importance, 20 features
+--ab1.csv
+- 30min
+
+model accuracy =  0.9975757411595813    
+roc score =  0.5437035391127617    
+accuracy: 0.94906
+
+## Case V - voting, lgbm, lgbm+bagging
+- in previous 2 voting cases, feature importance did not work and was still 78 features. i have fixed the error and re ran the second case with tuned parmeters
+
+
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2598,7 +2615,6 @@ Gradient Boosting:
 - algo feature importance: 20
 
 Adaptive Boosting: 
-- PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
 
