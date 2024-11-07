@@ -2598,7 +2598,7 @@ model accuracy =  0.9970340073404933
 roc score =  0.5412529083325384    
 accuracy: 0.94456
 
-## Case V - voting, lgbm, lgbm+bagging // done on kaggle
+## Case 179 - voting, lgbm, lgbm+bagging // done on kaggle
 - in previous 2 voting cases, feature importance did not work and was still 78 features. i have fixed the error and re ran the second case with tuned parmeters
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
 - xgb_m, X, trainX, trainY, testX, test_data_processed = featureImportance(xgb_m, 40, X, trainX, trainY, testX, test_data_processed)
@@ -2613,6 +2613,20 @@ model accuracy =  0.9972236141771741
 roc score =  0.5271326592834472    
 accuracy: 0.96165
 
+## Case 180 - gradient boosting, best, algo feature imp
+- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200) 
+- no bagging
+- algo feature importance of best 20 features
+- minmax scaler
+- simpe imputer
+--gb1.csv
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5331975412581588    
+accuracy: 
+
+# DAY 19: Friday 8th November 2024
+
 ## Case R - random forest + bagging
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2621,6 +2635,16 @@ accuracy: 0.96165
 - maxabs scaler
 --rf1.csv
 - ran it for 10 hours+ and then an error came, and realized code was wrong and wil have to re-run (bagged first and then tried to extract feature importances which is wrong)
+
+## Case V - voting, lgbm, lgbm+bagging // done on kaggle
+- xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
+- xgb_m, X, trainX, trainY, testX, test_data_processed = featureImportance(xgb_m, 45, X, trainX, trainY, testX, test_data_processed)
+- model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu')
+- model_1 = BaggingClassifier(estimator= model_2, n_estimators=150, verbose=2, n_jobs=-1)
+- model = VotingClassifier(estimators=[('bg_c', model_1), ('lgb2', model_2)], voting='soft', verbose=True)
+- simple imputer
+- minmax scaler
+--voting1.csv
 
 # Remaining Cases left to do (that need to be done)
 
@@ -2632,7 +2656,6 @@ Random Forest:
 
 Gradient Boosting:
 - PCA: use best found in DT
-- kbest feature selection: 35
 - algo feature importance: 20
 
 ERT:

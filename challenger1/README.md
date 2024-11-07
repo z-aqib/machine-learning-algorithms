@@ -362,6 +362,7 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 | 122 | simple | minmax | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] } | 3 | - | default = friedman_mse | - | - | 78 | estimators = 10 | 0.9974809377412408 | 0.5458640497792794 | 0.88551 | bagging improved the same model, even at less estimators |
 | 131 | simple | minmax | param_grid = { 'criterion': ['friedman_mse', 'squared_error'] } | 3 | - | friedman_mse | - | - | 78 | estimators = 10 | 0.9974132210138549 | 0.5332722268995048 | 0.90057 | 7hour running: improved and more effecient. lets do grid on estimators next |
 | 155 | simple | minmax | param_grid = { 'n_estimators': [50, 100, 200] } | 3 | 200 | friedman_mse | - | - | 78 | estimators = 10 | 0.9974267643593321 | 0.5358363294636074 | 0.90485 | BEST CASE: ok good improved, lets grid again with more estimators |
+| 180 | simple | minmax | - | 3 | 200 | friedman_mse | - | algorithm feature importance | 20 | - | 0.9972642442136056 | 0.5331975412581588 | 0.85391 | deteriorated, not good |
 
 total tests: 12  
 total submissions: 10   
@@ -384,6 +385,7 @@ analysis:
 - bagging does work but it takes extremely long, **over 24 hours of running** and laptop use. its not very feasible. accuracy improved by 2 percent but very inefficient. better to use 10 estimators instead of 50, whereas 50 gives better results
 - friedman_mse criterion is much better than squared_error
 - uptil now, more estimators means better accuracy
+- algorithm feature importance wasnt so good, maybe it woud have been better with bagging but overall didnt perform so good
 
 ### Analyzing depth
 | case number | depth | accuracy |
