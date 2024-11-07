@@ -747,11 +747,12 @@ analysis:
 ### Analyzing VotingClassifier
 | case number | time | algorithms used | no. of models | imputer | scaler | parameters | feature selection | no. of features | validation accuracy | roc | kaggle accuracy | analysing |
 | - | - | - | - | - | - | - | - | - | - | - | - | - | 
-| 161 | 45min | xgb, lgbm | 2 | simple | maxabs | model_1 = xgb.XGBClassifier(), model_1 = BaggingClassifier(estimator=model_1, n_estimators=100, verbose=2), model_2 = lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), model_2 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35 | 0.9974538510502864 | 0.5324932099352228 | 0.95250 | surprised, these were two of my best accuracies, one as 0.959 and one as 0.952 |
-| 162 | 72min | lgbm | 2 | simple | maxabs | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000), model_1 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35 | 0.997765347996262 | 0.5406501620314466 | 0.95703 | improved, lets tweak params for a better accuracy |
+| 161 | 45min | xgb, lgbm | 2 | simple | maxabs | model_1 = xgb.XGBClassifier(), model_1 = BaggingClassifier(estimator=model_1, n_estimators=100, verbose=2), model_2 = lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), model_2 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35, didnt work, 78 | 0.9974538510502864 | 0.5324932099352228 | 0.95250 | surprised, these were two of my best accuracies, one as 0.959 and one as 0.952 |
+| 162 | 72min | lgbm | 2 | simple | maxabs | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000), model_1 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35, didnt work, 78 | 0.997765347996262 | 0.5406501620314466 | 0.95703 | improved, lets tweak params for a better accuracy |
+| 179 kaggle | 90min | lgbm | 2 | simple | maxabs | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu'), model_1 = BaggingClassifier(estimator= model_2, n_estimators=100, verbose=2, n_jobs=-1) | xgb algorithm feature importance | 40 | 0.9972236141771741 | 0.5271326592834472 | 0.96165 | wow, improved, lets tune params |
 
-total tries: 2     
-total submissions: 2    
+total tries: 3     
+total submissions: 3    
 starting accuracy: 0.95250    
 highest accuracy: X (case Y)    
 highest case parameters:

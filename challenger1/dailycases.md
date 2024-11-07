@@ -2611,20 +2611,16 @@ accuracy: 0.94456
 
 model accuracy =  0.9972236141771741    
 roc score =  0.5271326592834472    
-accuracy: 
+accuracy: 0.96165
 
-
-## Case G - gboost, grid search for estimators
-- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
+## Case R - random forest + bagging
+- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
-- param_grid = {
-    'n_estimators': [300, 400, 500]
-}
-- best estimators: 
-- minmax scaler
-- simple imputer
-- no feature selector
---gb1.csv 
+- feature importances of 35 features
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
+- ran it for 10 hours+ and then an error came, and realized code was wrong and wil have to re-run (bagged first and then tried to extract feature importances which is wrong)
 
 # Remaining Cases left to do (that need to be done)
 
@@ -2638,9 +2634,6 @@ Gradient Boosting:
 - PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
-
-Adaptive Boosting: 
-- kbest feature selection: 35
 
 ERT:
 - algo feature importance: 20 // raat ko karoongi
