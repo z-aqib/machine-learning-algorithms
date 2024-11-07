@@ -2492,14 +2492,6 @@ model accuracy =  0.9971829841407425
 roc score =  0.5023923444976076    
 accuracy: 0.83150
 
-## Case 173 - ert, algorithm feature importance
-- ExtraTreesClassifier(n_estimators=800, verbose=1)
-- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
-- simple imputer
-- maxabs scaler
-- algorithm feature importance, 20 features
---ert1.csv
-
 ## Case 173 - catboost, best, kbest 14
 - CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
@@ -2511,7 +2503,15 @@ accuracy: 0.83150
 
 model accuracy =  0.997155897449788    
 roc score =  0.5141237787103181    
-accuracy:
+accuracy: 0.93659
+
+## Case 174 - ert, algorithm feature importance
+- ExtraTreesClassifier(n_estimators=800, verbose=1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance, 20 features
+--ert1.csv
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
