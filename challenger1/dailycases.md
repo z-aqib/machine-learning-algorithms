@@ -361,7 +361,7 @@ k-fold is best at k = 10. it does give good accuracy like holdout, we can use bo
 
 # DAY 4: Thursday 24th October 2024
 
-## Case 31
+## * Case 31
 - naive bayes
 - simple imputer
 - maxabs scaler
@@ -371,7 +371,7 @@ model accuracy =  0.8670720641412841
 roc score =  0.8015837569508879   
 accuracy: 0.83725    
 
-## Case 32 - scaler changed to minmax
+## * Case 32 - scaler changed to minmax
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -381,7 +381,7 @@ model accuracy =  0.9109254167964571
 roc score =  0.7956827745161095    
 accuracy: 0.83350
 
-## Case 33 - imputer changed to knn7
+## * Case 33 - imputer changed to knn7
 - naive bayes
 - knn7 imputer
 - minmax scaler
@@ -394,7 +394,7 @@ accuracy: 0.83350
 ### analyzing
 NO DIFFERENCE! knn7 == simple. we will have to use feature selections now to try and improve the accuracy
 
-## Case 34 - simple, forward selection=5
+## * Case 34 - simple, forward selection=5
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -413,7 +413,7 @@ accuracy: 0.82386
 model accuracy =  0.9630943835746306    
 roc score =  0.6591343574667629 
 
-## Case 35b - forward=20
+## * Case 35b - forward=20
 - naive bayes
 - simple imputer
 - minmax scaler 
@@ -426,7 +426,7 @@ accuracy: 0.87148
 ### analyzer 
 accuracy improved! meaning forward is doing good but at more features. lets try and implement filters now
 
-## Case 36 - variance and correlation filter
+## * Case 36 - variance and correlation filter
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -465,7 +465,7 @@ roc score =  0.6956493745514011
 model accuracy =  0.9457318146728605    
 roc score =  0.6916013795163546   
 
-## Case 37f - variance=0.3, correlation=0.9
+## * Case 37f - variance=0.3, correlation=0.9
 20 columns extracted through variance and correlation didnt do more   
 - naive bayes
 - simple imputer
@@ -479,7 +479,7 @@ accuracy: 0.75852
 ### analyzer
 need to increase features, the variance=0.01 seems better now, will try that next
 
-## Case 38 - variance=0.01
+## * Case 38 - variance=0.01
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -498,7 +498,7 @@ wow! accuracy shot up. lets use more features now (we used approx 50 right now)
 model accuracy =  0.9132142421821038    
 roc score =  0.7612309576110358 
 
-## Case 39b - variance=0.001
+## * Case 39b - variance=0.001
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -527,7 +527,7 @@ roc score =  0.7965337080939787
 model accuracy =  0.9187128404458469    
 roc score =  0.7588877586887783  
 
-## Case 40d - variance=0.0001, correlation=0.87
+## * Case 40d - variance=0.0001, correlation=0.87
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -543,7 +543,7 @@ accuracy improved, but not even to the starting point.. submissions have ended o
 
 # DAY 5: Friday 25th October 2024
 
-## Case 41a - forward=30
+## * Case 41a - forward=30
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -565,7 +565,7 @@ model accuracy =  0.9212183593591289
 roc score =  0.7565948275603417    
 not submitted   
 
-## Case 42 - forward=25
+## * Case 42 - forward=25
 -  naive bayes
 - simple imputer
 - minmax scaler
@@ -584,7 +584,7 @@ model accuracy =  0.9550090063247424
 roc score =  0.7018435381296126    
 -- nb1.csv   
 
-## Case 43 - k=5
+## * Case 43 - k=5
 - KNeighborsClassifier(k=5)
 - simple imputer
 - minmax scaling
@@ -613,16 +613,17 @@ roc score =  0.5
 ### Analyzing
 KNN + forward is running since past 6 hours, we are shifting to RandomForest.
 
-## Case 44 - simple, maxabs, max_depth=10, n_estimators=200
+## * Case 44 - randomforest, simple, maxabs, max_depth=10, n_estimators=200
 - RandomForestClassifier(max_depth=10, n_estimators=200)
 - simple imputer
 - maxabs scaler
+- no feature importance or selection
 
 model accuracy =  0.9973319609409916    
 roc score =  0.5050251256281407   
 accuracy: 0.90507
 
-## Case 45 - naivebayes, forward=15
+## * Case 45 - naivebayes, forward=15
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -632,7 +633,7 @@ model accuracy =  0.9776399366171432
 roc score =  0.7000642467303131 
 accuracy: 0.87413
 
-## Case 46 - knearestneighbours=7, simple, variance=0.001, corr=0.9
+## * Case 46 - knearestneighbours=7, simple, variance=0.001, corr=0.9
 - KNeighborsClassifier(k=7)
 - simple imputer
 - minmax scaling
@@ -644,7 +645,7 @@ roc score =  0.5
 accuracy: 0.54796    
 -- knn4.csv
 
-## Case 47 - knearest neighbours, k=7, kbest=30
+## * Case 47 - knearest neighbours, k=7, kbest=30
 - KNeighborsClassifier(k=7)
 - simple imputer
 - minmax scaling
@@ -2505,13 +2506,45 @@ model accuracy =  0.997155897449788
 roc score =  0.5141237787103181    
 accuracy: 0.93659
 
-## Case 174 - ert, algorithm feature importance
+## Case 174a - catboost, best, forward=10
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- SequentialFeatureSelector(model, direction='forward',n_features_to_select=10, scoring='roc_auc')
+- simple imputer
+- maxabs scaler
+--cat1.csv
+- ERROR, crashed after 110mins
+
+## Case 174b - catboost, best, forward=5
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- SequentialFeatureSelector(model, direction='forward',n_features_to_select=5, scoring='roc_auc')
+- simple imputer
+- maxabs scaler
+--cat1.csv
+- ERROR, crashed after 10mins, took too much memory RAM
+
+## Case 174c - ert, algorithm feature importance
 - ExtraTreesClassifier(n_estimators=800, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
 - maxabs scaler
 - algorithm feature importance, 20 features
 --ert1.csv
+- ERROR, crashed after 100mins, will retry this at night when laptop is not in use
+
+## Case 174d - catboost, best, PCA
+- CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- PCA(n_components=33) 
+- simple imputer
+- maxabs scaler
+--cat1.csv
+- 52min + 72min
+
+model accuracy =  0.9972777875590828    
+roc score =  0.5074121620758532    
+accuracy: 0.90736
 
 ## Case G - gboost, grid search for estimators
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse')
@@ -2531,7 +2564,7 @@ Random Forest:
 - PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
-- bagging: try 10
+- bagging: try 10 // running
 
 Gradient Boosting:
 - PCA: use best found in DT
@@ -2544,14 +2577,9 @@ Adaptive Boosting:
 - kbest feature selection: 35
 - algo feature importance: 20
 
-CatBoost:
-- kbest at 35
-- forward=5
-- PCA: use best found in DT
-
 ERT:
-- algo feature importance: 20
-- PCA: use best found in DT
+- algo feature importance: 20 // raat ko karoongi
+- PCA: use best found in DT 
 
 Stacking:
 - 10 algos, 1 for each
