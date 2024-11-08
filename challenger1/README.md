@@ -723,6 +723,7 @@ analysis:
 | 154 | 38min | simple | maxabs | - | default = 100 | True | estimators = 50 | - | 78 | 0.9972371575226513 | 0.5 | 0.91049 | decreased further. lets increase estimators |
 | 160 | 688min | simple | maxabs | param_grid = { 'n_estimators': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000] } | 800 | default = False | estimators = 50 | - | 78 | 0.9974132210138549 | 0.5026041666666666 | 0.92081 | wow, more estimators, better ert |
 | 171 | 360min | simple | maxabs | - | 800 | default = False | estimators = 50 | kbest | 15 | 0.9971829841407425 | 0.5023923444976076 | 0.87757 | kbest did not perform well |
+| 181 | 240min | simple | maxabs | - | 800 | default = False | estimators = 50 | algorithm feature importance | 20 | 0.9975892845050585 | 0.5055555555555555 | 0.88873 | feature importance didnt perform well |
 
 total tries: 8   
 total submissions: 8   
@@ -743,6 +744,7 @@ analysis:
 - performs better on bagging=50 instead of bagging=100
 - more estimators improves accuracy
 - kbest did not perform well and decreased the accuracy by 5%
+- algorithm featur importance aso didnt perform well
 
 # VotingClassifier
 

@@ -2627,6 +2627,19 @@ accuracy:
 
 # DAY 19: Friday 8th November 2024
 
+## Case 181 - ert, algorithm feature importance
+- ExtraTreesClassifier(n_estimators=800, verbose=1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- algorithm feature importance, 20 features
+--ert1.csv
+- 240min
+
+model accuracy =  0.9975892845050585    
+roc score =  0.5055555555555555    
+accuracy: 0.88873
+
 ## Case R - random forest + bagging
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -2656,7 +2669,6 @@ Random Forest:
 
 Gradient Boosting:
 - PCA: use best found in DT
-- algo feature importance: 20
 
 ERT:
 - algo feature importance: 20 // raat ko karoongi
