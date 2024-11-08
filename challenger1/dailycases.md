@@ -657,7 +657,7 @@ roc score =  0.5028112828678414
 accuracy: 0.57056
 -- knn3.csv
 
-## Case 48 - naivebayes, forward = 17
+## * Case 48 - naivebayes, forward = 17
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -667,7 +667,7 @@ model accuracy =  0.968064791364763
 roc score =  0.71144752877173 
 accuracy: 0.87278
 
-## Case 49 - naivebayes, forward = 13
+## * Case 49 - naivebayes, forward = 13
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -677,7 +677,7 @@ model accuracy =  0.9724663786448529
 roc score =  0.657890605723844
 accuracy: 0.87353
 
-## Case 50 - naivebayes, forward = 14
+## * Case 50 - naivebayes, forward = 14
 - naive bayes
 - simple imputer
 - minmax scaler
@@ -689,7 +689,7 @@ accuracy: 0.87271
 
 # DAY 6: Saturday 26th October 2024
 
-## Case 51 - best decision tree parameters
+## * Case 51 - best decision tree parameters
 - RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer   
@@ -699,7 +699,7 @@ model accuracy =  0.9970610940314476
 roc score =  0.5   
 accuracy: 0.91554
 
-## Case 52 - knearestneighbours=3, forward=5
+## * Case 52 - knearestneighbours=3, forward=5
 - KNeighborsClassifier(n_neighbors=3)
 - selection = SequentialFeatureSelector(model, direction='forward',n_features_to_select=5, scoring='roc_auc', n_jobs=-1)
 - minmax scaler
@@ -710,7 +710,7 @@ model accuracy =  0.9965735335942685
 roc score =  0.5254314763954754   
 accuracy: 0.55037
 
-## Case 53 - knearest=11, kbest=20, knn=7
+## * Case 53 - knearest=11, kbest=20, knn=7
 - KNeighborsClassifier(n_neighbors=11)
 - SelectKBest(score_func=f_classif, k=20)
 - knn=7 imputer
@@ -721,7 +721,7 @@ model accuracy =  0.9970340073404933
 roc score =  0.5   
 accuracy: 0.59883
 
-## Case 54 - kbest=15
+## * Case 54 - kbest=15
 - KNeighborsClassifier(n_neighbors=11)
 - SelectKBest(score_func=f_classif, k=15)
 - knn=7 imputer
@@ -732,7 +732,7 @@ model accuracy =  0.9976434578869673
 roc score =  0.5   
 accuracy: 0.60509
 
-## Case 55 - kbest=10
+## * Case 55 - kbest=10
 - KNeighborsClassifier(n_neighbors=11)
 - SelectKBest(score_func=f_classif, k=10)
 - knn=7 imputer
@@ -743,7 +743,7 @@ model accuracy =  0.9975486544686268
 roc score =  0.5055112852519732    
 accuracy: 0.61709
 
-## Case 56 - knn=3
+## * Case 56 - knn=3
 - KNeighborsClassifier(n_neighbors=11)
 - SelectKBest(score_func=f_classif, k=10)
 - knn=3 imputer
@@ -2671,6 +2671,19 @@ model accuracy =  0.9974809377412408
 roc score =  0.5    
 accuracy: 0.85415
 
+## Case 182 - gradient boosting, best PCA
+- GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200) 
+- no bagging
+- PCA(n_components=40) 
+- minmax scaler
+- simpe imputer
+--gb1.csv
+- 25min + 41min
+
+model accuracy =  0.9962484933028156    
+roc score =  0.5144364246234909    
+accuracy: 0.86502
+
 ## Case V - voting, lgbm, lgbm+bagging // done on kaggle
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
 - xgb_m = featureImportance(xgb_m, 45)
@@ -2687,12 +2700,6 @@ Random Forest:
 - PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
-
-Gradient Boosting:
-- PCA: use best found in DT
-
-ERT:
-- PCA: use best found in DT 
 
 Stacking:
 - 10 algos, 1 for each
