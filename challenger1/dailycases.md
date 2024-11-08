@@ -2722,7 +2722,7 @@ model accuracy =  0.9489686742419112
 roc score =  0.6666960854865647    
 accuracy: 0.81229
 
-## Case 186 - categorical NB, bagged
+## Case 187 - categorical NB, bagged
 - CategoricalNB()
 - minmax scaler
 - simple imputer
@@ -2738,6 +2738,18 @@ accuracy: 0.81199
 
 ### Anayzing
 bagging doesnt have a good response, lets not do it
+
+## Case 188 - random forest, PCA
+- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
+- PCA(n_components=25)    
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
+- 210min
+
+model accuracy =  0.9974673943957636    
+roc score =  0.5    
+accuracy: 0.88214
 
 ## Case V - voting, lgbm, lgbm+bagging
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
