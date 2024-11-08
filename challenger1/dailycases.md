@@ -2696,7 +2696,7 @@ model accuracy =  0.9972371575226513
 roc score =  0.5    
 accuracy: 0.93581
 
-## Case R - random forest, kbest
+## Case 185 - random forest, kbest
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
 - SelectKBest(score_func=f_classif, k=15)    
 - knn=7 imputer
@@ -2707,6 +2707,20 @@ accuracy: 0.93581
 model accuracy =  0.9974403077048093    
 roc score =  0.5    
 accuracy: 0.92622
+
+## Case 186 - categorical NB
+- CategoricalNB()
+- minmax scaler
+- simple imputer
+- categorical cols: ['X5','X8','X11','X4', 'X6', 'X10', 'X16']
+- no bagging
+- no feature selection
+--nb1.csv
+- 2min
+
+model accuracy =  0.9489686742419112    
+roc score =  0.6666960854865647    
+accuracy: 0.81229
 
 ## Case V - voting, lgbm, lgbm+bagging
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
