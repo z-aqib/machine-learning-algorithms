@@ -744,7 +744,7 @@ analysis:
 - performs better on bagging=50 instead of bagging=100
 - more estimators improves accuracy
 - kbest did not perform well and decreased the accuracy by 5%
-- algorithm featur importance aso didnt perform well
+- algorithm feature importance aso didnt perform well
 
 # VotingClassifier
 

@@ -2640,7 +2640,7 @@ model accuracy =  0.9975892845050585
 roc score =  0.5055555555555555    
 accuracy: 0.88873
 
-## Case 181a - random forest + bagging
+## Case 182a - random forest + bagging
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
 - feature importances of 35 features
@@ -2650,7 +2650,7 @@ accuracy: 0.88873
 - ran it for 10 hours+ and then an error came, and realized code was wrong and wil have to re-run (bagged first and then tried to extract feature importances which is wrong)
 - running for 414mins and this comes: 'The Kernel crashed while executing code in the current cell or a previous cell.' and it says 'Python Kernel is dead'
 
-## Case 181b - ert, PCA
+## Case 182b - ert, PCA
 - ExtraTreesClassifier(n_estimators=800, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -2659,7 +2659,7 @@ accuracy: 0.88873
 --ert1.csv
 - ERROR: after 8h running: The Kernel crashed while executing code in the current cell or a previous cell. Python kernel is dead. 
 
-## Case 181c - ert, PCA
+## Case 182c - ert, PCA
 - ExtraTreesClassifier(n_estimators=800, verbose=1)
 - no bagging
 - simple imputer
@@ -2671,7 +2671,7 @@ model accuracy =  0.9974809377412408
 roc score =  0.5    
 accuracy: 0.85415
 
-## Case 182 - gradient boosting, best PCA
+## Case 183 - gradient boosting, best PCA
 - GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200) 
 - no bagging
 - PCA(n_components=40) 
@@ -2684,7 +2684,19 @@ model accuracy =  0.9962484933028156
 roc score =  0.5144364246234909    
 accuracy: 0.86502
 
-## Case V - voting, lgbm, lgbm+bagging // done on kaggle
+## Case 184 - random forest, algo feature imp
+- RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
+- feature importances of 20 features
+- knn=7 imputer
+- maxabs scaler
+--rf1.csv
+- 127min + 33min + 100min
+
+model accuracy =  0.9972371575226513    
+roc score =  0.5    
+accuracy: 0.93581
+
+## Case V - voting, lgbm, lgbm+bagging
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
 - xgb_m = featureImportance(xgb_m, 45)
 - model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu')
@@ -2693,6 +2705,9 @@ accuracy: 0.86502
 - simple imputer
 - minmax scaler
 --voting1.csv
+- ran it 4 times on kaggle, 2 times on google colab, har dafa koi naya masla. we have switched to VSCode now
+ 
+accuracy: 
 
 # Remaining Cases left to do (that need to be done)
 
