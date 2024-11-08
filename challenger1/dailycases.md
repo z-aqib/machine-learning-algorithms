@@ -2640,7 +2640,7 @@ model accuracy =  0.9975892845050585
 roc score =  0.5055555555555555    
 accuracy: 0.88873
 
-## Case R - random forest + bagging
+## Case 181a - random forest + bagging
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
 - feature importances of 35 features
@@ -2648,10 +2648,32 @@ accuracy: 0.88873
 - maxabs scaler
 --rf1.csv
 - ran it for 10 hours+ and then an error came, and realized code was wrong and wil have to re-run (bagged first and then tried to extract feature importances which is wrong)
+- running for 414mins and this comes: 'The Kernel crashed while executing code in the current cell or a previous cell.' and it says 'Python Kernel is dead'
+
+## Case 181b - ert, PCA
+- ExtraTreesClassifier(n_estimators=800, verbose=1)
+- BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- maxabs scaler
+- PCA(n_components=25) 
+--ert1.csv
+- ERROR: after 8h running: The Kernel crashed while executing code in the current cell or a previous cell. Python kernel is dead. 
+
+## Case 181c - ert, PCA
+- ExtraTreesClassifier(n_estimators=800, verbose=1)
+- no bagging
+- simple imputer
+- maxabs scaler
+- PCA(n_components=25) 
+--ert1.csv
+
+model accuracy =  0.9974809377412408    
+roc score =  0.5    
+accuracy: 0.85415
 
 ## Case V - voting, lgbm, lgbm+bagging // done on kaggle
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
-- xgb_m, X, trainX, trainY, testX, test_data_processed = featureImportance(xgb_m, 45, X, trainX, trainY, testX, test_data_processed)
+- xgb_m = featureImportance(xgb_m, 45)
 - model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu')
 - model_1 = BaggingClassifier(estimator= model_2, n_estimators=150, verbose=2, n_jobs=-1)
 - model = VotingClassifier(estimators=[('bg_c', model_1), ('lgb2', model_2)], voting='soft', verbose=True)
@@ -2665,16 +2687,14 @@ Random Forest:
 - PCA: use best found in DT
 - kbest feature selection: 35
 - algo feature importance: 20
-- bagging: try 10 // running
 
 Gradient Boosting:
 - PCA: use best found in DT
 
 ERT:
-- algo feature importance: 20 // raat ko karoongi
 - PCA: use best found in DT 
 
 Stacking:
 - 10 algos, 1 for each
 
-left: 8 for voting
+left: 7 for voting
