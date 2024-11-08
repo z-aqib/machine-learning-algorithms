@@ -2751,6 +2751,19 @@ model accuracy =  0.9974673943957636
 roc score =  0.5    
 accuracy: 0.88214
 
+## Case 188 - categorical NB, alpha params
+- CategoricalNB(alpha=0.1, fit_prior=False)
+- minmax scaler
+- simple imputer
+- categorical cols: ['X5','X8','X11','X4', 'X6', 'X10', 'X16']
+- no bagging
+- no feature selection
+--nb1.csv
+
+model accuracy =  0.7837534027655512    
+roc score =  0.7802110762469083    
+accuracy: 0.81257
+
 ## Case V - voting, lgbm, lgbm+bagging
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
 - xgb_m = featureImportance(xgb_m, 45)
@@ -2761,7 +2774,21 @@ accuracy: 0.88214
 - minmax scaler
 --voting1.csv
 - ran it 4 times on kaggle, 2 times on google colab, har dafa koi naya masla. we have switched to VSCode now
- 
+accuracy: 
+
+## Case S - stacking, xgb, lgb, lgb+bagged
+- simple imputer
+- minmax scaler
+- model_3 = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
+- model_3 = featureImportance(model_3, 40)
+- model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu')
+- model_1 = BaggingClassifier(estimator= model_2, n_estimators=100, verbose=2, n_jobs=-1)
+- estimators = [('model_1', model_1), ('model_2', model_2), ('model_3', model_3)]
+- model = StackingClassifier(estimators=estimators, final_estimator=model_2)
+--stacking1.csv
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5    
 accuracy: 
 
 # Remaining Cases left to do (that need to be done)
