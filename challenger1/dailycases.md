@@ -2751,7 +2751,7 @@ model accuracy =  0.9974673943957636
 roc score =  0.5    
 accuracy: 0.88214
 
-## Case 188 - categorical NB, alpha params
+## Case 189 - categorical NB, alpha params
 - CategoricalNB(alpha=0.1, fit_prior=False)
 - minmax scaler
 - simple imputer
@@ -2759,10 +2759,25 @@ accuracy: 0.88214
 - no bagging
 - no feature selection
 --nb1.csv
+- 4min
 
 model accuracy =  0.7837534027655512    
 roc score =  0.7802110762469083    
 accuracy: 0.81257
+
+## Case 190 - categorical NB, alpha params
+- CategoricalNB(alpha=0.001, fit_prior=False)
+- minmax scaler
+- simple imputer
+- categorical cols: ['X5','X8','X11','X4', 'X6', 'X10', 'X16']
+- no bagging
+- no feature selection
+--nb1.csv
+- 4min
+
+model accuracy =  0.7860828581876295    
+roc score =  0.7687108687644401    
+accuracy: 0.81312
 
 ## Case V - voting, lgbm, lgbm+bagging
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
