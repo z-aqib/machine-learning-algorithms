@@ -2722,6 +2722,23 @@ model accuracy =  0.9489686742419112
 roc score =  0.6666960854865647    
 accuracy: 0.81229
 
+## Case 186 - categorical NB, bagged
+- CategoricalNB()
+- minmax scaler
+- simple imputer
+- categorical cols: ['X5','X8','X11','X4', 'X6', 'X10', 'X16']
+- BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
+- no feature selection
+--nb1.csv
+- 4min
+
+model accuracy =  0.9513523030458984    
+roc score =  0.6672982355307021    
+accuracy: 0.81199 
+
+### Anayzing
+bagging doesnt have a good response, lets not do it
+
 ## Case V - voting, lgbm, lgbm+bagging
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
 - xgb_m = featureImportance(xgb_m, 45)
@@ -2739,7 +2756,9 @@ accuracy:
 
 Random Forest:
 - PCA: use best found in DT
-- kbest feature selection: 35
+
+Categorical NB:
+- as many as you can, 90s mein leyao
 
 Stacking:
 - 10 algos, 1 for each
