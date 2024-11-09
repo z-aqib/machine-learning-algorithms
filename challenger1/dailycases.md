@@ -310,7 +310,7 @@ accuracy: 0.85877
 - MaxAbsScaler
 - no grid
 
-roc score = 0.5
+roc score = 0.5     
 accuracy: 0.89522
 
 ## * Case 27 - min_samples_leaf increased
@@ -320,7 +320,7 @@ accuracy: 0.89522
 - MaxAbsScaler
 - no grid
 
-roc score = 0.5
+roc score = 0.5    
 accuracy: 0.85276
 
 ### analyzing
@@ -343,7 +343,7 @@ accuracy: 0.89174
 - MaxAbsScaler
 - no grid
 
-'0.8812'
+'0.8812'    
 accuracy: 0.88935
 
 ## * Case 30 - crossfold at k=15
@@ -353,7 +353,7 @@ accuracy: 0.88935
 - MaxAbsScaler
 - no grid
 
-'0.8994'
+'0.8994'    
 accuracy: 0.87891
 
 ### analyzing
@@ -411,7 +411,8 @@ accuracy: 0.82386
 - forward=10
 
 model accuracy =  0.9630943835746306    
-roc score =  0.6591343574667629 
+roc score =  0.6591343574667629    
+not submitted
 
 ## * Case 35b - forward=20
 - naive bayes
@@ -453,17 +454,20 @@ same error as variance=0.5
 ## Case 37c - variance=0.01
 61 columns extracted through variance filter and then 49 columns left with correlation filter   
 model accuracy =  0.9121849479258366    
-roc score =  0.7996191732926649   
+roc score =  0.7996191732926649     
+not submitted
 
 ## Case 37d - variance=0.05
 14 columns extracted through variance and correlation didnt do more   
 model accuracy =  0.9577176754201823    
-roc score =  0.6956493745514011   
+roc score =  0.6956493745514011     
+not submitted   
 
 ## Case 37e - variance=0.3, correlation=0.8
 20 columns extracted through variance and correlation made it 19    
 model accuracy =  0.9457318146728605    
-roc score =  0.6916013795163546   
+roc score =  0.6916013795163546     
+not submitted   
 
 ## * Case 37f - variance=0.3, correlation=0.9
 20 columns extracted through variance and correlation didnt do more   
@@ -496,7 +500,8 @@ wow! accuracy shot up. lets use more features now (we used approx 50 right now)
 ## Case 39a - variance=0.005
 69 by variance, 57 by correlation   
 model accuracy =  0.9132142421821038    
-roc score =  0.7612309576110358 
+roc score =  0.7612309576110358     
+not submitted 
 
 ## * Case 39b - variance=0.001
 - naive bayes
@@ -515,17 +520,20 @@ wow! lets increase the rows even further
 ## Case 40a - variance=0.0001
 78 by variance, 66 by correlation  
 model accuracy =  0.9162479515689965     
-roc score =  0.7761983869690179 
+roc score =  0.7761983869690179      
+not submitted
 
 ## Case 40b - variance=0.0001, correlation=0.8
 78 by variance, 57 by correlation     
 model accuracy =  0.9183200834270081    
-roc score =  0.7965337080939787  
+roc score =  0.7965337080939787     
+not submitted  
 
 ## Case 40c - variance=0.0001, correlation=0.85
 78 by variance, 62 by correlation    
 model accuracy =  0.9187128404458469    
-roc score =  0.7588877586887783  
+roc score =  0.7588877586887783     
+not submitted  
 
 ## * Case 40d - variance=0.0001, correlation=0.87
 - naive bayes
@@ -565,7 +573,7 @@ model accuracy =  0.9212183593591289
 roc score =  0.7565948275603417    
 not submitted   
 
-## * Case 42 - forward=25
+## Case 42a - forward=25
 -  naive bayes
 - simple imputer
 - minmax scaler
@@ -573,16 +581,29 @@ not submitted
 
 model accuracy =  0.9617942224088194    
 roc score =  0.7343364208492563    
--- samplesubmission.csv   
+not submitted
+-- samplesubmission.csv     
+
+## Case 42b - forward=25
+-  naive bayes
+- simple imputer
+- minmax scaler
+- forward=25 rows
+model accuracy =  0.9550090063247424    
+roc score =  0.7018435381296126    
+not submitted    
+-- nb1.csv   
+
+## * Case 42c - forward=25
+-  naive bayes
+- simple imputer
+- minmax scaler
+- forward=25 rows
 
 model accuracy =  0.8100274929913187    
 roc score =  0.8185403319589406   
 accuracy: 0.86875   
--- samplesubmission2.csv    
-
-model accuracy =  0.9550090063247424    
-roc score =  0.7018435381296126    
--- nb1.csv   
+-- samplesubmission2.csv  
 
 ## * Case 43 - k=5
 - KNeighborsClassifier(k=5)
@@ -595,25 +616,41 @@ roc score =  0.5
 accuracy: 0.53003
 
 ## Case 44a - k=7, forward=10
--- ran for 1000 minutes + and failed
+- KNeighborsClassifier(k=7)
+- simple imputer
+- minmax scaling
+- no feature selection, 78 features used
+- ERROR: ran for 1000 minutes + and failed
 -- knn1.csv
 
 ## Case 44b - k=7, maxabs, knn=7, variance=0.0001, corr=0.87
-78 by variance, 65 by correlation
+- KNeighborsClassifier(k=7)
+- simple imputer
+- maxabs scaling
+- no feature selection, 78 features used
+- 78 by variance, 65 by correlation
+
 model accuracy =  0.9973455042864688    
-roc score =  0.5
+roc score =  0.5     
+not submitted
 -- knn4.csv
 
 ## Case 44c - simple, variance=0.1, corr=0.9
-5 by variance, none by coorelation
+- KNeighborsClassifier(k=7)
+- simple imputer
+- minmax scaling
+- no feature selection, 78 features used
+- 5 by variance, none by coorelation
+
 model accuracy =  0.9974267643593321    
-roc score =  0.5  
+roc score =  0.5    
+not submitted
 -- knn4.csv
 
 ### Analyzing
 KNN + forward is running since past 6 hours, we are shifting to RandomForest.
 
-## * Case 44 - randomforest, simple, maxabs, max_depth=10, n_estimators=200
+## * Case 44d - randomforest, simple, maxabs, max_depth=10, n_estimators=200
 - RandomForestClassifier(max_depth=10, n_estimators=200)
 - simple imputer
 - maxabs scaler
@@ -630,7 +667,7 @@ accuracy: 0.90507
 - forward=15 rows
 
 model accuracy =  0.9776399366171432    
-roc score =  0.7000642467303131 
+roc score =  0.7000642467303131    
 accuracy: 0.87413
 
 ## * Case 46 - knearestneighbours=7, simple, variance=0.001, corr=0.9
@@ -664,7 +701,7 @@ accuracy: 0.57056
 - forward=17 rows
 
 model accuracy =  0.968064791364763    
-roc score =  0.71144752877173 
+roc score =  0.71144752877173    
 accuracy: 0.87278
 
 ## * Case 49 - naivebayes, forward = 13
@@ -674,7 +711,7 @@ accuracy: 0.87278
 - forward=13 rows
 
 model accuracy =  0.9724663786448529    
-roc score =  0.657890605723844
+roc score =  0.657890605723844   
 accuracy: 0.87353
 
 ## * Case 50 - naivebayes, forward = 14
@@ -693,8 +730,8 @@ accuracy: 0.87271
 - RandomForestClassifier(max_depth=5, n_estimators=200, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer   
+- 45 minutes to fit and transform, 50 minutes to fit = 95min
 
--- waiting for its result.... (45 minutes to fit and transform, 50 minutes to fit)   
 model accuracy =  0.9970610940314476    
 roc score =  0.5   
 accuracy: 0.91554
@@ -754,7 +791,7 @@ model accuracy =  0.9972507008681284
 roc score =  0.5024509803921569    
 accuracy: 0.61709 [ file had not changed. unfortunately my entry is wasted ]
 
-## Case 57 - kbest=5
+## * Case 57 - kbest=5
 - KNeighborsClassifier(n_neighbors=11)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -765,18 +802,18 @@ model accuracy =  0.9974267643593321
 roc score =  0.5053136492515911    
 accuracy: 0.62622
 
-## Case 58 - random forest, n_estimators = 300
+## * Case 58 - random forest, n_estimators = 300
 - RandomForestClassifier(max_depth=5, n_estimators=300, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
-... 39 minutes + 70 minutes
+- 39 minutes + 70 minutes = 109min
 --rf1.csv
 
 model accuracy =  0.997359047631946    
 roc score =  0.5    
 accuracy: 0.91889
 
-## Case 59 - kbest=3
+## * Case 59 - kbest=3
 - KNeighborsClassifier(n_neighbors=11)
 - SelectKBest(score_func=f_classif, k=3)
 - knn=3 imputer
@@ -787,7 +824,7 @@ model accuracy =  0.9971152674133564
 roc score =  0.507075049343145    
 accuracy: 0.62207
 
-## Case 60 - random forest, depth = 6, trees=10
+## * Case 60 - random forest, depth = 6, trees=10
 - RandomForestClassifier(max_depth=6, n_estimators=10, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
@@ -815,7 +852,7 @@ accuracy: 0.91309
 
 // ERROR: does not work, if forward selection is not done, again it gives error upon training the model. Thus row-removal cannot be done. 
 
-## Case 61c - GradientBoosting
+## * Case 61c - GradientBoosting
 - GradientBoostingClassifier(max_depth=6, n_estimators=300)
 - no feature selector
 - minmax scaler
@@ -825,19 +862,19 @@ model accuracy =  0.9955442393380013
 roc score =  0.560056823582126    
 accuracy: 0.88298
 
-## Case 62 - randomforest, depth increased, trees increased
+## * Case 62 - randomforest, depth increased, trees increased
 - RandomForestClassifier(max_depth=7, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
 - no feature selection
 --rf1.csv
-- 5min + 63min + 90min
+- 5min + 63min + 90min = 158min
 
 model accuracy =  0.9974132210138549    
 roc score =  0.5    
 accuracy: 0.92693
 
-## Case 63 - knearest=9, kbest=5
+## * Case 63 - knearest=9, kbest=5
 - KNeighborsClassifier(n_neighbors=9)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -848,7 +885,7 @@ model accuracy =  0.9972236141771741
 roc score =  0.5048989470087107   
 accuracy: 0.63158
 
-## Case 64 - knearest=7, kbest=5
+## * Case 64 - knearest=7, kbest=5
 - KNeighborsClassifier(n_neighbors=7)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -859,7 +896,7 @@ odel accuracy =  0.9974538510502864
 roc score =  0.5157623171129992    
 accuracy: 0.61114
 
-## Case 65 - gradient boosting, criteria + max_depth added
+## * Case 65 - gradient boosting, criteria + max_depth added
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
 - simple imputer
 - minmax scaler
@@ -870,7 +907,7 @@ model accuracy =  0.9955984127199101
 roc score =  0.5545980654020854   
 accuracy: 0.88297
 
-## Case 66 - random forest, depth increased
+## * Case 66 - random forest, depth increased
 - RandomForestClassifier(max_depth=8, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
@@ -881,7 +918,7 @@ model accuracy =  0.9974403077048093
 roc score =  0.5    
 accuracy: 0.93079  
 
-## Case 67 - gradient boosting, depth increased
+## * Case 67 - gradient boosting, depth increased
 - GradientBoostingClassifier(max_depth=10, n_estimators=300, criterion='squared_error', max_features=60)
 - minmax scaler
 - simple imputer
@@ -892,7 +929,7 @@ model accuracy =  0.9953140024648889
 roc score =  0.5702606327046124  
 accuracy: 0.79753
 
-## Case 68 - random forest, depth increased
+## * Case 68 - random forest, depth increased
 - RandomForestClassifier(max_depth=10, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
@@ -903,7 +940,7 @@ model accuracy =  0.9972777875590828
 roc score =  0.5    
 accuracy: 0.93256
 
-## Case 69 - adaptive boosting
+## * Case 69 - adaptive boosting
 - AdaBoostClassifier(n_estimators=100)
 - minmax scaler
 - simple imputer
@@ -914,7 +951,7 @@ model accuracy =  0.9969527472676301
 roc score =  0.5430550209247345    
 accuracy: 0.94475
 
-## Case 70 - adaptive boosting, estimators increased
+## * Case 70 - adaptive boosting, estimators increased
 - AdaBoostClassifier(n_estimators=200)
 - minmax scaler
 - simple imputer
@@ -1032,7 +1069,7 @@ accuracy: 0.81121
 - simple imputer
 - no feature selector
 --gb1.csv
-- 92min + 66min
+- 92min + 66min = 158min
 
 model accuracy =  0.9951514823191625    
 roc score =  0.5543197973296156   
@@ -1068,7 +1105,7 @@ accuracy: 0.82533
 - knn=7 imputer
 - kbest feature selector, 30 features
 --rf1.csv
-- 51 min + 72 min
+- 51 min + 72 min = 123min
 
 model accuracy =  0.9972371575226513    
 roc score =  0.5   
@@ -1102,8 +1139,8 @@ accuracy: 0.83911
 - minmax scaler
 - forward selection, 10 features
 --gb1.csv
-ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
-ran it again for 256 min but laptop stopped working
+- ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
+- ran it again for 256 min but laptop stopped working
 
 ## Case 86b - k-nearest neighbours, increased k and weights
 - KNeighborsClassifier(n_neighbors=2000, weights="distance")
@@ -1144,7 +1181,7 @@ accuracy: 0.85212
 - minmax scaler
 - kbest, 30 features
 --gb1.csv
-- 27min + 35min
+- 27min + 35min = 62min
 
 model accuracy =  0.9961807765754297    
 roc score =  0.5478679502290538    
@@ -1172,7 +1209,7 @@ accuracy: 0.94896
 --lgbm.csv
 
 model accuracy =  0.9934450207890353    
-roc score =  0.5815248594933158
+roc score =  0.5815248594933158    
 accuracy: 0.75561
 
 ## Case 92 - lightgbm, increased estimators
@@ -1184,7 +1221,7 @@ accuracy: 0.75561
 --lgbm.csv
 
 model accuracy =  0.9963297533756789    
-roc score =  0.5020350035153998
+roc score =  0.5020350035153998    
 accuracy: 0.50533
 
 ## Case 93 - lightgbm, default learning rate
@@ -1196,7 +1233,7 @@ accuracy: 0.50533
 --lgbm.csv
 
 model accuracy =  0.9897206007828053    
-roc score =  0.5109621532460307
+roc score =  0.5109621532460307    
 accuracy: 0.50408
 
 ## Case 94 - lightgbm, decreased depth
@@ -1208,7 +1245,7 @@ accuracy: 0.50408
 --lgbm.csv
 
 model accuracy =  0.9382288012784918    
-roc score =  0.5318142882431025
+roc score =  0.5318142882431025    
 accuracy: 0.37172
 
 ## Case 95 - lightgbm, depth10, higher learning rate, bagging, maxabs scaler
@@ -1220,7 +1257,7 @@ accuracy: 0.37172
 --lgbm.csv
 
 model accuracy =  0.9972777875590828    
-roc score =  0.5
+roc score =  0.5    
 accuracy: 0.77939
 
 ## Case 96 - lightgbm, higher bagging estimators
@@ -1232,7 +1269,7 @@ accuracy: 0.77939
 --lgbm.csv
 
 model accuracy =  0.997494481086718    
-roc score =  0.5
+roc score =  0.5    
 accuracy: 0.77699
 
 ## Case 97 - lightgbm, kbest feature selector added
@@ -1289,7 +1326,7 @@ omg wow! i dont even know what to change to get higher. im thinking what to do -
 --lgbm.csv
 
 model accuracy =  0.9973455042864688    
-roc score =  0.5174796298056683
+roc score =  0.5174796298056683    
 accuracy: 0.94321
 
 # DAY 11: Thursday 31st October 2024
@@ -2779,7 +2816,9 @@ model accuracy =  0.7860828581876295
 roc score =  0.7687108687644401    
 accuracy: 0.81312
 
-## Case V - voting, lgbm, lgbm+bagging
+# DAY 20: Saturday 9th November 2024
+
+## Case 191a - voting, lgbm, lgbm+bagging
 - xgb_m = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
 - xgb_m = featureImportance(xgb_m, 45)
 - model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu')
@@ -2789,7 +2828,36 @@ accuracy: 0.81312
 - minmax scaler
 --voting1.csv
 - ran it 4 times on kaggle, 2 times on google colab, har dafa koi naya masla. we have switched to VSCode now
-accuracy: 
+- error, failed execution at 1150min
+
+## Case 191b - voting, lgbm, lgbm+bagging, xgb
+- model_3 = xgb.XGBClassifier( n_estimators=2000, learning_rate=0.03, max_depth=4, random_state=42,tree_method='hist', n_jobs=-1, eval_metric='auc', verbosity=2 )
+- model_3, X, trainX, trainY, testX, test_data_processed = featureImportance( model_3, 45, X, trainX, trainY, testX, test_data_processed )
+- model_2 = lgb.LGBMClassifier( learning_rate=0.02, max_depth=2, n_estimators=2000, device='gpu', n_jobs=-1, verbose=1, min_child_samples=20, min_split_gain=0.1 )
+- model_2.fit(trainX, trainY)
+- model_1 = BaggingClassifier( estimator=model_2, n_estimators=100, verbose=2, n_jobs=-1 )
+- model_1.fit(trainX, trainY)
+- model = VotingClassifier( estimators=[('bg_c', model_1), ('lgb2', model_2), ('xgb', model_3)], voting='soft', verbose=True, n_jobs=-1 )
+- simple imputer
+- minmax scaler
+--voting1.csv
+error, failed too many times
+
+### Analyzing
+voting is failing on too many parameters on VS code. i am running stacking on kaggle.
+lets use smaller and lesser parameters on VS code. the goal is to complete the entries. 
+
+## Case 191c - voting, lgb, randomforest+bagged, ert, xgb
+- model_1 = lgb.LGBMClassifier(n_estimators=150, max_depth=7, learning_rate=0.07)
+- model_2 = BaggingClassifier(estimator=RandomForestClassifier(), n_estimators=70, max_samples=0.8, max_features=0.8, verbose=2)
+- model_3 = ExtraTreesClassifier(n_estimators=50, max_depth=8, max_features='sqrt', verbose=2)
+- model_4 = xgb.XGBClassifier(n_estimators=100, max_depth=7, learning_rate=0.05, use_label_encoder=False, eval_metric='logloss')
+- model = VotingClassifier( estimators=[ ('lgb', model_1), ('bagging', model_2), ('extra_trees', model_3), ('xgb', model_4) ], voting='soft',  verbose=True )
+- model_4 = featureImportance( model_4, 45 )
+- simple imputer
+- minmax scaler
+--voting1.csv
+
 
 ## Case S - stacking, xgb, lgb, lgb+bagged
 - simple imputer
