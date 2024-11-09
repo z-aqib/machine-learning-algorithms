@@ -2715,7 +2715,7 @@ accuracy: 0.85415
 - minmax scaler
 - simpe imputer
 --gb1.csv
-- 25min + 41min
+- 25min + 41min = 66min
 
 model accuracy =  0.9962484933028156    
 roc score =  0.5144364246234909    
@@ -2727,7 +2727,7 @@ accuracy: 0.86502
 - knn=7 imputer
 - maxabs scaler
 --rf1.csv
-- 127min + 33min + 100min
+- 127min + 33min + 100min = 260min
 
 model accuracy =  0.9972371575226513    
 roc score =  0.5    
@@ -2857,9 +2857,13 @@ lets use smaller and lesser parameters on VS code. the goal is to complete the e
 - simple imputer
 - minmax scaler
 --voting1.csv
+- 166min + 2min + 
 
+model accuracy =  0.9973184175955144    
+roc score =  0.5148379046501106    
+accuracy: 
 
-## Case S - stacking, xgb, lgb, lgb+bagged
+## Case 191d - stacking, xgb, lgb, lgb+bagged
 - simple imputer
 - minmax scaler
 - model_3 = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
@@ -2869,10 +2873,21 @@ lets use smaller and lesser parameters on VS code. the goal is to complete the e
 - estimators = [('model_1', model_1), ('model_2', model_2), ('model_3', model_3)]
 - model = StackingClassifier(estimators=estimators, final_estimator=model_2)
 --stacking1.csv
+- ERROR: Failed after running twice (5h each)
 
-model accuracy =  0.9972642442136056    
-roc score =  0.5    
-accuracy: 
+### Case 191e - stacking, decision trees
+- simple imputer
+- minmax scaler
+- model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- model_2 = BaggingClassifier(estimator=model_1, n_estimators=50, verbose=2)
+- model = StackingClassifier(estimators=estimators, final_estimator=DecisionTreeClassifier(), verbose=2)
+- model_4 = featureImportance( xgb.XGBClassifier(), 45 )
+--stacking1.csv
+- 30min
+
+model accuracy =  0.9948941587550957    
+roc score =  0.5383070227984298    
+accuracy: 0.52617
 
 # Remaining Cases left to do (that need to be done)
 
