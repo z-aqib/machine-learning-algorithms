@@ -2981,13 +2981,51 @@ accuracy: 0.86283
 - no bagging
 - knn=7 imputer
 - minmax scaler
-- forward feature selection, 15 selected
+- SequentialFeatureSelector(model, direction='forward',n_features_to_select=15, scoring='roc_auc')
 --cnb1.csv
 - 15min
  
 model accuracy =  0.8133591559787099    
 roc score =  0.8185694365485746    
 accuracy: 0.83356
+
+## Case 198a - categorical NB, forward=15
+- CategoricalNB(alpha=0, fit_prior=False)
+- no bagging
+- knn=7 imputer
+- minmax scaler
+- SelectKBest(score_func=f_classif, k=20) 
+--cnb1.csv
+
+model accuracy =  0.7630185408399582    
+roc score =  0.7819689023611237    
+not submitted
+
+## Case 198b - stacking, KNN
+- model_1 = KNeighborsClassifier(n_neighbors=1500, weights="distance")
+- model_2 = KNeighborsClassifier(n_neighbors=1000, weights="distance")
+- model_3 = KNeighborsClassifier(n_neighbors=1200, weights="uniform")
+- estimators = [('knn1', model_1), ('knn2', model_2), ('knn3', model_3)]
+- model = StackingClassifier(estimators=estimators, final_estimator=KNeighborsClassifier(n_neighbors=500, weights="distance"), verbose=2)
+- model_1 = kbest(model_1, 5)
+-- stacking1.csv
+- 14min + 12min
+
+model accuracy =  0.9972507008681284    
+roc score =  0.49999320975079786    
+accuracy: 0.83304
+
+## Case MA - lgbm, xgb features
+- model = lgb.LGBMClassifier( learning_rate=0.02, max_depth=2, n_estimators=3500 )
+- model_2 = xgb.XGBClassifier( max_depth=5, n_estimators=250, learning_rate=0.1, eval_metric='auc', random_state=42 )
+- model_2 = featureImportance( model_2, 45 )
+- BaggingClassifier( estimator=model, n_estimators=50, max_features=0.8, max_samples=0.8, bootstrap=True, random_state=42, verbose = 2 )
+- simple imputer
+- minmax scaler
+--mixed1.csv
+
+model accuracy =  0.9973319609409916    
+roc score =  0.5271869812770643    
 
 # Remaining Cases left to do (that need to be done)
 
