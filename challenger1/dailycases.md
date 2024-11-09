@@ -2875,7 +2875,7 @@ accuracy:
 --stacking1.csv
 - ERROR: Failed after running twice (5h each)
 
-### Case 191e - stacking, decision trees
+## Case 191e - stacking, decision trees
 - simple imputer
 - minmax scaler
 - model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
@@ -2888,6 +2888,65 @@ accuracy:
 model accuracy =  0.9948941587550957    
 roc score =  0.5383070227984298    
 accuracy: 0.52617
+
+## Case 192 - categorical NB, alpha params decreased
+- CategoricalNB(alpha=0.0000000000001, fit_prior=False)
+- minmax scaler
+- simple imputer
+- categorical cols: ['X5','X8','X11','X4', 'X6', 'X10', 'X16']
+- no bagging
+- no feature selection
+--nb1.csv
+- 2min
+
+model accuracy =  0.7884935736825711    
+roc score =  0.7787090047089726    
+accuracy: 0.81346
+
+## Case 193 - categorical NB, knn=7
+- CategoricalNB(alpha=0.0000000000001, fit_prior=False)
+- minmax scaler
+- knn=7 imputer
+- categorical cols: ['X5','X8','X11','X4', 'X6', 'X10', 'X16']
+- no bagging
+- no feature selection
+--nb1.csv
+- 2min
+
+model accuracy =  0.7848097837127728    
+roc score =  0.7976348770414773   
+accuracy: 0.81346
+
+## Case S - stacking, decision trees
+- simple imputer
+- minmax scaler
+- model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, random_state=42)
+- model_2 = DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=10, random_state=42)
+- model_3 = DecisionTreeClassifier(criterion='entropy', max_depth=10, min_samples_split=5, random_state=42)
+- model = StackingClassifier(estimators=estimators, final_estimator=DecisionTreeClassifier(max_depth=8, random_state=42))
+- model_4 = featureImportance( xgb.XGBClassifier(), 45 )
+--stacking1.csv
+- 5min
+
+model accuracy =  0.9971152674133564    
+roc score =  0.5320152518409307    
+accuracy: didnt submit yet
+
+## Case S - stacking, decision trees, stacking bagged
+- simple imputer
+- minmax scaler
+- model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, random_state=42)
+- model_2 = DecisionTreeClassifier(criterion='gini', max_depth=7, min_samples_split=10, random_state=42)
+- model_3 = DecisionTreeClassifier(criterion='entropy', max_depth=10, min_samples_split=5, random_state=42)
+- model = StackingClassifier(estimators=estimators, final_estimator=DecisionTreeClassifier(max_depth=8, random_state=42))
+- model_4 = featureImportance( xgb.XGBClassifier(), 45 )
+- model = BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+--stacking2.csv
+- ongoing
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5       
+accuracy: didnt submit yet
 
 # Remaining Cases left to do (that need to be done)
 
