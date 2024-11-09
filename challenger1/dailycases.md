@@ -2948,6 +2948,18 @@ model accuracy =  0.9973184175955144
 roc score =  0.5148379046501106        
 accuracy: 0.93356
 
+## Case 196 - voting, lgb, xgb, ert, cat
+- model_1 = lgb.LGBMClassifier(n_estimators=300, max_depth=10, learning_rate=0.05, num_leaves=50)
+- model_2 = xgb.XGBClassifier(n_estimators=300, max_depth=10, learning_rate=0.03, subsample=0.8, colsample_bytree=0.8, eval_metric='logloss', use_label_encoder=False)
+- model_3 = ExtraTreesClassifier(n_estimators=100, max_depth=12, max_features='sqrt', verbose=2)
+- model_4 = CatBoostClassifier(iterations=300, depth=10, learning_rate=0.03, verbose=2)
+- model_4 = featureImportance( model_4, 45 )
+- 10min
+
+model accuracy =  0.99729133090456    
+roc score =  0.5098874096006056    
+accuracy: 0.92521
+
 # Remaining Cases left to do (that need to be done)
 
 Random Forest:
