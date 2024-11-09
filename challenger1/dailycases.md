@@ -964,7 +964,7 @@ accuracy: 0.93379
 
 # DAY 8: Monday 28th October 2024
 
-## Case 71 - adaptive boosting, estimators decreased
+## * Case 71 - adaptive boosting, estimators decreased
 - AdaBoostClassifier(n_estimators=50)
 - minmax scaler
 - simple imputer
@@ -975,7 +975,7 @@ model accuracy =  0.9970746373769248
 roc score =  0.5522487676032429    
 accuracy: 0.93853
 
-## Case 72 - adaptive boosting, estimators increased
+## * Case 72 - adaptive boosting, estimators increased
 - AdaBoostClassifier(n_estimators=75)
 - minmax scaler
 - simple imputer
@@ -986,7 +986,7 @@ model accuracy =  0.9966141636307001
 roc score =  0.5660048884094492  
 accuracy: 0.94053  
 
-## Case 73 - adaptive boosting, estimators increased
+## * Case 73 - adaptive boosting, estimators increased
 - AdaBoostClassifier(n_estimators=110)
 - minmax scaler
 - simple imputer
@@ -997,7 +997,7 @@ model accuracy =  0.9965464469033141
 roc score =  0.5644500047530453    
 accuracy: 0.94521
 
-## Case 74 - adaptive boosting, estimators increased
+## * Case 74 - adaptive boosting, estimators increased
 - AdaBoostClassifier(n_estimators=150)
 - minmax scaler
 - simple imputer
@@ -1008,7 +1008,7 @@ model accuracy =  0.9971288107588336
 roc score =  0.5607445471728567    
 accuracy: 0.94780
 
-## Case 75 - adaptive boosting, estimators increased
+## * Case 75 - adaptive boosting, estimators increased
 - AdaBoostClassifier(n_estimators=160)
 - minmax scaler
 - simple imputer
@@ -1019,7 +1019,7 @@ model accuracy =  0.9967360537399949
 roc score =  0.5648649150311703    
 accuracy: 0.94948
 
-## Case 76 - adaptive boosting, estimators increased
+## * Case 76 - adaptive boosting, estimators increased
 - AdaBoostClassifier(n_estimators=170)
 - minmax scaler
 - simple imputer
@@ -1030,7 +1030,7 @@ model accuracy =  0.997088180722402
 roc score =  0.563818101949167    
 accuracy: 0.94966
 
-## Case 77 - adaptive boosting, estimators increased
+## * Case 77 - adaptive boosting, estimators increased
 - AdaBoostClassifier(n_estimators=180)
 - minmax scaler
 - simple imputer
@@ -1041,7 +1041,7 @@ model accuracy =  0.9969933773040617
 roc score =  0.5571944470850252    
 accuracy: 0.93516
 
-## Case 78 - random forest, depth increased
+## * Case 78 - random forest, depth increased
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
@@ -1052,7 +1052,7 @@ model accuracy =  0.99729133090456
 roc score =  0.5    
 accuracy: 0.93452
 
-## Case 79 - k-nearest neighbours, increased k
+## * Case 79 - k-nearest neighbours, increased k
 - KNeighborsClassifier(n_neighbors=300)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -1063,7 +1063,7 @@ model accuracy =  0.9973861343229005
 roc score =  0.5    
 accuracy: 0.81121
 
-## Case 80 - gradient boosting, depth decreased
+## * Case 80 - gradient boosting, depth decreased
 - GradientBoostingClassifier(max_depth=8, n_estimators=300, criterion='squared_error', max_features=60)
 - minmax scaler
 - simple imputer
@@ -1077,7 +1077,7 @@ accuracy: 0.83659
 
 # DAY 9: Tuesday 29th October 2024
 
-## Case 81 - adaptive boosting, estimators decreased
+## * Case 81 - adaptive boosting, estimators decreased
 - AdaBoostClassifier(n_estimators=175)
 - minmax scaler
 - simple imputer
@@ -1088,7 +1088,7 @@ model accuracy =  0.9970204639950161
 roc score =  0.5683960928977767    
 accuracy: 0.94949
 
-## Case 82 - k-nearest neighbours, increased k
+## * Case 82 - k-nearest neighbours, increased k
 - KNeighborsClassifier(n_neighbors=500)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -1099,7 +1099,7 @@ model accuracy =  0.9972507008681284
 roc score =  0.5    
 accuracy: 0.82533
 
-## Case 83 - random forest, kbest=30
+## * Case 83 - random forest, kbest=30
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - maxabs scaler
 - knn=7 imputer
@@ -1111,7 +1111,7 @@ model accuracy =  0.9972371575226513
 roc score =  0.5   
 accuracy: 0.92633
 
-## Case 84 - adaboost, learning rate introduced 
+## * Case 84 - adaboost, learning rate introduced 
 - AdaBoostClassifier(n_estimators=175, learning_rate=0.1)
 - minmax scaler
 - simple imputer
@@ -1122,7 +1122,7 @@ model accuracy =  0.9974538510502864
 roc score =  0.5026527855096471  
 accuracy: 0.93301
 
-## Case 85 - k-nearest neighbours, increased k
+## * Case 85 - k-nearest neighbours, increased k
 - KNeighborsClassifier(n_neighbors=1000)
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -1142,7 +1142,7 @@ accuracy: 0.83911
 - ran it for 12.5 hours (756min) and then stopped, then turned on n_job=-1 and started re-running 
 - ran it again for 256 min but laptop stopped working
 
-## Case 86b - k-nearest neighbours, increased k and weights
+## * Case 86b - k-nearest neighbours, increased k and weights
 - KNeighborsClassifier(n_neighbors=2000, weights="distance")
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -1153,7 +1153,7 @@ model accuracy =  0.9970746373769248
 roc score =  0.4999185147963549    
 accuracy: 0.82641
 
-## Case 87 - adaboost, learning rate increased
+## * Case 87 - adaboost, learning rate increased
 - AdaBoostClassifier(n_estimators=170, learning_rate=0.75)
 - minmax scaler
 - simple imputer
@@ -1164,7 +1164,7 @@ model accuracy =  0.9972371575226513
 roc score =  0.5632272905179162    
 accuracy: 0.93369
 
-## Case 88 - k-nearest neighbours, decreased k
+## * Case 88 - k-nearest neighbours, decreased k
 - KNeighborsClassifier(n_neighbors=1500, weights="distance")
 - SelectKBest(score_func=f_classif, k=5)
 - knn=3 imputer
@@ -1175,7 +1175,7 @@ model accuracy =  0.997088180722402
 roc score =  0.49995246438224067     
 accuracy: 0.85212
 
-## Case 89 - gradboost, kbest=30
+## * Case 89 - gradboost, kbest=30
 - GradientBoostingClassifier(max_depth=6, n_estimators=300, criterion='squared_error', max_features=60)
 - simple imputer
 - minmax scaler
@@ -1187,7 +1187,7 @@ model accuracy =  0.9961807765754297
 roc score =  0.5478679502290538    
 accuracy: 0.85929   
 
-## Case 90 - adaboost, learning rate decreased
+## * Case 90 - adaboost, learning rate decreased
 - AdaBoostClassifier(n_estimators=170, learning_rate=0.6)
 - minmax scaler
 - simple imputer
@@ -1200,7 +1200,7 @@ accuracy: 0.94896
 
 # DAY 10: Wednesday 30th October 2024
 
-## Case 91 - lightgbm
+## * Case 91 - lightgbm
 - lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
 - no bagging
 - minmax scaler
@@ -1212,7 +1212,7 @@ model accuracy =  0.9934450207890353
 roc score =  0.5815248594933158    
 accuracy: 0.75561
 
-## Case 92 - lightgbm, increased estimators
+## * Case 92 - lightgbm, increased estimators
 - lgb.LGBMClassifier(max_depth=10, n_estimators=400, learning_rate=0.9)
 - no bagging
 - minmax scaler
@@ -1224,7 +1224,7 @@ model accuracy =  0.9963297533756789
 roc score =  0.5020350035153998    
 accuracy: 0.50533
 
-## Case 93 - lightgbm, default learning rate
+## * Case 93 - lightgbm, default learning rate
 - lgb.LGBMClassifier(max_depth=10, n_estimators=400, learning_rate=0.5)
 - no bagging
 - minmax scaler
@@ -1236,7 +1236,7 @@ model accuracy =  0.9897206007828053
 roc score =  0.5109621532460307    
 accuracy: 0.50408
 
-## Case 94 - lightgbm, decreased depth
+## * Case 94 - lightgbm, decreased depth
 - lgb.LGBMClassifier(max_depth=9, n_estimators=100, learning_rate=0.5)
 - no bagging
 - minmax scaler
@@ -1248,7 +1248,7 @@ model accuracy =  0.9382288012784918
 roc score =  0.5318142882431025    
 accuracy: 0.37172
 
-## Case 95 - lightgbm, depth10, higher learning rate, bagging, maxabs scaler
+## * Case 95 - lightgbm, depth10, higher learning rate, bagging, maxabs scaler
 - lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
@@ -1260,7 +1260,7 @@ model accuracy =  0.9972777875590828
 roc score =  0.5    
 accuracy: 0.77939
 
-## Case 96 - lightgbm, higher bagging estimators
+## * Case 96 - lightgbm, higher bagging estimators
 - lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
 - BaggingClassifier(estimator=model, n_estimators=100)
 - maxabs scaler
@@ -1272,7 +1272,7 @@ model accuracy =  0.997494481086718
 roc score =  0.5    
 accuracy: 0.77699
 
-## Case 97 - lightgbm, kbest feature selector added
+## * Case 97 - lightgbm, kbest feature selector added
 - lgb.LGBMClassifier(max_depth=10, n_estimators=100, learning_rate=0.9)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
@@ -2989,7 +2989,7 @@ model accuracy =  0.8133591559787099
 roc score =  0.8185694365485746    
 accuracy: 0.83356
 
-## Case 198a - categorical NB, forward=15
+## Case 199a - categorical NB, kbest=20
 - CategoricalNB(alpha=0, fit_prior=False)
 - no bagging
 - knn=7 imputer
@@ -3001,7 +3001,7 @@ model accuracy =  0.7630185408399582
 roc score =  0.7819689023611237    
 not submitted
 
-## Case 198b - stacking, KNN
+## Case 199b - stacking, KNN
 - model_1 = KNeighborsClassifier(n_neighbors=1500, weights="distance")
 - model_2 = KNeighborsClassifier(n_neighbors=1000, weights="distance")
 - model_3 = KNeighborsClassifier(n_neighbors=1200, weights="uniform")
@@ -3015,7 +3015,7 @@ model accuracy =  0.9972507008681284
 roc score =  0.49999320975079786    
 accuracy: 0.83304
 
-## Case MA - lgbm, xgb features
+## Case 200 - lgbm, xgb features
 - model = lgb.LGBMClassifier( learning_rate=0.02, max_depth=2, n_estimators=3500 )
 - model_2 = xgb.XGBClassifier( max_depth=5, n_estimators=250, learning_rate=0.1, eval_metric='auc', random_state=42 )
 - model_2 = featureImportance( model_2, 45 )
@@ -3023,9 +3023,19 @@ accuracy: 0.83304
 - simple imputer
 - minmax scaler
 --mixed1.csv
+- 2min + 65min + 9min + 86min + 6min
 
 model accuracy =  0.9973319609409916    
 roc score =  0.5271869812770643    
+accuracy: 0.96244    
+
+## Case S - stacking, random forest
+- model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
+- model_2 = RandomForestClassifier(max_depth=13, n_estimators=300, criterion='entropy', min_samples_split=10, max_features=50, min_samples_leaf=60, verbose=2)
+- model_3 = RandomForestClassifier(max_depth=9, n_estimators=500, criterion='entropy', min_samples_split=20, max_features=55, min_samples_leaf=70, verbose=2)
+- estimators = [('rf1', model_1), ('rf2', model_2), ('rf3', model_3)]
+- model = StackingClassifier(estimators=estimators, final_estimator=RandomForestClassifier( max_depth=11, n_estimators=500, criterion='entropy', min_samples_split=10, max_features=40, min_samples_leaf=70, verbose=2))
+- model_1 = featureImportance( model_1, 45 )
 
 # Remaining Cases left to do (that need to be done)
 
