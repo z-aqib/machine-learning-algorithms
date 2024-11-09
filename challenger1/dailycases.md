@@ -2976,6 +2976,19 @@ model accuracy =  0.9559164104717147
 roc score =  0.7310520112919827    
 accuracy: 0.86283
 
+## Case 198 - categorical NB, forward=15
+- CategoricalNB(alpha=0, fit_prior=False)
+- no bagging
+- knn=7 imputer
+- minmax scaler
+- forward feature selection, 15 selected
+--cnb1.csv
+- 15min
+ 
+model accuracy =  0.8133591559787099    
+roc score =  0.8185694365485746    
+accuracy: 0.83356
+
 # Remaining Cases left to do (that need to be done)
 
 Random Forest:
