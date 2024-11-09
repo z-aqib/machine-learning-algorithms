@@ -2960,6 +2960,22 @@ model accuracy =  0.99729133090456
 roc score =  0.5098874096006056    
 accuracy: 0.92521
 
+## Case 197 - stacking, nb
+- model_1 = GaussianNB(var_smoothing=1e-9)
+- model_2 = GaussianNB(var_smoothing=1e-8)
+- model_3 = GaussianNB(var_smoothing=1e-7)
+- estimators = [('nb1', model_1), ('nb2', model_2), ('nb3', model_3)]
+- model = StackingClassifier(estimators=estimators, final_estimator=GaussianNB(), verbose=2)
+- model_1 = fbselection('forward', GaussianNB(), 15 )
+- model = BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
+- simple imputer
+- minmax scaler
+- 20min
+
+model accuracy =  0.9559164104717147    
+roc score =  0.7310520112919827    
+accuracy: 0.86283
+
 # Remaining Cases left to do (that need to be done)
 
 Random Forest:
