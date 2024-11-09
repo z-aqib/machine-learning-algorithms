@@ -2847,23 +2847,7 @@ error, failed too many times
 voting is failing on too many parameters on VS code. i am running stacking on kaggle.
 lets use smaller and lesser parameters on VS code. the goal is to complete the entries. 
 
-## Case 191c - voting, lgb, randomforest+bagged, ert, xgb
-- model_1 = lgb.LGBMClassifier(n_estimators=150, max_depth=7, learning_rate=0.07)
-- model_2 = BaggingClassifier(estimator=RandomForestClassifier(), n_estimators=70, max_samples=0.8, max_features=0.8, verbose=2)
-- model_3 = ExtraTreesClassifier(n_estimators=50, max_depth=8, max_features='sqrt', verbose=2)
-- model_4 = xgb.XGBClassifier(n_estimators=100, max_depth=7, learning_rate=0.05, use_label_encoder=False, eval_metric='logloss')
-- model = VotingClassifier( estimators=[ ('lgb', model_1), ('bagging', model_2), ('extra_trees', model_3), ('xgb', model_4) ], voting='soft',  verbose=True )
-- model_4 = featureImportance( model_4, 45 )
-- simple imputer
-- minmax scaler
---voting1.csv
-- 166min + 2min + 
-
-model accuracy =  0.9973184175955144    
-roc score =  0.5148379046501106    
-accuracy: 
-
-## Case 191d - stacking, xgb, lgb, lgb+bagged
+## Case 191c - stacking, xgb, lgb, lgb+bagged
 - simple imputer
 - minmax scaler
 - model_3 = xgb.XGBClassifier(n_estimators=2000 ,learning_rate= 0.03, max_depth = 4, random_state  = 42, device = "cuda")
@@ -2875,7 +2859,7 @@ accuracy:
 --stacking1.csv
 - ERROR: Failed after running twice (5h each)
 
-## Case 191e - stacking, decision trees
+## Case 191d - stacking, decision trees
 - simple imputer
 - minmax scaler
 - model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
@@ -2947,6 +2931,22 @@ accuracy: didnt submit yet
 model accuracy =  0.9972642442136056    
 roc score =  0.5           
 accuracy: 0.91600
+
+## Case 195 - voting, lgb, randomforest+bagged, ert, xgb
+- model_1 = lgb.LGBMClassifier(n_estimators=150, max_depth=7, learning_rate=0.07)
+- model_2 = BaggingClassifier(estimator=RandomForestClassifier(), n_estimators=70, max_samples=0.8, max_features=0.8, verbose=2)
+- model_3 = ExtraTreesClassifier(n_estimators=50, max_depth=8, max_features='sqrt', verbose=2)
+- model_4 = xgb.XGBClassifier(n_estimators=100, max_depth=7, learning_rate=0.05, use_label_encoder=False, eval_metric='logloss')
+- model = VotingClassifier( estimators=[ ('lgb', model_1), ('bagging', model_2), ('extra_trees', model_3), ('xgb', model_4) ], voting='soft',  verbose=True )
+- model_4 = featureImportance( model_4, 45 )
+- simple imputer
+- minmax scaler
+--voting1.csv
+- 166min + 2min + 265min + 3min
+
+model accuracy =  0.9973184175955144    
+roc score =  0.5148379046501106        
+accuracy: 0.93356
 
 # Remaining Cases left to do (that need to be done)
 
