@@ -2917,7 +2917,7 @@ model accuracy =  0.7848097837127728
 roc score =  0.7976348770414773   
 accuracy: 0.81346
 
-## Case S - stacking, decision trees
+## Case 194a - stacking, decision trees
 - simple imputer
 - minmax scaler
 - model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, random_state=42)
@@ -2932,7 +2932,7 @@ model accuracy =  0.9971152674133564
 roc score =  0.5320152518409307    
 accuracy: didnt submit yet
 
-## Case S - stacking, decision trees, stacking bagged
+## Case 194b - stacking, decision trees, stacking bagged
 - simple imputer
 - minmax scaler
 - model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, random_state=42)
@@ -2942,11 +2942,11 @@ accuracy: didnt submit yet
 - model_4 = featureImportance( xgb.XGBClassifier(), 45 )
 - model = BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 --stacking2.csv
-- ongoing
+- 120min
 
 model accuracy =  0.9972642442136056    
-roc score =  0.5       
-accuracy: didnt submit yet
+roc score =  0.5           
+accuracy: 0.91600
 
 # Remaining Cases left to do (that need to be done)
 
