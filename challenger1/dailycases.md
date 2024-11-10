@@ -1437,7 +1437,7 @@ model accuracy =  0.99729133090456
 roc score =  0.5215311004784688
 accuracy: 0.93798
 
-## Case 108 - xgboost, n_estimators increased
+## * Case 108 - xgboost, n_estimators increased
 - xgb.XGBClassifier(n_estimators=500) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1450,7 +1450,7 @@ model accuracy =  0.9973725909774233
 roc score =  0.5150685869118535
 accuracy: 0.94900
 
-## Case 109 - catboost, bagging introduced
+## * Case 109 - catboost, bagging introduced
 - CatBoostClassifier(n_estimators=100)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - Learning rate set to 0.5
@@ -1464,7 +1464,7 @@ model accuracy =  0.9975892845050585
 roc score =  0.5165542206956393
 accuracy: 0.93612
 
-## Case 110 - xgboost, estimators decreased + learning rate introduced
+## * Case 110 - xgboost, estimators decreased + learning rate introduced
 - xgb.XGBClassifier(n_estimators=100, learning_rate=0.1) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1478,7 +1478,7 @@ accuracy: 0.95063
 
 # DAY 12: Friday 1st November 2024
 
-## Case 111 - catboost, bagging removed, depth increased
+## * Case 111 - catboost, bagging removed, depth increased
 - CatBoostClassifier(loss_function='Logloss', depth=10)
 - no bagging
 - Learning rate set to 0.108132
@@ -1491,7 +1491,7 @@ model accuracy =  0.99729133090456
 roc score =  0.504950495049505
 accuracy: 0.92756
 
-## Case 112 - xgboost, grid search for depth
+## * Case 112 - xgboost, grid search for depth
 - xgb.XGBClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1518,7 +1518,7 @@ model accuracy =  0.9975215677776724
 roc score =  0.5390217640369339
 accuracy: 0.95332
 
-## Case 113 - lightgbm, grid search
+## * Case 113 - lightgbm, grid search
 - lgb.LGBMClassifier()
 - param_grid = {
     'max_depth': [2, 3, 6, 7, 8, 9, 10],
@@ -1537,7 +1537,7 @@ model accuracy =  0.9974403077048093
 roc score =  0.5307284931466785
 accuracy: 0.95106
 
-## Case 114 - adaboost, bagging
+## * Case 114 - adaboost, bagging
 - AdaBoostClassifier(n_estimators=170)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - minmax scaler
@@ -1570,16 +1570,16 @@ model accuracy =  0.9975351111231496
 roc score =  0.5523504215805054
 accuracy: not submitted
 
-## Case 115b - catboost, grid search for depth, bagging
+## * Case 115b - catboost, grid search for depth, bagging
 - CatBoostClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
 - best depth: 1
+- Learning rate set to 0.108132
 - simple imputer
 - maxabs scaler
-- Learning rate set to 0.108132
 - no feature selection
 --cat1.csv
 - 69min + 30min + 46 min
@@ -1588,7 +1588,7 @@ model accuracy =  0.9976028278505357
 roc score =  0.5496287205207183   
 accuracy: 0.94063
 
-## Case 116 - gradboost, grid search for depth
+## * Case 116 - gradboost, grid search for depth
 - GradientBoostingClassifier()
 - no bagging as with bagging takes 24 hours+
 - param_grid = {
@@ -3082,6 +3082,34 @@ accuracy: 0.95049
 
 AUC-ROC Score: 0.7730
 accuracy: 0.94613
+
+## Case 204 - stacking, xgb, lgb, rf, nb
+- XGBoost = xgb.XGBClassifier(scale_pos_weight=99, use_label_encoder=False, eval_metric='logloss', random_state=42)
+LightGBM = lgb.LGBMClassifier(is_unbalance=True, random_state=42)
+Random_Forest = RandomForestClassifier(class_weight='balanced', random_state=42)
+stacking_clf = StackingClassifier(estimators=[('rf', Random_Forest), ('xgb', XGBoost), ('lgbm', LightGBM)], final_estimator=GaussianNB())
+- no feature selection
+- simple imputer
+- standard scaler
+--stacking2.csv
+
+roc: 0.5675982866072379
+accuracy: 0.77448
+
+## Case 205 - stacking, lgbm, adaboost
+- lgbm1 = lgb.LGBMClassifier( boosting_type='dart', n_estimators=1000, learning_rate=0.07, num_leaves=40, max_depth=7, min_child_samples=25, subsample=0.85, colsample_bytree=0.75, random_state=42, n_jobs=-1 )
+- lgbm2 = lgb.LGBMClassifier( boosting_type='dart', n_estimators=1500, learning_rate=0.07, num_leaves=40, max_depth=7, min_child_samples=25, subsample=0.85, colsample_bytree=0.75, random_state=42, n_jobs=-1 )
+- lgbm3 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=3500, random_state=42)
+- meta_learner = AdaBoostClassifier(n_estimators=1000, learning_rate=0.1, algorithm='SAMME.R', random_state=42)
+- model = StackingClassifier( estimators=[ ('lgbm1', lgbm1), ('lgbm2', lgbm2), ('lgbm3', lgbm3) ], final_estimator=meta_learner, cv=5, stack_method='predict_proba',  passthrough=False )
+- simple imputer
+- standard scaler
+- xgb = xgb.XGBClassifier(max_depth=5, n_estimators=250, learning_rate=0.1, eval_metric='auc', random_state=42)
+- xgb, X = featureImportance( xgb, 45 )
+--stacking2.csv
+
+roc: 0.5323537283118134
+accuracy: 
 
 ## Case S - stacking, random forest
 - model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
