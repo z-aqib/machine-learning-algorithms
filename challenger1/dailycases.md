@@ -3073,6 +3073,16 @@ accuracy: 0.96178
 roc = 0.96045
 accuracy: 0.95049
 
+## Case 203 - stacking, adaboost, rf, lgb
+- estimators = [ ('adaboost', AdaBoostClassifier( n_estimators=1000, learning_rate=0.07, algorithm='SAMME.R', random_state=42 )), ('rf', RandomForestClassifier( n_estimators=512, criterion='gini', max_depth=930, min_samples_split=29, min_samples_leaf=40, max_features='sqrt', bootstrap=True, n_jobs=-1 )), ('LightGBM', lgb.LGBMClassifier( boosting_type='dart', n_estimators=1000, learning_rate=0.07, num_leaves=40, max_depth=7, min_child_samples=25, subsample=0.85, colsample_bytree=0.75, random_state=42, n_jobs=-1 )) ]
+- model = StackingClassifier( estimators=estimators, final_estimator=xgb.XGBClassifier(), cv=5, n_jobs=-1 )
+- simple imputer
+- standard scaler
+--stacking2.csv
+
+AUC-ROC Score: 0.7730
+accuracy: 0.94613
+
 ## Case S - stacking, random forest
 - model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
 - model_2 = RandomForestClassifier(max_depth=13, n_estimators=300, criterion='entropy', min_samples_split=10, max_features=50, min_samples_leaf=60, verbose=2)
