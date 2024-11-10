@@ -32,15 +32,15 @@ Algorithms worked on:
 | - | - | - | - | - | - | - | - | - | - | - |
 | Decision Tree | completed | 34 | 34 | 0.91215 | 159 | knn=7 | maxabs | - | 78 | DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80), train_test_split(X, Y, test_size=0.3), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | 
 | Naive Bayes | completed | 33 | 17 | 0.87413 | 45 | simple | minmax | forward | 15 | GaussianNB() |
-| K-Nearest Neighbor | 2 cases left | 21 | 18 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
-| Random Forest | 4 cases left | 13 | 12 | 0.93546 | 79 | knn=7 | maxabs | - | 78 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80) | 
-| Gradient Boosting | 3 cases left | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
-| Adaptive Boosting | 4 cases left | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
+| K-Nearest Neighbor | completed | 21 | 18 | 0.85212 | 88 | knn=3 | minmax | kbest | 5 | KNeighborsClassifier(n_neighbors=1500, weights="distance") |
+| Random Forest | completed | 13 | 12 | 0.93581 | 184 | knn=7 | maxabs | algorithm feature importance | 20 | RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1) | 
+| Gradient Boosting | completed | 12 | 10 | 0.90485 | 155 | simple | minmax | - | 78 | GradientBoostingClassifier(max_depth=3, criterion='friedman_mse', n_estimators=200), BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | 
+| Adaptive Boosting | completed | 17 | 15 | 0.94966 | 76 | simple | minmax | - | 78 | AdaBoostClassifier(n_estimators=170) |
 | Light GBM | completed | 25 | 21 | 0.95323 | 126c | simple | maxabs | algorithm feature importance | 20 | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | XGBoost | completed | 22 | 21 | 0.95979 | 138 | simple | maxabs | algorithm feature importance | 35 | xgb.XGBClassifier(), BaggingClassifier(estimator=model, n_estimators=100, verbose=2) |
 | CatBoost | completed | 13 | 11 | 0.95270 | 144 | simple | maxabs | algorithm feature importance | 14 | CatBoostClassifier(max_depth=1, n_estimators=2000, learning_rate=0.1), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | BaggingClassifier | - | 6 | 4 | - | - | - |
-| ExtraTree Classifier (Extremely Randomized Tree) | 3 cases left | 7 | 7 | 0.92081 | 160 | simple | maxabs | - | 78 | ExtraTreesClassifier(n_estimators=800, verbose=2), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
+| ExtraTree Classifier (Extremely Randomized Tree) | completed | 7 | 7 | 0.92081 | 160 | simple | maxabs | - | 78 | ExtraTreesClassifier(n_estimators=800, verbose=2), BaggingClassifier(estimator=model, n_estimators=50, verbose=2) |
 | Voting | 8 cases left | - | - | - | - | - | - |
 | Stacking | 10 cases left | - | - | - | - | - | - |
 
@@ -127,11 +127,11 @@ the best among all 5 scalers is MinMaxScaler and MaxAbsScaler. the third best is
 
 out of KNN and SimpleImputers, we can see that both are good however simple imputer performs better on average. thus we will work with both. in the next 4 cases, lets test knn=3, 5, 7 for MinMaxScaler and MaxAbsScaler to find the best KNN going forward.
 
-# NaiveBayes
+# GaussianNaiveBayes
 
 code cleaned and commented, done
 
-### Analyzing Naive Bayes
+### Analyzing Gaussian Naive Bayes
 | case number | imputer | scaler | bagging | feature selection | no. of features selected | model accuracy | roc | kaggle accuracy | analysis |
 | ----------- | ------- | ------ | ----------------- | ------------------------ | -------------- | --- | --------------- | - | -------- |
 | 31 | simple | maxabs | - | - | 78 | 0.8670720641412841 | 0.8015837569508879 | 0.83725 | need to test a bit more to see what was lacking and what to improve |
@@ -203,6 +203,28 @@ we have run naivebayes multiple times with forward selection, lets analyse its a
 | 41a | forward | 30 | 0.86669 |
 
 we can see that forward=14 might be an outlier, but forward=15 (case = 45) is the best case. 
+
+# CategoricalNaiveBayes
+
+### Analyzing Categorical Naive Bayes
+| case number | time | imputer | scaler | alpha | fit prior | bagging | feature selection | no. of features | validation accuracy | roc | kaggle accuracy | analysis |
+| - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 186 | 2min | simple | minmax | - | - | - | - | 78 | 0.9489686742419112 | 0.6666960854865647 | 0.81229 | nice, but lets make it better |
+| 187 | 4min | simple | minmax | - | - | estimators = 10 | - | 78 | 09513523030458984 | 0.6672982355307021 | 0.81199 | accuracy decreased, bagging didnt give a good response |
+| 189 | 4min | simple | minmax | 0.1 | False | - | 78 | 0.7837534027655512 | 0.7802110762469083 | 0.81257 | negligible increase |
+| 190 | 4min | simple | minmax | 0.001 | False | - | 78 | 0.7860828581876295 | 0.7687108687644401 | 0.81312 | negligible increase |
+
+total no. of tries:    
+total no. of submissions:    
+starting accuracy: 0.81229    
+highest accuracy: X (case Y)   
+highest case parameters:
+- imputer = 
+- scaler = 
+- feature selection = 
+
+analysis:
+- categorical cols: ['X5','X8','X11','X4', 'X6', 'X10', 'X16']
 
 # K Nearest Neighbours
 
@@ -294,26 +316,30 @@ kbest works better with lower number of features. as according to this table, kb
 # Random Forest
 
 ### Analyzing RandomForest
-| case number | imputer | scaler | grid | max depth | n estimators | feature selector | no. of features | criteria | min samples split | max features | min samples leaf | validation accuracy | roc | kaggle accuracy | analyzing |
-| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
-| 44 | simple | maxabs | - | 10 | 200 | - | 78 | default = gini | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
-| 51 | 95min | knn=7 | maxabs | - | 5 | 200 | - | 78 | entropy | 15 | 60 | 80 | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
-| 58 | 109min | knn=7 | maxabs | - | 5 | 300 | - | 78 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.91889 | very slight imporvement, lets try and increase depth |
-| 60 | knn=7 | maxabs | - | 6 | 10 | - | 78 | entropy | 15 | 60 | 80 | 0.9972642442136056 | 0.5 | 0.91309 | slight difference even though trees are 30 times less. interesting. |
-| 62 | 158min | knn=7 | maxabs | - | 7 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974132210138549 | 0.5 | 0.92693 | depth increased trees, lets increase it |
-| 66 | knn=7 | maxabs | - | 8 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9974403077048093 | 0.5 | 0.93079 | depth increased trees, lets increase further |
-| 68 | knn=7 | maxabs | - | 10 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.9972777875590828 | 0.5 | 0.93256 | depth is increasing accuracy |
-| 78 | knn=7 | maxabs | - | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
-| 83 | 123min | knn=7 | maxabs | - | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
-| 118 | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 35 | entropy | 15 | 60 | 80 | 0.997359047631946 | 0.5 | 0.93546 | BEST CASE: improved! lets use some grid on RF to find best depth + estimators |
-| 123b | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],  'n_estimators': [50, 100, 200, 300, 400, 500, 1000] } | - | - | algorithm feature importance | 35 | entropy | - | - | - | - | - | - | error, code stopped after 9hours of running |
-| 125 | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'n_estimators': [50, 100, 200] } | 9 | 200 | algorithm feature importance | 35 | entropy | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.92154 | deterioration, lets increase estimators in depth to find the best estimators |
-| 133 | knn=7 | maxabs | param_grid = { 'n_estimators': [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700] } | 9 | 650 | algorithm feature importance | 35 | entropy | - | - | - | 0.9976570012324444 | 0.5167597765363129 | 0.92877 | deterioration, slight imporvement but overall less. lets introduce min samples split in grid |
+| case number | imputer | scaler | grid | max depth | n estimators | feature selector | no. of features | criteria | min samples split | max features | min samples leaf | bagging | validation accuracy | roc | kaggle accuracy | analyzing |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - |
+| 44 | simple | maxabs | - | 10 | 200 | - | 78 | default = gini | - | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.90507 | ok good, now lets used the best parameters that we found from decision trees |
+| 51 | 95min | knn=7 | maxabs | - | 5 | 200 | - | 78 | entropy | 15 | 60 | 80 | - | 0.9970610940314476 | 0.5 | 0.91554 | accuracy imrpoved, lets increase no. of trees |
+| 58 | 109min | knn=7 | maxabs | - | 5 | 300 | - | 78 | entropy | 15 | 60 | 80 | - | 0.997359047631946 | 0.5 | 0.91889 | very slight imporvement, lets try and increase depth |
+| 60 | knn=7 | maxabs | - | 6 | 10 | - | 78 | entropy | 15 | 60 | 80 | - | 0.9972642442136056 | 0.5 | 0.91309 | slight difference even though trees are 30 times less. interesting. |
+| 62 | 158min | knn=7 | maxabs | - | 7 | 400 | - | 78 | entropy | 15 | 60 | 80 | - | 0.9974132210138549 | 0.5 | 0.92693 | depth increased trees, lets increase it |
+| 66 | knn=7 | maxabs | - | 8 | 400 | - | 78 | entropy | 15 | 60 | 80 | - | 0.9974403077048093 | 0.5 | 0.93079 | depth increased trees, lets increase further |
+| 68 | knn=7 | maxabs | - | 10 | 400 | - | 78 | entropy | 15 | 60 | 80 | - | 0.9972777875590828 | 0.5 | 0.93256 | depth is increasing accuracy |
+| 78 | knn=7 | maxabs | - | 11 | 400 | - | 78 | entropy | 15 | 60 | 80 | - | 0.99729133090456 | 0.5 | 0.93452 | improved, we can increase further |
+| 83 | 123min | knn=7 | maxabs | - | 11 | 400 | kbest | 30 | entropy | 15 | 60 | 80 | - | 0.9972371575226513 | 0.5 | 0.92633 | deterioration, could be too many features or too less features |
+| 118 | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 35 | entropy | 15 | 60 | 80 | - | 0.997359047631946 | 0.5 | 0.93546 | improved! lets use some grid on RF to find best depth + estimators |
+| 123b | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],  'n_estimators': [50, 100, 200, 300, 400, 500, 1000] } | - | - | algorithm feature importance | 35 | entropy | - | - | - | - | - | - | - | error, code stopped after 9hours of running |
+| 125 | knn=7 | maxabs | param_grid = { 'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 'n_estimators': [50, 100, 200] } | 9 | 200 | algorithm feature importance | 35 | entropy | - | - | - | - | 0.9973319609409916 | 0.5050251256281407 | 0.92154 | deterioration, lets increase estimators in depth to find the best estimators |
+| 133 | knn=7 | maxabs | param_grid = { 'n_estimators': [200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700] } | 9 | 650 | algorithm feature importance | 35 | entropy | - | - | - | - | 0.9976570012324444 | 0.5167597765363129 | 0.92877 | deterioration, slight imporvement but overall less. lets introduce min samples split in grid |
+| 182a | 600min + 414min | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 35 | entropy | 15 | 60 | 80 | estimators = 10 | - | - | - | ERROR: first ran, code was wrong, then kernel crashed |
+| 184 | 260min | knn=7 | maxabs | - | 11 | 400 | algorithm feature importance | 20 | entropy | 15 | 60 | 80 | - | 0.9972371575226513 | 0.5 | 0.93581 | BEST CASE: decreased features improved accuracy |
+| 185 | 45min | knn=7 | maxabs | - | 11 | 400 | kbest | 15 | entropy | 15 | 60 | 80 | - | 0.9974403077048093 | 0.5 | 0.92622 | kbest performed nice but not too good |
+| 188 | 210min | knn=7 | maxabs | - | 11 | 400 | PCA | 25 | entropy | 15 | 60 | 80 | - | 0.9974673943957636 | 0.5 | 0.88214 | PCA didnt perform well |
 
 total tests: 13   
 total submissions: 12   
 started accuracy: 0.90507   
-highest accuracy: 0.93546 (case 118)    
+highest accuracy: 0.93581 (case 184)    
 highest parameters: 
 - imputer: knn=7
 - scaler: maxabs
@@ -323,14 +349,17 @@ highest parameters:
 - min samples split: 15
 - max features: 60
 - min samples leaf: 80
-- algorithm feature importance: 35 features
+- algorithm feature importance: 20 features
 
 analysis:
 - higher depth of trees allows greater accuracy while lower depth moves to underfitting
 - gini underperforms while entropy performs way better
 - kbest feature selection doesnt work well with random forest (wasnt very tested heavily to say this)
 - algorithm feature importance improves the accuracy
+- smaller number of features extracted and selected is better
 - grid search takes alot of time in random forest
+- kbest does give good accuracy but not the best.
+- PCA did not perform well
 
 ### Analyzing Depth of Trees
 | case number | max_depth | kaggle accuracy |
@@ -363,6 +392,7 @@ from here we can see that best accuracy is on depth=10 and depth=11 and depth=8 
 | 131 | simple | minmax | param_grid = { 'criterion': ['friedman_mse', 'squared_error'] } | 3 | - | friedman_mse | - | - | 78 | estimators = 10 | 0.9974132210138549 | 0.5332722268995048 | 0.90057 | 7hour running: improved and more effecient. lets do grid on estimators next |
 | 155 | simple | minmax | param_grid = { 'n_estimators': [50, 100, 200] } | 3 | 200 | friedman_mse | - | - | 78 | estimators = 10 | 0.9974267643593321 | 0.5358363294636074 | 0.90485 | BEST CASE: ok good improved, lets grid again with more estimators |
 | 180 | simple | minmax | - | 3 | 200 | friedman_mse | - | algorithm feature importance | 20 | - | 0.9972642442136056 | 0.5331975412581588 | 0.85391 | deteriorated, not good |
+| 183 | 66min | simple | minmax | - | 3 | 200 | friedman_mse | - | PCA | 40 | - | 0.9962484933028156 | 0.5144364246234909 | 0.86502 | PCA did not perform well |
 
 total tests: 12  
 total submissions: 10   
@@ -386,6 +416,7 @@ analysis:
 - friedman_mse criterion is much better than squared_error
 - uptil now, more estimators means better accuracy
 - algorithm feature importance wasnt so good, maybe it woud have been better with bagging but overall didnt perform so good
+- PCA did not perform well 
 
 ### Analyzing depth
 | case number | depth | accuracy |
@@ -703,6 +734,8 @@ best bagging is seen at 100 estimators, while 75 may be an outlier.
 | 168 | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | kbest | 35 | 0.9972642442136056 | 0.5144859629128801 | 0.95000 | bagging was same, features were different |
 | 170a | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | forward | 10 | - | - | - | error, crashed after 30mins |
 | 170b | xgb | BaggingClassifier(estimator=model, n_estimators=100, verbose=2) | simple | maxabs | xgb.XGBClassifier() | forward | 10 | 0.9976163711960129 | 0.5029042822218859 | 0.93188 | bagging took long, problem is less features |
+| 182b | ert | 480min | BaggingClassifier(estimator=model, n_estimators=50, verbose=2) | simple | maxabs | ExtraTreesClassifier(n_estimators=800, verbose=1) | PCA | 25 | - | - | - | ERROR: kernel crashed |
+| 187 | categorical NB | 4min | BaggingClassifier(estimator=model, n_estimators=10, verbose=2) | simple | minmax | CategoricalNB() | - | 78 | 0.9513523030458984 | 0.6672982355307021 | 0.81199 | bagging decreased the accuracy in 3dp |
 
 total tries: 8    
 total submissions: 6     
@@ -730,6 +763,8 @@ analysis:
 | 160 | 688min | simple | maxabs | param_grid = { 'n_estimators': [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000] } | 800 | default = False | estimators = 50 | - | 78 | 0.9974132210138549 | 0.5026041666666666 | 0.92081 | wow, more estimators, better ert |
 | 171 | 360min | simple | maxabs | - | 800 | default = False | estimators = 50 | kbest | 15 | 0.9971829841407425 | 0.5023923444976076 | 0.87757 | kbest did not perform well |
 | 181 | 240min | simple | maxabs | - | 800 | default = False | estimators = 50 | algorithm feature importance | 20 | 0.9975892845050585 | 0.5055555555555555 | 0.88873 | feature importance didnt perform well |
+| 182b | 480min | simple | maxabs | - | 800 | default = False | estimators = 50 | PCA | 25 | - | - | - | ERROR: Kernel crashed |
+| 182c | - | simple | maxabs | - | 800 | default = False | - | PCA | 25 | 0.9974809377412408 | 0.5 | 0.85415 | PCA did not perform well |
 
 total tries: 8   
 total submissions: 8   
@@ -751,15 +786,18 @@ analysis:
 - more estimators improves accuracy
 - kbest did not perform well and decreased the accuracy by 5%
 - algorithm feature importance aso didnt perform well
+- PCA did not perform well
 
 # VotingClassifier
 
 ### Analyzing VotingClassifier
-| case number | time | algorithms used | no. of models | imputer | scaler | parameters | feature selection | no. of features | validation accuracy | roc | kaggle accuracy | analysing |
-| - | - | - | - | - | - | - | - | - | - | - | - | - | 
-| 161 | 45min | xgb, lgbm | 2 | simple | maxabs | model_1 = xgb.XGBClassifier(), model_1 = BaggingClassifier(estimator=model_1, n_estimators=100, verbose=2), model_2 = lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), model_2 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35, didnt work, 78 | 0.9974538510502864 | 0.5324932099352228 | 0.95250 | surprised, these were two of my best accuracies, one as 0.959 and one as 0.952 |
+| case number | time | algorithms used | no. of models | imputer | scaler | model 1 | model 2 | model 3 | model 4 | feature selection | no. of features | validation accuracy | roc | kaggle accuracy | analysing |
+| - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | - | 
+| 161 | 45min | xgb, lgbm | 2 | simple | maxabs | xgb.XGBClassifier(), BaggingClassifier(estimator=model_1, n_estimators=100, verbose=2) | lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000), BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | - | - | xgb algorithm feature importance | 35, didnt work, 78 | 0.9974538510502864 | 0.5324932099352228 | 0.95250 | surprised, these were two of my best accuracies, one as 0.959 and one as 0.952 |
 | 162 | 72min | lgbm | 2 | simple | maxabs | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000), model_1 = BaggingClassifier(estimator=model_2, n_estimators=50, verbose=2) | xgb algorithm feature importance | 35, didnt work, 78 | 0.997765347996262 | 0.5406501620314466 | 0.95703 | improved, lets tweak params for a better accuracy |
-| 179 kaggle | 90min | lgbm | 2 | simple | maxabs | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu'), model_1 = BaggingClassifier(estimator= model_2, n_estimators=100, verbose=2, n_jobs=-1) | xgb algorithm feature importance | 40 | 0.9972236141771741 | 0.5271326592834472 | 0.96165 | wow, improved, lets tune params |
+| 179 kaggle | 90min | lgbm | 2 | simple | maxabs | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000, device='gpu'), model_1 = BaggingClassifier(estimator=model_2, n_estimators=100, verbose=2, n_jobs=-1) | xgb algorithm feature importance | 40 | 0.9972236141771741 | 0.5271326592834472 | 0.96165 | wow, improved, lets tune params |
+| 191a | 1150min | lgbm | 2 | simple | minmax | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu'), model_1 = BaggingClassifier(estimator=model_2, n_estimators=150, verbose=2, n_jobs=-1) | xgb algorithm feature importance | 45 | - | - | - | faied 4 times on kaggle, twice on colab, then on VS code |
+| 191b | - | xgb, lgbm | 3 | simple | minmax | 
 
 total tries: 3     
 total submissions: 3    
