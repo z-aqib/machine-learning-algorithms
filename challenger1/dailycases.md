@@ -3127,7 +3127,7 @@ model accuracy =  0.9972642442136056
 roc score =  0.5    
 accuracy: 0.93243
 
-## Case S - stacking, random forest
+## Case 207a - stacking, random forest
 - model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
 - model_2 = RandomForestClassifier(max_depth=13, n_estimators=300, criterion='entropy', min_samples_split=10, max_features=50, min_samples_leaf=60, verbose=2)
 - model_3 = RandomForestClassifier(max_depth=9, n_estimators=500, criterion='entropy', min_samples_split=20, max_features=55, min_samples_leaf=70, verbose=2)
@@ -3136,7 +3136,16 @@ accuracy: 0.93243
 - model_1 = featureImportance( model_1, 45 )
 - simple imputer
 - minmax scaler
+- ERROR: failed after 540mins of running on kaggle, internet dsconnected and code stopped running
 
-model accuracy =  0.9972642442136056    
-roc score =  0.5    
-accuracy: 
+## Case 270b - lgb bagged
+- xgb = xgb.XGBClassifier( max_depth=5, n_estimators=300, learning_rate=0.1, eval_metric='auc', random_state=42 )
+- xgb = featureImportance(xgb, 41)
+- model= BaggingClassifier( estimator=lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=3600), max_features=0.8, max_samples=0.8, n_estimators=80,n_jobs=-1, random_state=42, verbose=2 )
+- simple imputer
+- minmax scaler
+
+model accuracy =  0.9973319609409916    
+roc score =  0.5271869812770643   
+roc score = 0.9963278870156316
+accuracy: 0.96407
