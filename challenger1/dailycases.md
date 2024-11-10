@@ -1605,7 +1605,7 @@ model accuracy =  0.9968308571583353
 roc score =  0.5404496829489119
 accuracy: 0.84769
 
-## Case 117 - xgb, grid search for estimators
+## * Case 117 - xgb, grid search for estimators
 - xgb.XGBClassifier(max_depth=2)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1632,7 +1632,7 @@ model accuracy =  0.9974267643593321
 roc score =  0.5485165268480601
 accuracy: 0.95236
 
-## Case 118 - randomforest, algo feature importance
+## * Case 118 - randomforest, algo feature importance
 - RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80)
 - feature_importance_df['Feature'].head(35).values
 - knn=7 imputer
@@ -1646,7 +1646,7 @@ model accuracy =  0.997359047631946
 roc score =  0.5
 accuracy: 0.93546
 
-## Case 119 - lgbm, grid search on min_child_samples
+## * Case 119 - lgbm, grid search on min_child_samples
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - param_grid = {
     'min_child_samples': [1, 5, 10, 20, 30, 40, 50, 100, 200, 300, 400, 500, 1000]
@@ -1662,7 +1662,7 @@ model accuracy =  0.9976028278505357
 roc score =  0.5320719837648076
 accuracy: 
 
-## Case 120 - xgb, grid search for learning rate
+## * Case 120 - xgb, grid search for learning rate
 - xgb.XGBClassifier(max_depth=2, n_estimators=100)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1691,7 +1691,7 @@ accuracy: 0.94989
 
 # DAY 13: Saturday 2nd November 2024
 
-## Case 121 - catboost, grid search for estimators and learning rate
+## * Case 121 - catboost, grid search for estimators and learning rate
 - CatBoostClassifier(max_depth=1)
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - param_grid = {
@@ -1709,7 +1709,7 @@ model accuracy =  0.9973861343229005
 roc score =  0.5287075514634675
 accuracy: 0.94631
 
-## Case 122 - gradboost, grid search for depth + bagging
+## * Case 122 - gradboost, grid search for depth + bagging
 - same model trained as in case 116 is now being bagged, low bagging estimators though as 50 estimators take over 24 hours of running time (1 estimator takes approx 20-30 minutes on average)
 - GradientBoostingClassifier()
 - BaggingClassifier(estimator=model, n_estimators=10, verbose=2)
@@ -1753,7 +1753,7 @@ accuracy: 0.88551
 --rf1.csv
 - code stopped running after 512min, so i manually stopped it. too many parameters in grid made it very long. 
 
-## Case 123c - lgbm, feature importance
+## * Case 123c - lgbm, feature importance
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1766,7 +1766,7 @@ model accuracy =  0.9975757411595813
 roc score =  0.5317324536447935
 accuracy: 0.95070
 
-## Case 124 - xgboost, feature importance
+## * Case 124 - xgboost, feature importance
 - xgb.XGBClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - feature importance on top 35 features
@@ -1779,7 +1779,7 @@ model accuracy =  0.9973725909774233
 roc score =  0.5274660496761139  
 accuracy: 0.95846
 
-## Case 125 - randomforest, grid search for depth and estimators
+## * Case 125 - randomforest, grid search for depth and estimators
 - RandomForestClassifier(criterion='entropy', verbose=2)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], 
@@ -1825,7 +1825,7 @@ accuracy: 0.92154
 --ab1.csv
 - crashed after 300mins (VS code shut down)
 
-## Case 126c - lgbm, feature importance decreased featuree
+## * Case 126c - lgbm, feature importance decreased featuree
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1838,7 +1838,7 @@ model accuracy =  0.9974267643593321
 roc score =  0.5321714275725801    
 accuracy: 0.95323
 
-## Case 127 - xgboost, feature importance increased
+## * Case 127 - xgboost, feature importance increased
 - xgb.XGBClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - feature importance on top 40 features
@@ -1850,7 +1850,7 @@ model accuracy =  0.9975080244321952
 roc score =  0.5184142634887761    
 accuracy: 0.95371
 
-## Case 128 - lgbm, feature importance decreased features
+## * Case 128 - lgbm, feature importance decreased features
 - lgb.LGBMClassifier(learning_rate=0.01, max_depth=3, n_estimators=1000) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1862,7 +1862,7 @@ model accuracy =  0.9972777875590828
 roc score =  0.5286809703922187    
 accuracy: 0.94903
 
-## Case 129 - xgboost, feature importance decreased
+## * Case 129 - xgboost, feature importance decreased
 - xgb.XGBClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - feature importance on top 30 features
@@ -1874,7 +1874,7 @@ model accuracy =  0.9974403077048093
 roc score =  0.52283584980575    
 accuracy: 0.94984
 
-## Case 130 - xgboost, feature importance increased
+## * Case 130 - xgboost, feature importance increased
 - xgb.XGBClassifier()
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - feature importance on top 36 features
@@ -3110,6 +3110,22 @@ accuracy: 0.77448
 
 roc: 0.5323537283118134
 accuracy: 0.95299
+
+## Case 206 - voting, DT, RF
+- xgb = xgb.XGBClassifier( max_depth=5, n_estimators=250, learning_rate=0.1, eval_metric='auc', random_state=42 )
+- xgb = featureImportance( xgb, 40 )
+- model_1 = DecisionTreeClassifier(criterion='entropy', max_depth=5, min_samples_split=15, max_features=60, min_samples_leaf=80)
+- model_1 = BaggingClassifier(estimator=model_1, n_estimators=50, verbose=2)
+- model_2 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=1)
+- model = VotingClassifier(estimators=[('decision_tree', model_1), ('random_forest', model_2)], voting='soft', verbose=True)
+- simple imputer
+- minmax scaler
+--mixed1.csv
+- 200min
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5    
+accuracy: 0.93243
 
 ## Case S - stacking, random forest
 - model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
