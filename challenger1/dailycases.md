@@ -1287,7 +1287,7 @@ accuracy: 0.49841
 ### Analyzing
 i remember hearing once that the more the estimators, the lesser the learning rate. so lets try that. lets increase estimators but decrease learning rate at the same time
 
-## Case 98 - lightgbm, learning rate decreased, estimators increased
+## * Case 98 - lightgbm, learning rate decreased, estimators increased
 - lgb.LGBMClassifier(max_depth=10, n_estimators=200, learning_rate=0.1)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
@@ -1302,7 +1302,7 @@ accuracy: 0.87767
 ### Analyzing
 this case just proved my theory. lets repeat - increase estimators and decrease learning rate
 
-## Case 99 - lightgbm, learning rate decreased, estimators increased
+## * Case 99 - lightgbm, learning rate decreased, estimators increased
 - lgb.LGBMClassifier(max_depth=10, n_estimators=300, learning_rate=0.01)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
@@ -1317,7 +1317,7 @@ accuracy: 0.94165
 ### Analyzing
 omg wow! i dont even know what to change to get higher. im thinking what to do - how do i use my 10th entry of the day?
 
-## Case 100 - lightgbm, max_depth decreased
+## * Case 100 - lightgbm, max_depth decreased
 - lgb.LGBMClassifier(max_depth=8, n_estimators=300, learning_rate=0.01)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
@@ -1331,7 +1331,7 @@ accuracy: 0.94321
 
 # DAY 11: Thursday 31st October 2024
 
-## Case 101 - lightgbm, max_depth decreased, bagging estimators increased
+## * Case 101 - lightgbm, max_depth decreased, bagging estimators increased
 - lgb.LGBMClassifier(max_depth=7, n_estimators=300, learning_rate=0.01)
 - BaggingClassifier(estimator=model, n_estimators=100)
 - maxabs scaler
@@ -1343,7 +1343,7 @@ model accuracy =  0.997359047631946
 roc score =  0.512612682865538
 accuracy: 0.94351
 
-## Case 102 - gradientboosting, bagging added
+## * Case 102 - gradientboosting, bagging added
 - GradientBoostingClassifier(max_depth=6, n_estimators=100, criterion='squared_error', max_features=60)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - simple imputer
@@ -1356,7 +1356,7 @@ model accuracy =  0.9975351111231496
 roc score =  0.5317120864929359
 accuracy: 0.90148
 
-## Case 103 - lightgbm, bagging estimators decreased
+## * Case 103 - lightgbm, bagging estimators decreased
 - lgb.LGBMClassifier(max_depth=7, n_estimators=300, learning_rate=0.01)
 - BaggingClassifier(estimator=model, n_estimators=50)
 - maxabs scaler
@@ -1382,7 +1382,7 @@ accuracy: 0.94395
 --lgbm.csv
 - failed after 271min, need to reduce grid search parameters as it was over 3100 fits
 
-## Case 104b - lightgbm, grid search
+## * Case 104b - lightgbm, grid search
 - lgb.LGBMClassifier(max_depth=6, n_estimators=400, learning_rate=0.001)
 - param_grid = {
     'max_depth': [1, 2, 3, 4, 5],
@@ -1400,7 +1400,7 @@ model accuracy =  0.9973725909774233
 roc score =  0.5521437437723113
 accuracy: 0.94948
 
-## Case 105 - xgboost
+## * Case 105 - xgboost
 - xgb.XGBClassifier() 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1412,7 +1412,7 @@ model accuracy =  0.9972100708316969
 roc score =  0.5164319248826291   
 accuracy: 0.95474
 
-## Case 106 - xgboost, n_estimators introduced
+## * Case 106 - xgboost, n_estimators introduced
 - xgb.XGBClassifier(n_estimators=100) 
 - BaggingClassifier(estimator=model, n_estimators=50, verbose=2)
 - simple imputer
@@ -1424,7 +1424,7 @@ model accuracy =  0.9975215677776724
 roc score =  0.5210458424361445
 accuracy: 0.95347
 
-## Case 107 - catboost
+## * Case 107 - catboost
 - CatBoostClassifier()
 - no bagging
 - Learning rate set to 0.108132
@@ -3046,6 +3046,33 @@ model accuracy =  0.9972777875590828
 roc score =  0.5296282775558061    
 accuracy: 0.96178
 
+## Case 202a - voting, lgbm, lgbm+bagged, xgb
+- this case was done before in case 179 except now we have trained both models and then put in voting. 
+- model = lgb.LGBMClassifier( learning_rate=0.02, max_depth=2, n_estimators=3500 )
+- model_2 = xgb.XGBClassifier( max_depth=5, n_estimators=250, learning_rate=0.1, eval_metric='auc', random_state=42 )
+- model_2 = featureImportance( model_2, 45 )
+- model_1 = BaggingClassifier( estimator=model, n_estimators=50, max_features=0.8, max_samples=0.8, bootstrap=True, random_state=42, verbose = 2 )
+- model_3 = VotingClassifier(estimators=[('one', model), ('two', model_1), ('three', model_2)], voting='soft', verbose=True)
+- simple imputer
+- minmax scaler
+--mixed1.csv
+- ERROR: Failed after 360min, VSCode crashed
+
+## Case 202b - stacking, lgbm, xgb
+- lgbm = LGBMClassifier(learning_rate=0.02, max_depth=3, n_estimators=3000, random_state=42)
+- xgb = XGBClassifier(max_depth=4, n_estimators=300, learning_rate=0.07, random_state=42)
+- stacked_model = StackingClassifier(
+    estimators=[('lgbm', lgbm), ('xgb', xgb)],
+    final_estimator=XGBClassifier(n_estimators=150, learning_rate=0.05, random_state=42),
+    cv=5
+)
+- xgb feature importances of 50 features
+- simple imputer
+- minmax scaler
+
+roc = 0.96045
+accuracy: 0.95049
+
 ## Case S - stacking, random forest
 - model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
 - model_2 = RandomForestClassifier(max_depth=13, n_estimators=300, criterion='entropy', min_samples_split=10, max_features=50, min_samples_leaf=60, verbose=2)
@@ -3053,16 +3080,9 @@ accuracy: 0.96178
 - estimators = [('rf1', model_1), ('rf2', model_2), ('rf3', model_3)]
 - model = StackingClassifier(estimators=estimators, final_estimator=RandomForestClassifier( max_depth=11, n_estimators=500, criterion='entropy', min_samples_split=10, max_features=40, min_samples_leaf=70, verbose=2))
 - model_1 = featureImportance( model_1, 45 )
+- simple imputer
+- minmax scaler
 
-# Remaining Cases left to do (that need to be done)
-
-Random Forest:
-- PCA: use best found in DT
-
-Categorical NB:
-- as many as you can, 90s mein leyao
-
-Stacking:
-- 10 algos, 1 for each
-
-left: 7 for voting
+model accuracy =  0.9972642442136056    
+roc score =  0.5    
+accuracy: 
