@@ -3161,3 +3161,16 @@ model accuracy =  0.9973319609409916
 roc score =  0.5271869812770643     
 roc score = 0.0.996400764541722
 accuracy: 0.96410
+
+## Case 209 - stacking, xgb
+xgb = xgb.XGBClassifier(n_estimators=500, learning_rate=0.05, max_depth=3, subsample=1.0, device = 'cuda') #---40 features
+LGBM = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=3500 , device = 'gpu')
+Ada = AdaBoostClassifier(n_estimators = 170)
+RF1 = RandomForestClassifier(criterion="entropy", max_depth=13, min_samples_leaf=60, min_samples_split=15, n_estimators=400)
+DT1 = DecisionTreeClassifier(criterion="entropy", max_depth=5, min_samples_leaf=70, min_samples_split=18)
+classifier = StackingClassifier(estimators=[('xgb', xgb),('LGBM',LGBM),('Ada', Ada) , ('RF1',RF1), ('DT1',DT1)],final_estimator = xgb)
+model_4, X, trainX, trainY, testX, test_data_processed = featureImportance( xgb.XGBClassifier(), 45, X, trainX, trainY, testX, test_data_processed )
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5    
+accuracy: 0.95582
