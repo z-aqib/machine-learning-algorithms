@@ -3027,7 +3027,24 @@ accuracy: 0.83304
 
 model accuracy =  0.9973319609409916    
 roc score =  0.5271869812770643    
-accuracy: 0.96244    
+accuracy: 0.96244   
+
+# DAY 21: Sunday 10th November 2024
+
+## Case 201 - voting, lgbm, lgbm+bagged
+- this case was done before in case 179 except now we have trained both models and then put in voting. 
+- model = lgb.LGBMClassifier( learning_rate=0.02, max_depth=2, n_estimators=3500 )
+- model_2 = xgb.XGBClassifier( max_depth=5, n_estimators=250, learning_rate=0.1, eval_metric='auc', random_state=42 )
+- model_2 = featureImportance( model_2, 45 )
+- model_1 = BaggingClassifier( estimator=model, n_estimators=50, max_features=0.8, max_samples=0.8, bootstrap=True, random_state=42, verbose = 2 )
+- model = VotingClassifier(estimators=[('one', model), ('two', model_1)], voting='soft', verbose=True)
+- simple imputer
+- minmax scaler
+--mixed1.csv
+
+model accuracy =  0.9972777875590828    
+roc score =  0.5296282775558061    
+accuracy: 0.96178
 
 ## Case S - stacking, random forest
 - model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
