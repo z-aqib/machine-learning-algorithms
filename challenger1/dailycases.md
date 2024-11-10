@@ -3174,3 +3174,14 @@ model_4, X, trainX, trainY, testX, test_data_processed = featureImportance( xgb.
 model accuracy =  0.9972642442136056    
 roc score =  0.5    
 accuracy: 0.95582
+
+## Case 210 - stacking
+xgb = xgb.XGBClassifier(n_estimators=500, learning_rate=0.05, max_depth=3, subsample=1.0) #---40 features
+RF1 = RandomForestClassifier(criterion="entropy", max_depth=13, min_samples_leaf=60, min_samples_split=15, n_estimators=400)
+RF2 = RandomForestClassifier(criterion="entropy", max_depth=11, min_samples_leaf=70, min_samples_split=18, n_estimators=300)
+s_clf = StackingClassifier(estimators=[('xgb', xgb), ('RF1', RF1),('RF2',RF2)],final_estimator = xgb)
+model_4, X, trainX, trainY, testX, test_data_processed = featureImportance( xgb.XGBClassifier(), 45, X, trainX, trainY, testX, test_data_processed )
+
+model accuracy =  0.9972642442136056    
+roc score =  0.5    
+acciracy: 0.94855
