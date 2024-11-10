@@ -3109,7 +3109,7 @@ accuracy: 0.77448
 --stacking2.csv
 
 roc: 0.5323537283118134
-accuracy: 
+accuracy: 0.95299
 
 ## Case S - stacking, random forest
 - model_1 = RandomForestClassifier(max_depth=11, n_estimators=400, criterion='entropy', min_samples_split=15, max_features=60, min_samples_leaf=80, verbose=2)
