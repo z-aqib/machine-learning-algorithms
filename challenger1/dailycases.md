@@ -3138,7 +3138,7 @@ accuracy: 0.93243
 - minmax scaler
 - ERROR: failed after 540mins of running on kaggle, internet dsconnected and code stopped running
 
-## Case 270b - lgb bagged
+## Case 207b - lgb bagged
 - xgb = xgb.XGBClassifier( max_depth=5, n_estimators=300, learning_rate=0.1, eval_metric='auc', random_state=42 )
 - xgb = featureImportance(xgb, 41)
 - model= BaggingClassifier( estimator=lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=3600), max_features=0.8, max_samples=0.8, n_estimators=80,n_jobs=-1, random_state=42, verbose=2 )
@@ -3149,3 +3149,15 @@ model accuracy =  0.9973319609409916
 roc score =  0.5271869812770643   
 roc score = 0.9963278870156316
 accuracy: 0.96407
+
+## Case 208 - lgb bagged
+- xgb = xgb.XGBClassifier( max_depth=5, n_estimators=300, learning_rate=0.1, eval_metric='auc', random_state=42 )
+- xgb = featureImportance(xgb, 41)
+- model= BaggingClassifier( estimator=lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=3650), max_features=0.8, max_samples=0.8, n_estimators=80,n_jobs=-1, random_state=42, verbose=2 )
+- simple imputer
+- minmax scaler
+
+model accuracy =  0.9973319609409916    
+roc score =  0.5271869812770643     
+roc score = 0.0.996400764541722
+accuracy: 0.96410
