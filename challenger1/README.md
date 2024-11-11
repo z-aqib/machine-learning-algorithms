@@ -799,12 +799,40 @@ analysis:
 | 191a | 1150min | lgbm | 2 | simple | minmax | model_2 = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=4000 , device='gpu'), model_1 = BaggingClassifier(estimator=model_2, n_estimators=150, verbose=2, n_jobs=-1) | xgb algorithm feature importance | 45 | - | - | - | faied 4 times on kaggle, twice on colab, then on VS code |
 | 191b | - | xgb, lgbm | 3 | simple | minmax | 
 
-total tries: 3     
-total submissions: 3    
+total tries: 10     
+total submissions: 10    
 starting accuracy: 0.95250    
-highest accuracy: X (case Y)    
+highest accuracy: 0.96178 (case 201)    
 highest case parameters:
-- params
+- model = lgb.LGBMClassifier( learning_rate=0.02, max_depth=2, n_estimators=3500 )
+- model_2 = xgb.XGBClassifier( max_depth=5, n_estimators=250, learning_rate=0.1, eval_metric='auc', random_state=42 )
+- model_2 = featureImportance( model_2, 45 )
+- model_1 = BaggingClassifier( estimator=model, n_estimators=50, max_features=0.8, max_samples=0.8, bootstrap=True, random_state=42, verbose = 2 )
+- model = VotingClassifier(estimators=[('one', model), ('two', model_1)], voting='soft', verbose=True)
+- simple imputer
+- minmax scaler
 
 analysis:
-- a
+- the more the models the better
+- better with bagged lgbm
+- better with xgb algo feature impirtances
+
+# Stacking
+
+### Analying Stacking
+
+total submissions: 9
+total tries: 12
+highest: 0.95582 (case 209)
+- xgb = xgb.XGBClassifier(n_estimators=500, learning_rate=0.05, max_depth=3, subsample=1.0, device = 'cuda') #---40 features
+- LGBM = lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=3500 , device = 'gpu')
+- Ada = AdaBoostClassifier(n_estimators = 170)
+- RF1 = RandomForestClassifier(criterion="entropy", max_depth=13, min_samples_leaf=60, min_samples_split=15, n_estimators=400)
+- DT1 = DecisionTreeClassifier(criterion="entropy", max_depth=5, min_samples_leaf=70, min_samples_split=18)
+- classifier = StackingClassifier(estimators=[('xgb', xgb),('LGBM',LGBM),('Ada', Ada) , ('RF1',RF1), ('DT1',DT1)],final_estimator = xgb)
+- model_4 = featureImportance( xgb.XGBClassifier(), 45 )
+
+analysis:
+- bagged stacking worked better, evaluated models better
+- random forest stacking is too lengthy and long
+- stacking did not perform as well as the models did. voting classifier however performed much better
