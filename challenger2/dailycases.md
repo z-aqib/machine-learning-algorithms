@@ -479,6 +479,27 @@ score: 14062611.38234
 ### analyzing
 improved, lets increase depth further
 
+## Case 16 - random forest, depth increased
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_depth=10, max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 182064047829679.44    
+Root Mean squared error: 13493111.12    
+Mean absolute error: 7126153.18    
+Coefficient of determination: 0.62     
+model score:  0.6266156940965661    
+score: 13283359.81617
+
 ## Case K - knnregressor
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
