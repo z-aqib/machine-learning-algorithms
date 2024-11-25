@@ -403,6 +403,24 @@ score: 12756207.92108
 ### Analyzing
 file did not change...
 
+## Case RT - regression tree grid for maxfeatures
+- param_grid = {
+    'model__max_features': ['auto', 'sqrt', 'log2']
+}
+- best params:
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", DecisionTreeRegressor(random_state=0, max_depth=5))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
 ## Case K - knnregressor
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
@@ -454,3 +472,5 @@ Mean squared error: 210712625322840.84
 Root Mean squared error: 14515943.83    
 Mean absolute error: 8082056.71    
 Coefficient of determination: 0.56     
+model score:  0.5643253669923808     
+score: 14311567.49859 
