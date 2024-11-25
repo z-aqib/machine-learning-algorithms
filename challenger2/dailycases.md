@@ -325,21 +325,7 @@ score: 13442390.39444
 ### Analyzing
 very low. lasso itself is very slow so grid would be a bit difficult. lets try though and start from alpha
 
-## Case 09 - knnregressor
-- model = Pipeline(steps=[
-    ("preprocessor", preprocessor),
-    ("model", KNeighborsRegressor(n_neighbors=5))
-])
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-
-## Case 11 - regression tree grid for depth
+## Case 10 - regression tree grid for depth
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("model", DecisionTreeRegressor(random_state=0))
@@ -355,4 +341,44 @@ very low. lasso itself is very slow so grid would be a bit difficult. lets try t
 - param_grid = {
     'model__max_depth': [1, 2, 3, 4, 5, 10]
 }
+- best params: {'model__max_depth': 5}
+
+Mean squared error: 167977657854855.94    
+Root Mean squared error: 12960619.50    
+Mean absolute error: 6016174.11    
+Coefficient of determination: 0.65  
+model score:  0.6562927030744047     
+score: 12756207.92108   
+
+## Case 11 - knnregressor
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", KNeighborsRegressor(n_neighbors=5))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+## Case 12 - lasso grid for alpha
+- param_grid = {
+    'model__alpha': [100, 1000, 10000]
+}
 - best params: 
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Lasso())
+])
+- lasso1.csv
