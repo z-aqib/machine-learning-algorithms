@@ -403,11 +403,35 @@ score: 12756207.92108
 ### Analyzing
 file did not change...
 
-## Case RT - regression tree grid for maxfeatures
+## Case 13 - randomforest regressor
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_depth=6, max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 210712625322840.84    
+Root Mean squared error: 14515943.83    
+Mean absolute error: 8082056.71    
+Coefficient of determination: 0.56     
+model score:  0.5643253669923808     
+score: 14311567.49859 
+
+### Analyzing
+done from kaggle. lets increase depth. 
+
+## Case 14 - regression tree grid for maxfeatures
 - param_grid = {
     'model__max_features': ['auto', 'sqrt', 'log2']
 }
-- best params:
+- best params: {'model__max_features': 'sqrt'}
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("model", DecisionTreeRegressor(random_state=0, max_depth=5))
@@ -420,6 +444,35 @@ file did not change...
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+Mean squared error: 183853745621936.66    
+Root Mean squared error: 13559267.89    
+Mean absolute error: 7056495.43    
+Coefficient of determination: 0.62     
+model score:  0.6293951358082965     
+score: 13234262.48727
+
+### analyzing
+this is very bad. accuracy fell alot. default of None was much better. 
+
+## Case 15 - random forest, depth increased
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_depth=7, max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 201350035576811.72    
+Root Mean squared error: 14189786.31    
+Mean absolute error: 7820540.79    
+Coefficient of determination: 0.58     
 
 ## Case K - knnregressor
 - model = Pipeline(steps=[
@@ -453,24 +506,3 @@ file did not change...
     ("model", Lasso())
 ])
 - lasso1.csv
-
-## Case RF - randomforest regressor
-- model = Pipeline(steps=[
-    ("preprocessor", preprocessor),
-    ("model", RandomForestRegressor(max_depth=6, max_features=4, min_samples_split=8, n_estimators=300))
-])
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-
-Mean squared error: 210712625322840.84    
-Root Mean squared error: 14515943.83    
-Mean absolute error: 8082056.71    
-Coefficient of determination: 0.56     
-model score:  0.5643253669923808     
-score: 14311567.49859 
