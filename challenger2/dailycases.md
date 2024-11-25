@@ -296,9 +296,10 @@ model score:  0.6796795918857109
 score: 12963023.56640
 
 ### analyzing
-lasso was taking too long (20mins passed) so i shifted to poly, it failed, so shifted to knn, it was also taking too long so shifted to regressiontree. it was relatively fast (7min) and accuracy is good
+lasso was taking too long (20mins passed) so i shifted to poly, it failed, so shifted to knn, it was also taking too long so shifted to regressiontree. it was relatively fast (7min) and accuracy is good.      
+lets depth grid search now
 
-## Case 08 - lasso
+## Case 09 - lasso
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", MinMaxScaler())
@@ -312,12 +313,17 @@ lasso was taking too long (20mins passed) so i shifted to poly, it failed, so sh
     ("model", Lasso())
 ])
 - lasso1.csv
-- 15min + 
+- 15min + 25min
 
 Mean squared error: 191668945999741.03    
 Root Mean squared error: 13844455.42    
 Mean absolute error: 6682058.36    
-Coefficient of determination: 0.60     
+Coefficient of determination: 0.60  
+model score:  0.6611991035918549     
+score: 13442390.39444
+
+### Analyzing
+very low. lasso itself is very slow so grid would be a bit difficult. lets try though and start from alpha
 
 ## Case 09 - knnregressor
 - model = Pipeline(steps=[
@@ -332,3 +338,21 @@ Coefficient of determination: 0.60
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+## Case 11 - regression tree grid for depth
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", DecisionTreeRegressor(random_state=0))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- param_grid = {
+    'model__max_depth': [1, 2, 3, 4, 5, 10]
+}
+- best params: 
