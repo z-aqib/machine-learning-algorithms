@@ -79,3 +79,38 @@ score: 13095760.55722
 
 ### Analyzing
 okay, nice. lets increase alphas more to find the best one
+
+## Case 04 - ridge with grid for alpha
+- ran it with this grid: param_grid = {
+    'model__alpha': [100.0, 150.0, 200.0, 300.0, 500.0]
+}
+- got {'model__alpha': 100.0}
+- this is same parameters as before, so didnt want to waste an entry. stopped running and changed grid
+- so ran it with this grid: param_grid = {
+    'model__alpha': [98.0, 99.0, 100.0, 101.0, 102.0, 105.0]
+}
+- got {'model__alpha': 99.0}
+
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Ridge())
+])
+- ridge1.csv
+
+Mean squared error: 178445219796271.12    
+Root Mean squared error: 13358338.96    
+Mean absolute error: 6620198.39    
+Coefficient of determination: 0.63     
+model score:  0.6429840577286432    
+score: 13095804.97745
+
+### analyzing
+score decreased, looks like 100.0 was fine
