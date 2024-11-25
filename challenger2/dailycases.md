@@ -472,7 +472,12 @@ this is very bad. accuracy fell alot. default of None was much better.
 Mean squared error: 201350035576811.72    
 Root Mean squared error: 14189786.31    
 Mean absolute error: 7820540.79    
-Coefficient of determination: 0.58     
+Coefficient of determination: 0.58   
+model score:  0.579537908188712  
+score: 14062611.38234
+
+### analyzing
+improved, lets increase depth further
 
 ## Case K - knnregressor
 - model = Pipeline(steps=[
