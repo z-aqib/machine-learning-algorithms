@@ -3160,7 +3160,7 @@ accuracy: 0.96407
 
 model accuracy =  0.9973319609409916    
 roc score =  0.5271869812770643     
-roc score = 0.0.996400764541722
+roc score = 0.996400764541722
 accuracy: 0.96410
 
 ## Case 209 - stacking, xgb
