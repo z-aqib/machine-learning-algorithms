@@ -323,7 +323,8 @@ model score:  0.6611991035918549
 score: 13442390.39444
 
 ### Analyzing
-very low. lasso itself is very slow so grid would be a bit difficult. lets try though and start from alpha
+very low. lasso itself is very slow so grid would be a bit difficult. lets try though and start from alpha    
+update: lasso and knn are running. RT is faster so we are running that
 
 ## Case 10 - regression tree grid for depth
 - model = Pipeline(steps=[
@@ -348,9 +349,51 @@ Root Mean squared error: 12960619.50
 Mean absolute error: 6016174.11    
 Coefficient of determination: 0.65  
 model score:  0.6562927030744047     
-score: 12756207.92108   
+score: 12756207.92108
 
-## Case 11 - knnregressor
+### Analyzing
+nice! lets do more depth search, what if 6 was better? lets do it with 6 to 10
+
+## Case 11 - xgbregressor
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", xgb.XGBRegressor())
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 177766344966137.41    
+Root Mean squared error: 13332904.60    
+Mean absolute error: 5799980.84    
+Coefficient of determination: 0.63     
+model score:  0.7777357346516934    
+score: 12982571.93294
+
+## Case RT - regression tree grid for depth
+- param_grid = {
+    'model__max_depth': [5, 6, 7, 8, 9, 10]
+}
+- best params: 
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", DecisionTreeRegressor(random_state=0))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+## Case K - knnregressor
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("model", KNeighborsRegressor(n_neighbors=5))
@@ -364,7 +407,7 @@ score: 12756207.92108
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
 
-## Case 12 - lasso grid for alpha
+## Case L - lasso grid for alpha
 - param_grid = {
     'model__alpha': [100, 1000, 10000]
 }
