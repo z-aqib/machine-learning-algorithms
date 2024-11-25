@@ -375,11 +375,11 @@ Coefficient of determination: 0.63
 model score:  0.7777357346516934    
 score: 12982571.93294
 
-## Case RT - regression tree grid for depth
+## Case 12 - regression tree grid for depth
 - param_grid = {
     'model__max_depth': [5, 6, 7, 8, 9, 10]
 }
-- best params: 
+- best params: {'model__max_depth': 5}
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("model", DecisionTreeRegressor(random_state=0))
@@ -392,6 +392,16 @@ score: 12982571.93294
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+Mean squared error: 167977657854855.94    
+Root Mean squared error: 12960619.50    
+Mean absolute error: 6016174.11    
+Coefficient of determination: 0.65  
+model score:  0.6562927030744047     
+score: 12756207.92108
+
+### Analyzing
+file did not change...
 
 ## Case K - knnregressor
 - model = Pipeline(steps=[
@@ -425,3 +435,22 @@ score: 12982571.93294
     ("model", Lasso())
 ])
 - lasso1.csv
+
+## Case RF - randomforest regressor
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_depth=6, max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 210712625322840.84    
+Root Mean squared error: 14515943.83    
+Mean absolute error: 8082056.71    
+Coefficient of determination: 0.56     
