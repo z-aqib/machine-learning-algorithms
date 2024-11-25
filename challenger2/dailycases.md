@@ -272,4 +272,63 @@ model score:  0.6409230973228461
 score: 13091172.07257
 
 ### Analyzing
-the default tol was 0.0001, our grid found 0.001. file changed successfully! improved, shukar. lets shift to 
+the default tol was 0.0001, our grid found 0.001. file changed successfully! improved, shukar. lets shift to lasso now.
+
+## Case 08 - regressiontree
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", DecisionTreeRegressor(max_depth=10, random_state=0))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 174156211510543.12    
+Root Mean squared error: 13196825.81    
+Mean absolute error: 5696000.70    
+Coefficient of determination: 0.64     
+model score:  0.6796795918857109     
+score: 12963023.56640
+
+### analyzing
+lasso was taking too long (20mins passed) so i shifted to poly, it failed, so shifted to knn, it was also taking too long so shifted to regressiontree. it was relatively fast (7min) and accuracy is good
+
+## Case 08 - lasso
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Lasso())
+])
+- lasso1.csv
+- 15min + 
+
+Mean squared error: 191668945999741.03    
+Root Mean squared error: 13844455.42    
+Mean absolute error: 6682058.36    
+Coefficient of determination: 0.60     
+
+## Case 09 - knnregressor
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", KNeighborsRegressor(n_neighbors=5))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
