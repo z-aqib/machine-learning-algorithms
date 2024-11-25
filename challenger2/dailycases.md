@@ -500,6 +500,27 @@ Coefficient of determination: 0.62
 model score:  0.6266156940965661    
 score: 13283359.81617
 
+## Case 17 - ranfom forest, depth increased
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_depth=15, max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 173977492829199.50    
+Root Mean squared error: 13190052.80    
+Mean absolute error: 6625772.14    
+Coefficient of determination: 0.64     
+model score:  0.6527342751574265    
+score: 13012520.35937
+
 ## Case K - knnregressor
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
