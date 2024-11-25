@@ -147,3 +147,43 @@ Mean absolute error: 6620163.56
 Coefficient of determination: 0.63     
 model score:  0.6428676656837684    
 score: 13095300.21716
+
+## Case 06a - ridge with grid for positive and fit intercept
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Ridge(alpha=100, solver='lsqr'))
+])
+- param_grid = {
+    'model__fit_intercept': [True, False], 
+    'model__positive': [True, False]
+}
+- best params: {'model__fit_intercept': True, 'model__positive': False}
+- same as DEFAULT so no need to submit
+
+## Case 06b - ridge with grid for max iterations
+- param_grid = {
+    'model__max_iter': [1000, 5000, 10000]
+}
+- best params: {'model__max_iter': 1000}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Ridge(alpha=100, solver='lsqr'))
+])
+
+Mean squared error: 178422961193358.22    
+Root Mean squared error: 13357505.80    
+Mean absolute error: 6620163.56    
+Coefficient of determination: 0.63     
+model score:  0.6428676656837684    
+score: 13095300.21716
+
+### Analyzing
+file had not changed. my entry wasted :(
