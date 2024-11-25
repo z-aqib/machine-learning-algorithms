@@ -186,4 +186,90 @@ model score:  0.6428676656837684
 score: 13095300.21716
 
 ### Analyzing
-file had not changed. my entry wasted :(
+file had not changed. my entry wasted :(    
+it chose 1000 max iterations which was the smallest value in grid. lets use smaller values than that and re-run the grid and see. this time i will check if the file has changed before submitting !
+
+## Case 07a - ridge with grid for max iterations
+- param_grid = {
+    'model__max_iter': [100, 200, 300, 500, 900, 1000]
+}
+- best params: {'model__max_iter': 100}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Ridge(alpha=100, solver='lsqr'))
+])
+
+Mean squared error: 178422961193358.22    
+Root Mean squared error: 13357505.80    
+Mean absolute error: 6620163.56    
+Coefficient of determination: 0.63    
+model score:  0.6428676656837684     
+score: FILE DID NOT CHANGE. ENTRY IS NOT SUBMITTED.
+
+### Analyzing
+okay so it picked the least amount, again, 100. so now in next grid lets do 1 to 100 to find the best one.    
+file did not change so this entry is not submitted.
+
+## Case 07b - ridge with grid for max iterations
+- param_grid = {
+    'model__max_iter': [1, 10, 20, 50, 90, 100]
+}
+- best params: {'model__max_iter': 50}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Ridge(alpha=100, solver='lsqr'))
+])
+
+Mean squared error: 178422961193358.22    
+Root Mean squared error: 13357505.80    
+Mean absolute error: 6620163.56    
+Coefficient of determination: 0.63    
+model score:  0.6428676656837684    
+score: FILE DID NOT CHANGE. ENTRY WAS NOT SUBMITTED.
+
+### Analyzing
+the default max_iterations seems fine as file is not changing even if i do 1000, 100, or 50. lets do grid on something else.
+
+## Case 07c - ridge with grid for tol
+- param_grid = {
+    'model__tol': [1e-1, 1e-2, 1e-3, 1e-4, 1e-5]
+}
+- best params: {'model__tol': 0.001}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Ridge(alpha=100, solver='lsqr'))
+])
+
+Mean squared error: 178399494100404.12    
+Root Mean squared error: 13356627.35    
+Mean absolute error: 6627800.65    
+Coefficient of determination: 0.63     
+model score:  0.6409230973228461     
+score: 13091172.07257
+
+### Analyzing
+the default tol was 0.0001, our grid found 0.001. file changed successfully! improved, shukar. lets shift to 
