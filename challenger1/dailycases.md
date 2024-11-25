@@ -3156,6 +3156,7 @@ accuracy: 0.96407
 - model= BaggingClassifier( estimator=lgb.LGBMClassifier(learning_rate=0.02, max_depth=2, n_estimators=3650), max_features=0.8, max_samples=0.8, n_estimators=80,n_jobs=-1, random_state=42, verbose=2 )
 - simple imputer
 - minmax scaler
+- 102min
 
 model accuracy =  0.9973319609409916    
 roc score =  0.5271869812770643     
