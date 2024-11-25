@@ -113,4 +113,37 @@ model score:  0.6429840577286432
 score: 13095804.97745
 
 ### analyzing
-score decreased, looks like 100.0 was fine
+score decreased, looks like 100.0 was fine. lets try extreme alpha values
+
+## Case 05a - ridge with grid for alpha
+- ran it with this grid: param_grid = {
+    "model__alpha": [100, 500, 1000, 5000, 10000]
+}
+- got {'model__alpha': 100}
+- did not submit as same parameters as case 3. did not want to waste an entry.
+
+## Case 05b - ridge with grid for model_solver
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Ridge(alpha=100))
+])
+- param_grid = {
+    'model__solver': ['auto', 'svd', 'lsqr', 'sparse_cg']
+}
+- best solver: {'model__solver': 'lsqr'}
+- ridge1.csv
+
+Mean squared error: 178422961193358.22    
+Root Mean squared error: 13357505.80    
+Mean absolute error: 6620163.56    
+Coefficient of determination: 0.63     
+model score:  0.6428676656837684    
+score: 13095300.21716
