@@ -909,6 +909,52 @@ score: 12652092.92952
 ### analyzing
 improved! kiss had tak jaon mein? :)
 
+## Case 30 - xgb grid for estimators, learning rate, depth
+- param_grid = {
+    'estimators': [10, 100, 200, 500, 1000, 2000, 3000], 
+    'learning_rate': [0.0001, 0.001, 0.01, 0.05, 0.1, 0.5],
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best params: {'estimators': 10, 'learning_rate': 0.05, 'max_depth': 4}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = xgb.XGBRegressor(max_depth=2, learning_rate=0.1)
+- top 40 algorithm feature importances
+
+Mean squared error: 165326527443054.19    
+Root Mean squared error: 12857936.36    
+Mean absolute error: 5799900.84    
+Coefficient of determination: 0.65     
+model score:  0.6658882422122077     
+score: 12662370.10532
+
+### Analyzing
+improved but not best. lets stop grid and tune parameters randomly
+
+## Case RF - random forest, grid for max depth
+- param_grid = {
+    'model__max_depth': [30, 31, 32, 33, 34, 35]
+}
+- best params: 
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
 ## Case L - lasso grid for max iterations
 - param_grid = {
     'max_iter': [1000, 5000, 10000]
@@ -923,21 +969,3 @@ improved! kiss had tak jaon mein? :)
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
 - model = Lasso(alpha=10000)
-
-## Case X - xgb grid for estimators, learning rate, depth
-- param_grid = {
-    'estimators': [10, 100, 200, 500, 1000, 2000, 3000], 
-    'learning_rate': [0.0001, 0.001, 0.01, 0.05, 0.1, 0.5],
-    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-}
-- best params: 
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-- model = xgb.XGBRegressor(max_depth=2, learning_rate=0.1)
-- top 40 algorithm feature importances
