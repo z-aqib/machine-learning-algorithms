@@ -732,6 +732,47 @@ score: 12765094.57261
 ### Analyzing
 i think the file didnt change from case 22...
 
+## Case 25a - knnregressor
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", KNeighborsRegressor(n_neighbors=5))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- doesnt work, crashed after like 600min
+
+## Case 25b - xgb with grid for maxdepth, increased feature imp
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best params: {'max_depth': 2}
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", xgb.XGBRegressor())
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- top 40 algorithm feature importances
+
+Mean squared error: 167743096759781.88    
+Root Mean squared error: 12951567.35    
+Mean absolute error: 5903178.89    
+Coefficient of determination: 0.65     
+model score:  0.6620939103856143     
+score: 12737222.65783
+
 ## Case L - lasso grid for max iterations
 - param_grid = {
     'max_iter': [1000, 5000, 10000]
@@ -747,34 +788,12 @@ i think the file didnt change from case 22...
 ])
 - model = Lasso(alpha=10000)
 
-
-## Case XGB - xgb with grid for maxdepth, increased feature imp
+## Case RT - regression tree for min samples split
 - param_grid = {
-    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    'min_samples_split': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 }
-- best params:
-- model = Pipeline(steps=[
-    ("preprocessor", preprocessor),
-    ("model", xgb.XGBRegressor())
-])
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-- top 40 algorithm feature importances
-
-    
-
-
-## Case K - knnregressor
-- model = Pipeline(steps=[
-    ("preprocessor", preprocessor),
-    ("model", KNeighborsRegressor(n_neighbors=5))
-])
+- best params: 
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", MinMaxScaler())
