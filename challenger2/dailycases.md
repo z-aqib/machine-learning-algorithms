@@ -657,7 +657,7 @@ score: 13234262.48727
 ### analyzing
 looks like file didnt change??? what
 
-## Case 21 - regression tree, grid for criterion
+## Case 22 - regression tree, grid for criterion
 - param_grid = {
     'model__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson']
 }
@@ -678,7 +678,7 @@ looks like file didnt change??? what
 i ran this file before but didnt save its values, csv saved, so submitting. poisson was used.    
 score: 12765094.57261
 
-## Case 22 - lasso grid for alpha
+## Case 23 - lasso grid for alpha
 - param_grid = {
     'model__alpha': [10000, 20000, 50000, 100000]
 }
@@ -707,11 +707,11 @@ score: 13245107.59931
 ### Analyzing
 decreased. 10000 was fine. 
 
-## Case RT - regression tree grid for min samples split
+## Case 24 - regression tree grid for min samples split
 - param_grid = {
     'min_samples_split': [10, 30, 50, 100, 200, 1000]
 }
-- best params:
+- best params: {'min_samples_split': 10}
 - model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
@@ -721,6 +721,31 @@ decreased. 10000 was fine.
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+Mean squared error: 167260228624135.78    
+Root Mean squared error: 12932912.61    
+Mean absolute error: 5984409.15    
+Coefficient of determination: 0.65     
+model score:  0.6550849217780055     
+score: 12765094.57261
+
+### Analyzing
+i think the file didnt change from case 22...
+
+## Case L - lasso grid for max iterations
+- param_grid = {
+    'max_iter': [1000, 5000, 10000]
+}
+- best params: 
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Lasso(alpha=10000)
 
 
 ## Case XGB - xgb with grid for maxdepth, increased feature imp
