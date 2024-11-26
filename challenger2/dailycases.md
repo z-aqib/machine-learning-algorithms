@@ -570,25 +570,11 @@ score: 12861372.95847
 ### Analyzing
 lets decrease depth further
 
-## Case K - knnregressor
-- model = Pipeline(steps=[
-    ("preprocessor", preprocessor),
-    ("model", KNeighborsRegressor(n_neighbors=5))
-])
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-
 ## Case L - lasso grid for alpha
 - param_grid = {
     'model__alpha': [100, 1000, 10000]
 }
-- best params: 
+- best params: {'model__alpha': 10000}
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", MinMaxScaler())
@@ -602,3 +588,28 @@ lets decrease depth further
     ("model", Lasso())
 ])
 - lasso1.csv
+- 154min + 20min + 30min
+
+Mean squared error: 178437965939460.09    
+Root Mean squared error: 13358067.45    
+Mean absolute error: 6738128.97    
+Coefficient of determination: 0.63     
+model score:  0.6336621905064037     
+score: 13124664.68129
+
+### Analyzing
+lets increase alpha but this time with a sample so that it doesnt take too long
+
+## Case K - knnregressor
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", KNeighborsRegressor(n_neighbors=5))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
