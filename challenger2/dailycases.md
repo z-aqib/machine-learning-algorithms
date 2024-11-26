@@ -1104,4 +1104,30 @@ score: 12585886.63893
 ### Analyzing
 breakeven found! we even got a high accuracy. amaxing. lets grid for n_estimators now
 
+## Case 37 - random forest, grid for n_estimators
+- param_grid = {
+    'model__n_estimators': [50, 100, 200, 300, 400, 500]
+}
+- best params: {'model__n_estimators': 400}
+- "model", RandomForestRegressor(max_depth=39, max_features=4, min_samples_split=8, verbose=1, n_jobs=-1)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- 1h 21min
+
+Mean squared error: 163464054696822.44    
+Root Mean squared error: 12785306.20    
+Mean absolute error: 5571375.52    
+Coefficient of determination: 0.66     
+model score:  0.7958969398640308     
+score: 12580644.37388
+
+### Analyzing
+okay nice, decreased. we dont need to do mroe on estimators as we have reached breakeven. lets do some other grid as well
+
 // need to fix knn-regressor code
