@@ -629,11 +629,39 @@ score: 13112676.12178
 ### Analyzing
 worsened. default was fine. 
 
+## Case 21 - regression tree, grid for criterion
+- param_grid = {
+    'model__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson']
+}
+- best params: {'model__criterion': 'squared_error'}
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", DecisionTreeRegressor(random_state=0, max_depth=5, max_features='sqrt'))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 183853745621936.66    
+Root Mean squared error: 13559267.89    
+Mean absolute error: 7056495.43    
+Coefficient of determination: 0.62     
+model score:  0.6293951358082965     
+score: 13234262.48727
+
+### analyzing
+looks like file didnt change??? what
+
 ## Case L - lasso grid for alpha
 - param_grid = {
     'model__alpha': [10000, 20000, 50000, 100000]
 }
-- best params: {'model__alpha': 10000}
+- best params: {'model__alpha': 50000}
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", MinMaxScaler())
@@ -646,7 +674,36 @@ worsened. default was fine.
     ("preprocessor", preprocessor),
     ("model", Lasso())
 ])
-- lasso1.csv
+- lasso1.csv    
+
+Mean squared error: 181387236371446.19    
+Root Mean squared error: 13468007.88    
+Mean absolute error: 6947525.65    
+Coefficient of determination: 0.62     
+
+
+
+## Case XGB - xgb with grid for maxdepth, increased feature imp
+- param_grid = {
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best params:
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", xgb.XGBRegressor())
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- top 40 algorithm feature importances
+
+    
+
 
 ## Case K - knnregressor
 - model = Pipeline(steps=[
