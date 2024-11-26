@@ -678,7 +678,7 @@ looks like file didnt change??? what
 i ran this file before but didnt save its values, csv saved, so submitting. poisson was used.    
 score: 12765094.57261
 
-## Case L - lasso grid for alpha
+## Case 22 - lasso grid for alpha
 - param_grid = {
     'model__alpha': [10000, 20000, 50000, 100000]
 }
@@ -701,7 +701,26 @@ Mean squared error: 181387236371446.19
 Root Mean squared error: 13468007.88    
 Mean absolute error: 6947525.65    
 Coefficient of determination: 0.62     
+model score:  0.6260249178722197     
+score: 13245107.59931
 
+### Analyzing
+decreased. 10000 was fine. 
+
+## Case RT - regression tree grid for min samples split
+- param_grid = {
+    'min_samples_split': [10, 30, 50, 100, 200, 1000]
+}
+- best params:
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
 
 
 ## Case XGB - xgb with grid for maxdepth, increased feature imp
