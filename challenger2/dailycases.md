@@ -969,3 +969,22 @@ improved but not best. lets stop grid and tune parameters randomly
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
 - model = Lasso(alpha=10000)
+
+## Case X - xgb parameters
+- model = xgb.XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- top 40 algorithm feature importance
+
+Mean squared error: 165149204783138.88    
+Root Mean squared error: 12851039.05    
+Mean absolute error: 5519579.84    
+Coefficient of determination: 0.66     
+model score:  0.8922213221590881     
+score: 12648162.24473
