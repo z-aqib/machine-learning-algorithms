@@ -570,7 +570,7 @@ score: 12861372.95847
 ### Analyzing
 lets decrease depth further
 
-## Case L - lasso grid for alpha
+## Case 19 - lasso grid for alpha
 - param_grid = {
     'model__alpha': [100, 1000, 10000]
 }
@@ -599,6 +599,54 @@ score: 13124664.68129
 
 ### Analyzing
 lets increase alpha but this time with a sample so that it doesnt take too long
+
+## Case 20 - xgb with grid for booster
+- param_grid = {
+    'model__booster': ['gbtree', 'gblinear', 'dart']
+}
+- best parameters: {'model__booster': 'gbtree'}
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", xgb.XGBRegressor())
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- top 20 algorithm feature importances
+
+Mean squared error: 178515304193197.03    
+Root Mean squared error: 13360961.95    
+Mean absolute error: 5808192.51    
+Coefficient of determination: 0.63     
+model score:  0.816158130981291    
+score: 13112676.12178
+
+### Analyzing
+worsened. default was fine. 
+
+## Case L - lasso grid for alpha
+- param_grid = {
+    'model__alpha': [10000, 20000, 50000, 100000]
+}
+- best params: {'model__alpha': 10000}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", Lasso())
+])
+- lasso1.csv
 
 ## Case K - knnregressor
 - model = Pipeline(steps=[
