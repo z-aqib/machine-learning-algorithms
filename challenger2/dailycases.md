@@ -1075,11 +1075,11 @@ score: 13124614.48958
 ### analyzing
 decreased a bit. that concludes lasso. the best params were Lasso(alpha=10000, selection='random')
 
-## Case R - random forest, grid for max depth
+## Case 36 - random forest, grid for max depth
 - param_grid = {
     'model__max_depth': [35, 36, 37, 38, 39, 40]
 }
-- best params: 
+- best params: {'model__max_depth': 39}
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("model", RandomForestRegressor(max_features=4, min_samples_split=8, n_estimators=300))
@@ -1092,3 +1092,16 @@ decreased a bit. that concludes lasso. the best params were Lasso(alpha=10000, s
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+- 2h33min + 50min
+
+Mean squared error: 163742544360962.56    
+Root Mean squared error: 12796192.57    
+Mean absolute error: 5584219.52    
+Coefficient of determination: 0.66     
+model score:  0.7963392035062864     
+score: 12585886.63893
+
+### Analyzing
+breakeven found! we even got a high accuracy. amaxing. lets grid for n_estimators now
+
+// need to fix knn-regressor code
