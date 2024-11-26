@@ -1005,9 +1005,53 @@ score: 13124809.78873
 ### analyzing
 i think it improved, not sure though
 
-## Case RF - random forest, grid for max depth
+## Case 34a - random forest, grid for max depth
 - param_grid = {
     'model__max_depth': [30, 31, 32, 33, 34, 35]
+}
+- best params: {'model__max_depth': 35}
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- random forest depth testing pe kaafi saari entries hogayi hain, after 2 hour grid search we found 35 is best. so lets stop it from training and do a further grid search. just trying to find breakeven point
+
+## Case 34b - lasso grid for selection
+- param_grid = {
+    "selection": ["cyclic", "random"]
+}
+- best params: {'selection': 'random'}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Lasso(alpha=10000)
+
+Mean squared error: 178442238660973.81    
+Root Mean squared error: 13358227.38    
+Mean absolute error: 6738059.58    
+Coefficient of determination: 0.63     
+model score:  0.6336676025426253     
+score: 13124597.21980
+
+### analyzing
+improved for overall lasso, but not best of all.. far from it
+
+## Case R - random forest, grid for max depth
+- param_grid = {
+    'model__max_depth': [35, 36, 37, 38, 39, 40]
 }
 - best params: 
 - model = Pipeline(steps=[
