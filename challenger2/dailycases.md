@@ -979,6 +979,32 @@ score: 12578391.06997
 ### analyzing
 improved and as much as i want to test it more, i cant as xgb ki kaafi entries hogayi hain. we will shift to some other algo for the moment and come back later. 
 
+## Case 33 - lasso grid for max iterations
+- param_grid = {
+    'max_iter': [1000, 5000, 10000]
+}
+- best params: {'max_iter': 5000}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Lasso(alpha=10000)
+- 120mins, full train data
+
+Mean squared error: 178445511124957.69    
+Root Mean squared error: 13358349.87    
+Mean absolute error: 6738142.70    
+Coefficient of determination: 0.63    
+model score:  0.6336565804993961        
+score: 13124809.78873
+
+### analyzing
+i think it improved, not sure though
+
 ## Case RF - random forest, grid for max depth
 - param_grid = {
     'model__max_depth': [30, 31, 32, 33, 34, 35]
@@ -996,18 +1022,3 @@ improved and as much as i want to test it more, i cant as xgb ki kaafi entries h
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
-
-## Case L - lasso grid for max iterations
-- param_grid = {
-    'max_iter': [1000, 5000, 10000]
-}
-- best params: 
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-- model = Lasso(alpha=10000)
