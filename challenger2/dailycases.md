@@ -500,7 +500,7 @@ Coefficient of determination: 0.62
 model score:  0.6266156940965661    
 score: 13283359.81617
 
-## Case 17 - ranfom forest, depth increased
+## Case 17 - random forest, depth increased
 - model = Pipeline(steps=[
     ("preprocessor", preprocessor),
     ("model", RandomForestRegressor(max_depth=15, max_features=4, min_samples_split=8, n_estimators=300))
@@ -520,6 +520,55 @@ Mean absolute error: 6625772.14
 Coefficient of determination: 0.64     
 model score:  0.6527342751574265    
 score: 13012520.35937
+
+# DAY 2: Tuesday 26th November 2024
+
+## Case 18a - random forest grid for maxdepth
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- param_grid = {
+    'model__max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best params: {'model__max_depth': 10}
+- did not submit as same as case 16
+
+## Case 18b - random forest grid for maxdepth
+- param_grid = {
+    'model__max_depth': [10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]
+}
+- best params: {'model__max_depth': 20}
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 170485082730009.75    
+Root Mean squared error: 13056993.63    
+Mean absolute error: 6315450.37    
+Coefficient of determination: 0.64     
+model score:  0.6802655875129153     
+score: 12861372.95847
+
+### Analyzing
+lets decrease depth further
 
 ## Case K - knnregressor
 - model = Pipeline(steps=[
