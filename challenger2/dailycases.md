@@ -773,6 +773,29 @@ Coefficient of determination: 0.65
 model score:  0.6620939103856143     
 score: 12737222.65783
 
+## Case 26 - xgb grid for learning rate
+- param_grid = {
+    'learning_rate': [0.0001, 0.001, 0.01, 0.05, 0.1, 0.5]
+}
+- best params: {'learning_rate': 0.1}
+- - num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = xgb.XGBRegressor(max_depth=2)
+- top 40 algorithm feature importances
+
+Mean squared error: 166853913780964.91    
+Root Mean squared error: 12917194.50    
+Mean absolute error: 5887385.84    
+Coefficient of determination: 0.65     
+model score:  0.656760765654886     
+score: 12709984.52150
+
 ## Case L - lasso grid for max iterations
 - param_grid = {
     'max_iter': [1000, 5000, 10000]
