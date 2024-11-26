@@ -778,7 +778,7 @@ score: 12737222.65783
     'learning_rate': [0.0001, 0.001, 0.01, 0.05, 0.1, 0.5]
 }
 - best params: {'learning_rate': 0.1}
-- - num_transformer = Pipeline(steps=[
+- num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", MinMaxScaler())
 ])
@@ -796,6 +796,63 @@ Coefficient of determination: 0.65
 model score:  0.656760765654886     
 score: 12709984.52150
 
+## Case 27a - regression tree for min samples split
+- param_grid = {
+    'min_samples_split': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best params: {'min_samples_split': 2}
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- same as default, not submitted, file didnt change
+
+## Case 27b - xgb grid for estimators
+- param_grid = {
+    'estimators': [10, 100, 200, 500, 1000, 2000, 3000]
+}
+- best params: {'estimators': 10}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = xgb.XGBRegressor(max_depth=2, learning_rate=0.1)
+- top 40 algorithm feature importances
+
+Mean squared error: 166965016240907.06    
+Root Mean squared error: 12921494.35    
+Mean absolute error: 5895809.67    
+Coefficient of determination: 0.65     
+model score:  0.6567594926088847     
+score: 12717549.88555
+
+### Analyzing
+decreased. default was much better
+
+## Case RT - regression tree grid for splitter
+- param_grid = {
+    'splitter': ['best', 'random']
+}
+- best params: 
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
 ## Case L - lasso grid for max iterations
 - param_grid = {
     'max_iter': [1000, 5000, 10000]
@@ -811,17 +868,3 @@ score: 12709984.52150
 ])
 - model = Lasso(alpha=10000)
 
-## Case RT - regression tree for min samples split
-- param_grid = {
-    'min_samples_split': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-}
-- best params: 
-- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
