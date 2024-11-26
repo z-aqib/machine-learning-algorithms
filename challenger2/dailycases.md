@@ -657,6 +657,27 @@ score: 13234262.48727
 ### analyzing
 looks like file didnt change??? what
 
+## Case 21 - regression tree, grid for criterion
+- param_grid = {
+    'model__criterion': ['squared_error', 'friedman_mse', 'absolute_error', 'poisson']
+}
+- best params: {'model__criterion': 'poisson'}
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", DecisionTreeRegressor(random_state=0, max_depth=5))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+i ran this file before but didnt save its values, csv saved, so submitting. poisson was used.    
+score: 12765094.57261
+
 ## Case L - lasso grid for alpha
 - param_grid = {
     'model__alpha': [10000, 20000, 50000, 100000]
