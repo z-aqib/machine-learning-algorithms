@@ -937,6 +937,48 @@ score: 12662370.10532
 ### Analyzing
 improved but not best. lets stop grid and tune parameters randomly
 
+## Case 31 - xgb parameters
+- model = xgb.XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- top 40 algorithm feature importance
+
+Mean squared error: 165149204783138.88    
+Root Mean squared error: 12851039.05    
+Mean absolute error: 5519579.84    
+Coefficient of determination: 0.66     
+model score:  0.8922213221590881     
+score: 12648162.24473
+
+## Case 32 - xgb parameters
+- model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=42)
+- no algorithm feature importance
+
+Mean squared error: 160024759236690.97    
+Root Mean squared error: 12650089.30    
+Mean absolute error: 5364775.15    
+Coefficient of determination: 0.67     
+model score:  0.8686829978840838     
+score: 12578391.06997
+
+### analyzing
+improved and as much as i want to test it more, i cant as xgb ki kaafi entries hogayi hain. we will shift to some other algo for the moment and come back later. 
+
 ## Case RF - random forest, grid for max depth
 - param_grid = {
     'model__max_depth': [30, 31, 32, 33, 34, 35]
@@ -969,22 +1011,3 @@ improved but not best. lets stop grid and tune parameters randomly
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
 - model = Lasso(alpha=10000)
-
-## Case X - xgb parameters
-- model = xgb.XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-- top 40 algorithm feature importance
-
-Mean squared error: 165149204783138.88    
-Root Mean squared error: 12851039.05    
-Mean absolute error: 5519579.84    
-Coefficient of determination: 0.66     
-model score:  0.8922213221590881     
-score: 12648162.24473
