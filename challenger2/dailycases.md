@@ -838,11 +838,11 @@ score: 12717549.88555
 ### Analyzing
 decreased. default was much better
 
-## Case RT - regression tree grid for splitter
+## Case 28a - regression tree grid for splitter
 - param_grid = {
     'splitter': ['best', 'random']
 }
-- best params: 
+- best params: {'splitter': 'best'}
 - model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
@@ -852,6 +852,34 @@ decreased. default was much better
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+- file didnt change, default, didnt submit
+
+## Case 28b - xgb grid for estimators, learning rate
+- param_grid = {
+    'estimators': [10, 100, 200, 500, 1000, 2000, 3000], 
+    'learning_rate': [0.0001, 0.001, 0.01, 0.05, 0.1, 0.5]
+}
+- best params: {'estimators': 10, 'learning_rate': 0.05}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = xgb.XGBRegressor(max_depth=2, learning_rate=0.1)
+- top 40 algorithm feature importances
+
+Mean squared error: 167210261942516.41    
+Root Mean squared error: 12930980.70    
+Mean absolute error: 5951696.16    
+Coefficient of determination: 0.65    
+model score:  0.6540416179368541     
+score: 12731027.64332
+
+### Analyzing
+default estimators and 0.1 learning rate was best
 
 ## Case L - lasso grid for max iterations
 - param_grid = {
