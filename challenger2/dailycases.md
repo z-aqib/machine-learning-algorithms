@@ -881,6 +881,34 @@ score: 12731027.64332
 ### Analyzing
 default estimators and 0.1 learning rate was best
 
+## Case 29 - random forest, grid for max depth
+- param_grid = {
+    'model__max_depth': [20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
+}
+- best params: {'model__max_depth': 30}
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_features=4, min_samples_split=8, n_estimators=300))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 164994167532686.22    
+Root Mean squared error: 12845005.55    
+Mean absolute error: 5787791.82    
+Coefficient of determination: 0.66     
+model score:  0.7501690798022409     
+score: 12652092.92952
+
+### analyzing
+improved! kiss had tak jaon mein? :)
+
 ## Case L - lasso grid for max iterations
 - param_grid = {
     'max_iter': [1000, 5000, 10000]
@@ -896,3 +924,20 @@ default estimators and 0.1 learning rate was best
 ])
 - model = Lasso(alpha=10000)
 
+## Case X - xgb grid for estimators, learning rate, depth
+- param_grid = {
+    'estimators': [10, 100, 200, 500, 1000, 2000, 3000], 
+    'learning_rate': [0.0001, 0.001, 0.01, 0.05, 0.1, 0.5],
+    'max_depth': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best params: 
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = xgb.XGBRegressor(max_depth=2, learning_rate=0.1)
+- top 40 algorithm feature importances
