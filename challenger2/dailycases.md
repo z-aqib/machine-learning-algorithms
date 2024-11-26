@@ -1049,6 +1049,32 @@ score: 13124597.21980
 ### analyzing
 improved for overall lasso, but not best of all.. far from it
 
+## Case 35 - lasso grid for tol
+- param_grid = {
+    "tol": [0.000001, 0.00001, 0.0001, 0.001, 0.01, 0.05, 0.1, 1]
+}
+- best params: {'tol': 0.001}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- model = Lasso(alpha=10000, selection='random')
+- 10mins max
+
+Mean squared error: 178441627053489.91    
+Root Mean squared error: 13358204.48    
+Mean absolute error: 6738000.85    
+Coefficient of determination: 0.63     
+model score:  0.6336635394027026     
+score: 13124614.48958
+
+### analyzing
+decreased a bit. that concludes lasso. the best params were Lasso(alpha=10000, selection='random')
+
 ## Case R - random forest, grid for max depth
 - param_grid = {
     'model__max_depth': [35, 36, 37, 38, 39, 40]
