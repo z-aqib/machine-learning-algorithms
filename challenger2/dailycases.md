@@ -1475,6 +1475,27 @@ score: 12694114.13982
 ### analyzing
 deterioration. lets grid for depth now. 
 
+## Case 53 - xgb, loop for best kbest features
+- model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- kbest loop: 50 to 250
+- best: 88
+- 10:01 am to 1:40am
+
+Mean squared error: 159480942168010.12    
+Root Mean squared error: 12628576.41    
+Mean absolute error: 5378167.48    
+Coefficient of determination: 0.67    
+model score:  0.9200141191638683     
+score: 12621819.10892
+
 ## Case A - adaboost, grid for learning rate
 - 
 - best params: 
@@ -1489,7 +1510,7 @@ deterioration. lets grid for depth now.
 - param_grid = {
     'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
 }
-- best params:
+- best params: {'algorithm': 'ball_tree'}
 - model = kbest(model, 200)
 - model = KNeighborsRegressor( leaf_size=30, n_neighbors=67, weights='distance', p=2, metric='euclidean', n_jobs=-1 )
 - numerical scaler = MinMaxScaler()
@@ -1516,16 +1537,3 @@ Mean squared error: 161235408429519.66
 Root Mean squared error: 12697850.54    
 Mean absolute error: 5229452.99    
 Coefficient of determination: 0.66    
-
-## Case X - xgb, loop for best kbest features
-- model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="mean")),
-    ("scaler", StandardScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-- kbest loop: 50 to 271
-- best: 
