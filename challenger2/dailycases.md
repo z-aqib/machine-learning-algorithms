@@ -1131,3 +1131,25 @@ score: 12580644.37388
 okay nice, decreased. we dont need to do mroe on estimators as we have reached breakeven. lets do some other grid as well
 
 // need to fix knn-regressor code
+
+## Case 38 - xgb, kbest
+- model = kbest(40)
+- model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 161226712153427.88    
+Root Mean squared error: 12697508.11    
+Mean absolute error: 5474978.07    
+Coefficient of determination: 0.67     
+model score:  0.9024452166332968     
+score: 12631527.70549
+
+### Analyzing
+too less attributes, lets increase features in kbest
