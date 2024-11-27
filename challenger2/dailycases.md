@@ -1341,6 +1341,25 @@ Coefficient of determination: 0.64
 model score:  0.6470543607545798     
 score: 12859588.16179
 
+## Case 47 - knn
+- param_grid = {
+    'weights': ['uniform', 'distance']
+}
+- best params: {'weights': 'distance'}
+- model = kbest(model, 200)
+- model = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+Mean squared error: 168584198858619.34    
+Root Mean squared error: 12983997.80    
+Mean absolute error: 5829392.19    
+Coefficient of determination: 0.65     
+model score:  0.9999971891469528     
+score: 12752650.09991
+
 ## Case RF - randomforest, grid for min_samples_split
 - param_grid = {
     'model__min_samples_split': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
