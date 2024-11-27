@@ -1396,6 +1396,30 @@ score: 12866229.08047
 ### analyzing
 improved however very slight difference. lets grid it. 
 
+## Case 50 - gradboost
+- model = GradientBoostingRegressor( n_estimators=100, learning_rate=0.1, max_depth=3, verbose=2 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+Mean squared error: 165936078475250.19    
+Root Mean squared error: 12881617.85    
+Mean absolute error: 5838357.88    
+Coefficient of determination: 0.65     
+model score:  0.6682961788999566    
+score: 12678243.20278
+
+## Case A - adaboost, grid for estimators
+- 
+- best params:
+-mod el = AdaBoostRegressor(learning_rate=1.0)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- 2199 columns
+
 ## Case RF - randomforest, grid for min_samples_split
 - param_grid = {
     'model__min_samples_split': [7, 8, 9, 10]
@@ -1428,6 +1452,13 @@ Coefficient of determination: 0.66
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
 - get dummies encoding
+
+Mean squared error: 168584198858619.34    
+Root Mean squared error: 12983997.80    
+Mean absolute error: 5829392.19    
+Coefficient of determination: 0.65     
+model score:  0.9999971891469528     
+score: 
 
 // next knn:
 param_grid = {
