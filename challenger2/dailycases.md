@@ -1410,15 +1410,72 @@ Coefficient of determination: 0.65
 model score:  0.6682961788999566    
 score: 12678243.20278
 
-## Case A - adaboost, grid for estimators
-- 
-- best params:
--mod el = AdaBoostRegressor(learning_rate=1.0)
+### Analyzing
+lets try kbest feature importance
+
+## Case 51a - knn, grid on leaf size
+- param_grid = {
+    'leaf_size': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+}
+- best params: {'leaf_size': 10}
+- model = kbest(model, 200)
+- model = KNeighborsRegressor( n_neighbors=67, weights='distance', algorithm='auto', p=2, metric='euclidean', n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+Mean squared error: 168584198858619.34    
+Root Mean squared error: 12983997.80    
+Mean absolute error: 5829392.19    
+Coefficient of determination: 0.65     
+model score:  0.9999971891469528     
+score: not submitted. file is same.
+
+### analyzing
+leaf_size does not matter and file remained same
+
+## Case 51b - adaboost, grid for estimators
+- param_grid = {
+    'n_estimators': [ 100, 150, 200, 250 ]
+}
+- best params: {'n_estimators': 150}
+- model = AdaBoostRegressor(learning_rate=1.0)
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
 - scaler = MinMaxScaler()
 - get dummies
 - 2199 columns
+
+Mean squared error: 170697294577910.81    
+Root Mean squared error: 13065117.47    
+Mean absolute error: 6523891.08    
+Coefficient of determination: 0.64     
+model score:  0.645097185496281     
+score: 12911230.64029
+
+### analyzing
+eek! worsened. lets keep it at 100 and grid learning rate
+
+## Case G - gradboost, kbest
+- model = GradientBoostingRegressor( n_estimators=100, learning_rate=0.1, max_depth=3, verbose=2 )
+- model = kbest(model, 200)
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+## Case K - knn, grid for algorithm
+- param_grid = {
+    'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
+}
+- best params:
+- model = kbest(model, 200)
+- model = KNeighborsRegressor( leaf_size=30, n_neighbors=67, weights='distance', p=2, metric='euclidean', n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
 
 ## Case RF - randomforest, grid for min_samples_split
 - param_grid = {
@@ -1439,31 +1496,6 @@ Mean squared error: 161235408429519.66
 Root Mean squared error: 12697850.54    
 Mean absolute error: 5229452.99    
 Coefficient of determination: 0.66    
-
-
-## Case KNN - knn, grid on leaf size
-- param_grid = {
-    'leaf_size': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
-}
-- best params: {'leaf_size': 10}
-- model = kbest(model, 200)
-- model = KNeighborsRegressor( n_neighbors=67, weights='distance', algorithm='auto', p=2, metric='euclidean', n_jobs=-1 )
-- numerical scaler = MinMaxScaler()
-- num_imputer = SimpleImputer(strategy="mean")
-- cat_imputer = SimpleImputer(strategy="most_frequent")
-- get dummies encoding
-
-Mean squared error: 168584198858619.34    
-Root Mean squared error: 12983997.80    
-Mean absolute error: 5829392.19    
-Coefficient of determination: 0.65     
-model score:  0.9999971891469528     
-score: 
-
-// next knn:
-param_grid = {
-    'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
-}
 
 ## Case X - xgb, loop for best kbest features
 - model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
