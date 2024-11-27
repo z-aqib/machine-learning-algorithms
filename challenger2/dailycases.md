@@ -1288,7 +1288,29 @@ model score:  0.6565880782422875
 score: 12873928.68621
 
 ### Analyzing
-improved! lets increase kbest to 250 and see the results
+improved! lets grid once more to find the exact value between 65 - 75
+
+## Case 45 - knn, grid for n_neighbours
+- param_grid = {
+    'n_neighbors': [ 66, 67, 68, 69, 70, 71, 72, 73, 74 ]
+}
+- best params: {'n_neighbors': 67}
+- model = kbest(model, 200)
+- model = KNeighborsRegressor( weights='uniform', algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+Mean squared error: 171750939833772.78    
+Root Mean squared error: 13105378.28    
+Mean absolute error: 6145186.69    
+Coefficient of determination: 0.64     
+model score:  0.6569848211741741     
+score: 12871457.06655
+
+### Analyzing
+improved! lets try grid for a different metric
 
 ## Case RF - randomforest, grid for min_samples_split
 - param_grid = {
