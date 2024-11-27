@@ -1341,7 +1341,7 @@ Coefficient of determination: 0.64
 model score:  0.6470543607545798     
 score: 12859588.16179
 
-## Case 47 - knn
+## Case 47 - knn, grid on weights
 - param_grid = {
     'weights': ['uniform', 'distance']
 }
@@ -1360,11 +1360,29 @@ Coefficient of determination: 0.65
 model score:  0.9999971891469528     
 score: 12752650.09991
 
+## Case 48 - adaboost, kbest applied
+- model = AdaBoostRegressor(n_estimators=50,learning_rate=1.0)
+- model = kbest(model, 200)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+
+Mean squared error: 170426388675063.00    
+Root Mean squared error: 13054745.83    
+Mean absolute error: 6502154.98    
+Coefficient of determination: 0.64     
+model score:  0.6467723520855394     
+score: 12866587.85803
+
+### Analyzing
+worsened. lets try and increase estimators.
+
 ## Case RF - randomforest, grid for min_samples_split
 - param_grid = {
-    'model__min_samples_split': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    'model__min_samples_split': [7, 8, 9, 10]
 }
-- best params: 
+- best params: {'model__min_samples_split': 7}
 - RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=1, n_jobs=-1)
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
@@ -1374,6 +1392,29 @@ score: 12752650.09991
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+Mean squared error: 161235408429519.66    
+Root Mean squared error: 12697850.54    
+Mean absolute error: 5229452.99    
+Coefficient of determination: 0.66    
+
+
+## Case KNN - knn, grid on leaf size
+- param_grid = {
+    'leaf_size': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+}
+- best params:
+- model = kbest(model, 200)
+- model = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+// next knn:
+param_grid = {
+    'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
+}
 
 ## Case X - xgb, loop for best kbest features
 - model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
