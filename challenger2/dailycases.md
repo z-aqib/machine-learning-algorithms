@@ -1254,6 +1254,57 @@ score: 12501962.35127
 ### analyzing
 wow! improved. this is highest. lets grid for min_samples_split
 
+## Case 44a - knn, grid for n_neighbours
+- param_grid = {
+    'n_neighbors': [ 30, 35, 40, 45, 50 ]
+}
+- best params: {'n_neighbors': 50}
+- model = kbest(model, 100)
+- model = KNeighborsRegressor( weights='uniform', algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+not submitted as same as case 42
+
+## Case 44b - knn, grid for n_neighbours
+- param_grid = {
+    'n_neighbors': [ 50, 55, 60, 65, 70, 75, 80 ]
+}
+- best params: {'n_neighbors': 70}
+- model = kbest(model, 200)
+- model = KNeighborsRegressor( weights='uniform', algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+Mean squared error: 171728848815368.84    
+Root Mean squared error: 13104535.43    
+Mean absolute error: 6152053.05    
+Coefficient of determination: 0.64     
+model score:  0.6565880782422875   
+score: 12873928.68621
+
+### Analyzing
+improved! lets increase kbest to 250 and see the results
+
+## Case RF - randomforest, grid for min_samples_split
+- param_grid = {
+    'model__min_samples_split': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+- best params: 
+- RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=1, n_jobs=-1)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
 ## Case X - xgb, loop for best kbest features
 - model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
 - num_transformer = Pipeline(steps=[
