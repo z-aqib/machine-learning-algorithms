@@ -1229,6 +1229,31 @@ score: 12905957.49702
 ### analyzing
 improved! lets grid for better n_neighbours and put kbest as 200
 
+## Case 43 - random forest, grid for max_features
+- RandomForestRegressor(max_depth=39, n_estimators=400, min_samples_split=8, verbose=1, n_jobs=-1)
+- param_grid = {
+    'model__max_features': [1, 'sqrt', 'log2']
+}
+- best params: {'model__max_features': 'sqrt'}
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 161225691081200.31    
+Root Mean squared error: 12697467.90    
+Mean absolute error: 5243660.99    
+Coefficient of determination: 0.66     
+model score:  0.9150250874518355     
+score: 12501962.35127
+
+### analyzing
+wow! improved. this is highest. lets grid for min_samples_split
+
 ## Case X - xgb, loop for best kbest features
 - model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
 - num_transformer = Pipeline(steps=[
