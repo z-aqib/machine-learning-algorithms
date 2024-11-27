@@ -1312,6 +1312,35 @@ score: 12871457.06655
 ### Analyzing
 improved! lets try grid for a different metric
 
+## Case 46a - knn, grid for metric
+- param_grid = {
+    'metric': ['euclidean', 'manhattan', 'chebyshev', 'minkowski', 'hamming']
+}
+- best params: 
+- model = kbest(model, 200)
+- model = KNeighborsRegressor( weights='uniform', algorithm='auto', leaf_size=30, p=2, n_neighbours=67, n_jobs=-1 )
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+file didnt change, not submitted
+
+## Case 46b - adaboost
+- model = AdaBoostRegressor(n_estimators=50,learning_rate=1.0)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- 2199 columns
+
+Mean squared error: 170579321926767.38    
+Root Mean squared error: 13060601.90    
+Mean absolute error: 6522100.20    
+Coefficient of determination: 0.64     
+model score:  0.6470543607545798     
+score: 12859588.16179
+
 ## Case RF - randomforest, grid for min_samples_split
 - param_grid = {
     'model__min_samples_split': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
