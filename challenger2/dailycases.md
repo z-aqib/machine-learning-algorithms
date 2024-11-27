@@ -1378,6 +1378,24 @@ score: 12866587.85803
 ### Analyzing
 worsened. lets try and increase estimators.
 
+## Case 49 - adaboost, increased estimators
+- model = AdaBoostRegressor(n_estimators=100,learning_rate=1.0)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- 2199 columns
+
+Mean squared error: 170844482328987.31    
+Root Mean squared error: 13070749.11    
+Mean absolute error: 6559888.10    
+Coefficient of determination: 0.64     
+model score:  0.6467437678882886     
+score: 12866229.08047
+
+### analyzing
+improved however very slight difference. lets grid it. 
+
 ## Case RF - randomforest, grid for min_samples_split
 - param_grid = {
     'model__min_samples_split': [7, 8, 9, 10]
@@ -1403,9 +1421,9 @@ Coefficient of determination: 0.66
 - param_grid = {
     'leaf_size': [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 }
-- best params:
+- best params: {'leaf_size': 10}
 - model = kbest(model, 200)
-- model = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- model = KNeighborsRegressor( n_neighbors=67, weights='distance', algorithm='auto', p=2, metric='euclidean', n_jobs=-1 )
 - numerical scaler = MinMaxScaler()
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
