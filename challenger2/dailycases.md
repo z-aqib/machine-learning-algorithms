@@ -1191,6 +1191,25 @@ score: 12910355.24566
 ### analyzing
 improved! okay. so higher kbest is better
 
+## Case 41 - knn, kbest decreased
+- model = kbest(model, 50)
+- model = KNeighborsRegressor( n_neighbors=35, weights='uniform', algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)=
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+Mean squared error: 175478062684853.31    
+Root Mean squared error: 13246813.30    
+Mean absolute error: 6048657.72    
+Coefficient of determination: 0.63     
+model score:  0.6598568005117571     
+score: 12989247.62167
+
+### Analyzing
+worsened. higher kbest is better. in onwards cases we should experiment with higher k like 250?
+
 ## Case X - xgb, loop for best kbest features
 - model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
 - num_transformer = Pipeline(steps=[
