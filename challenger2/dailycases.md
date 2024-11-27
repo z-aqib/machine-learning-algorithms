@@ -1132,6 +1132,8 @@ okay nice, decreased. we dont need to do mroe on estimators as we have reached b
 
 // need to fix knn-regressor code
 
+# DAY 3: Wednesday 27th November 2024
+
 ## Case 38 - xgb, kbest
 - model = kbest(40)
 - model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
@@ -1153,3 +1155,32 @@ score: 12631527.70549
 
 ### Analyzing
 too less attributes, lets increase features in kbest
+
+## Case X - xgb, loop for best kbest features
+- model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1000, subsample=0.8, colsample_bytree=0.8, reg_lambda=1, reg_alpha=0, random_state=42)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- kbest loop: 50 to 271
+- best: 
+
+## Case KNN - knn, kbest
+- model = kbest(model, 100)
+- model = KNeighborsRegressor( n_neighbors=35, weights='uniform', algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)=
+- numerical scaler = MinMaxScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- get dummies encoding
+
+Mean squared error: 171533481002074.34    
+Root Mean squared error: 13097079.10    
+Mean absolute error: 5987080.87    
+Coefficient of determination: 0.64     
+model score:  0.6652201842973957     
+score: 12917545.45673
