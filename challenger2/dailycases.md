@@ -1457,13 +1457,33 @@ score: 12911230.64029
 ### analyzing
 eek! worsened. lets keep it at 100 and grid learning rate
 
-## Case G - gradboost, kbest
+## Case 52 - gradboost, kbest
 - model = GradientBoostingRegressor( n_estimators=100, learning_rate=0.1, max_depth=3, verbose=2 )
 - model = kbest(model, 200)
 - numerical scaler = MinMaxScaler()
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
 - get dummies encoding
+
+Mean squared error: 166346106634387.72    
+Root Mean squared error: 12897523.28    
+Mean absolute error: 5848139.33    
+Coefficient of determination: 0.65     
+model score:  0.6689946727395466     
+score: 12694114.13982
+
+### analyzing
+deterioration. lets grid for depth now. 
+
+## Case A - adaboost, grid for learning rate
+- 
+- best params: 
+- model = AdaBoostRegressor(n_estimators=100)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- 2199 columns
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
