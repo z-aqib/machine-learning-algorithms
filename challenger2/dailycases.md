@@ -1658,6 +1658,29 @@ Coefficient of determination: 0.64
 model score:  0.647399973422075     
 score: 12858613.50877
 
+## case 67 - ridgecv
+- model = RidgeCV(
+    alphas=[0.1, 1.0, 10.0, 100.0],
+    fit_intercept=True,
+    cv=5
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- no feature importance
+
+Mean squared error: 178446807239989.81    
+Root Mean squared error: 13358398.38    
+Mean absolute error: 6620569.43    
+Coefficient of determination: 0.63     
+model score:  0.6429316560418115     
+score: 13095757.51710
+
 ## Case K - knn, grid for algorithm
 - param_grid = {
     'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
