@@ -1503,6 +1503,31 @@ score: 12621819.10892
 - scaler = MinMaxScaler()
 - get dummies
 
+## Case 60 - randomforest, grid for min_samples_split
+- param_grid = {
+    'model__min_samples_split': [7, 8, 9, 10]
+}
+- best params: {'model__min_samples_split': 7}
+- RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=1, n_jobs=-1)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 160274940665930.53    
+Root Mean squared error: 12659973.96    
+Mean absolute error: 5047843.18    
+Coefficient of determination: 0.67     
+model score:  0.9334141991326709     
+score: 12462904.72110
+
+### analyzing
+improved! lets further grid for min_samples_split to find breakeven
+
 ## Case 61 - adaboost, higher estimators
 - model = AdaBoostRegressor(n_estimators=500, learning_rate=1.0)
 - num_imputer = SimpleImputer(strategy="mean")
@@ -1531,24 +1556,4 @@ i think it improved. lets make it 1000 estimators and 0.5 learning rate
 - numerical scaler = MinMaxScaler()
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
-- get dummies encoding
-
-## Case RF - randomforest, grid for min_samples_split
-- param_grid = {
-    'model__min_samples_split': [7, 8, 9, 10]
-}
-- best params: {'model__min_samples_split': 7}
-- RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=1, n_jobs=-1)
-- num_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="median")),
-    ("scaler", MinMaxScaler())
-])
-- cat_transformer = Pipeline(steps=[
-    ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
-
-Mean squared error: 161235408429519.66    
-Root Mean squared error: 12697850.54    
-Mean absolute error: 5229452.99    
-Coefficient of determination: 0.66    
+- get dummies encoding 
