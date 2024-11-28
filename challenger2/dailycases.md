@@ -1610,9 +1610,7 @@ Coefficient of determination: 0.66
 model score:  0.938420659852937     
 score: 12466009.74720
 
-# Running cases
-
-## Case A - adaboost, higher estimator, lower learning rate
+## Case 63 - adaboost, higher estimator, lower learning rate
 - AdaBoostRegressor(learning_rate=0.5, n_estimators=1000)
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
@@ -1623,7 +1621,14 @@ score: 12466009.74720
 Mean squared error: 170435288226422.69    
 Root Mean squared error: 13055086.68    
 Mean absolute error: 6510890.39    
-Coefficient of determination: 0.64     
+Coefficient of determination: 0.64    
+model score:  0.6473047035253705    
+score: 12862538.18829
+
+### analyzing
+improved, lets continue increasing estimators to find breakeven. grid i have tried but it takes too long and fails. 
+
+# Running cases    
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
