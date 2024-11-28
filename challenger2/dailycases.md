@@ -1503,6 +1503,30 @@ score: 12621819.10892
 - scaler = MinMaxScaler()
 - get dummies
 
+# DAY 4: Thursday 28th November 2024
+
+## Case 58 - random forest, larger params
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", RandomForestRegressor(max_depth=31, n_estimators=1400, max_features='log2', min_samples_leaf=2, min_samples_split=3, bootstrap=True, verbose=2, n_jobs=-1))
+])
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- X = X.select_dtypes(include=["number"])
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 160883805931493.09    
+Root Mean squared error: 12683998.03    
+Mean absolute error: 5189756.85    
+Coefficient of determination: 0.66     
+model score:  0.9186423892843449     
+score: 12479819.76352
+
+### analyzing
+lets remove pipeline to see how it changes
+
 ## Case 59 - randomforest, pipeline removed + larger params
 - no pipeline
 - model = RandomForestRegressor(max_depth=31, n_estimators=1400, max_features='log2', min_samples_leaf=2, min_samples_split=3, bootstrap=True, verbose=2, n_jobs=-1)
@@ -1563,6 +1587,36 @@ score: 12879336.65792
 
 ### analyzing
 i think it improved. lets make it 1000 estimators and 0.5 learning rate
+
+# Running cases
+
+## Case RF - randomforest, grid for min_samples_split
+- param_grid = {
+    'model__min_samples_split': [4, 5, 6, 7]
+}
+- best params: {'model__min_samples_split': 6}
+- RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+## Case A - adaboost, higher estimator, lower learning rate
+- AdaBoostRegressor(learning_rate=0.5, n_estimators=1000)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- 2199 columns
+
+Mean squared error: 170435288226422.69    
+Root Mean squared error: 13055086.68    
+Mean absolute error: 6510890.39    
+Coefficient of determination: 0.64     
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
