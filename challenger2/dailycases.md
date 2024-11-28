@@ -1628,7 +1628,20 @@ score: 12862538.18829
 ### analyzing
 improved, lets continue increasing estimators to find breakeven. grid i have tried but it takes too long and fails. 
 
-# Running cases    
+## Case 64 - adaboost, higher estimators, standard scaler
+- model = AdaBoostRegressor( n_estimators=1200, learning_rate=0.5 )
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- 2199 columns
+
+Mean squared error: 170738647766173.09    
+Root Mean squared error: 13066699.96    
+Mean absolute error: 6582025.10    
+Coefficient of determination: 0.64     
+model score:  0.6474534044681877     
+score: 12855862.28037
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
