@@ -1643,6 +1643,21 @@ Coefficient of determination: 0.64
 model score:  0.6474534044681877     
 score: 12855862.28037
 
+## Case 65 - adaboost, higher estimators
+- model = AdaBoostRegressor( n_estimators=1500, learning_rate=0.5 )
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- 2199 columns
+
+Mean squared error: 170961650403776.41    
+Root Mean squared error: 13075230.41    
+Mean absolute error: 6600065.80    
+Coefficient of determination: 0.64     
+model score:  0.647399973422075     
+score: 12858613.50877
+
 ## Case K - knn, grid for algorithm
 - param_grid = {
     'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
