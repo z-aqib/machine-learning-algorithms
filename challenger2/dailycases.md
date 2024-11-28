@@ -1503,12 +1503,30 @@ score: 12621819.10892
 - scaler = MinMaxScaler()
 - get dummies
 
+## Case 59 - randomforest, pipeline removed + larger params
+- no pipeline
+- model = RandomForestRegressor(max_depth=31, n_estimators=1400, max_features='log2', min_samples_leaf=2, min_samples_split=3, bootstrap=True, verbose=2, n_jobs=-1)
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- X = X.select_dtypes(include=["number"])
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 160869442400043.56    
+Root Mean squared error: 12683431.81    
+Mean absolute error: 5192165.99    
+Coefficient of determination: 0.66     
+model score:  0.9192710031398919    
+score: 12484520.86505
+
+### analyzing
+deterioration. lets go back to pipelibe and try finding the best min_samples_split
+
 ## Case 60 - randomforest, grid for min_samples_split
 - param_grid = {
     'model__min_samples_split': [7, 8, 9, 10]
 }
 - best params: {'model__min_samples_split': 7}
-- RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=1, n_jobs=-1)
+- RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", MinMaxScaler())
