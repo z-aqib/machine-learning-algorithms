@@ -1588,9 +1588,7 @@ score: 12879336.65792
 ### analyzing
 i think it improved. lets make it 1000 estimators and 0.5 learning rate
 
-# Running cases
-
-## Case RF - randomforest, grid for min_samples_split
+## Case 62 - randomforest, grid for min_samples_split
 - param_grid = {
     'model__min_samples_split': [4, 5, 6, 7]
 }
@@ -1604,6 +1602,15 @@ i think it improved. lets make it 1000 estimators and 0.5 learning rate
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+Mean squared error: 160523155422913.66    
+Root Mean squared error: 12669773.30    
+Mean absolute error: 5041015.38    
+Coefficient of determination: 0.66     
+model score:  0.938420659852937     
+score: 12466009.74720
+
+# Running cases
 
 ## Case A - adaboost, higher estimator, lower learning rate
 - AdaBoostRegressor(learning_rate=0.5, n_estimators=1000)
