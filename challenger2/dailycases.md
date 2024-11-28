@@ -1496,15 +1496,30 @@ Coefficient of determination: 0.67
 model score:  0.9200141191638683     
 score: 12621819.10892
 
-## Case A - adaboost, grid for learning rate
+## Case 54 - gradboost
 - 
-- best params: 
-- model = AdaBoostRegressor(n_estimators=100)
+- cat_imputer = SimpleImputer(strategy="most_frequent")\
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+
+## Case 61 - adaboost, higher estimators
+- model = AdaBoostRegressor(n_estimators=500, learning_rate=1.0)
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
 - scaler = MinMaxScaler()
 - get dummies
 - 2199 columns
+
+Mean squared error: 170937601415745.06    
+Root Mean squared error: 13074310.74    
+Mean absolute error: 6569128.59    
+Coefficient of determination: 0.64     
+model score:  0.6467055169974858     
+score: 12879336.65792
+
+### analyzing
+i think it improved. lets make it 1000 estimators and 0.5 learning rate
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
