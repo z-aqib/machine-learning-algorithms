@@ -2261,6 +2261,37 @@ score: 21511049.80223
 ### analyzing
 worsened by alot. ridge itself was good but kbest ruined it. 
 
+## Case 94 - stacking ridge+lasso+
+
+## Case 95 - lasso, kbest
+- model = Lasso(alpha=10000, selection='random')
+- model, X, trainX, trainY, testX, test_data = kbest(model, 200, X, trainX, trainY, testX, test_data)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 478331947015584.38    
+Root Mean squared error: 21870801.24    
+Mean absolute error: 13415352.03    
+Coefficient of determination: 0.00     
+model score:  0.000803374426354142     
+score: 21743808.64479
+
+### analyzing
+proved that kbest is bad on ridge lasso and linear
+
 # ignore
 
 ## Case K - knn, grid for algorithm
