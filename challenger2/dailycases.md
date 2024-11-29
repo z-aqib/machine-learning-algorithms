@@ -2061,7 +2061,7 @@ score: 20986342.15397
 ### analyzing
 very bad, kbest ruined it as alone it was in 134
 
-## Case 86 - adaboost, random parameters
+## Case 86 - adaboost, higher DT depth, lower estimators
 - model = AdaBoostRegressor(
     estimator=DecisionTreeRegressor(max_depth=10),
     n_estimators=50,
@@ -2080,6 +2080,30 @@ Mean absolute error: 5610232.60
 Coefficient of determination: 0.66     
 model test score:  0.686733332002083     
 score: 12597515.55623
+
+## case 87 - adaboost, higher estimators, lower DT depth
+- model = AdaBoostRegressor(
+    estimator=DecisionTreeRegressor(max_depth=3),
+    n_estimators=500,
+    learning_rate=0.5
+)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- 2199 columns
+
+Mean squared error: 170259012465408.72    
+Root Mean squared error: 13048333.70    
+Mean absolute error: 6493107.63    
+Coefficient of determination: 0.64     
+model test score:  0.647649089203941    
+score: 12860041.39208
+
+### analyzing
+deterioration, looks like higher dt depth and lower estimators of ada were better
+
 
 ## Case L - linear regression, kbest dec
 - model, X, trainX, trainY, testX, test_data = kbest(model, 100, X, trainX, trainY, testX, test_data)
