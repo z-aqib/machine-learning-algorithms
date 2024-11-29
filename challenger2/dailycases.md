@@ -2032,6 +2032,37 @@ Coefficient of determination: 0.67
 model score:  0.952527263193879     
 score: 12437836.73841
 
+## case 85: linear regression, kbest=200
+- model, X, trainX, trainY, testX, test_data = kbest(model, 200, X, trainX, trainY, testX, test_data)
+- model = LinearRegression()
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 445472403693967.00    
+Root Mean squared error: 21106217.18    
+Mean absolute error: 12611617.42    
+Coefficient of determination: 0.07     
+model score:  0.07577281726634111     
+score: 20986342.15397
+
+### analyzing
+very bad, kbest ruined it as alone it was in 134
+
+# ignore
+
 ## Case K - knn, grid for algorithm
 - param_grid = {
     'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
