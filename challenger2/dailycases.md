@@ -1842,6 +1842,15 @@ improved, the xgb one improved the score. lets remove the decisiontree one and a
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))])
 
+Mean squared error: 697070495518187.50    
+Root Mean squared error: 26402092.64    
+Mean absolute error: 14772166.09    
+Coefficient of determination: -0.46     
+no model score
+score: 26264836.83072
+
+### analyzing
+ok so andazan i think the problem is the tanh function. lets remove that and perhaps do some other tuning
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
