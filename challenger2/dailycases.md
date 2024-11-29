@@ -1861,7 +1861,7 @@ score: 12612182.01775
 ### Analyzing
 improved, the xgb one improved the score. lets remove the decisiontree one and add xgb one
 
-## Case NN - neural networks, more layer, higher dropout, tanh activation function
+## Case 81 - neural networks, more layer, higher dropout, tanh activation function
 - nn_model.fit(
     trainX, trainY,
     validation_data=(testX, testY),
@@ -1904,6 +1904,57 @@ score: 26264836.83072
 
 ### analyzing
 ok so andazan i think the problem is the tanh function. lets remove that and perhaps do some other tuning
+
+## Case 82 - neural network, tanh removed, standard scaler, simple mean imputer
+- nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor="val_loss", patience=10, restore_best_weights=True, verbose=1)
+-   model = Sequential()
+    model.add(Dense(128, activation="relu", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(64, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(32, activation="relu"))
+    model.add(Dense(16, activation="relu"))
+    model.add(Dropout(0.2))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss="mse")
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 175078256634941.47    
+Root Mean squared error: 13231714.05    
+Mean absolute error: 6347543.50    
+Coefficient of determination: 0.63     
+no model score
+score: 13057066.02581
+
+### analyzing
+just ok. we have scored better in NN than this. too many layers? wrong scaler? i dunno
+
+## Case 83 - neural network
 
 ## Case 84 - randomforest, larger params
 - model = Pipeline(steps=[
