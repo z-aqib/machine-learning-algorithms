@@ -2122,7 +2122,10 @@ Root Mean squared error: 13019452.89
 Mean absolute error: 6382041.83    
 Coefficient of determination: 0.65    
 model test score:  0.6474311343354947     
-score: 
+score: 12862143.13762
+
+### analyzing
+this further strengthened our understanding that the base_estimator shoud have high depth for a better result
 
 ## Case L - linear regression, kbest dec
 - model, X, trainX, trainY, testX, test_data = kbest(model, 100, X, trainX, trainY, testX, test_data)
