@@ -2203,6 +2203,35 @@ score: 12673824.44438
 ### analyzing
 nice however even lower has been achieved
 
+## Case 92 - linear regression, no pipeline, no feature selection
+- model = LinearRegression()
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 191656155099850.69    
+Root Mean squared error: 13843993.47    
+Mean absolute error: 6681690.71    
+Coefficient of determination: 0.60     
+model score:  0.6612014260584386     
+score: 13442363.53969
+
+### analyzing
+so we see that without any feature selection we get a better result which is faster, but itself is really bad
+code file has error and has ridge defined when it was linear regression
+
 # ignore
 
 ## Case K - knn, grid for algorithm
