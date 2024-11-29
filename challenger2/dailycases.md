@@ -2178,6 +2178,31 @@ Coefficient of determination: 0.65
 model test score:  0.6594729919504378     
 score: 12727187.19395
 
+## Case 91 - gboost, higher estimators, higher depth, lowest learning rate
+- model3 = GradientBoostingRegressor(
+    n_estimators=300,
+    max_depth=4,
+    learning_rate=0.05,
+    subsample=0.9, 
+    verbose=3
+)
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- 2199 columns
+
+Mean squared error: 166411087802967.31    
+Root Mean squared error: 12900042.16    
+Mean absolute error: 5816306.79    
+Coefficient of determination: 0.65     
+model test score:  0.6899587895131241     
+score: 12673824.44438
+
+### analyzing
+nice however even lower has been achieved
+
 # ignore
 
 ## Case K - knn, grid for algorithm
