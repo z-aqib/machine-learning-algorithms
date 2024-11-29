@@ -2127,7 +2127,7 @@ score: 12862143.13762
 ### analyzing
 this further strengthened our understanding that the base_estimator shoud have high depth for a better result
 
-## Case L - linear regression, kbest dec
+## Case 89 - linear regression, kbest dec
 - model, X, trainX, trainY, testX, test_data = kbest(model, 100, X, trainX, trainY, testX, test_data)
 - model = LinearRegression()
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
@@ -2145,6 +2145,16 @@ this further strengthened our understanding that the base_estimator shoud have h
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+Mean squared error: 464005048513003.69    
+Root Mean squared error: 21540776.41    
+Mean absolute error: 13045122.22    
+Coefficient of determination: 0.03     
+model score:  0.03604177888147497     
+score: 21413824.17276
+
+### analyzing
+still bad. worsened. lets try PCA. 
 
 # ignore
 
