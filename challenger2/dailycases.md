@@ -2156,6 +2156,28 @@ score: 21413824.17276
 ### analyzing
 still bad. worsened. lets try PCA. 
 
+## Case 90 - gboost, lower depth, lower estimators, higher learning rate
+- model2 = GradientBoostingRegressor(
+    n_estimators=50,
+    max_depth=2,
+    learning_rate=0.2,
+    subsample=0.8, 
+    verbose=3
+)
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- 2199 columns
+
+Mean squared error: 167300856852361.72    
+Root Mean squared error: 12934483.25    
+Mean absolute error: 5922902.55    
+Coefficient of determination: 0.65     
+model test score:  0.6594729919504378     
+score: 12727187.19395
+
 # ignore
 
 ## Case K - knn, grid for algorithm
