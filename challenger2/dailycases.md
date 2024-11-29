@@ -1954,7 +1954,55 @@ score: 13057066.02581
 ### analyzing
 just ok. we have scored better in NN than this. too many layers? wrong scaler? i dunno
 
-## Case 83 - neural network
+## Case 83 - neural network, l2 regularization, epoch inc, batch_size halved
+- nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=150,
+    batch_size=16,
+    verbose=2,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor="val_loss", patience=10, restore_best_weights=True, verbose=1)
+-   model = Sequential()
+    model.add(Dense(128, activation="relu", kernel_regularizer=l2(0.001)))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(64, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(32, activation="relu"))
+    model.add(Dense(16, activation="relu"))
+    model.add(Dropout(0.2))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss="mse")
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer( 
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- epoch early stopping at 17
+
+Mean squared error: 171660426605292.75    
+Root Mean squared error: 13101924.54    
+Mean absolute error: 6327963.11    
+Coefficient of determination: 0.64     
+no model score
+score: 12845636.43455
+
+### analyzing
+ok good, slight improvement. l2 regularization and higher epoch and more batches performed good
 
 ## Case 84 - randomforest, larger params
 - model = Pipeline(steps=[
