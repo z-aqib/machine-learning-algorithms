@@ -2104,6 +2104,25 @@ score: 12860041.39208
 ### analyzing
 deterioration, looks like higher dt depth and lower estimators of ada were better
 
+## Case 88 - adaboost, RF, lower learning rate
+- model = AdaBoostRegressor(
+    estimator=RandomForestRegressor(n_estimators=10, max_depth=3),
+    n_estimators=100,
+    learning_rate=0.8
+)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- 2199 columns
+
+Mean squared error: 169506153648570.00    
+Root Mean squared error: 13019452.89    
+Mean absolute error: 6382041.83    
+Coefficient of determination: 0.65    
+model test score:  0.6474311343354947     
+score: 
 
 ## Case L - linear regression, kbest dec
 - model, X, trainX, trainY, testX, test_data = kbest(model, 100, X, trainX, trainY, testX, test_data)
