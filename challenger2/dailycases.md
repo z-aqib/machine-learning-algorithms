@@ -1681,6 +1681,24 @@ Coefficient of determination: 0.63
 model score:  0.6429316560418115     
 score: 13095757.51710
 
+## Case x - lassocv
+- LassoCV(
+    alphas=[0.1, 0.5, 1.0, 5.0, 10.0],
+    fit_intercept=True,
+    max_iter=1000,
+    cv=5
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- no feature importance
+- too long, 6h on traindata and no update
+
 ## Case K - knn, grid for algorithm
 - param_grid = {
     'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
