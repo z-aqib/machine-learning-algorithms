@@ -1681,7 +1681,9 @@ Coefficient of determination: 0.63
 model score:  0.6429316560418115     
 score: 13095757.51710
 
-## Case x - lassocv
+# DAY 5: Friday 29th November 2024
+
+## Case 78a - lassocv
 - LassoCV(
     alphas=[0.1, 0.5, 1.0, 5.0, 10.0],
     fit_intercept=True,
@@ -1698,6 +1700,46 @@ score: 13095757.51710
 ])
 - no feature importance
 - too long, 6h on traindata and no update
+
+## Case 79 - neural networks
+- nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor="val_loss", patience=10, restore_best_weights=True, verbose=1)
+-   model = Sequential()
+    model.add(Dense(128, activation="relu", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(64, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(32, activation="relu"))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss="mse")
+- no feature selection
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- numerical_scaler = MinMaxScaler()
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 179050228228766.62    
+Root Mean squared error: 13380965.15    
+Mean absolute error: 6277095.75    
+Coefficient of determination: 0.63     
+no model score
+score: 12910899.71065
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
