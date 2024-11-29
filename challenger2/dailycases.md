@@ -1701,6 +1701,59 @@ score: 13095757.51710
 - no feature importance
 - too long, 6h on traindata and no update
 
+## Case 78b - stacking rf+dt+rf
+-rf1 = RandomForestRegressor(
+    max_depth=39,
+    n_estimators=400,
+    max_features='sqrt',
+    verbose=2,
+    n_jobs=-1,
+    min_samples_split=7
+)
+- dt2 = DecisionTreeRegressor(
+    max_depth=31,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3
+)
+- meta_regressor = RandomForestRegressor(
+    max_depth=32,
+    n_estimators=1500,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3,
+    bootstrap=True,
+    verbose=2,
+    n_jobs=-1
+)
+- stacking = StackingRegressor(
+    estimators=[('rf1', rf1), ('dt2', dt2)],
+    final_estimator=meta_regressor,
+    passthrough=False
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols)
+        # ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 167418138128401.97    
+Root Mean squared error: 12939016.12    
+Mean absolute error: 5114919.80    
+Coefficient of determination: 0.65     
+model test score:  0.6841359514075278     
+score: 12704290.23240
+
 ## Case 79 - neural networks
 - nn_model.fit(
     trainX, trainY,
