@@ -2232,6 +2232,35 @@ score: 13442363.53969
 so we see that without any feature selection we get a better result which is faster, but itself is really bad
 code file has error and has ridge defined when it was linear regression
 
+## Case 93 - ridge, kbest
+- model = Ridge(alpha=100, solver='lsqr', tol=0.001)
+- model, X, trainX, trainY, testX, test_data = kbest(model, 200, X, trainX, trainY, testX, test_data)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 470769261792904.81    
+Root Mean squared error: 21697217.84    
+Mean absolute error: 13284759.95    
+Coefficient of determination: 0.02     
+model score:  0.024202988176320828     
+score: 21511049.80223
+
+### analyzing
+worsened by alot. ridge itself was good but kbest ruined it. 
+
 # ignore
 
 ## Case K - knn, grid for algorithm
