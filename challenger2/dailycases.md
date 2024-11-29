@@ -1741,6 +1741,108 @@ Coefficient of determination: 0.63
 no model score
 score: 12910899.71065
 
+## Case 80 - stacking
+- rf1 = RandomForestRegressor(
+    max_depth=39,
+    n_estimators=400,
+    max_features='sqrt',
+    verbose=2,
+    n_jobs=-1,
+    min_samples_split=7
+)
+- dt2 = DecisionTreeRegressor(
+    max_depth=31,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3
+)
+- xgb = XGBRegressor(
+    max_depth=10, 
+    learning_rate=0.01, 
+    n_estimators=1000, 
+    subsample=0.8, 
+    colsample_bytree=0.8, 
+    reg_lambda=1, 
+    reg_alpha=0, 
+    random_state=42, 
+    verbose=True
+)
+- meta_regressor = RandomForestRegressor(
+    max_depth=32,
+    n_estimators=1500,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3,
+    bootstrap=True,
+    verbose=2,
+    n_jobs=-1
+)
+- stacking = StackingRegressor(
+    estimators=[('rf1', rf1), ('dt2', dt2), ('xgb1', xgb)],
+    final_estimator=meta_regressor,
+    passthrough=False
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols)
+        # ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 163785884848689.34    
+Root Mean squared error: 12797885.95    
+Mean absolute error: 5030737.99    
+Coefficient of determination: 0.66    
+model test score:  0.8204545348337849     
+score: 12612182.01775
+
+### Analyzing
+improved, the xgb one improved the score. lets remove the decisiontree one and add xgb one
+
+## Case NN - neural networks, more layer, higher dropout, tanh activation function
+- nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor="val_loss", patience=10, restore_best_weights=True, verbose=1)
+-   model = Sequential()
+    model.add(Dense(128, activation="relu", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(64, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(32, activation="relu"))
+    model.add(Dense(16, activation="tanh"))
+    model.add(Dropout(0.2))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss="mse")
+- no feature selection
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- numerical_scaler = MinMaxScaler()
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
 ## Case K - knn, grid for algorithm
 - param_grid = {
     'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
