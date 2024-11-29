@@ -2032,7 +2032,7 @@ Coefficient of determination: 0.67
 model score:  0.952527263193879     
 score: 12437836.73841
 
-## case 85: linear regression, kbest=200
+## case 85 - linear regression, kbest=200
 - model, X, trainX, trainY, testX, test_data = kbest(model, 200, X, trainX, trainY, testX, test_data)
 - model = LinearRegression()
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
@@ -2060,6 +2060,45 @@ score: 20986342.15397
 
 ### analyzing
 very bad, kbest ruined it as alone it was in 134
+
+## Case 86 - adaboost, random parameters
+- model = AdaBoostRegressor(
+    estimator=DecisionTreeRegressor(max_depth=10),
+    n_estimators=50,
+    learning_rate=1.0
+)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- 2199 columns
+
+Mean squared error: 164174620580665.84    
+Root Mean squared error: 12813064.45    
+Mean absolute error: 5610232.60    
+Coefficient of determination: 0.66     
+model test score:  0.686733332002083     
+score: 12597515.55623
+
+## Case L - linear regression, kbest dec
+- model, X, trainX, trainY, testX, test_data = kbest(model, 100, X, trainX, trainY, testX, test_data)
+- model = LinearRegression()
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
 
 # ignore
 
