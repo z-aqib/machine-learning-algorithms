@@ -1741,7 +1741,7 @@ Coefficient of determination: 0.63
 no model score
 score: 12910899.71065
 
-## Case 80 - stacking
+## Case 80 - stacking rf+dt+xgb+rf
 - rf1 = RandomForestRegressor(
     max_depth=39,
     n_estimators=400,
@@ -1840,8 +1840,8 @@ improved, the xgb one improved the score. lets remove the decisiontree one and a
 - numerical_scaler = MinMaxScaler()
 - cat_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="most_frequent")),
-    ("onehot", OneHotEncoder(handle_unknown="ignore"))
-])
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))])
+
 
 ## Case K - knn, grid for algorithm
 - param_grid = {
