@@ -2367,6 +2367,46 @@ Coefficient of determination: 0.60
 model score:  0.6019278394572414     
 score: 13689504.35699
 
+## Case 99 - regression tree, PCA
+- this was done 2-3 times, as PCA after one-hot was all 1.0 (this graph has been committed) then to cater this, i did a variance filter of 1%
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- selector = VarianceThreshold(threshold=0.01) 
+- 273 features by variance
+- pca = PCA(n_components=0.95)
+- 205 features by PCA
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = StandardScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 177197379480826.09    
+Root Mean squared error: 13311550.60    
+Mean absolute error: 6710773.96    
+Coefficient of determination: 0.63     
+model score:  0.6363686000238731     
+score: 13089744.37642
+
+## Case 100 - linear regression, forward decreased
+- model = LinearRegression()
+- model = fbselection( "forward", model, 5 )
+- forward selection sample: sample_train = train_data.sample(frac=0.1)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
 # ignore
 
 ## Case K - knn, grid for algorithm
