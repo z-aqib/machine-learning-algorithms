@@ -2338,6 +2338,34 @@ score: 21707456.19722
 ### anayzing
 ruined further. kbest is not good atm. 
 
+# DAY 6: Saturday 30th November 2024
+
+## Case 98 - linear regression, forward selection
+- model = LinearRegression()
+- model = fbselection( "forward", model, 10 )
+- forward selection sample: sample_train = train_data.sample(frac=0.1)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 192403144980823.88    
+Root Mean squared error: 13870946.07    
+Mean absolute error: 7041594.36    
+Coefficient of determination: 0.60     
+model score:  0.6019278394572414     
+score: 13689504.35699
 
 # ignore
 
