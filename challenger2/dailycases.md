@@ -2292,6 +2292,53 @@ score: 21743808.64479
 ### analyzing
 proved that kbest is bad on ridge lasso and linear
 
+## Case 96 - regressiontree, kbest
+- model, X, trainX, trainY, testX, test_data = kbest(model, 200, X, trainX, trainY, testX, test_data )
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 477725537825579.81    
+Root Mean squared error: 21856933.40    
+Mean absolute error: 13379169.34    
+Coefficient of determination: 0.00     
+model score:  0.005283516977046321     
+score: 21696485.17191
+
+### analyzing
+lets do one more to check if lowered kbest would work
+
+## Case 97 - regressiontree, kbest lowered
+- model, X, trainX, trainY, testX, test_data = kbest(model, 100, X, trainX, trainY, testX, test_data )
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", MinMaxScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+
+Mean squared error: 477658555118472.06    
+Root Mean squared error: 21855401.05    
+Mean absolute error: 13385455.52    
+Coefficient of determination: 0.00     
+model score:  0.0049625472744322385     
+score: 21707456.19722
+
+### anayzing
+ruined further. kbest is not good atm. 
+
+
 # ignore
 
 ## Case K - knn, grid for algorithm
