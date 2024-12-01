@@ -2602,6 +2602,27 @@ score: 12689253.23345
 - scaler = RobustScaler()
 - get dummies, drop_first=False
 
+## case 125 - randomforest, best + algo feature imp
+- i am a bit iffy on this as file on kaggle stopped running upon model_predict_on_test however there was a file in output so i downloaded and submitted
+
+## case 126 - polyReg + randomforest
+- model = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- poly = PolynomialFeatures(degree=2, include_bias=False)
+- X Y is 3% sample of train
+- selector = VarianceThreshold(threshold=0.9)
+- selector = VarianceThreshold(threshold=0.9)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 189663005652428.50    
+Root Mean squared error: 13771819.26    
+Mean absolute error: 6575550.63    
+Coefficient of determination: 0.67     
+model score:  0.9502352626846423     
+score: 
 
 # ignore
 
