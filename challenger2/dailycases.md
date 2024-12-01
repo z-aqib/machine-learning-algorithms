@@ -2472,6 +2472,26 @@ Coefficient of determination: 0.65
 model score:  0.6550849217780055     
 score: 12765094.57261
 
+## Case 120 - regTree, algorithm feature importance
+- model = featureImportance( model, 200 )
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = MaxAbsScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- 200 columns
+
+Mean squared error: 167260228624135.78    
+Root Mean squared error: 12932912.61    
+Mean absolute error: 5984409.15    
+Coefficient of determination: 0.65     
+model score:  0.6555538165539976    
+score: 12730638.81527
+
+### analyzing
+ok improved from best DT. lets decrease features and try again. 
+
 # ignore
 
 ## Case K - knn, grid for algorithm
