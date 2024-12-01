@@ -1,4 +1,12 @@
-# EditorConfig is awesome: https://editorconfig.org
+# Root EditorConfig file
+root = true
 
 [*]
+charset = utf-8
 end_of_line = lf
+insert_final_newline = false
+trim_trailing_whitespace = false
+
+[*.ipynb]
+insert_final_newline = false
+trim_trailing_whitespace = false
