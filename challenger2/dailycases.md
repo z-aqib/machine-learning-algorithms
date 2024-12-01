@@ -2492,6 +2492,23 @@ score: 12730638.81527
 ### analyzing
 ok improved from best DT. lets decrease features and try again. 
 
+## Case 121 - regTree, algo feature imp decreased, robust scaler
+- model = featureImportance( model, 100 )
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = RobustScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- 100 columns
+
+Mean squared error: 167257164304757.75    
+Root Mean squared error: 12932794.14    
+Mean absolute error: 5984224.86    
+Coefficient of determination: 0.65   
+model score:  0.6555538165539977    
+score: 12730638.81527
+
 # ignore
 
 ## Case K - knn, grid for algorithm
