@@ -2585,6 +2585,24 @@ Coefficient of determination: 0.66
 model test score:  0.8268361791338406     
 score: 12689253.23345
 
+## Case s - stacking knn+knn+knn+rf+knn
+- model1 = KNeighborsRegressor( n_neighbors=30, algorithm='auto', leaf_size=50, p=3, metric='euclidean', n_jobs=-1, weights="distance" )
+- model2 = KNeighborsRegressor( n_neighbors=50, algorithm='auto', leaf_size=70, p=2, metric='minkowski', n_jobs=-1, weights="uniform" )
+- model3 = KNeighborsRegressor( n_neighbors=80, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
+- model4 = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
+- meta_regressor = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=10, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
+- model = StackingRegressor( 
+    estimators=[('model1', model1), ('model2', model2), ('model3', model3), ('model4', model4)], 
+    final_estimator=meta_regressor, 
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- kbest feature selection, 200 features
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = RobustScaler()
+- get dummies, drop_first=False
+
+
 # ignore
 
 ## Case K - knn, grid for algorithm
