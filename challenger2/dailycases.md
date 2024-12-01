@@ -2560,7 +2560,7 @@ Root Mean squared error: 13170978.16
 Mean absolute error: 5765039.99    
 Coefficient of determination: 0.64     
 model test score:  0.6464478155060429    
-score: 
+score: 12980226.72961
 
 # ignore
 
