@@ -1128,9 +1128,7 @@ model score:  0.7958969398640308
 score: 12580644.37388
 
 ### Analyzing
-okay nice, decreased. we dont need to do mroe on estimators as we have reached breakeven. lets do some other grid as well
-
-// need to fix knn-regressor code
+okay nice, improved. we dont need to do mroe on estimators as we have reached breakeven. lets do some other grid as well
 
 # DAY 3: Wednesday 27th November 2024
 
@@ -1503,6 +1501,12 @@ score: 12621819.10892
 - scaler = MinMaxScaler()
 - get dummies
 
+## Case 55
+
+## Case 56
+
+## Case 57
+
 # DAY 4: Thursday 28th November 2024
 
 ## Case 58 - random forest, larger params
@@ -1658,7 +1662,9 @@ Coefficient of determination: 0.64
 model score:  0.647399973422075     
 score: 12858613.50877
 
-## case 67 - ridgecv
+## Case 66
+
+## Case 67 - ridgecv
 - model = RidgeCV(
     alphas=[0.1, 1.0, 10.0, 100.0],
     fit_intercept=True,
@@ -1680,6 +1686,26 @@ Mean absolute error: 6620569.43
 Coefficient of determination: 0.63     
 model score:  0.6429316560418115     
 score: 13095757.51710
+
+## Case 68
+
+## Case 69
+
+## Case 70
+
+## Case 71
+
+## Case 72
+
+## Case 73
+
+## Case 74
+
+## Case 75
+
+## Case 76
+
+## Case 77
 
 # DAY 5: Friday 29th November 2024
 
@@ -2261,7 +2287,7 @@ score: 21511049.80223
 ### analyzing
 worsened by alot. ridge itself was good but kbest ruined it. 
 
-## Case 94 - stacking ridge+lasso+
+## Case 94
 
 ## Case 95 - lasso, kbest
 - model = Lasso(alpha=10000, selection='random')
@@ -2406,6 +2432,27 @@ score: 13089744.37642
     ("imputer", SimpleImputer(strategy="most_frequent")),
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
+
+# DAY 7: Sunday 1st December 2024
+
+## Case 118 - regTree, forward selection
+- took over 10hours
+- model = fbselection( "forward", model, 10 )
+- selected_features = [0, 37, 49, 111, 171, 207, 216, 231, 250, 1113]
+- sample_train = train_data.sample(frac=0.1)
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = StandardScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+
+Mean squared error: 169740577777018.22    
+Root Mean squared error: 13028452.62    
+Mean absolute error: 6097042.84    
+Coefficient of determination: 0.65     
+model score:  0.6500690352657126     
+score: 12814602.59947
 
 # ignore
 
