@@ -2562,6 +2562,29 @@ Coefficient of determination: 0.64
 model test score:  0.6464478155060429    
 score: 12980226.72961
 
+## Case 124 - stacking knn+knn+knn+knn
+- kbest feature selection, 200 features
+- model1 = KNeighborsRegressor( n_neighbors=30, algorithm='auto', leaf_size=50, p=3, metric='euclidean', n_jobs=-1, weights="distance" )
+- model2 = KNeighborsRegressor( n_neighbors=50, algorithm='auto', leaf_size=70, p=2, metric='minkowski', n_jobs=-1, weights="uniform" )
+- model3 = KNeighborsRegressor( n_neighbors=80, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
+- meta_regressor = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=10, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
+- model = StackingRegressor( 
+    estimators=[('model1', model1), ('model2', model2), ('model3', model3)], 
+    final_estimator=meta_regressor, 
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = RobustScaler()
+- get dummies, drop_first=False
+
+Mean squared error: 164870186705817.69    
+Root Mean squared error: 12840178.61    
+Mean absolute error: 5372458.49    
+Coefficient of determination: 0.66     
+model test score:  0.8268361791338406     
+score: 12689253.23345
+
 # ignore
 
 ## Case K - knn, grid for algorithm
