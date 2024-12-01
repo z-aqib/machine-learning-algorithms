@@ -2454,6 +2454,24 @@ Coefficient of determination: 0.65
 model score:  0.6500690352657126     
 score: 12814602.59947
 
+## Case 119 - regTree, variance+correlation, maxabs scaler
+- variance_filter = VarianceThreshold(threshold=0.001)
+- to_drop = [column for column in upper_tri.columns if any(upper_tri[column] > 0.9)]
+- model = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = MaxAbsScaler()
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- 419 columns
+
+Mean squared error: 167281092333096.22    
+Root Mean squared error: 12933719.20    
+Mean absolute error: 5984727.18    
+Coefficient of determination: 0.65     
+model score:  0.6550849217780055     
+score: 12765094.57261
+
 # ignore
 
 ## Case K - knn, grid for algorithm
