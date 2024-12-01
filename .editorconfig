@@ -1,0 +1,4 @@
+# EditorConfig is awesome: https://editorconfig.org
+
+[*]
+end_of_line = lf
