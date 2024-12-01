@@ -2529,6 +2529,39 @@ Coefficient of determination: 0.63
 model score:  0.6289503354006472     
 score: 13178538.38246
 
+## Case 123 - stacking gb+dt+knn+rf
+- decision tree algorithm feature importance 200 features
+- rf1 = GradientBoostingRegressor(n_estimators=50, max_depth=2, learning_rate=0.2, subsample=0.8, verbose=3)
+- dt2 = DecisionTreeRegressor(random_state=0, max_depth=5, criterion='poisson')
+- xgb = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1 )
+- meta_regressor = RandomForestRegressor(
+    max_depth=32,
+    n_estimators=1500,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3,
+    bootstrap=True,
+    verbose=2,
+    n_jobs=-1
+)
+- model = StackingRegressor(
+    estimators=[('rf1', rf1), ('dt2', dt2), ('xgb1', xgb)],
+    final_estimator=meta_regressor,
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = RobustScaler()
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+
+Mean squared error: 173474665659447.97    
+Root Mean squared error: 13170978.16    
+Mean absolute error: 5765039.99    
+Coefficient of determination: 0.64     
+model test score:  0.6464478155060429    
+score: 
+
 # ignore
 
 ## Case K - knn, grid for algorithm
