@@ -2782,7 +2782,31 @@ Coefficient of determination: 0.57
 model score:  0.5781924233746147     
 score: 14101310.75498
 
-## Case 101
+## Case 101 - adaboost7
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- reg = VerboseAdaBoostRegressor(
+    estimator=DecisionTreeRegressor(max_depth=4),
+    n_estimators=1000,
+    learning_rate=0.05
+)
+- class VerboseAdaBoostRegressor(AdaBoostRegressor):
+
+    def _boost(self, iboost, X, y, sample_weight, random_state):
+
+        print(f"Training estimator {iboost + 1}/{self.n_estimators}")
+
+        return super()._boost(iboost, X, y, sample_weight, random_state)
+
+Mean squared error: 167240887330895.66    
+Root Mean squared error: 12932164.84    
+Mean absolute error: 6138320.20    
+Coefficient of determination: 0.65     
+model test score:  0.6541378354788046     
+score: 12746850.37282
 
 ## Case 102
 
