@@ -3560,6 +3560,34 @@ model score:  -0.06714449369575992
 score: 22873886.79445
 
 ## Case 133 - xgb
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- selector = VarianceThreshold(threshold=0.001) 
+- 405 columns
+- pca = PCA(n_components=0.95)
+- 205 columns
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=42)
+- model = XGBRegressor(
+    max_depth=10,  
+    learning_rate=0.009, 
+    n_estimators=1400,  
+    subsample=0.8,  
+    colsample_bytree=0.7,  
+    reg_lambda=0.2, 
+    reg_alpha=0.8,  
+    verbose = 2,
+    tree_method='hist',   
+    predictor='auto'   
+)
+
+Mean squared error: 160932596212293.22    
+Root Mean squared error: 12685921.18    
+Mean absolute error: 5603029.43    
+Coefficient of determination: 0.67     
+model test score:  0.9982051964188322     
+score: 12570455.68262
 
 ## Case 134 - neural network, 9 layers, higher xgb params
 - lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.3, patience=3, verbose=1)
@@ -4349,34 +4377,3 @@ Included learning rate adjustment
 - drop categorical cols
 
 score: 12619655.52095
-
-# ignore
-
-## Case K - knn, grid for algorithm
-- param_grid = {
-    'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
-}
-- best params: {'algorithm': 'ball_tree'}
-- model = kbest(model, 200)
-- model = KNeighborsRegressor( leaf_size=30, n_neighbors=67, weights='distance', p=2, metric='euclidean', n_jobs=-1 )
-- numerical scaler = MinMaxScaler()
-- num_imputer = SimpleImputer(strategy="mean")
-- cat_imputer = SimpleImputer(strategy="most_frequent")
-- get dummies encoding 
-
-## Case s - stacking knn+knn+knn+rf+knn
-- model1 = KNeighborsRegressor( n_neighbors=30, algorithm='auto', leaf_size=50, p=3, metric='euclidean', n_jobs=-1, weights="distance" )
-- model2 = KNeighborsRegressor( n_neighbors=50, algorithm='auto', leaf_size=70, p=2, metric='minkowski', n_jobs=-1, weights="uniform" )
-- model3 = KNeighborsRegressor( n_neighbors=80, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
-- model4 = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
-- meta_regressor = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=10, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
-- model = StackingRegressor( 
-    estimators=[('model1', model1), ('model2', model2), ('model3', model3), ('model4', model4)], 
-    final_estimator=meta_regressor, 
-    passthrough=False, n_jobs=-1, verbose=2
-)
-- kbest feature selection, 200 features
-- num_imputer = SimpleImputer(strategy="mean")
-- cat_imputer = SimpleImputer(strategy="most_frequent")
-- scaler = RobustScaler()
-- get dummies, drop_first=False
