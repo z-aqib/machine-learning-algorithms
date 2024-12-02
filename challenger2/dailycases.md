@@ -1514,7 +1514,7 @@ Coefficient of determination: 0.64
 model score:  0.6472367878652435     
 score: 12849989.26788
 
-## Case 55 - xgb, increased esimators, subsample, removed col_by_sumsample
+## Case 55 - xgb, increased estimators, subsample, removed col_by_sumsample
 - model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1500, subsample=0.85, reg_lambda=0.2, reg_alpha=0.8)
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="mean")),
@@ -1533,7 +1533,25 @@ Coefficient of determination: 0.67
 model score:  0.8839744537224783     
 score: 12572870.13849
 
-## Case 56
+## Case 56 - gradboost, estimators decreased
+- model = GradientBoostingRegressor(
+    n_estimators=10,    
+    learning_rate=0.1,  
+    max_depth=1, 
+    verbose=2
+)
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 221794355757278.06    
+Root Mean squared error: 14892761.86    
+Mean absolute error: 8448052.63    
+Coefficient of determination: 0.54     
+model score:  0.5378510641445383     
+score: 14720380.13598
 
 ## Case 57
 
