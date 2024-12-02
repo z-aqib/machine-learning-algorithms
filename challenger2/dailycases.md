@@ -2947,7 +2947,24 @@ score: 12438069.97995
 file was run but parameters werent recorded...    
 score: 12738231.25142
 
-## Case 141
+## Case 141 - stacking rf+gb+ada
+- meta_regressor = AdaBoostRegressor(n_estimators=10)
+- model = StackingRegressor( 
+    estimators=[
+        ('rf', RandomForestRegressor(max_depth=5, n_jobs=-1, random_state=42, verbose=2)),
+        ('gb', GradientBoostingRegressor(n_estimators=10,random_state=42, verbose=1))
+    ], 
+    final_estimator=meta_regressor, 
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = RobustScaler()
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+
+file was run but parameters werent recorded...    
+score: 12737584.77444
 
 ## Case 142
 
