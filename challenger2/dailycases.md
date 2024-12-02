@@ -1986,7 +1986,24 @@ score: 12753991.47323
 RMSE: 12785491.593735853     
 score: 12584218.94004   
 
-## Case 77
+## Case 77 - adaboost3, dt
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = AdaBoostRegressor(
+    base_estimator=DecisionTreeRegressor(max_depth=2),
+    n_estimators=200,
+    learning_rate=0.1
+)
+
+Mean squared error: 175228180857318.75    
+Root Mean squared error: 13237378.17    
+Mean absolute error: 6941579.37    
+Coefficient of determination: 0.63     
+model test score:  0.636744979476696     
+score: 13043233.80775
 
 # DAY 5: Friday 29th November 2024
 
