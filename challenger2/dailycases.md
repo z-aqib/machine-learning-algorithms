@@ -1735,7 +1735,7 @@ Coefficient of determination: 0.64
 model score:  0.647399973422075     
 score: 12858613.50877
 
-## Case 66 - stacking
+## Case 66 - stacking rf+rf+rf
 - num_transformer = Pipeline(steps=[
     ("imputer", SimpleImputer(strategy="median")),
     ("scaler", StandardScaler())
@@ -1953,7 +1953,16 @@ Coefficient of determination: 0.65
 model test score:  0.6682961788999566     
 score: 12677408.56511
 
-## Case 74
+## Case 74 - gradboost, higher parameters
+- model = GradientBoostingRegressor(n_estimators=200, learning_rate=0.1, min_samples_leaf=4, min_samples_split=2, random_state=2,verbose=2, max_features='log2', max_depth= 35)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = MinMaxScaler()
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+
+RMSE: 12929883.886812469    
+score: 12758903.07745
 
 ## Case 75
 
