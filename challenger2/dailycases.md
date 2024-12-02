@@ -3743,7 +3743,28 @@ score: 12667829.54214
 
 score: 12697007.37604
 
-## Case 153
+## Case 153 - neural network
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(256, activation=""relu"", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))  # Increase dropout to prevent overfitting
+    model.add(Dense(128, activation=""relu""))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(64, activation=""relu""))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(32, activation=""relu""))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.0005), loss=""mse"")
+    return model
+- XGBRegressor(n_estimators=100, random_state=42)
+- xgb_model.feature_importances_ = 50	
+- StandardScaler	
+- .fillna(train[numerical_cols].median())
+
+score: 12682240.55308
 
 ## Case 154
 
