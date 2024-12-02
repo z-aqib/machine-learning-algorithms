@@ -2926,7 +2926,7 @@ score: 12442789.30317
 
 not trained on trainX, trainY, no prediction on testY     
 model score:  0.9528415052518412    
-score: 
+score: 12438069.97995
 
 ## Case 140 - stacking rf+gb+ada
 - meta_regressor = AdaBoostRegressor(n_estimators=10)
