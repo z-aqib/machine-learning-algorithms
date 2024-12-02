@@ -3357,13 +3357,57 @@ score: 13089512.03435
 - train_data[numerical_cols] = train_data[numerical_cols].fillna(train_data[numerical_cols].median())
 - test_data[numerical_cols] = test_data[numerical_cols].fillna(test_data[numerical_cols].median())
 - scaler = StandardScaler()
+- drop columns categorical
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
 - xgb_model = XGBRegressor(n_estimators=100, random_state=42)
 - xgb_model, X, trainX, trainY, testX, test_data = featureImportance(xgb_model, 50, X, trainX, trainY, testX, test_data)
 
 score: 12823441.95400
 
-## Case 146
+## Case 146 - neural networks, larger network
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(256, activation=""relu"", kernel_regularizer=l2(0.01), input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(128, activation=""relu"", kernel_regularizer=l2(0.01)))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(64, activation=""relu"", kernel_regularizer=l2(0.01)))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss=""mse"")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""val_loss"", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""val_loss"", patience=10, restore_best_weights=True, verbose=1)
+- nn_model = nn_model.fit(
+    X_train_preprocessed, y_train_scaled,
+    validation_data=(X_val_preprocessed, y_val_scaled),
+    epochs=200,
+    batch_size=64,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- num_imputer = SimpleImputer(strategy="median")
+- scaler = StandardScaler()
+- get dummies
+- simple imputer(most frequent)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
+
+score: 12763701.04221
+
+### analyzing
+Key Changes
+- Missing Values:
+Added SimpleImputer to fill missing values for both numerical and categorical features.
+- Larger Network:
+Increased neurons in the hidden layers for better representation of high-dimensional data.
+Added L2 regularization to dense layers to reduce overfitting.
+- Dropout Rate:
+Increased dropout to 0.3 for better regularization.
+Increased Epochs and Batch Size:
+Increased epochs to 200 and batch size to 64 for better convergence.
+- Learning Rate Scheduler:
+Added a ReduceLROnPlateau callback for dynamic learning rate adjustment.
 
 ## Case 147
 
