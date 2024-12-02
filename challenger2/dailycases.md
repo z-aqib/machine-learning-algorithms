@@ -3531,6 +3531,15 @@ model score:  0.5160564308290309
 score: 16573081.40223
 
 ## Case 131 - gb + kbest
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = GradientBoostingRegressor(n_estimators=600, learning_rate=0.01,min_samples_leaf=5, min_samples_split=3, random_state=2,verbose=2,max_features='log2',max_depth= 12)
+- model, X, trainX, trainY, testX, test_data = kbest(model, 200, X, trainX, trainY, testX, test_data)
+
+score: 12595325.58113
 
 ## Case 132 - polyReg + KNN
 
