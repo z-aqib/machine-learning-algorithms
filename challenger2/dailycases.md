@@ -2808,7 +2808,23 @@ Coefficient of determination: 0.65
 model test score:  0.6541378354788046     
 score: 12746850.37282
 
-## Case 102
+## Case 102 - adaboost9
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = make_pipeline(
+    SelectFromModel(RandomForestRegressor(n_estimators=10)),
+    VerboseAdaBoostRegressor(base_estimator=DecisionTreeRegressor(max_depth=3), n_estimators=100, learning_rate=0.5)
+)
+
+Mean squared error: 170347705223805.91    
+Root Mean squared error: 13051731.89    
+Mean absolute error: 6504873.65    
+Coefficient of determination: 0.64     
+model test score:  0.6476724660303605     
+score: 12852251.22953
 
 ## Case 103
 
