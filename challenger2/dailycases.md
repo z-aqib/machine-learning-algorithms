@@ -3903,7 +3903,65 @@ Scaled only the selected features to ensure optimal performance for neural netwo
 Callbacks:
 Included learning rate adjustment 
 
-## Case 157
+## Case 157 - neural networks
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(256, input_dim=input_dim))
+    model.add(LeakyReLU(alpha=0.1))  # Leaky ReLU
+    model.add(Dropout(0.4))
+    model.add(Dense(128))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(Dropout(0.3))
+    model.add(Dense(64))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(Dense(1))
+    model.compile(optimizer=Adam(learning_rate=0.0005), loss=""mse"")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""val_loss"", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""val_loss"", patience=10, restore_best_weights=True, verbose=1)
+- history = nn_model.fit(
+    X_train_scaled, y_train_scaled,
+    validation_data=(X_val_scaled, y_val_scaled),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- xgb feature importance = 50	
+- StandardScaler	
+- fillna(train[numerical_cols].median()
+- xgb_model = XGBRegressor(
+    max_depth=10,     
+    learning_rate=0.01, 
+    n_estimators=1000, 
+    subsample=0.8,   
+    colsample_bytree=0.8,   
+    reg_lambda=1,   
+    reg_alpha=0,        
+    random_state=42
+)
+- Selected Features: ['mosque_count_500' 'mosque_count_1000' 'culture_objects_top_25_raion'
+ 'mosque_count_2000' 'cafe_count_5000_price_high' 'full_sq'
+ 'cafe_count_500_price_high' 'cafe_count_3000_price_2500'
+ 'cafe_count_3000_price_high' 'cafe_count_5000_price_2500'
+ 'mosque_count_1500' 'cafe_count_3000' 'cafe_count_2000_price_high'
+ 'cafe_count_1000_price_high' 'mosque_count_3000'
+ 'cafe_count_2000_price_4000' 'cafe_count_2000'
+ 'cafe_count_1000_price_4000' 'mosque_count_5000'
+ 'cafe_count_3000_price_4000' 'market_count_2000' 'market_count_500'
+ 'raion_build_count_with_builddate_info' 'leisure_count_5000'
+ 'leisure_count_500' 'cafe_count_5000' 'cafe_avg_price_5000'
+ 'leisure_count_3000' 'kremlin_km' 'church_count_1500' 'sport_count_3000'
+ 'sadovoe_km' 'leisure_count_1000' 'cafe_count_3000_na_price'
+ 'big_church_count_500' 'build_count_foam' 'cafe_count_1500'
+ 'leisure_count_2000' 'cafe_count_5000_price_500'
+ 'cafe_count_1500_price_high' 'sport_count_2000' 'build_count_1921-1945'
+ 'build_count_before_1920' 'cafe_count_5000_price_1500'
+ 'additional_education_km' 'cafe_avg_price_3000' 'ID_railroad_terminal'
+ 'bulvar_ring_km' 'cafe_count_5000_price_1000' 'market_count_1500']
+- drop categorical cols
+
+score: 12619655.52095
 
 # ignore
 
