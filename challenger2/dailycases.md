@@ -3655,7 +3655,16 @@ score: 12750468.62401
 
 score: 12703628.73551
 
-## Case 149
+## Case 149 - neural networks, minmax sclaing, mlp regressor
+- nn_model = MLPRegressor(hidden_layer_sizes=(50, 200, 100), activation='tanh', alpha=0.0001, learning_rate='adaptive', learning_rate_init=0.003, max_iter=400, tol=1e-4, random_state=42, early_stopping=True, validation_fraction=0.1, n_iter_no_change=10)
+- num_imputer = SimpleImputer(strategy="most-frequent")
+- num_imputer = SimpleImputer(strategy="median")
+- one hot encoding
+- scaler = MinMaxScaler()
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
+- m, X, trainX, trainY, testX, test_data = featureImportance(210, X, trainX, trainY, testX, test_data)
+
+score: 12692974.99694
 
 ## Case 150
 
