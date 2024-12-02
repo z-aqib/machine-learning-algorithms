@@ -2962,7 +2962,29 @@ Coefficient of determination: 0.65
 model score:  0.9999973414753984     
 score: 12759323.06052
 
-## Case 117 - gboost
+## Case 117 - gboost9 + pCA
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- selector = VarianceThreshold(threshold=0.001) 
+- pca = PCA(n_components=0.95)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model9 = GradientBoostingRegressor(
+    n_estimators=120,
+    max_depth=4,
+    learning_rate=0.08,
+    subsample=0.85,
+    max_features='sqrt', 
+    verbose=3
+)
+
+Mean squared error: 177446742877784.25    
+Root Mean squared error: 13320913.74    
+Mean absolute error: 6629774.05    
+Coefficient of determination: 0.63     
+model test score:  0.6616145252063277     
+score: 13021221.99635
 
 # DAY 7: Sunday 1st December 2024
 
