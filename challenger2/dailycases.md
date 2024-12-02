@@ -1494,12 +1494,26 @@ Coefficient of determination: 0.67
 model score:  0.9200141191638683     
 score: 12621819.10892
 
-## Case 54 - gradboost
-- 
+## Case 54 - gradboost, lower depth
+- model = GradientBoostingRegressor(
+    n_estimators=100,
+    learning_rate=0.1,     
+    max_depth=1,           
+    verbose=2
+)
 - cat_imputer = SimpleImputer(strategy="most_frequent")\
 - num_imputer = SimpleImputer(strategy="mean")
 - scaler = MinMaxScaler()
 - get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 170893869736288.38    
+Root Mean squared error: 13072638.21    
+Mean absolute error: 6162825.49    
+Coefficient of determination: 0.64     
+model score:  0.6472367878652435     
+score: 12849989.26788
+
 
 ## Case 55
 
