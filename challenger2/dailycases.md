@@ -2508,7 +2508,51 @@ score: 21511049.80223
 ### analyzing
 worsened by alot. ridge itself was good but kbest ruined it. 
 
-## Case 94
+## Case 94 - stacking ridge+lasso+linear+rf
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols), 
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- rf1 = Ridge(alpha=100, solver='lsqr', tol=0.001, max_iter=1000)
+- dt2 = Lasso(alpha=10000, max_iter=1000)
+- xgb = LinearRegression(n_jobs=-1)
+- meta_regressor = RandomForestRegressor(
+    max_depth=32,
+    n_estimators=1500,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3,
+    bootstrap=True,
+    verbose=2,
+    n_jobs=-1
+)
+- stacking = StackingRegressor(
+    estimators=[('rf1', rf1), ('dt2', dt2), ('xgb1', xgb)],
+    final_estimator=meta_regressor,
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", stacking)
+])
+
+Mean squared error: 176640562174842.00    
+Root Mean squared error: 13290619.33    
+Mean absolute error: 6466013.71    
+Coefficient of determination: 0.63     
+model test score:  0.6314408654849808     
+score: 13131537.11232
 
 ## Case 95 - lasso, kbest
 - model = Lasso(alpha=10000, selection='random')
@@ -2860,7 +2904,7 @@ Root Mean squared error: 13771819.26
 Mean absolute error: 6575550.63    
 Coefficient of determination: 0.67     
 model score:  0.9502352626846423     
-score: 
+score: 13065940.61641
 
 ## Case 127
 
