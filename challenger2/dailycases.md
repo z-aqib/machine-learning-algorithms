@@ -3313,7 +3313,22 @@ score: 12661050.51915
 file was run but parameters werent recorded...    
 score: 12490377.08595
 
-## Case 144
+## Case 144 - neural networks, 3 layers, no early stopping, categorical dropped
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(64, activation=""relu"", input_dim=input_dim))
+    model.add(Dense(32, activation=""relu""))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss=""mse"")
+    return model
+- nn_model.fit(X_train_scaled, y_train, epochs=50, batch_size=32, verbose=0)
+- StandardScaler	
+- SimpleImputer(strategy="median")	
+- dropped categorical columns
+- 257 columns
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
+
+score: 13089512.03435
 
 ## Case 145
 
