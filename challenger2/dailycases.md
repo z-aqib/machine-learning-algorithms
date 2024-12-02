@@ -3453,17 +3453,43 @@ Coefficient of determination: 0.62
 model score:  0.9302153974842944     
 score: 12918342.46040
 
-## Case 128
+## Case 128 - xgb + PCA
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- selector = VarianceThreshold(threshold=0.001) 
+- pca = PCA(n_components=0.95)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=42)
+- model = XGBRegressor(
+    max_depth=10,  
+    learning_rate=0.009, 
+    n_estimators=1400,  
+    subsample=0.8,  
+    colsample_bytree=0.7,  
+    reg_lambda=0.2, 
+    reg_alpha=0.8,  
+    verbose = 2,
+    tree_method='hist',   
+    predictor='auto'   
+)
 
-## Case 129
+Mean squared error: 165138032534075.53    
+Root Mean squared error: 12850604.36    
+Mean absolute error: 6067012.38    
+Coefficient of determination: 0.66     
+model test score:  0.9717697146871356     
+score: 12749993.51698
 
-## Case 130
+## Case 129 - stacking
 
-## Case 131
+## Case 130 - polyReg + DT + stacking
 
-## Case 132
+## Case 131 - gb + kbest
 
-## Case 133
+## Case 132 - polyReg + KNN
+
+## Case 133 - xgb
 
 ## Case 134 - neural network, 9 layers, higher xgb params
 - lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.3, patience=3, verbose=1)
