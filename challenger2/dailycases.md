@@ -1735,7 +1735,40 @@ Coefficient of determination: 0.64
 model score:  0.647399973422075     
 score: 12858613.50877
 
-## Case 66 
+## Case 66 - stacking
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols)
+        # ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- rf1 = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1, min_samples_split=7)
+- rf2 = RandomForestRegressor(max_depth=31, n_estimators=1400, max_features='log2', min_samples_leaf=2, min_samples_split=3, bootstrap=True, verbose=2, n_jobs=-1)
+- meta_regressor = RandomForestRegressor(max_depth=32, n_estimators=1500, max_features='log2', min_samples_leaf=2, min_samples_split=3, bootstrap=True, verbose=2, n_jobs=-1)
+- stacking = StackingRegressor(estimators=[('rf1', rf1), ('rf2', rf2)],
+    final_estimator=meta_regressor,
+    passthrough=False
+)
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", stacking)
+])
+
+Mean squared error: 167351990230424.88    
+Root Mean squared error: 12936459.73    
+Mean absolute error: 5138216.02    
+Coefficient of determination: 0.65     
+no model score   
+score: 12637627.79394
 
 ## Case 67 - ridgecv
 - model = RidgeCV(
