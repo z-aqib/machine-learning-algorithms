@@ -3704,7 +3704,44 @@ score: 13175268.83308
 
 score: 12667829.54214
 
-## Case 152
+## Case 152 - neural networks
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(128, activation=""relu"", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(64, activation=""relu""))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(32, activation=""relu""))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss=""mse"")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""val_loss"", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""val_loss"", patience=10, restore_best_weights=True, verbose=1)
+- nn_model = nn_model.fit(
+    X_train_scaled, y_train_scaled,
+    validation_data=(X_val_scaled, y_val_scaled),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- xgb_model = XGBRegressor(
+    max_depth=10, 
+    learning_rate=0.01,
+    n_estimators=1000, 
+    subsample=0.8, 
+    colsample_bytree=0.8, 
+    reg_lambda=1,
+    reg_alpha=0, 
+    random_state=42
+)	
+- algo feature importance 50	
+- StandardScaler	
+- .fillna(train[numerical_cols].median())
+
+score: 12697007.37604
 
 ## Case 153
 
