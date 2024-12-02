@@ -3330,7 +3330,38 @@ score: 12490377.08595
 
 score: 13089512.03435
 
-## Case 145
+## Case 145 - neural networks, xgb feature imp, 4 layers
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(256, input_dim=input_dim))
+    model.add(LeakyReLU(alpha=0.1))  # Leaky ReLU
+    model.add(Dropout(0.4))
+    model.add(Dense(128))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(Dropout(0.3))
+    model.add(Dense(64))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(Dense(1))
+    model.compile(optimizer=Adam(learning_rate=0.0005), loss=""mse"")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""val_loss"", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""val_loss"", patience=10, restore_best_weights=True, verbose=1)
+- nn_model = nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- train_data[numerical_cols] = train_data[numerical_cols].fillna(train_data[numerical_cols].median())
+- test_data[numerical_cols] = test_data[numerical_cols].fillna(test_data[numerical_cols].median())
+- scaler = StandardScaler()
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
+- xgb_model = XGBRegressor(n_estimators=100, random_state=42)
+- xgb_model, X, trainX, trainY, testX, test_data = featureImportance(xgb_model, 50, X, trainX, trainY, testX, test_data)
+
+score: 12823441.95400
 
 ## Case 146
 
