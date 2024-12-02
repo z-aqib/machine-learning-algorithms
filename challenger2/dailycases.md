@@ -1900,7 +1900,26 @@ Coefficient of determination: 0.64
 model test score:  0.6470294875622229     
 score: 12865378.75132
 
-## Case 73
+## Case 73 - gboost1, multi file running
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies method
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = GradientBoostingRegressor(
+    n_estimators=100,
+    max_depth=3,
+    learning_rate=0.1,
+    subsample=1.0, 
+    verbose=3
+)
+
+Mean squared error: 166009546737258.38    
+Root Mean squared error: 12884469.21    
+Mean absolute error: 5839338.77    
+Coefficient of determination: 0.65     
+model test score:  0.6682961788999566     
+score: 12677408.56511
 
 ## Case 74
 
