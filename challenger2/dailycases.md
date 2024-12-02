@@ -3481,7 +3481,31 @@ Coefficient of determination: 0.66
 model test score:  0.9717697146871356     
 score: 12749993.51698
 
-## Case 129 - stacking
+## Case 129 - stacking knn+knn+dt+knn
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model1 = KNeighborsRegressor( n_neighbors=30, algorithm='auto', leaf_size=50, p=3, metric='euclidean', n_jobs=-1, weights="distance" )
+- model2 = KNeighborsRegressor( n_neighbors=50, algorithm='auto', leaf_size=70, p=2, metric='minkowski', n_jobs=-1, weights="uniform" )
+- model4 = DecisionTreeRegressor(max_depth=5)
+- meta_regressor = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=10, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
+- model = StackingRegressor( 
+    estimators=[('model4', model4)], 
+    final_estimator=meta_regressor, 
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- m, X, trainX, trainY, testX, test_data = kbest(
+    None, 200, X, trainX, trainY, testX, test_data
+)
+
+Mean squared error: 169763989219714.88    
+Root Mean squared error: 13029351.07    
+Mean absolute error: 6047039.85    
+Coefficient of determination: 0.65     
+model test score:  0.646672768265262     
+score: 12858957.89820
 
 ## Case 130 - polyReg + DT + stacking
 
