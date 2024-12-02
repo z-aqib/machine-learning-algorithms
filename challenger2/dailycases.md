@@ -1882,7 +1882,23 @@ Coefficient of determination: 0.65
 model test score:  0.7467883722827993    
 score: 12743497.47981
 
-## Case 72
+## Case 72 - adaboost1, random parameters
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies method
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = AdaBoostRegressor(
+    n_estimators=50,
+    learning_rate=1.0
+)
+
+Mean squared error: 170625153398977.44    
+Root Mean squared error: 13062356.35    
+Mean absolute error: 6564950.21    
+Coefficient of determination: 0.64     
+model test score:  0.6470294875622229     
+score: 12865378.75132
 
 ## Case 73
 
