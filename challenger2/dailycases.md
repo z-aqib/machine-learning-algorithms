@@ -1975,7 +1975,16 @@ score: 12758903.07745
 RMSE: 12977232.74952204    
 score: 12753991.47323
 
-## Case 76
+## Case 76 - gradboost, estimators inc, learning rate dec, min_samples_leaf inc, split inc, max_depth introduced
+- model = GradientBoostingRegressor(n_estimators=600, learning_rate=0.01,min_samples_leaf=5, min_samples_split=3, random_state=2,verbose=2,max_features='log2',max_depth= 12)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = MinMaxScaler()
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+
+RMSE: 12785491.593735853     
+score: 12584218.94004   
 
 ## Case 77
 
