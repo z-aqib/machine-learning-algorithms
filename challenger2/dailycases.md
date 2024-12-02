@@ -3816,7 +3816,48 @@ score: 12682240.55308
 
 score: 12678377.93830
 
-## Case 155
+## Case 155 - neural networks
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(128, activation=""relu"", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(64, activation=""relu""))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(32, activation=""relu""))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss=""mse"")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""val_loss"", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""val_loss"", patience=10, restore_best_weights=True, verbose=1)
+- history = nn_model.fit(
+    X_train_scaled, y_train_scaled,
+    validation_data=(X_val_scaled, y_val_scaled),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- XGBRegressor(n_estimators=100, random_state=42
+- xgb_model.feature_importances_ = 50	
+- StandardScaler	
+- fillna(train[numerical_cols].median()	
+
+score: 12664792.06688
+
+### analyzing
+- Explanation of Key Changes
+- Dropped Categorical Columns:
+Focused only on numerical columns (float64 and int64) to simplify the preprocessing.
+- Used XGBoost for Feature Selection:
+Trained an XGBoost Regressor and extracted feature importances.
+Selected the top 50 features based on importance, which balances accuracy and computational efficiency.
+- Scaling of Features and Target:
+Scaled both features and the target variable using StandardScaler to improve neural network performance.
+- Neural Network Training:
+Adjusted architecture with dropout layers to reduce overfitting.
+Tuned callbacks (e.g., ReduceLROnPlateau, EarlyStopping) for dynamic learning rate and training termination.
 
 ## Case 156
 
