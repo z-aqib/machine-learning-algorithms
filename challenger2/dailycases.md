@@ -2791,23 +2791,71 @@ score: 13089744.37642
 
 ## Case 108
 
-## Case 109
+## Case 109 - gradboost4
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model4 = GradientBoostingRegressor(
+    n_estimators=200,
+    max_depth=5,
+    learning_rate=0.1,
+    subsample=0.85, 
+    verbose=3
+)
 
-## Case 110
+Mean squared error: 167918807493816.97    
+Root Mean squared error: 12958348.95    
+Mean absolute error: 5779233.04    
+Coefficient of determination: 0.65     
+model test score:  0.7234083877221744     
 
-## Case 111
+## Case 110 - gradboost5
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
 
-## Case 112
+## Case 111 - gradboost6
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
 
-## Case 113
+## Case 112 - gradboost7
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+ 
+## Case 113 - gradboost8
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
 
-## Case 114
+## Case 114 - gradboost9
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
 
-## Case 115
+## Case 115 - gradboost10
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
 
-## Case 116
+## Case 116 - knn
 
-## Case 117
+## Case 117 - gboost
 
 # DAY 7: Sunday 1st December 2024
 
@@ -2964,7 +3012,7 @@ score: 12689253.23345
 ## case 125 - randomforest, best + algo feature imp
 - i am a bit iffy on this as file on kaggle stopped running upon model_predict_on_test however there was a file in output so i downloaded and submitted
 
-## case 126 - polyReg + randomforest
+## Case 126 - polyReg + randomforest
 - model = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
@@ -3443,7 +3491,40 @@ Added a ReduceLROnPlateau callback for dynamic learning rate adjustment.
 
 score: 12750468.62401   
 
-## Case 148
+## Case 148 - neural networks, higher xgb params
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(128, activation=""relu"", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(64, activation=""relu""))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(32, activation=""relu""))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss=""mse"")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""val_loss"", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""val_loss"", patience=10, restore_best_weights=True, verbose=1)
+- nn_model = nn_model.fit(
+    X_train_scaled, y_train_scaled,
+    validation_data=(X_val_scaled, y_val_scaled),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- xgb_model = XGBRegressor(
+    n_estimators=500, 
+    learning_rate=0.01,
+    random_state=42
+)
+- xgb_model, X, trainX, trainY, testX, test_data = featureImportance(xgb_model, 50, X, trainX, trainY, testX, test_data)
+- standard scaler
+- fillna.median
+- drop categorical cols
+
+score: 12703628.73551
 
 ## Case 149
 
