@@ -1553,7 +1553,7 @@ Coefficient of determination: 0.54
 model score:  0.5378510641445383     
 score: 14720380.13598
 
-## Case 57 - knn
+## Case 57 - knn, grid for algorithm
 - model = KNeighborsRegressor(
     n_neighbors=67,
     weights='distance', 
@@ -1736,7 +1736,7 @@ Coefficient of determination: 0.64
 model score:  0.647399973422075     
 score: 12858613.50877
 
-## Case 66
+## Case 66 
 
 ## Case 67 - ridgecv
 - model = RidgeCV(
@@ -1806,7 +1806,24 @@ score: 12584851.34447
 RMSE: 12682809.26539975     
 score: 12466344.80314
 
-## Case 70
+## Case 70 - adaboost, parameters changed
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies method
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = AdaBoostRegressor(
+    base_estimator=DecisionTreeRegressor(max_depth=3),
+    n_estimators=100,
+    learning_rate=0.5
+)
+
+Mean squared error: 170489722078728.28    
+Root Mean squared error: 13057171.29    
+Mean absolute error: 6522477.00    
+Coefficient of determination: 0.64     
+model test score:  0.6465356142089589     
+score: 12874165.01203
 
 ## Case 71
 
