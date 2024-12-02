@@ -3402,6 +3402,19 @@ score: 12689253.23345
 
 ## case 125 - randomforest, best + algo feature imp
 - i am a bit iffy on this as file on kaggle stopped running upon model_predict_on_test however there was a file in output so i downloaded and submitted
+- num_imputer = SimpleImputer(strategy="median")
+- scaler = StandardScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = RandomForestRegressor(max_depth=36, n_estimators=1800, min_samples_split=2, min_samples_leaf=1, max_features=0.45, bootstrap=True, verbose=2, n_jobs=-1)
+- model, X, trainX, trainY, testX, test_data = featureImportance(model, 100, X, trainX, trainY, testX, test_data)
+
+Mean squared error: 159625169771914.56    
+Root Mean squared error: 12634285.49    
+Mean absolute error: 4947876.31    
+Coefficient of determination: 0.67    
+no model score
+score: 12452109.12910
 
 ## Case 126 - polyReg + randomforest
 - model = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
