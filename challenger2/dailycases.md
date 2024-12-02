@@ -3542,6 +3542,22 @@ score: 16573081.40223
 score: 12595325.58113
 
 ## Case 132 - polyReg + KNN
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = StandardScaler()
+- get dummies
+- poly = PolynomialFeatures(degree=2, include_bias=False)
+- sample_train = train_data.sample(frac=0.1)
+- selector = VarianceThreshold(threshold=0.999)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = KNeighborsRegressor( n_neighbors=50, algorithm='auto', leaf_size=70, p=2, metric='minkowski', n_jobs=-1, weights="uniform" )
+
+Mean squared error: 545826372861946.94    
+Root Mean squared error: 23362927.32    
+Mean absolute error: 9904841.71    
+Coefficient of determination: -0.12    
+model score:  -0.06714449369575992     
+score: 22873886.79445
 
 ## Case 133 - xgb
 
