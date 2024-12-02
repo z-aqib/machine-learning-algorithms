@@ -2810,6 +2810,7 @@ Root Mean squared error: 12958348.95
 Mean absolute error: 5779233.04    
 Coefficient of determination: 0.65     
 model test score:  0.7234083877221744     
+score: 12719710.06437
 
 ## Case 110 - gradboost5
 - cat_imputer = SimpleImputer(strategy="most_frequent")
