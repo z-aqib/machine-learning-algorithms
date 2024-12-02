@@ -1556,8 +1556,7 @@ score: 14720380.13598
 ## Case 57 - knn, grid for algorithm
 - model = KNeighborsRegressor(
     n_neighbors=67,
-    weights='distance', 
-    # algorithm='auto', 
+    weights='distance',
     leaf_size=30,
     p=2, 
     metric='euclidean',  
@@ -2655,6 +2654,40 @@ score: 13089744.37642
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
 
+## Case 101
+
+## Case 102
+
+## Case 103
+
+## Case 104
+
+## Case 105
+
+## Case 106
+
+## Case 107
+
+## Case 108
+
+## Case 109
+
+## Case 110
+
+## Case 111
+
+## Case 112
+
+## Case 113
+
+## Case 114
+
+## Case 115
+
+## Case 116
+
+## Case 117
+
 # DAY 7: Sunday 1st December 2024
 
 ## Case 118 - regTree, forward selection
@@ -2807,23 +2840,6 @@ Coefficient of determination: 0.66
 model test score:  0.8268361791338406     
 score: 12689253.23345
 
-## Case s - stacking knn+knn+knn+rf+knn
-- model1 = KNeighborsRegressor( n_neighbors=30, algorithm='auto', leaf_size=50, p=3, metric='euclidean', n_jobs=-1, weights="distance" )
-- model2 = KNeighborsRegressor( n_neighbors=50, algorithm='auto', leaf_size=70, p=2, metric='minkowski', n_jobs=-1, weights="uniform" )
-- model3 = KNeighborsRegressor( n_neighbors=80, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
-- model4 = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
-- meta_regressor = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=10, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
-- model = StackingRegressor( 
-    estimators=[('model1', model1), ('model2', model2), ('model3', model3), ('model4', model4)], 
-    final_estimator=meta_regressor, 
-    passthrough=False, n_jobs=-1, verbose=2
-)
-- kbest feature selection, 200 features
-- num_imputer = SimpleImputer(strategy="mean")
-- cat_imputer = SimpleImputer(strategy="most_frequent")
-- scaler = RobustScaler()
-- get dummies, drop_first=False
-
 ## case 125 - randomforest, best + algo feature imp
 - i am a bit iffy on this as file on kaggle stopped running upon model_predict_on_test however there was a file in output so i downloaded and submitted
 
@@ -2846,6 +2862,84 @@ Coefficient of determination: 0.67
 model score:  0.9502352626846423     
 score: 
 
+## Case 127
+
+## Case 128
+
+## Case 129
+
+## Case 130
+
+## Case 131
+
+## Case 132
+
+## Case 133
+
+## Case 134
+
+## Case 135
+
+## Case 136
+
+## Case 137
+
+# DAY 8: Monday 2nd December 2024
+
+## Case 138 - randomforest + algorithm feature importance
+- num_imputer = SimpleImputer(strategy="median")
+- scaler = StandardScaler()
+- no imputation on categorical
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = RandomForestRegressor(max_depth=36, n_estimators=1850, min_samples_split=2, min_samples_leaf=1, max_features=0.45, bootstrap=True, verbose=2, n_jobs=-1)
+- model, X, trainX, trainY, testX, test_data = featureImportance(model, 100, X, trainX, trainY, testX, test_data)
+
+Mean squared error: 159635519508012.88    
+Root Mean squared error: 12634695.07    
+Mean absolute error: 4946789.83    
+Coefficient of determination: 0.67     
+model score:  0.9523381486393312     
+score: 12442789.30317
+
+## Case 139
+
+## Case 140
+
+## Case 141
+
+## Case 142
+
+## Case 143
+
+## Case 144
+
+## Case 145
+
+## Case 146
+
+## Case 147
+
+## Case 148
+
+## Case 149
+
+## Case 150
+
+## Case 151
+
+## Case 152
+
+## Case 153
+
+## Case 154
+
+## Case 155
+
+## Case 156
+
+## Case 157
+
 # ignore
 
 ## Case K - knn, grid for algorithm
@@ -2859,3 +2953,20 @@ score:
 - num_imputer = SimpleImputer(strategy="mean")
 - cat_imputer = SimpleImputer(strategy="most_frequent")
 - get dummies encoding 
+
+## Case s - stacking knn+knn+knn+rf+knn
+- model1 = KNeighborsRegressor( n_neighbors=30, algorithm='auto', leaf_size=50, p=3, metric='euclidean', n_jobs=-1, weights="distance" )
+- model2 = KNeighborsRegressor( n_neighbors=50, algorithm='auto', leaf_size=70, p=2, metric='minkowski', n_jobs=-1, weights="uniform" )
+- model3 = KNeighborsRegressor( n_neighbors=80, algorithm='auto', leaf_size=30, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
+- model4 = RandomForestRegressor(max_depth=39, n_estimators=400, max_features='sqrt', verbose=2, n_jobs=-1)
+- meta_regressor = KNeighborsRegressor( n_neighbors=67, algorithm='auto', leaf_size=10, p=2, metric='euclidean', n_jobs=-1, weights="distance" )
+- model = StackingRegressor( 
+    estimators=[('model1', model1), ('model2', model2), ('model3', model3), ('model4', model4)], 
+    final_estimator=meta_regressor, 
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- kbest feature selection, 200 features
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = RobustScaler()
+- get dummies, drop_first=False
