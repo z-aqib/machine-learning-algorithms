@@ -3035,7 +3035,23 @@ Coefficient of determination: 0.65
 model test score:  0.6629559532356173     
 score: 12748650.72259
 
-## Case 108
+## Case 108 - polyReg + linearReg
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = StandardScaler()
+- get dummies
+- poly = PolynomialFeatures(degree=2, include_bias=False)
+- sample_train = train_data.sample(frac=0.01)
+- selector = VarianceThreshold(threshold=0.9)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = LinearRegression()
+
+Mean squared error: 4977202288234251394482176.00    
+Root Mean squared error: 2230964430069.26    
+Mean absolute error: 783351980733.68    
+Coefficient of determination: -9273329890.07     
+model score:  0.9999837163784626     
+score: 549926540162064.00000
 
 ## Case 109 - gradboost4
 - cat_imputer = SimpleImputer(strategy="most_frequent")
