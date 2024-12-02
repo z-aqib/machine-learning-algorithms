@@ -2911,7 +2911,51 @@ Coefficient of determination: 0.03
 no score
 score: 21491457.48558
 
-## Case 105
+## Case 105 - stacking gb+ada+xgb+rf
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols), 
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- rf1 = GradientBoostingRegressor(n_estimators=50, max_depth=2, learning_rate=0.2, subsample=0.8, verbose=3)
+- dt2 = VerboseAdaBoostRegressor(estimator=DecisionTreeRegressor(max_depth=10), n_estimators=50, learning_rate=1.0)
+- xgb = XGBRegressor(verbosity=1, n_jobs=-1)
+- meta_regressor = RandomForestRegressor(
+    max_depth=32,
+    n_estimators=1500,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3,
+    bootstrap=True,
+    verbose=2,
+    n_jobs=-1
+)
+- stacking = StackingRegressor(
+    estimators=[('rf1', rf1), ('dt2', dt2), ('xgb1', xgb)],
+    final_estimator=meta_regressor,
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", stacking)
+])
+
+Mean squared error: 167815793317897.97    
+Root Mean squared error: 12954373.52    
+Mean absolute error: 5709140.71    
+Coefficient of determination: 0.65     
+model test score:  0.653873812224862     
+score: 12753400.83857
 
 ## Case 106
 
