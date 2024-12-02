@@ -1514,8 +1514,24 @@ Coefficient of determination: 0.64
 model score:  0.6472367878652435     
 score: 12849989.26788
 
+## Case 55 - xgb, increased esimators, subsample, removed col_by_sumsample
+- model = XGBRegressor(max_depth=10, learning_rate=0.01, n_estimators=1500, subsample=0.85, reg_lambda=0.2, reg_alpha=0.8)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=42)
 
-## Case 55
+Mean squared error: 161018423401054.06    
+Root Mean squared error: 12689303.50    
+Mean absolute error: 5364447.09    
+Coefficient of determination: 0.67     
+model score:  0.8839744537224783     
+score: 12572870.13849
 
 ## Case 56
 
