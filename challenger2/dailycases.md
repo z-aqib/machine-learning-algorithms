@@ -2902,9 +2902,50 @@ Coefficient of determination: 0.67
 model score:  0.9523381486393312     
 score: 12442789.30317
 
-## Case 139
+## Case 139 - randomforest + best par higher max_features
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", rf)
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols)
+        # ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- rf = RandomForestRegressor(max_depth=36, n_estimators=1800, min_samples_split=2, min_samples_leaf=1, max_features=0.5, bootstrap=True, verbose=2, n_jobs=-1)
 
-## Case 140
+not trained on trainX, trainY, no prediction on testY     
+model score:  0.9528415052518412    
+score: 
+
+## Case 140 - stacking rf+gb+ada
+- meta_regressor = AdaBoostRegressor(n_estimators=10)
+- model = StackingRegressor( 
+    estimators=[
+        ('rf', RandomForestRegressor(n_estimators=100, max_depth = 5, random_state=42, verbose=2)),
+        ('gb', GradientBoostingRegressor(n_estimators=10, random_state=42, verbose=1))
+    ], 
+    final_estimator=meta_regressor, 
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = RobustScaler()
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+
+file was run but parameters werent recorded...    
+score: 12738231.25142
 
 ## Case 141
 
