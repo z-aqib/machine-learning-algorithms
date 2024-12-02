@@ -2874,7 +2874,42 @@ Coefficient of determination: 0.64
 no score     
 score: 12950464.58027
 
-## Case 104
+## Case 104 - neural networks, kbest
+- num_imputer = SimpleImputer(strategy="median")
+- scaler = StandardScaler()
+- get dummies
+- nn_model, X, trainX, trainY, testX, test_data = kbest(100, X, trainX, trainY, testX, test_data)
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(128, activation="relu", kernel_regularizer=l2(0.001)))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(64, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(32, activation="relu"))
+    model.add(Dense(16, activation="relu"))
+    model.add(Dropout(0.2))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss="mse")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=5, verbose=2)
+- early_stopping = EarlyStopping(monitor="val_loss", patience=10, restore_best_weights=True, verbose=2)
+- nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=150,
+    batch_size=16,
+    verbose=2,
+    callbacks=[lr_scheduler, early_stopping]
+)
+
+Mean squared error: 466469850753343.81    
+Root Mean squared error: 21597913.11    
+Mean absolute error: 12689852.71    
+Coefficient of determination: 0.03     
+no score
+score: 21491457.48558
 
 ## Case 105
 
