@@ -2775,6 +2775,13 @@ score: 13089744.37642
     ("onehot", OneHotEncoder(handle_unknown="ignore"))
 ])
 
+Mean squared error: 204458095850321.47    
+Root Mean squared error: 14298884.43    
+Mean absolute error: 7365368.83    
+Coefficient of determination: 0.57     
+model score:  0.5781924233746147     
+score: 14101310.75498
+
 ## Case 101
 
 ## Case 102
