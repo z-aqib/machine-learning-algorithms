@@ -3766,7 +3766,55 @@ score: 12697007.37604
 
 score: 12682240.55308
 
-## Case 154
+## Case 154 - neural networks
+- def build_nn(input_dim):
+    model = Sequential([
+        Dense(128, activation=""""relu"""", input_dim=input_dim),
+        BatchNormalization(),
+        Dropout(0.3),
+        Dense(64, activation=""""relu""""),
+        BatchNormalization(),
+        Dropout(0.2),
+        Dense(32, activation=""""relu""""),
+        Dense(1)  # Output layer for regression
+    ])
+    model.compile(optimizer=Nadam(learning_rate=0.001), loss=""""mse"""")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""""val_loss"""", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""""val_loss"""", patience=10, restore_best_weights=True, verbose=1)
+- history = nn_model.fit(
+    X_train_scaled, y_train_scaled,
+    validation_data=(X_val_scaled, y_val_scaled),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- xgb feature importance = 38	
+- StandardScaler	
+- .fillna(X.median())	
+- Using Nadam optimizer: model.compile(optimizer=Nadam(learning_rate=0.001), loss=""mse"")
+
+- top 38 numerical features (from XGBoost importance)
+- top_features = [
+    ""mosque_count_500"", ""culture_objects_top_25_raion"", ""cafe_count_3000_price_2500"",
+    ""cafe_count_5000_price_high"", ""cafe_count_3000"", ""cafe_count_1500"",
+    ""cafe_count_5000_price_2500"", ""build_count_monolith"", ""sport_count_3000"",
+    ""full_sq"", ""church_count_1500"", ""cafe_count_3000_price_4000"", 
+    ""cafe_avg_price_5000"", ""build_count_before_1920"", ""cafe_count_2000_price_4000"",
+    ""cafe_count_1000_na_price"", ""cafe_count_3000_price_1000"", ""leisure_count_1000"",
+    ""school_km"", ""metro_km_avto"", ""big_church_count_5000"", 
+    ""cafe_count_500_price_500"", ""raion_build_count_with_material_info"",
+    ""cafe_count_3000_price_high"", ""cafe_count_2000_price_2500"", 
+    ""cafe_count_500_price_2500"", ""office_count_3000"", ""cafe_count_5000_price_1000"",
+    ""fitness_km"", ""green_part_2000"", ""railroad_station_avto_min"", 
+    ""sport_count_2000"", ""bulvar_ring_km"", ""market_count_3000"",
+    ""exhibition_km"", ""build_count_1921-1945"" #, ""cat__nuclear_reactor_raion_no"",
+    #""cat__railroad_1line_no"",
+     ,""metro_min_avto"", ""mosque_km""
+]
+
+score: 12678377.93830
 
 ## Case 155
 
