@@ -1825,7 +1825,62 @@ Coefficient of determination: 0.64
 model test score:  0.6465356142089589     
 score: 12874165.01203
 
-## Case 71
+## Case 71 - stacking rf+dt+rf
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="median")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols)
+        # ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- rf1 = RandomForestRegressor(
+    max_depth=39,
+    n_estimators=400,
+    max_features='sqrt',
+    verbose=2,
+    n_jobs=-1,
+    min_samples_split=7
+)
+- dt2 = DecisionTreeRegressor(
+    max_depth=31,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3
+)
+- meta_regressor = RandomForestRegressor(
+    max_depth=32,
+    n_estimators=1500,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3,
+    bootstrap=True,
+    verbose=2,
+    n_jobs=-1
+)
+- stacking = StackingRegressor(
+    estimators=[('rf1', rf1), ('dt2', dt2)],
+    final_estimator=meta_regressor,
+    passthrough=False
+)
+- model = Pipeline(steps=[
+    ("preprocessor", preprocessor),
+    ("model", stacking)
+])
+
+Mean squared error: 165907217060102.69    
+Root Mean squared error: 12880497.55    
+Mean absolute error: 5108580.96    
+Coefficient of determination: 0.65     
+model test score:  0.7467883722827993    
+score: 12743497.47981
 
 ## Case 72
 
