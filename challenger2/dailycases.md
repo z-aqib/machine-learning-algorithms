@@ -1553,7 +1553,33 @@ Coefficient of determination: 0.54
 model score:  0.5378510641445383     
 score: 14720380.13598
 
-## Case 57
+## Case 57 - knn
+- model = KNeighborsRegressor(
+    n_neighbors=67,
+    weights='distance', 
+    # algorithm='auto', 
+    leaf_size=30,
+    p=2, 
+    metric='euclidean',  
+    n_jobs=-1
+)  
+- param_grid = {
+    'algorithm': ['ball_tree', 'kd_tree', 'brute', 'auto']
+}
+- best params: {'algorithm': 'ball_tree'}
+- model, X, trainX, trainY, testX, test_data = kbest(model, 200, X, trainX, trainY, testX, test_data)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+Mean squared error: 168584204034058.12    
+Root Mean squared error: 12983998.00    
+Mean absolute error: 5829397.78    
+Coefficient of determination: 0.65     
+model score:  0.9999971968331348     
+score: 12752648.99290
 
 # DAY 4: Thursday 28th November 2024
 
