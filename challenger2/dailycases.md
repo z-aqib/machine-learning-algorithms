@@ -2876,7 +2876,57 @@ score:
 
 ## Case 133
 
-## Case 134
+## Case 134 - neural network, 9 layers, higher xgb params
+- lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.3, patience=3, verbose=1)
+- early_stopping = EarlyStopping(monitor="val_loss", patience=6, restore_best_weights=True, verbose=1)
+- nn_model = nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=250,
+    batch_size=64,
+    verbose=2,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(2048, activation="relu", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.5))
+    model.add(Dense(1024, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
+    model.add(Dense(512, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.4))
+    model.add(Dense(256, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(128, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(64, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(32, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(16, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(8, activation="relu"))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.0015), loss="mse")
+    return model
+- xgb_model =  XGBRegressor( max_depth=19, learning_rate=0.006, n_estimators=2400, subsample=0.88, reg_lambda=0.15, reg_alpha=0.85, device = 'cuda', verbose = 2, tree_method = 'gpu_hist', predictor = 'gpu_predictor' )
+- xgb_model, X, trainX, trainY, testX, test_data = featureImportance(xgb_model, 50, X, trainX, trainY, testX, test_data)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
+- get dummies
+- scaler = StandardScaler()
+- fillna(.median)
+- no pipeline
+
+RMSE: 12679833.120798344      
+score: 12623184.80764
 
 ## Case 135 - neural network, 7 layers
 - lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.3, patience=3, verbose=1)
