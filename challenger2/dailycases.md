@@ -2936,7 +2936,31 @@ score: 12810788.62827
 
 score: 12738919.98609
 
-## Case 116 - knn
+## Case 116 - knn + variance fiter + PCA
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+- scaler = MinMaxScaler()
+- get dummies
+- variance filter: selector = VarianceThreshold(threshold=0.01) 
+- 273 columns
+- pca = PCA(n_components=0.95)
+- 267 columns
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model = KNeighborsRegressor(
+    n_neighbors=67, 
+    weights='distance',  
+    leaf_size=30,     
+    p=2, 
+    metric='euclidean', =
+    n_jobs=-1  
+)
+
+Mean squared error: 167815929949379.91    
+Root Mean squared error: 12954378.79    
+Mean absolute error: 5813474.85    
+Coefficient of determination: 0.65     
+model score:  0.9999973414753984     
+score: 12759323.06052
 
 ## Case 117 - gboost
 
