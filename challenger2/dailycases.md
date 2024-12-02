@@ -3409,7 +3409,39 @@ Increased epochs to 200 and batch size to 64 for better convergence.
 - Learning Rate Scheduler:
 Added a ReduceLROnPlateau callback for dynamic learning rate adjustment.
 
-## Case 147
+## Case 147 - neural networks, no imputation
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(128, activation=""relu"", input_dim=input_dim))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(64, activation=""relu""))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(32, activation=""relu""))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss=""mse"")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor=""val_loss"", factor=0.5, patience=5, verbose=1)
+- early_stopping = EarlyStopping(monitor=""val_loss"", patience=10, restore_best_weights=True, verbose=1)
+- nn_model.fit(
+    X_train_preprocessed, y_train_scaled,
+    validation_data=(X_val_preprocessed, y_val_scaled),
+    epochs=100,
+    batch_size=32,
+    verbose=1,
+    callbacks=[lr_scheduler, early_stopping]
+)
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", StandardScaler(), numerical_cols),
+        ("cat", OneHotEncoder(handle_unknown="ignore"), categorical_cols)
+    ]
+)
+- no imputation
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
+
+score: 12750468.62401   
 
 ## Case 148
 
