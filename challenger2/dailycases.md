@@ -2957,7 +2957,44 @@ Coefficient of determination: 0.65
 model test score:  0.653873812224862     
 score: 12753400.83857
 
-## Case 106
+## Case 106 - neural networks
+- num_imputer = SimpleImputer(strategy="median")
+- scaler = StandardScaler()
+- get dummies
+- selector = VarianceThreshold(threshold=0.01) 
+- pca = PCA(n_components=0.95)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- def build_nn(input_dim):
+    model = Sequential()
+    model.add(Dense(128, activation="relu", kernel_regularizer=l2(0.001)))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.2))
+    model.add(Dense(64, activation="relu"))
+    model.add(BatchNormalization())
+    model.add(Dropout(0.3))
+    model.add(Dense(32, activation="relu"))
+    model.add(Dense(16, activation="relu"))
+    model.add(Dropout(0.2))
+    model.add(Dense(1))  # Output layer
+    model.compile(optimizer=Adam(learning_rate=0.001), loss="mse")
+    return model
+- lr_scheduler = ReduceLROnPlateau(monitor="val_loss", factor=0.5, patience=5, verbose=2)
+- early_stopping = EarlyStopping(monitor="val_loss", patience=10, restore_best_weights=True, verbose=2)
+- nn_model.fit(
+    trainX, trainY,
+    validation_data=(testX, testY),
+    epochs=150,
+    batch_size=16,
+    verbose=2,
+    callbacks=[lr_scheduler, early_stopping]
+)
+
+Mean squared error: 173255813799230.69    
+Root Mean squared error: 13162667.43    
+Mean absolute error: 6386024.64    
+Coefficient of determination: 0.64     
+no model score    
+score: 12957902.03457
 
 ## Case 107
 
