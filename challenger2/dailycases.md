@@ -2996,7 +2996,44 @@ Coefficient of determination: 0.64
 no model score    
 score: 12957902.03457
 
-## Case 107
+## Case 107 - stacking grad+ada+xgb+rf, xgb feature importance
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="median")
+- scaler = StandardScaler()
+- get dummies
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- class VerboseAdaBoostRegressor(AdaBoostRegressor):
+    def _boost(self, iboost, X, y, sample_weight, random_state):
+        print(f"Training estimator {iboost + 1}/{self.n_estimators}")
+        return super()._boost(iboost, X, y, sample_weight, random_state)
+- rf1 = GradientBoostingRegressor(n_estimators=50, max_depth=2, learning_rate=0.2, subsample=0.8, verbose=3)
+- dt2 = VerboseAdaBoostRegressor(estimator=DecisionTreeRegressor(max_depth=10), n_estimators=50, learning_rate=1.0)
+- xgb = XGBRegressor(verbosity=1, n_jobs=-1)
+- meta_regressor = RandomForestRegressor(
+    max_depth=32,
+    n_estimators=1500,
+    max_features='log2',
+    min_samples_leaf=2,
+    min_samples_split=3,
+    bootstrap=True,
+    verbose=2,
+    n_jobs=-1
+)
+- model = StackingRegressor(
+    estimators=[('rf1', rf1), ('dt2', dt2), ('xgb1', xgb)],
+    final_estimator=meta_regressor,
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- xgb, X, trainX, trainY, testX, test_data = featureImportance(
+    xgb, 100, X, trainX, trainY, testX, test_data
+)
+
+Mean squared error: 167237398338203.06    
+Root Mean squared error: 12932029.94    
+Mean absolute error: 5665898.98    
+Coefficient of determination: 0.65     
+model test score:  0.6629559532356173     
+score: 12748650.72259
 
 ## Case 108
 
