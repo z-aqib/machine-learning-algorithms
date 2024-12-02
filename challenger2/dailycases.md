@@ -1761,7 +1761,17 @@ Coefficient of determination: 0.63
 model score:  0.6429316560418115     
 score: 13095757.51710
 
-## Case 68
+## Case 68 - adaboost, dt estimator with larger params, kbest 70
+- model = AdaBoostRegressor(n_estimators=100, estimator = DecisionTreeRegressor(max_depth=10, splitter='best', criterion='poisson', min_samples_leaf=5, min_samples_split=3))
+- model, X, trainX, trainY, testX, test_data = kbest(model, 70, X, trainX, trainY, testX, test_data)
+- num_imputer = SimpleImputer(strategy="mean")
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- scaler = MinMaxScaler()
+- get dummies method
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+
+RMSE: 12774943.590350837     
+score: 12584851.34447
 
 ## Case 69
 
