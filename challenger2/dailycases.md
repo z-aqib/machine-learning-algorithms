@@ -1773,7 +1773,38 @@ score: 13095757.51710
 RMSE: 12774943.590350837     
 score: 12584851.34447
 
-## Case 69
+## Case 69 - xgb, higher parameters, no feature selection
+- num_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="mean")),
+    ("scaler", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    ("imputer", SimpleImputer(strategy="most_frequent")),
+    ("onehot", OneHotEncoder(handle_unknown="ignore"))
+])
+- preprocessor = ColumnTransformer(
+    transformers=[
+        ("num", num_transformer, numerical_cols),
+        ("cat", cat_transformer, categorical_cols)
+    ]
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=42)
+- model = XGBRegressor(
+    max_depth=18, 
+    learning_rate=0.009, 
+    n_estimators=2000, 
+    subsample=0.85,
+    colsample_bytree=0.8, 
+    reg_lambda=0.2,  
+    reg_alpha=0.8,
+    device = 'cuda',
+    verbose = 2,
+    tree_method = 'gpu_hist',
+    predictor = 'gpu_predictor'
+)
+
+RMSE: 12682809.26539975     
+score: 12466344.80314
 
 ## Case 70
 
