@@ -2985,7 +2985,24 @@ score: 12737584.77444
 file was run but parameters werent recorded...    
 score: 12661050.51915
 
-## Case 143
+## Case 143 - stacking rf+ridge
+- meta_regressor = LinearRegression()
+- model = StackingRegressor( 
+    estimators= [
+        ('rf', RandomForestRegressor(n_estimators=200, max_depth=20, min_samples_split=5, min_samples_leaf=2, max_features='sqrt', bootstrap=True, random_state=42, n_jobs=-1)),
+        ('ridge', Ridge(alpha=10.0, solver='saga', tol=1e-4, max_iter=10000, random_state=42))
+    ], 
+    final_estimator=meta_regressor, 
+    passthrough=False, n_jobs=-1, verbose=2
+)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- get dummies
+- scaler = RobustScaler()
+- cat_imputer = SimpleImputer(strategy="most_frequent")
+- num_imputer = SimpleImputer(strategy="mean")
+
+file was run but parameters werent recorded...    
+score: 12490377.08595
 
 ## Case 144
 
