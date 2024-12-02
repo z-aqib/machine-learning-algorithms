@@ -2926,6 +2926,15 @@ score: 12810788.62827
 - scaler = MinMaxScaler()
 - get dummies
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model0 = GradientBoostingRegressor(
+    n_estimators=200,
+    max_depth=3,
+    learning_rate=0.1,
+    subsample=0.6, 
+    verbose=3
+)
+
+score: 12738919.98609
 
 ## Case 116 - knn
 
