@@ -3683,7 +3683,26 @@ score: 12692974.99694
 
 score: 13175268.83308
 
-## Case 151
+## Case 151 - neural networks, mlp regressor, more params
+- regressor = MLPRegressor(
+    hidden_layer_sizes=(100, 50, 25),   
+    activation='relu',                
+    alpha=0.0001,                     
+    learning_rate='adaptive',         
+    learning_rate_init=0.001,          
+    max_iter=200,                      
+    tol=1e-4,                          
+    random_state=42,                   
+    early_stopping=True,    
+    validation_fraction=0.1,         
+    n_iter_no_change      )
+- KBEST	210	
+- min max	
+- simple imputer mean for numerical 
+- simple imputer most frequent for categorical
+- one hot encoding
+
+score: 12667829.54214
 
 ## Case 152
 
