@@ -3666,7 +3666,22 @@ score: 12703628.73551
 
 score: 12692974.99694
 
-## Case 150
+## Case 150 - polyReg + ridge
+- num_transformer = Pipeline(steps=[
+    (""imputer"", SimpleImputer(strategy=""median"")),
+    (""scaler"", StandardScaler())
+])
+- cat_transformer = Pipeline(steps=[
+    (""imputer"", SimpleImputer(strategy=""most_frequent"")),
+    (""onehot"", OneHotEncoder(handle_unknown=""ignore""))
+])
+- SimpleImputer(strategy="median") 
+- SimpleImputer(strategy="most_frequent")
+- standardscaler
+- Ridge(alpha=1000)
+- trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.2, random_state=2)
+
+score: 13175268.83308
 
 ## Case 151
 
