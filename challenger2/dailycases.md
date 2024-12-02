@@ -2818,6 +2818,20 @@ score: 12719710.06437
 - scaler = MinMaxScaler()
 - get dummies
 - trainX, testX, trainY, testY = train_test_split(X, Y, test_size=0.3, random_state=2)
+- model5 = GradientBoostingRegressor(
+    n_estimators=150,
+    max_depth=2,
+    learning_rate=0.15,
+    subsample=0.7, 
+    verbose=3
+)
+
+Mean squared error: 168175441514300.56    
+Root Mean squared error: 12968247.43    
+Mean absolute error: 5928197.06    
+Coefficient of determination: 0.65    
+model test score:  0.6665440365909008     
+score: 12729943.36599
 
 ## Case 111 - gradboost6
 - cat_imputer = SimpleImputer(strategy="most_frequent")
