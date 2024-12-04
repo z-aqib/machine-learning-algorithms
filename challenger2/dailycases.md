@@ -4302,20 +4302,20 @@ rf = RandomForestRegressor(n_estimators=100, random_state=42) = 50
 - standard scaler
 - numerical_imputer = SimpleImputer(strategy=""median"")
 - categorical_imputer = SimpleImputer(strategy=""most_frequent"")"	
-Selected Features: ['cafe_count_1000_price_2500', 'green_part_1500', 'area_m', 'green_zone_km', 'office_sqm_5000', 'power_transmission_line_km', 'cafe_count_1000', 'water_treatment_km', 'railroad_1line', 'big_road2_km', 'zd_vokzaly_avto_km', 'cafe_count_3000_price_1000', 'museum_km', 'sport_count_1000', 'build_count_1971-1995', 'ID_bus_terminal', 'trc_sqm_1500', 'hospice_morgue_km', 'build_count_1946-1970', 'ID_big_road1', 'incineration_km', 'build_count_1921-1945', 'stadium_km', 'public_transport_station_min_walk', 'detention_facility_km', 'cafe_count_3000_price_500', 'build_count_before_1920', 'church_count_500', 'ID_metro', 'raion_build_count_with_builddate_info', 'cafe_count_1000_price_1000', 'big_market_km', 'build_count_foam', 'cafe_count_1500_price_2500', 'railroad_km', 'green_part_2000', 'raion_popul', 'radiation_km', 'life_sq', 'floor', 'cafe_count_2000', 'prom_part_3000', 'market_count_3000', 'cafe_count_2000_price_2500', 'cafe_count_3000', 'market_count_2000', 'prom_part_5000', 'sport_objects_raion', 'full_sq', 'prom_part_500'](ReduceLROnPlateau) and early stopping to ensure efficient training."
+- Selected Features: ['cafe_count_1000_price_2500', 'green_part_1500', 'area_m', 'green_zone_km', 'office_sqm_5000', 'power_transmission_line_km', 'cafe_count_1000', 'water_treatment_km', 'railroad_1line', 'big_road2_km', 'zd_vokzaly_avto_km', 'cafe_count_3000_price_1000', 'museum_km', 'sport_count_1000', 'build_count_1971-1995', 'ID_bus_terminal', 'trc_sqm_1500', 'hospice_morgue_km', 'build_count_1946-1970', 'ID_big_road1', 'incineration_km', 'build_count_1921-1945', 'stadium_km', 'public_transport_station_min_walk', 'detention_facility_km', 'cafe_count_3000_price_500', 'build_count_before_1920', 'church_count_500', 'ID_metro', 'raion_build_count_with_builddate_info', 'cafe_count_1000_price_1000', 'big_market_km', 'build_count_foam', 'cafe_count_1500_price_2500', 'railroad_km', 'green_part_2000', 'raion_popul', 'radiation_km', 'life_sq', 'floor', 'cafe_count_2000', 'prom_part_3000', 'market_count_3000', 'cafe_count_2000_price_2500', 'cafe_count_3000', 'market_count_2000', 'prom_part_5000', 'sport_objects_raion', 'full_sq', 'prom_part_500'](ReduceLROnPlateau) and early stopping to ensure efficient training."
 
 score: 12657135.79789
 
 ### analyzing
-- Key Points
-Feature Selection:
+Key Points
+- Feature Selection:
 Used RandomForestRegressor to rank feature importance.
 Kept only the top 50 most important features for training.
-Reduced Input Dimensions:
+- Reduced Input Dimensions:
 By focusing only on the most relevant columns, we reduce model complexity, making it faster to train and less prone to overfitting.
-Preprocessing for Important Features:
+- Preprocessing for Important Features:
 Scaled only the selected features to ensure optimal performance for neural networks.
-Callbacks:
+- Callbacks:
 Included learning rate adjustment 
 
 ## Case 157 - neural networks
